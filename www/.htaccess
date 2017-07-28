@@ -1,0 +1,59 @@
+# .htaccess
+#
+# @package jp.co.dipps.minc3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+# 各種セキュリティ
+Header unset X-Powered-By
+Header set X-Content-Type-Options nosniff
+Header set X-XSS-Protection "1; mode=block"
+RequestHeader unset Proxy
+
+# エラーページ
+ErrorDocument 404 /NotFound
+
+# MIME
+AddType application/x-httpd-php .php
+AddType video/webm .webm
+
+# mod_rewrite
+RewriteEngine on
+RewriteRule ^(.*/)*\.git/ / [F,L]
+#RewriteCond %{SERVER_PORT} !^443$ [OR] #常時httpsのサイトでは以下3行コメントを外し、適切に設定
+#RewriteCond %{HTTPS} off
+#RewriteRule .* https://www.example.com%{REQUEST_URI} [R=301,L]
+RewriteRule ^$ /1 [QSA] #トップページ用の事案をID1に固定
+#RewriteRule ^$ /UserEvent/Primary [QSA] #トップページ用の事案を自動処理
+RewriteRule ^sitemap.xml$ /UserSite/SiteMapXML
+RewriteRule ^robots.txt$ /UserSite/CrawlerRules
+RewriteRule ^feed$ /UserEvent/Feed/minc [QSA]
+RewriteRule ^([_a-z0-9]+)/feed$ /UserEvent/Feed/$1 [QSA]
+RewriteRule ^([A-Z][A-Za-z0-9]+)/([A-Z][A-Za-z0-9]+)/([_a-z0-9]+)$ /carrotctl.php?m=$1&a=$2&id=$3 [L,QSA]
+RewriteRule ^([A-Z][A-Za-z0-9]+)/([A-Z][A-Za-z0-9]+)$ /carrotctl.php?m=$1&a=$2 [L,QSA]
+RewriteRule ^([A-Z][A-Za-z0-9]+)/$ /carrotctl.php?m=$1 [L,QSA]
+RewriteRule ^([A-Z][A-Za-z0-9]+)$ /carrotctl.php?a=$1 [L,QSA]
+
+# BASIC AUTH
+#AuthType Basic
+#AuthName "minc"
+#AuthUserFile __AUTH_FILE__
+#Require valid-user
+
+# 大容量ファイルのアップロード
+php_value post_max_size 1G
+php_value upload_max_filesize 1G
+
+# php7
+php_value short_open_tag Off
+php_value default_charset UTF-8
+php_value mbstring.language Japanese
+php_value mbstring.detect_order auto
+php_value date.timezone Asia/Tokyo
+php_flag mbstring.encoding_translation Off
+php_flag session.auto_start Off
+php_flag session.use_cookies On
+php_flag session.cookie_httponly On
+php_flag session.use_only_cookies On
+php_flag session.use_strict_mode On
+php_flag session.use_trans_sid Off
+#php_flag session.cookie_secure On #常時httpsのサイトではコメントを外す
