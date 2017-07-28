@@ -12,7 +12,6 @@ use \Carrot3 as C;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_outputfilter_mobile ($source, &$smarty) {
-	$source = C\StringUtils::convertKana($source, 'kas');
-	return $source;
+	return C\StringUtils::convertKana($source, 'kas');
 }
 

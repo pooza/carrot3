@@ -17,7 +17,6 @@ function smarty_outputfilter_mail ($source, &$smarty) {
 	foreach ($mime->getHeaders() as $header) {
 		$smarty->getHeaders()->setParameter($header->getName(), $header->getEntity());
 	}
-	$source = $mime->getBody();
-	return $source;
+	return $mime->getBody();
 }
 

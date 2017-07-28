@@ -16,8 +16,6 @@ function smarty_function_css_cache ($params, &$smarty) {
 	if (C\StringUtils::isBlank($params['name'])) {
 		$params['name'] = 'carrot';
 	}
-
-	$styleset = new C\StyleSet($params['name']);
-	return $styleset->createElement()->getContents();
+	return (new C\StyleSet($params['name']))->createElement()->getContents();
 }
 

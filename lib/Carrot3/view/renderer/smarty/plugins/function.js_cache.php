@@ -16,8 +16,6 @@ function smarty_function_js_cache ($params, &$smarty) {
 	if (C\StringUtils::isBlank($params['name'])) {
 		$params['name'] = 'carrot';
 	}
-
-	$jsset = new C\JavaScriptSet($params['name']);
-	return $jsset->createElement()->getContents();
+	return (new C\JavaScriptSet($params['name']))->createElement()->getContents();
 }
 

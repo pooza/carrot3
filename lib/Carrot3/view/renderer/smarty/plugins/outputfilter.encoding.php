@@ -12,7 +12,6 @@ use \Carrot3 as C;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_outputfilter_encoding ($source, &$smarty) {
-	$source = C\StringUtils::convertEncoding($source, $smarty->getEncoding(), 'utf-8');
-	return $source;
+	return C\StringUtils::convertEncoding($source, $smarty->getEncoding(), 'utf-8');
 }
 
