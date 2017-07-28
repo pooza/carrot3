@@ -12,7 +12,7 @@ use \Carrot3 as C;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_function_picto ($params, &$smarty) {
-	$pictogram = \Pictogram::getInstance($params['name']);
+	$pictogram = \Pictogram::create($params['name']);
 	return $pictogram->getContents();
 }
 

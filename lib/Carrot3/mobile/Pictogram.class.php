@@ -1,7 +1,7 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage mobile.pictogram
+ * @subpackage mobile
  */
 
 namespace Carrot3;
@@ -41,7 +41,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @return Pictogram 絵文字
 	 * @static
 	 */
-	static public function getInstance ($name) {
+	static public function create ($name) {
 		if (!self::$instances) {
 			self::$instances = Tuple::create();
 		}
