@@ -1,0 +1,280 @@
+# アプリケーション定数設定ファイル - carrot分
+#
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+carrot:
+  name: carrot Framework
+  ver: 3.0.0-dev
+
+admin:
+  email:
+  password:
+  networks:
+  twitter: pooza
+app:
+  deploy:
+    dir:
+      freebsd: /usr/local/www/apache24/data
+  name:
+    ja: unknown
+    en: unknown
+  ver: unknown
+  http_cache:
+    mode: private
+    seconds: 60
+  process:
+    uid:
+      default: nobody
+      darwin: www
+      freebsd: www
+      debian: www-data
+author:
+  name:
+  email:
+  password:
+  twitter: carrot_fw
+backup:
+  class: BackupManager
+clamav:
+  command: clamdscan
+  dir:
+    default: /usr/local
+    darwin: /opt/local
+    linux: /usr
+cookie:
+  checker:
+    hours: 6
+crypt:
+  engine: open_ssl
+  method: AES-256-CBC
+  password: __YOUR_PASSWORD__
+  digest:
+    method: sha1
+    salt: __YOUR_SALT__
+date:
+  timezone: Asia/Tokyo
+debug: yes
+decoration_mail:
+  type:
+    docomo: application/x-decomail-template
+    au: application/x-kddi-htmlmail
+    softbank: application/x-htmlmail-template
+filterset:
+  class: Default
+ffmpeg:
+  dir:
+    default: /usr/local
+    darwin: /opt/local
+    linux: /usr
+  convert:
+    flv:
+      video_codec: flv
+      audio_codec: aac
+    mp4:
+      video_codec: libx264
+      audio_codec: aac
+      vpre:
+        linux: libx264-default
+    jpg:
+      ss: 2
+      vframes: 1
+    png:
+      ss: 2
+      vframes: 1
+    webm:
+      audio_codec: libvorbis
+      audio_sampling_frequency: 44100
+    mp3:
+image:
+  storable: yes
+  renderers:
+    default:
+      class: Image
+  mobile:
+    size:
+      qvga:
+        width: 240
+        height: 320
+      vga:
+        width: 480
+        height: 640
+  qrcode:
+    size: 80
+  thumbnail:
+    bgcolor: black
+    type: image/png
+  apple_icon:
+    pixels: 57
+  favicon:
+    pixels: 16
+image_magick:
+  dir:
+    default: /usr/local
+    darwin: /opt/local
+    linux: /usr
+languages:
+  - ja
+log:
+  loggers:
+    - System
+    - Mail
+logger:
+  dir:
+    default: /usr
+mail:
+  sender: Sendmail
+memcache:
+  default:
+    host: /tmp/memcached.sock
+    port: 0
+  render:
+    host: /tmp/memcached_render.sock
+    port: 0
+module:
+  cache_parameters: yes
+  prefixes:
+    - Admin
+    - Develop
+    - User
+    - Agent
+    - Console
+  default:
+    module: Default
+    action: Default
+  cookie_disabled:
+    module: Default
+    action: CookieDisabled
+  not_found:
+    module: Default
+    action: NotFound
+  secure:
+    module: Default
+    action: Forbidden
+  empty_site:
+    module: Default
+    action: EmptySite
+  legacy_user_agent:
+    module: Default
+    action: DeniedUserAgent
+mysql:
+  dir:
+    default: /usr/local
+    darwin: /opt/local/lib/mysql56
+net:
+  url:
+    shorter: google_url_shortner
+package:
+  name:
+  ver:
+periodic:
+  development:
+    frequently:
+    hourly:
+    daily:
+      - Console:Purge
+  production:
+    frequently:
+    hourly:
+    daily:
+      - Console:Purge
+pdo:
+  default:
+    dsn: sqlite:%BS_VAR_DIR%/db/default.sqlite3
+    loggable: yes
+  serialize:
+    dsn: sqlite:%BS_VAR_DIR%/db/serialize.sqlite3
+pgsql:
+  dir:
+    default: /usr/local
+    darwin: /opt/local/lib/postgresql96
+php:
+  dir:
+    default: /usr/local
+    darwin: /opt/local
+pictogram:
+png2ico:
+  dir:
+    default: /usr/local
+    darwin: /opt/local
+    linux: /usr
+proctools:
+  dir:
+    default: /usr
+    darwin: /opt/local
+render:
+  storage: Memcache
+ruby:
+  dir:
+    default: /usr/local
+    darwin: /opt/local
+sendmail:
+  dir:
+    default: /usr
+serialize:
+  storage: Default
+  serializer: JSON
+  classes:
+service:
+  bitly:
+    version: 2.0.1
+    login: carrotfw
+    api_key: R_dbbb70d7b5959e23289acfc3458f836f
+  google:
+    maps:
+      api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg
+      zoom: 17
+    static_maps:
+      api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg
+      format: gif
+    maps_geocoding:
+      api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg
+    analytics:
+      id:
+      beacon_href: /carrotlib/php/ga.php
+    calendar:
+      api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg
+    url_shortener:
+      api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg
+  twitter:
+    consumer:
+      key: hhXdKP3kEwvWumb1AFbTlQ
+      secret: m5dkKU4xnuLfD5WHOpctisvR08rSfB80x9Bfy0nnlk
+    access_token: 139985635-LEKAX9Soa2zrjjtOf0MWR8KQdFJM8cGCgX7myMo
+    access_token_secret: MfGm4toy0En5ZntHJFt6O4xOcZzAnfwnW9rDUaY
+    minutes: 5
+session:
+  storage: Memcache
+smtp:
+  host:
+  timeout: 200000 #ミリ秒単位
+sqlite3:
+  dir:
+    default: /usr/local
+    darwin: /opt/local
+    linux: /usr
+sudo:
+  dir:
+    default: /usr
+    darwin: /opt/local
+    freebsd: /usr/local
+tidy5:
+  dir:
+    default: /usr/local
+unzip:
+  dir:
+    default: /usr
+useragent:
+  mobile:
+    deny_on_https: no
+user:
+  class:
+view:
+  frame_options: sameorigin
+  content_type_options: nosniff
+  ua_compatible: IE=edge
+  xss_protection: 1; mode=block
+  html5: yes
+  layout:
+    smartphone:
+      width: 600

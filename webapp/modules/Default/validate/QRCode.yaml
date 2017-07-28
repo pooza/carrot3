@@ -1,0 +1,11 @@
+# @package __PACKAGE__
+# @subpackage Default
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+methods:
+  - GET
+  - POST
+
+fields:
+  value:
+    required: yes

@@ -1,0 +1,37 @@
+label,ja
+account,アカウント
+bsutility,BSUtility
+cookie,Cookie
+create_date,作成日
+data,データ
+date,日付
+directories,ディレクトリ
+email,メールアドレス
+format,形式
+google_analytics_id,Google Analytics ID
+hide,非表示
+id,ID
+log,ログ
+log_entry,ログエントリー
+message,メッセージ
+minus,-
+name,名前
+password,パスワード
+plus,+
+priority,優先順位
+rank,順位
+remoteaddr,リモートアドレス
+remote_address,リモートアドレス
+remotehost,リモートホスト
+remote_host,リモートホスト
+serialize_entry,シリアライズエントリー
+session_entry,セッションエントリー
+show,表示
+site,サイト
+status,状態
+time,タイムスタンプ
+token,トークン
+twitter_id,Twitter ID
+update_date,更新日
+useragent,ユーザーエージェント
+user_agent,ユーザーエージェント

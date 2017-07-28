@@ -1,0 +1,123 @@
+# HTTPステータス
+#
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+100:
+  status: Continue
+  description: リクエストの一部は、サーバーに受け取られましたが、それが拒絶されていない限り、クライアントはリクエストを継続するべきです。
+101:
+  status: Switching Protocols
+  description: サーバーはプロトコルを変更しました。
+200:
+  status: OK
+  description: リクエストは成功しました。
+201:
+  status: Created
+  description: リクエストは完了し、新しいリソースが作成されました。
+202:
+  status: Accepted
+  description: リクエストはサーバーに受け取られましたが、処理は完了していません。
+203:
+  status: Non-authoritative Information
+204:
+  status: No Content
+  description: リクエストは完了しましたが、本文はありません。
+205:
+  status: Reset Content
+206:
+  status: Partial Content
+  description: 部分的 GET を受け入れました。
+300:
+  status: Multiple Choices
+  description: 最大 5 つのアドレスのリンク先に、リンクを選択することによってジャンプすることが出来ます。
+301:
+  status: Moved Permanently
+  description: リクエストされたページは新しい URL に移動しました。
+302:
+  status: Found
+  description: リクエストされたページは新しい URL に一時的に移動しました。
+303:
+  status: See Other
+  description: リクエストされたページは異なる URL にあります。
+304:
+  status: Not Modified
+  description: リクエストされたページは更新されていません。
+305:
+  status: Use Proxy
+  description: プロクシを使用してアクセスしてください。
+306:
+  status: Unused
+  description: このコードはもはや使用されていませんが、将来のために予約されています。
+307:
+  status: Temporary Redirect
+  description: リクエストされたページは新しい URL に一時的に移動しました。
+400:
+  status: Bad Request
+  description: このリクエストはサーバーに理解できません。
+401:
+  status: Unauthorized
+  description: リクエストされたページはユーザー名とパスワードを入力する必要があります。
+402:
+  status: Payment Required
+  description: このコードはまだ使用することが出来ません。
+403:
+  status: Forbidden
+  description: リクエストされたページはアクセスが禁止されています。
+404:
+  status: Not Found
+  description: リクエストされたページは見つかりません。
+405:
+  status: Method Not Allowed
+  description: リクエストで使用されている方法は許可されていません。
+406:
+  status: Not Acceptable
+  description: サーバーは、クライアントに受けとれないレスポンスを作成することができます。
+407:
+  status: Proxy Authentication Required
+  description: このリクエストを送信できるようにプロクシーサーバを設定しなければなりません。
+408:
+  status: Request Timeout
+  description: リクエストはタイムアウトしました。
+409:
+  status: Conflict
+  description: リクエストは、矛盾しているために完了できませんでした。
+410:
+  status: Gone
+  description: リクエストされたページは存在しません。
+411:
+  status: Length Required
+  description: 「Content-Legth」が定義されていません。サーバーは、それのないリクエストを受け入れません。
+412:
+  status: Precondition Failed
+  description: リクエストの必須条件が足りません。
+413:
+  status: Request Entity Too Large
+  description: リクエストの実態が大きすぎるので、サーバーはリクエストを受諾しません。
+414:
+  status: Request-url Too Long
+  description: URL が長すぎます。
+415:
+  status: Unsupported Media Type
+  description: このメディアタイプはサポートされていません。
+416:
+417:
+  status: Expectation Failed
+500:
+  status: Internal Server Error
+  description: サーバーは予期せぬエラーに見舞われました。
+501:
+  status: Not Implemented
+  description: サーバーは要求された機能を持っていません。
+502:
+  status: Bad Gateway
+  description: サーバーは無効な応答を受け取りました。
+503:
+  status: Service Unavailable
+  description: サーバーは一時的に過負荷がかかっているか、ダウンしています。
+504:
+  status: Gateway Timeout
+  description: サーバーのゲートウェイでタイムアウトしました。
+505:
+  status: HTTP Version Not Supported
+  description: サーバーはこの「http protocol」バージョンをサポートしていません。

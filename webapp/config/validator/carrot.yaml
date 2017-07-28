@@ -1,0 +1,117 @@
+# バリデータ設定ファイル
+#
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+color:
+  class: Carrot3\RegexValidator
+  params:
+    pattern: '[[:xdigit:]]{6}'
+    match_error: 色指定が正しくありません。
+date:
+  class: Carrot3\DateValidator
+email:
+  class: Carrot3\MailAddressValidator
+empty:
+  class: Carrot3\EmptyValidator
+english:
+  class: Carrot3\EnglishValidator
+file:
+  class: Carrot3\FileValidator
+  params:
+    size: 2
+    suffixes: attachable
+flag:
+  class: Carrot3\ChoiceValidator
+  params:
+    choices:
+      - 0
+      - 1
+html:
+  class: Carrot3\HTMLFragmentValidator
+image:
+  class: Carrot3\ImageValidator
+  params:
+    types:
+      - image/gif
+      - image/jpeg
+      - image/png
+infection:
+  class: Carrot3\InfectionValidator
+kana:
+  class: Carrot3\KanaValidator
+largefile:
+  class: Carrot3\FileValidator
+  params:
+    size: 1024
+    suffixes: attachable
+longtext:
+  class: Carrot3\StringValidator
+  params:
+    max: 65536
+movie:
+  class: Carrot3\MovieValidator
+music:
+  class: Carrot3\MusicValidator
+ng_word:
+  class: Carrot3\NGWordValidator
+number:
+  class: Carrot3\NumberValidator
+password:
+  class: Carrot3\PasswordValidator
+pixel:
+  class: Carrot3\NumberValidator
+  params:
+    min: 8
+    max: 1024
+setrank:
+  class: Carrot3\ChoiceValidator
+  params:
+    choices:
+      - up
+      - down
+      - top
+      - bottom
+smarty:
+  class: Carrot3\SmartyValidator
+string:
+  class: Carrot3\StringValidator
+  params:
+    max: 1024
+styleset:
+  class: Carrot3\StyleSetValidator
+tel:
+  class: Carrot3\PhoneNumberValidator
+tel_separated:
+  class: Carrot3\PhoneNumberValidator
+  params:
+    fields:
+      - tel1
+      - tel2
+      - tel3
+time:
+  class: Carrot3\TimeValidator
+tinyint:
+  class: Carrot3\NumberValidator
+  params:
+    min: 0
+    max: 250
+tinytext:
+  class: Carrot3\StringValidator
+  params:
+    max: 250
+url:
+  class: Carrot3\URLValidator
+year:
+  class: Carrot3\NumberValidator
+  params:
+    min: 1912
+zipcode:
+  class: Carrot3\ZipcodeValidator
+zipcode_separated:
+  class: Carrot3\ZipcodeValidator
+  params:
+    fields:
+      - zipcode1
+      - zipcode2
+

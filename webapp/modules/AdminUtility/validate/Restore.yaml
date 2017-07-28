@@ -1,0 +1,21 @@
+# @package jp.co.b-shock.carrot3
+# @subpackage AdminUtility
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+methods:
+  - POST
+
+fields:
+  file:
+    required: yes
+    file: yes
+    validators:
+      - backup_file
+
+validators:
+  backup_file:
+    class: FileValidator
+    params:
+      size: 1024
+      suffixes:
+        - .zip

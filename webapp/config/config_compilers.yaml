@@ -1,0 +1,20 @@
+# 設定コンパイラ設定ファイル
+#
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+- class: Carrot3\DefineConfigCompiler
+  params:
+    pattern: constant/
+- class: Carrot3\ValidatorConfigCompiler
+  params:
+    pattern: validate/
+- class: Carrot3\LayoutConfigCompiler
+  params:
+    pattern: layout/
+- class: Carrot3\PictogramConfigCompiler
+  params:
+    pattern: pictogram
+- class: Carrot3\ObjectRegisterConfigCompiler
+  params:
+    pattern: filters

@@ -1,0 +1,164 @@
+# ディレクトリレイアウト設定ファイル
+#
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+backup:
+  parent: var
+  suffix: .zip
+  purge:
+    day: 2
+bin:
+  constant: yes
+carrot:
+  parent: lib
+  name: Carrot3
+carrotlib:
+  parent: www
+chart:
+  parent: var
+  suffix: .png
+clamav:
+  platform: yes
+config:
+  parent: webapp
+config_cache:
+  parent: var
+  suffix: .cache.php
+compile:
+  parent: var
+css:
+  parent: carrotlib
+  suffix: .css
+css_cache:
+  parent: var
+  suffix: .css
+  href: /carrotlib/css/cache/
+db:
+  parent: var
+  suffix: .sqlite3
+dictionaries:
+  parent: webapp
+  class: DictionaryDirectory
+dump:
+  parent: var
+  suffix: .sql
+  purge:
+    day: 2
+favicon:
+  parent: var
+  suffix: .png
+  purge:
+    day: 1
+ffmpeg:
+  platform: yes
+images:
+  parent: carrotlib
+image_cache:
+  parent: var
+  href: /carrotlib/images/cache/
+image_magick:
+  platform: yes
+js:
+  parent: carrotlib
+  suffix: .js
+js_cache:
+  parent: var
+  suffix: .js
+  href: /carrotlib/js/cache/
+lib:
+  constant: yes
+local_lib:
+  parent: webapp
+  name: lib
+local_tests:
+  parent: webapp
+  name: tests
+log:
+  parent: var
+  class: LogDirectory
+  purge:
+    month: 2
+logger:
+  platform: yes
+maps:
+  parent: var
+  suffix: .gif
+  purge:
+    month: 1
+menu:
+  parent: config
+modules:
+  parent: webapp
+movies:
+  parent: carrotlib
+  suffix: .mp4
+movie_file:
+  parent: var
+  suffix: .png
+  purge:
+    month: 1
+musics:
+  parent: carrotlib
+  suffix: .mp3
+mysql:
+  platform: yes
+output:
+  parent: var
+  suffix: .serialized
+  purge:
+    month: 1
+pictogram:
+  parent: images
+  suffix: .gif
+pgsql:
+  platform: yes
+php:
+  platform: yes
+png2ico:
+  platform: yes
+proctools:
+  platform: yes
+root:
+  constant: yes
+ruby:
+  platform: yes
+sample:
+  parent: share
+sendmail:
+  platform: yes
+serialized:
+  parent: var
+share:
+  constant: yes
+sql:
+  parent: share
+  suffix: .sql
+sqlite3:
+  constant: yes
+sudo:
+  platform: yes
+templates:
+  parent: webapp
+  suffix: .tpl
+tests:
+  parent: root
+tidy5:
+  platform: yes
+tmp:
+  parent: var
+  purge:
+    day: 1
+twitter_account:
+  parent: var
+  suffix: .png
+  purge:
+    day: 1
+unzip:
+  platform: yes
+var:
+  constant: yes
+webapp:
+  constant: yes
+www:
+  constant: yes

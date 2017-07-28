@@ -1,0 +1,1302 @@
+# ケータイ絵文字辞書
+#
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+-
+  names:
+    - 晴れ
+  pictograms:
+    Docomo: 63647
+    SoftBank: 57418
+-
+  names:
+    - 曇り
+  pictograms:
+    Docomo: 63648
+    SoftBank: 57417
+-
+  names:
+    - 雨
+  pictograms:
+    Docomo: 63649
+    SoftBank: 57419
+-
+  names:
+    - 雪
+  pictograms:
+    Docomo: 63650
+    SoftBank: 57416
+-
+  names:
+    - 雷
+  pictograms:
+    Docomo: 63651
+    SoftBank: 57661
+-
+  names:
+    - 台風
+  pictograms:
+    Docomo: 63652
+    SoftBank: 58435
+-
+  names:
+    - 小雨
+  pictograms:
+    Docomo: 63654
+    SoftBank: 58428
+-
+  names:
+    - 牡羊座
+  pictograms:
+    Docomo: 63655
+    SoftBank: 57919
+-
+  names:
+    - 牡牛座
+  pictograms:
+    Docomo: 63656
+    SoftBank: 57920
+-
+  names:
+    - 双子座
+  pictograms:
+    Docomo: 63657
+    SoftBank: 57921
+-
+  names:
+    - 蟹座
+  pictograms:
+    Docomo: 63658
+    SoftBank: 57922
+-
+  names:
+    - 獅子座
+  pictograms:
+    Docomo: 63659
+    SoftBank: 57923
+-
+  names:
+    - 乙女座
+  pictograms:
+    Docomo: 63660
+    SoftBank: 57924
+-
+  names:
+    - 天秤座
+  pictograms:
+    Docomo: 63661
+    SoftBank: 57925
+-
+  names:
+    - 蠍座
+  pictograms:
+    Docomo: 63662
+    SoftBank: 57926
+-
+  names:
+    - 射手座
+  pictograms:
+    Docomo: 63663
+    SoftBank: 57927
+-
+  names:
+    - 山羊座
+  pictograms:
+    Docomo: 63664
+    SoftBank: 57928
+-
+  names:
+    - 水瓶座
+  pictograms:
+    Docomo: 63665
+    SoftBank: 57929
+-
+  names:
+    - 魚座
+  pictograms:
+    Docomo: 63666
+    SoftBank: 57930
+-
+  names:
+    - 野球
+  pictograms:
+    Docomo: 63668
+    SoftBank: 57366
+-
+  names:
+    - ゴルフ
+  pictograms:
+    Docomo: 63669
+    SoftBank: 57364
+-
+  names:
+    - テニス
+  pictograms:
+    Docomo: 63670
+    SoftBank: 57365
+-
+  names:
+    - サッカー
+  pictograms:
+    Docomo: 63671
+    SoftBank: 57368
+-
+  names:
+    - スキー
+  pictograms:
+    Docomo: 63672
+    SoftBank: 57363
+-
+  names:
+    - バスケットボール
+  pictograms:
+    Docomo: 63673
+    SoftBank: 58410
+-
+  names:
+    - モータースポーツ
+  pictograms:
+    Docomo: 63674
+    SoftBank: 57650
+-
+  names:
+    - 電車
+  pictograms:
+    Docomo: 63676
+    SoftBank: 57374
+-
+  names:
+    - 地下鉄
+  pictograms:
+    Docomo: 63677
+    SoftBank: 58420
+-
+  names:
+    - 新幹線
+  pictograms:
+    Docomo: 63678
+    SoftBank: 58421
+-
+  names:
+    - 車(セダン)
+    - セダン
+  pictograms:
+    Docomo: 63679
+    SoftBank: 57371
+-
+  names:
+    - 車(RV)
+    - RV
+  pictograms:
+    Docomo: 63680
+    SoftBank: 58414
+-
+  names:
+    - バス
+  pictograms:
+    Docomo: 63681
+    SoftBank: 57689
+-
+  names:
+    - 船
+  pictograms:
+    Docomo: 63682
+    SoftBank: 57858
+-
+  names:
+    - 飛行機
+  pictograms:
+    Docomo: 63683
+    SoftBank: 57373
+-
+  names:
+    - 家
+  pictograms:
+    Docomo: 63684
+    SoftBank: 57398
+-
+  names:
+    - ビル
+  pictograms:
+    Docomo: 63685
+    SoftBank: 57400
+-
+  names:
+    - 郵便局
+  pictograms:
+    Docomo: 63686
+    SoftBank: 57683
+-
+  names:
+    - 病院
+  pictograms:
+    Docomo: 63687
+    SoftBank: 57685
+-
+  names:
+    - 銀行
+  pictograms:
+    Docomo: 63688
+    SoftBank: 57677
+-
+  names:
+    - ATM
+  pictograms:
+    Docomo: 63689
+    SoftBank: 57684
+-
+  names:
+    - ホテル
+  pictograms:
+    Docomo: 63690
+    SoftBank: 57688
+-
+  names:
+    - コンビニ
+  pictograms:
+    Docomo: 63691
+    SoftBank: 57686
+-
+  names:
+    - ガソリンスタンド
+  pictograms:
+    Docomo: 63692
+    SoftBank: 57402
+-
+  names:
+    - 駐車場
+  pictograms:
+    Docomo: 63693
+    SoftBank: 57679
+-
+  names:
+    - 信号
+  pictograms:
+    Docomo: 63694
+    SoftBank: 57678
+-
+  names:
+    - トイレ
+  pictograms:
+    Docomo: 63695
+    SoftBank: 57681
+-
+  names:
+    - レストラン
+  pictograms:
+    Docomo: 63696
+    SoftBank: 57411
+-
+  names:
+    - 喫茶店
+  pictograms:
+    Docomo: 63697
+    SoftBank: 57413
+-
+  names:
+    - バー
+  pictograms:
+    Docomo: 63698
+    SoftBank: 57412
+-
+  names:
+    - ビール
+  pictograms:
+    Docomo: 63699
+    SoftBank: 57415
+-
+  names:
+    - ファーストフード
+  pictograms:
+    Docomo: 63700
+    SoftBank: 57632
+-
+  names:
+    - ブティック
+  pictograms:
+    Docomo: 63701
+    SoftBank: 57662
+-
+  names:
+    - 美容院
+  pictograms:
+    Docomo: 63702
+    SoftBank: 58131
+-
+  names:
+    - カラオケ
+  pictograms:
+    Docomo: 63703
+    SoftBank: 57404
+-
+  names:
+    - 映画
+  pictograms:
+    Docomo: 63704
+    SoftBank: 57405
+-
+  names:
+    - 右斜め上
+    - 右上
+  pictograms:
+    Docomo: 63705
+    SoftBank: 57910
+-
+  names:
+    - 音楽
+  pictograms:
+    Docomo: 63707
+    SoftBank: 58122
+-
+  names:
+    - アート
+  pictograms:
+    Docomo: 63708
+    SoftBank: 58626
+-
+  names:
+    - 演劇
+  pictograms:
+    Docomo: 63709
+    SoftBank: 58627
+-
+  names:
+    - イベント
+  pictograms:
+    Docomo: 63710
+    SoftBank: 57667
+-
+  names:
+    - チケット
+  pictograms:
+    Docomo: 63711
+    SoftBank: 57637
+-
+  names:
+    - 喫煙
+  pictograms:
+    Docomo: 63712
+    SoftBank: 58126
+-
+  names:
+    - 禁煙
+  pictograms:
+    Docomo: 63713
+    SoftBank: 57864
+-
+  names:
+    - カメラ
+  pictograms:
+    Docomo: 63714
+    SoftBank: 57352
+-
+  names:
+    - カバン
+  pictograms:
+    Docomo: 63715
+    SoftBank: 58147
+-
+  names:
+    - 本
+  pictograms:
+    Docomo: 63716
+    SoftBank: 57672
+-
+  names:
+    - リボン
+  pictograms:
+    Docomo: 63717
+    SoftBank: 58132
+-
+  names:
+    - プレゼント
+  pictograms:
+    Docomo: 63718
+    SoftBank: 57618
+-
+  names:
+    - バースデー
+    - 誕生日
+  pictograms:
+    Docomo: 63719
+    SoftBank: 58187
+-
+  names:
+    - 電話
+  pictograms:
+    Docomo: 63720
+    SoftBank: 57353
+-
+  names:
+    - 携帯電話
+    - ケータイ
+  pictograms:
+    Docomo: 63721
+    SoftBank: 57354
+-
+  names:
+    - メモ
+  pictograms:
+    Docomo: 63722
+    SoftBank: 58113
+-
+  names:
+    - TV
+    - テレビ
+  pictograms:
+    Docomo: 63723
+    SoftBank: 57642
+-
+  names:
+    - CD
+  pictograms:
+    Docomo: 63725
+    SoftBank: 57638
+-
+  names:
+    - ハート
+  pictograms:
+    Docomo: 63726
+    SoftBank: 57868
+-
+  names:
+    - スペード
+  pictograms:
+    Docomo: 63727
+    SoftBank: 57870
+-
+  names:
+    - ダイヤ
+  pictograms:
+    Docomo: 63728
+    SoftBank: 57869
+-
+  names:
+    - クラブ
+  pictograms:
+    Docomo: 63729
+    SoftBank: 57871
+-
+  names:
+    - 目
+  pictograms:
+    Docomo: 63730
+    SoftBank: 58393
+-
+  names:
+    - 耳
+  pictograms:
+    Docomo: 63731
+    SoftBank: 58395
+-
+  names:
+    - 手(グー)
+    - グー
+  pictograms:
+    Docomo: 63732
+    SoftBank: 57360
+-
+  names:
+    - 手(チョキ)
+    - チョキ
+  pictograms:
+    Docomo: 63733
+    SoftBank: 57361
+-
+  names:
+    - 手(パー)
+    - パー
+  pictograms:
+    Docomo: 63734
+    SoftBank: 57362
+-
+  names:
+    - 右斜め下
+    - 右下
+  pictograms:
+    Docomo: 63735
+    SoftBank: 57912
+-
+  names:
+    - 左斜め上
+    - 左上
+  pictograms:
+    Docomo: 63736
+    SoftBank: 57911
+-
+  names:
+    - 足
+  pictograms:
+    Docomo: 63737
+    SoftBank: 58678
+-
+  names:
+    - くつ
+    - 靴
+  pictograms:
+    Docomo: 63738
+    SoftBank: 57351
+-
+  names:
+    - 車椅子
+  pictograms:
+    Docomo: 63740
+    SoftBank: 57866
+-
+  names:
+    - やや欠け月
+  pictograms:
+    Docomo: 63809
+    SoftBank: 57420
+-
+  names:
+    - 半月
+  pictograms:
+    Docomo: 63810
+    SoftBank: 57420
+-
+  names:
+    - 三日月
+  pictograms:
+    Docomo: 63811
+    SoftBank: 57420
+-
+  names:
+    - 犬
+  pictograms:
+    Docomo: 63813
+    SoftBank: 57426
+-
+  names:
+    - 猫
+  pictograms:
+    Docomo: 63814
+    SoftBank: 57423
+-
+  names:
+    - リゾート
+  pictograms:
+    Docomo: 63815
+    SoftBank: 57372
+-
+  names:
+    - クリスマス
+  pictograms:
+    Docomo: 63816
+    SoftBank: 57395
+-
+  names:
+    - 左斜め下
+    - 左下
+  pictograms:
+    Docomo: 63817
+    SoftBank: 57913
+-
+  names:
+    - phoneto
+  pictograms:
+    Docomo: 63858
+    SoftBank: 57604
+-
+  names:
+    - mailto
+  pictograms:
+    Docomo: 63859
+    SoftBank: 57603
+-
+  names:
+    - faxto
+  pictograms:
+    Docomo: 63860
+    SoftBank: 57355
+-
+  names:
+    - メール
+  pictograms:
+    Docomo: 63863
+    SoftBank: 57603
+-
+  names:
+    - ID
+  pictograms:
+    Docomo: 63868
+    SoftBank: 57897
+-
+  names:
+    - パスワード
+  pictograms:
+    Docomo: 63869
+    SoftBank: 57407
+-
+  names:
+    - サーチ(調べる)
+    - サーチ
+    - 調べる
+  pictograms:
+    Docomo: 63873
+    SoftBank: 57620
+-
+  names:
+    - NEW
+  pictograms:
+    Docomo: 63874
+    SoftBank: 57874
+-
+  names:
+    - シャープダイヤル
+  pictograms:
+    Docomo: 63877
+    SoftBank: 57872
+-
+  names:
+    - 1
+    - 1キー
+  pictograms:
+    Docomo: 63879
+    SoftBank: 57884
+-
+  names:
+    - 2
+    - 2キー
+  pictograms:
+    Docomo: 63880
+    SoftBank: 57885
+-
+  names:
+    - 3
+    - 3キー
+  pictograms:
+    Docomo: 63881
+    SoftBank: 57886
+-
+  names:
+    - 4
+    - 4キー
+  pictograms:
+    Docomo: 63882
+    SoftBank: 57887
+-
+  names:
+    - 5
+    - 5キー
+  pictograms:
+    Docomo: 63883
+    SoftBank: 57888
+-
+  names:
+    - 6
+    - 6キー
+  pictograms:
+    Docomo: 63884
+    SoftBank: 57889
+-
+  names:
+    - 7
+    - 7キー
+  pictograms:
+    Docomo: 63885
+    SoftBank: 57890
+-
+  names:
+    - 8
+    - 8キー
+  pictograms:
+    Docomo: 63886
+    SoftBank: 57891
+-
+  names:
+    - 9
+    - 9キー
+  pictograms:
+    Docomo: 63887
+    SoftBank: 57892
+-
+  names:
+    - 0
+    - 0キー
+  pictograms:
+    Docomo: 63888
+    SoftBank: 57893
+-
+  names:
+    - 決定
+  pictograms:
+    Docomo: 63920
+    SoftBank: 57933
+-
+  names:
+    - 黒ハート
+  pictograms:
+    Docomo: 63889
+    SoftBank: 57378
+-
+  names:
+    - 揺れるハート
+  pictograms:
+    Docomo: 63890
+    SoftBank: 58151
+-
+  names:
+    - 失恋
+  pictograms:
+    Docomo: 63891
+    SoftBank: 57379
+-
+  names:
+    - ハートたち(複数ハート)
+    - ハートたち
+    - 複数ハート
+  pictograms:
+    Docomo: 63892
+    SoftBank: 58151
+-
+  names:
+    - わーい(嬉しい顔)
+    - わーい
+    - 嬉しい顔
+    - 嬉しい
+  pictograms:
+    Docomo: 63893
+    SoftBank: 57431
+-
+  names:
+    - ちっ(怒った顔)
+    - ちっ
+    - 怒った顔
+    - 怒った
+    - 怒り
+  pictograms:
+    Docomo: 63894
+    SoftBank: 57433
+-
+  names:
+    - がく～(落胆した顔)
+    - がく～
+    - がくー
+    - 落胆した顔
+    - 落胆
+  pictograms:
+    Docomo: 63895
+    SoftBank: 57432
+-
+  names:
+    - もうやだ～(悲しい顔)
+    - もうやだ～
+    - もうやだー
+    - 悲しい顔
+    - 悲しい
+  pictograms:
+    Docomo: 63896
+    SoftBank: 58375
+-
+  names:
+    - ふらふら
+  pictograms:
+    Docomo: 63897
+    SoftBank: 58374
+-
+  names:
+    - グッド(上向き矢印)
+    - グッド
+    - 上向き矢印
+    - ↑
+  pictograms:
+    Docomo: 63898
+    SoftBank: 57910
+-
+  names:
+    - るんるん
+  pictograms:
+    Docomo: 63899
+    SoftBank: 57406
+-
+  names:
+    - いい気分(温泉)
+    - いい気分
+    - 温泉
+  pictograms:
+    Docomo: 63900
+    SoftBank: 57635
+-
+  names:
+    - キスマーク
+  pictograms:
+    Docomo: 63902
+    SoftBank: 57347
+-
+  names:
+    - ぴかぴか(新しい)
+    - ぴかぴか
+    - 新しい
+  pictograms:
+    Docomo: 63903
+    SoftBank: 58158
+-
+  names:
+    - ひらめき
+  pictograms:
+    Docomo: 63904
+    SoftBank: 57615
+-
+  names:
+    - むかっ(怒り)
+    - むかっ
+    - 怒り
+  pictograms:
+    Docomo: 63905
+    SoftBank: 58164
+-
+  names:
+    - パンチ
+  pictograms:
+    Docomo: 63906
+    SoftBank: 57357
+-
+  names:
+    - 爆弾
+  pictograms:
+    Docomo: 63907
+    SoftBank: 58129
+-
+  names:
+    - ムード
+  pictograms:
+    Docomo: 63908
+    SoftBank: 58150
+-
+  names:
+    - バッド(下向き矢印)
+    - バッド
+    - 下向き矢印
+    - ↓
+  pictograms:
+    Docomo: 63909
+    SoftBank: 57912
+-
+  names:
+    - 眠い(睡眠)
+    - 眠い
+    - 睡眠
+  pictograms:
+    Docomo: 63910
+    SoftBank: 57660
+-
+  names:
+    - exclamation
+    - !
+  pictograms:
+    Docomo: 63911
+    SoftBank: 57377
+-
+  names:
+    - あせあせ(飛び散る汗)
+    - あせあせ
+    - 飛び散る汗
+  pictograms:
+    Docomo: 63915
+    SoftBank: 58161
+-
+  names:
+    - たらーっ(汗)
+    - たらーっ
+    - 汗
+  pictograms:
+    Docomo: 63916
+    SoftBank: 58161
+-
+  names:
+    - ダッシュ(走り出すさま)
+    - ダッシュ
+    - 走り出すさま
+  pictograms:
+    Docomo: 63917
+    SoftBank: 58160
+-
+  names:
+    - カチンコ
+  pictograms:
+    Docomo: 63824
+    SoftBank: 58148
+-
+  names:
+    - 夜
+  pictograms:
+    Docomo: 63831
+    SoftBank: 58443
+-
+  names:
+    - 時計
+  pictograms:
+    Docomo: 63838
+    SoftBank: 57389
+-
+  names:
+    - Tシャツ(ボーダー)
+    - Tシャツ
+  pictograms:
+    Docomo: 63923
+    SoftBank: 57350
+-
+  names:
+    - 化粧
+  pictograms:
+    Docomo: 63925
+    SoftBank: 58140
+-
+  names:
+    - チャペル
+  pictograms:
+    Docomo: 63928
+    SoftBank: 58149
+-
+  names:
+    - ドル袋
+  pictograms:
+    Docomo: 63930
+    SoftBank: 57647
+-
+  names:
+    - パソコン
+  pictograms:
+    Docomo: 63931
+    SoftBank: 57356
+-
+  names:
+    - ラブレター
+  pictograms:
+    Docomo: 63932
+    SoftBank: 57603
+-
+  names:
+    - 鉛筆
+  pictograms:
+    Docomo: 63934
+    SoftBank: 58113
+-
+  names:
+    - 王冠
+  pictograms:
+    Docomo: 63935
+    SoftBank: 57614
+-
+  names:
+    - 指輪
+  pictograms:
+    Docomo: 63936
+    SoftBank: 57396
+-
+  names:
+    - 自転車
+  pictograms:
+    Docomo: 63938
+    SoftBank: 57654
+-
+  names:
+    - 湯のみ
+  pictograms:
+    Docomo: 63939
+    SoftBank: 58168
+-
+  names:
+    - 考えてる顔
+    - 考えてる
+  pictograms:
+    Docomo: 63941
+    SoftBank: 58371
+-
+  names:
+    - ほっとした顔
+    - ほっ
+  pictograms:
+    Docomo: 63942
+    SoftBank: 58378
+-
+  names:
+    - 冷や汗
+  pictograms:
+    Docomo: 63943
+    SoftBank: 58389
+-
+  names:
+    - 冷や汗2
+  pictograms:
+    Docomo: 63944
+    SoftBank: 57608
+-
+  names:
+    - ぷっくっくな顔
+    - ぷっくっく
+  pictograms:
+    Docomo: 63945
+    SoftBank: 58390
+-
+  names:
+    - ボケーっとした顔
+    - ボケーっ
+    - ボケー
+  pictograms:
+    Docomo: 63946
+    SoftBank: 58382
+-
+  names:
+    - 目がハート
+  pictograms:
+    Docomo: 63947
+    SoftBank: 57606
+-
+  names:
+    - 指でOK
+    - OK
+  pictograms:
+    Docomo: 63948
+    SoftBank: 57358
+-
+  names:
+    - あっかんべー
+  pictograms:
+    Docomo: 63949
+    SoftBank: 57605
+-
+  names:
+    - ウィンク
+  pictograms:
+    Docomo: 63950
+    SoftBank: 58373
+-
+  names:
+    - うれしい顔
+    - うれしい
+    - 嬉しい顔2
+    - 嬉しい2
+  pictograms:
+    Docomo: 63951
+    SoftBank: 58378
+-
+  names:
+    - がまん顔
+    - がまん
+  pictograms:
+    Docomo: 63952
+    SoftBank: 58374
+-
+  names:
+    - 猫2
+  pictograms:
+    Docomo: 63953
+    SoftBank: 58370
+-
+  names:
+    - 泣き顔
+    - 泣き
+  pictograms:
+    Docomo: 63954
+    SoftBank: 58385
+-
+  names:
+    - 涙
+  pictograms:
+    Docomo: 63955
+    SoftBank: 58387
+-
+  names:
+    - コピーライト
+    - (C)
+    - (c)
+  pictograms:
+    Docomo: 63958
+    SoftBank: 57934
+-
+  names:
+    - トレードマーク
+    - TM
+  pictograms:
+    Docomo: 63959
+    SoftBank: 58679
+-
+  names:
+    - 走る人
+  pictograms:
+    Docomo: 63960
+    SoftBank: 57621
+-
+  names:
+    - マル秘
+    - 秘
+  pictograms:
+    Docomo: 63961
+    SoftBank: 58133
+-
+  names:
+    - レジスタードトレードマーク
+    - (R)
+    - (r)
+  pictograms:
+    Docomo: 63963
+    SoftBank: 57935
+-
+  names:
+    - 危険・警告
+    - 危険
+    - 警告
+  pictograms:
+    Docomo: 63964
+    SoftBank: 57938
+-
+  names:
+    - 空室・空席・空車
+    - 空室
+    - 空席
+    - 空車
+  pictograms:
+    Docomo: 63966
+    SoftBank: 57899
+-
+  names:
+    - 満室・満席・満車
+    - 満室
+    - 満席
+    - 満車
+  pictograms:
+    Docomo: 63968
+    SoftBank: 57898
+-
+  names:
+    - 学校
+  pictograms:
+    Docomo: 63971
+    SoftBank: 57687
+-
+  names:
+    - 波
+  pictograms:
+    Docomo: 63972
+    SoftBank: 58430
+-
+  names:
+    - 富士山
+  pictograms:
+    Docomo: 63973
+    SoftBank: 57403
+-
+  names:
+    - クローバー
+  pictograms:
+    Docomo: 63974
+    SoftBank: 57616
+-
+  names:
+    - チューリップ
+  pictograms:
+    Docomo: 63976
+    SoftBank: 58116
+-
+  names:
+    - りんご
+  pictograms:
+    Docomo: 63978
+    SoftBank: 58181
+-
+  names:
+    - 芽
+  pictograms:
+    Docomo: 63979
+    SoftBank: 57616
+-
+  names:
+    - もみじ
+  pictograms:
+    Docomo: 63980
+    SoftBank: 57624
+-
+  names:
+    - 桜
+  pictograms:
+    Docomo: 63981
+    SoftBank: 57392
+-
+  names:
+    - おにぎり
+  pictograms:
+    Docomo: 63982
+    SoftBank: 58178
+-
+  names:
+    - ショートケーキ
+  pictograms:
+    Docomo: 63983
+    SoftBank: 57414
+-
+  names:
+    - とっくり(おちょこ付き)
+    - とっくり
+  pictograms:
+    Docomo: 63984
+    SoftBank: 58123
+-
+  names:
+    - どんぶり
+  pictograms:
+    Docomo: 63985
+    SoftBank: 58176
+-
+  names:
+    - パン
+  pictograms:
+    Docomo: 63986
+    SoftBank: 58169
+-
+  names:
+    - ひよこ
+  pictograms:
+    Docomo: 63988
+    SoftBank: 58659
+-
+  names:
+    - ペンギン
+  pictograms:
+    Docomo: 63989
+    SoftBank: 57429
+-
+  names:
+    - 魚
+  pictograms:
+    Docomo: 63990
+    SoftBank: 57369
+-
+  names:
+    - うまい!
+    - うまい
+  pictograms:
+    Docomo: 63991
+    SoftBank: 57430
+-
+  names:
+    - ウッシッシ
+  pictograms:
+    Docomo: 63992
+    SoftBank: 58372
+-
+  names:
+    - ウマ
+  pictograms:
+    Docomo: 63993
+    SoftBank: 57370
+-
+  names:
+    - ブタ
+  pictograms:
+    Docomo: 63994
+    SoftBank: 57611
+-
+  names:
+    - ワイングラス
+  pictograms:
+    Docomo: 63995
+    SoftBank: 57412
+-
+  names:
+    - げっそり
+  pictograms:
+    Docomo: 63996
+    SoftBank: 57607

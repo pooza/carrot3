@@ -1,0 +1,13 @@
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+methods:
+  - POST
+
+fields:
+  email:
+    required: yes
+    validators:
+      - email
+  password:
+    required: yes

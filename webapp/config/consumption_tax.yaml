@@ -1,0 +1,12 @@
+# 消費税設定ファイル
+#
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+rates:
+  - rate: 0.08
+    start_date: 2014-04-01
+  - rate: 0.05
+    start_date: 1997-04-01
+  - rate: 0.03
+    start_date: 1989-04-01

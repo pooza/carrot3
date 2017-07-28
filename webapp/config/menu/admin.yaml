@@ -1,0 +1,21 @@
+# メニュー設定ファイル - 管理メニュー
+#
+# @package __PACKAGE__
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+- separator: yes
+- module: AdminLog
+- title: バックアップ
+  module: AdminUtility
+  action: Backup
+- title: リストア
+  module: AdminUtility
+  action: Restore
+- module: AdminMemcache
+  href: /AdminMemcache/?pane=default_pane
+  target: _self
+- module: DevelopTableReport
+- separator: yes
+- title: ログアウト
+  module: Default
+  action: Logout

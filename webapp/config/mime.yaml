@@ -1,0 +1,89 @@
+# メディアタイプ設定ファイル
+#
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+- type: audio/x-aac
+  suffixes: ['.aac']
+- type: application/postscript
+  suffixes: ['.ai']
+- type: audio/x-aiff
+  suffixes: ['.aif', '.aiff']
+- type: application/atom+xml
+  suffixes: ['.atom']
+- type: text/css
+  suffixes: ['.css']
+- type: text/csv
+  suffixes: ['.csv']
+- type: application/vnd.ms-word
+  suffixes: ['.doc']
+- type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  suffixes: ['.docx']
+- type: message/rfc822
+  suffixes: ['.eml']
+- type: application/eps
+  suffixes: ['.eps']
+- type: video/x-flv
+  suffixes: ['.flv']
+- type: image/gif
+  suffixes: ['.gif']
+- type: application/x-gzip
+  suffixes: ['.gz', '.tgz']
+- type: text/html
+  suffixes: ['.html', '.htm']
+- type: image/vnd.microsoft.icon
+  suffixes: ['.ico']
+- type: text/x-ini-file
+  suffixes: ['.ini']
+- type: image/jpeg
+  suffixes: ['.jpg', '.jpeg']
+- type: text/javascript
+  suffixes: ['.js']
+- type: application/json
+  suffixes: ['.json']
+- type: audio/mp4
+  suffixes: ['.m4a']
+- type: video/quicktime
+  suffixes: ['.mov', '.qt']
+- type: audio/mpeg
+  suffixes: ['.mp3']
+- type: video/mp4
+  suffixes: ['.mp4', '.m4v']
+- type: application/pdf
+  suffixes: ['.pdf']
+- type: image/png
+  suffixes: ['.png']
+- type: application/vnd.ms-powerpoint
+  suffixes: ['.ppt']
+- type: application/vnd.openxmlformats-officedocument.presentationml.presentation
+  suffixes: ['.pptx']
+- type: image/tiff
+  suffixes: ['.tif', '.tiff']
+- type: text/x-smarty-template
+  suffixes: ['.tpl']
+- type: application/x-truetype-font
+  suffixes: ['.ttf']
+- type: text/plain
+  suffixes: ['.txt', '.text']
+- type: audio/x-ms-wma
+  suffixes: ['.wma']
+- type: audio/x-wav
+  suffixes: ['.wav']
+- type: video/webm
+  suffixes: ['.webm']
+- type: video/x-ms-wmv
+  suffixes: ['.wmv']
+- type: text/yaml
+  suffixes: ['.yaml', '.yml']
+- type: application/xhtml+xml
+  suffixes: ['.xhtml']
+- type: application/vnd.ms-excel
+  suffixes: ['.xls']
+- type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  suffixes: ['.xlsx']
+- type: application/xml
+  suffixes: ['.xml']
+- type: text/x-vcard
+  suffixes: ['.vcf']
+- type: application/zip
+  suffixes: ['.zip']
