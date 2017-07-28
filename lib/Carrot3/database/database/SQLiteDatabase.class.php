@@ -123,6 +123,16 @@ class SQLiteDatabase extends Database {
 	}
 
 	/**
+	 * リストア可能？
+	 *
+	 * @access public
+	 * @return boolean 可能ならTrue
+	 */
+	public function isRestoreable () {
+		return true;
+	}
+
+	/**
 	 * バージョンを返す
 	 *
 	 * @access public

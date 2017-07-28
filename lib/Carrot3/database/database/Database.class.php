@@ -430,6 +430,16 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	}
 
 	/**
+	 * リストア可能？
+	 *
+	 * @access public
+	 * @return boolean 可能ならTrue
+	 */
+	public function isRestoreable () {
+		return false;
+	}
+
+	/**
 	 * アサインすべき値を返す
 	 *
 	 * @access public

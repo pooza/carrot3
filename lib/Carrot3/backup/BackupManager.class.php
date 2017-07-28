@@ -168,7 +168,7 @@ class BackupManager {
 	 */
 	public function isRestoreable () {
 		foreach ($this->config['databases'] as $name) {
-			if (($db = Database::getInstance($name)) && !($db instanceof SQLiteDatabase)) {
+			if (($db = Database::getInstance($name)) && !$db->isRestoreable()) {
 				return false;
 			}
 		}
