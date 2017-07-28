@@ -4,8 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * サニタイズ修飾子
@@ -15,11 +14,11 @@ use \Carrot3\StringUtils;
 function smarty_modifier_sanitize ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
-		$value = StringUtils::unsanitize($value);
-		return StringUtils::sanitize($value);
+	} else if (!C\StringUtils::isBlank($value)) {
+		$value = C\StringUtils::unsanitize($value);
+		return C\StringUtils::sanitize($value);
 	}
 }
 

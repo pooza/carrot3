@@ -4,9 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
-use \Carrot3\Numeric;
+use \Carrot3 as C;
 
 /**
  * バイナリサイズ修飾子
@@ -18,10 +16,10 @@ use \Carrot3\Numeric;
 function smarty_modifier_binary_size_format ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
-		return Numeric::getBinarySize($value);
+	} else if (!C\StringUtils::isBlank($value)) {
+		return C\Numeric::getBinarySize($value);
 	}
 }
 

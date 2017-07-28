@@ -4,7 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\Pictogram;
+use \Carrot3 as C;
 
 /**
  * ケータイ絵文字関数
@@ -12,7 +12,7 @@ use \Carrot3\Pictogram;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_function_picto ($params, &$smarty) {
-	$pictogram = Pictogram::getInstance($params['name']);
+	$pictogram = \Pictogram::getInstance($params['name']);
 	return $pictogram->getContents();
 }
 

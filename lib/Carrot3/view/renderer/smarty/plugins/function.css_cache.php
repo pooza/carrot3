@@ -4,9 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\Tuple;
-use \Carrot3\StringUtils;
-use \Carrot3\StyleSet;
+use \Carrot3 as C;
 
 /**
  * CSSキャッシュ関数
@@ -14,12 +12,12 @@ use \Carrot3\StyleSet;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_function_css_cache ($params, &$smarty) {
-	$params = Tuple::create($params);
-	if (StringUtils::isBlank($params['name'])) {
+	$params = C\Tuple::create($params);
+	if (C\StringUtils::isBlank($params['name'])) {
 		$params['name'] = 'carrot';
 	}
 
-	$styleset = new StyleSet($params['name']);
+	$styleset = new C\StyleSet($params['name']);
 	return $styleset->createElement()->getContents();
 }
 

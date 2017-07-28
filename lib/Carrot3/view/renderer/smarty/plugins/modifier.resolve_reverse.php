@@ -4,9 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
-use \Carrot3\Host;
+use \Carrot3 as C;
 
 /**
  * resolve_reverse修飾子
@@ -16,10 +14,10 @@ use \Carrot3\Host;
 function smarty_modifier_resolve_reverse ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
-		return (new Host($value))->resolveReverse();
+	} else if (!C\StringUtils::isBlank($value)) {
+		return (new C\Host($value))->resolveReverse();
 	}
 	return $value;
 }

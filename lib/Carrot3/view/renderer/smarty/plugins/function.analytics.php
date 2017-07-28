@@ -4,8 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\Tuple;
-use \Carrot3\GoogleAnalyticsService;
+use \Carrot3 as C;
 
 /**
  * GoogleAnalytics関数
@@ -13,8 +12,8 @@ use \Carrot3\GoogleAnalyticsService;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_function_analytics ($params, &$smarty) {
-	$params = Tuple::create($params);
-	$service = GoogleAnalyticsService::getInstance();
+	$params = C\Tuple::create($params);
+	$service = C\GoogleAnalyticsService::getInstance();
 	if ($id = $params['id']) {
 		$service->setID($id);
 	}

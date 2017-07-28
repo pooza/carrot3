@@ -4,8 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * truncate修飾子
@@ -17,10 +16,10 @@ use \Carrot3\StringUtils;
 function smarty_modifier_truncate ($value, $length = 80, $suffix = '...') {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
-		return StringUtils::truncate($value, $length, $suffix);
+	} else if (!C\StringUtils::isBlank($value)) {
+		return C\StringUtils::truncate($value, $length, $suffix);
 	}
 	return $value;
 }

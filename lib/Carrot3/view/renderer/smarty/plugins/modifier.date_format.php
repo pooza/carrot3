@@ -4,9 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
-use \Carrot3\Date;
+use \Carrot3 as C;
 
 /**
  * 日付書式化修飾子
@@ -19,10 +17,10 @@ use \Carrot3\Date;
 function smarty_modifier_date_format ($value, $format = 'Y/m/d H:i:s') {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
-		if ($date = Date::create($value)) {
+	} else if (!C\StringUtils::isBlank($value)) {
+		if ($date = C\Date::create($value)) {
 			return $date->format($format);
 		} else {
 			return $value;

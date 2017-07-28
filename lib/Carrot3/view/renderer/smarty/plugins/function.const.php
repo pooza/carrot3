@@ -4,7 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ConstantHandler;
+use \Carrot3 as C;
 
 /**
  * 定数関数
@@ -12,6 +12,6 @@ use \Carrot3\ConstantHandler;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_function_const ($params, &$smarty) {
-	return (new ConstantHandler)[$params['name']];
+	return (new C\ConstantHandler)[$params['name']];
 }
 

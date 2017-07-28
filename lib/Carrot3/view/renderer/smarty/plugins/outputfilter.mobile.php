@@ -4,7 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * ケータイ向け出力フィルタ
@@ -12,7 +12,7 @@ use \Carrot3\StringUtils;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_outputfilter_mobile ($source, &$smarty) {
-	$source = StringUtils::convertKana($source, 'kas');
+	$source = C\StringUtils::convertKana($source, 'kas');
 	return $source;
 }
 

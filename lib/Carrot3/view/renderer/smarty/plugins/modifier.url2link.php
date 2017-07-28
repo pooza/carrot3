@@ -4,8 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * URL変換修飾子
@@ -15,9 +14,9 @@ use \Carrot3\StringUtils;
 function smarty_modifier_url2link ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
+	} else if (!C\StringUtils::isBlank($value)) {
 		return mb_ereg_replace(
 			'https?://[-_.!~*\'()a-zA-Z0-9;/?:@&=+$,%#]+',
 			'<a href="\\0" target="_blank">\\0</a>',

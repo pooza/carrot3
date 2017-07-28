@@ -4,8 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * 電話番号変換修飾子
@@ -15,9 +14,9 @@ use \Carrot3\StringUtils;
 function smarty_modifier_tel2link ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
+	} else if (!C\StringUtils::isBlank($value)) {
 		return mb_ereg_replace(
 			'([[:digit:]]{2,4})-([[:digit:]]{2,4})-([[:digit:]]{3,4})',
 			'<a href="tel:\\1\\2\\3">\\0</a>',

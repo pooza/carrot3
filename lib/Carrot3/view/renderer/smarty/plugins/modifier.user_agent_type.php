@@ -4,9 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
-use \Carrot3\UserAgent;
+use \Carrot3 as C;
 
 /**
  * UserAgent種別修飾子
@@ -16,10 +14,10 @@ use \Carrot3\UserAgent;
 function smarty_modifier_user_agent_type ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
-		if ($useragent = UserAgent::create($value)) {
+	} else if (!C\StringUtils::isBlank($value)) {
+		if ($useragent = C\UserAgent::create($value)) {
 			return $useragent->getType();
 		}
 	}

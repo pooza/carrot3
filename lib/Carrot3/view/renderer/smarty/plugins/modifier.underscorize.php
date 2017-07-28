@@ -4,8 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use Carrot3\ParameterHolder;
-use Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * underscorize修飾子
@@ -15,10 +14,10 @@ use Carrot3\StringUtils;
 function smarty_modifier_underscorize ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
-		return StringUtils::underscorize($value);
+	} else if (!C\StringUtils::isBlank($value)) {
+		return C\StringUtils::underscorize($value);
 	}
 	return $value;
 }

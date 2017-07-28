@@ -4,10 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
-use \Carrot3\URL;
-use \Carrot3\HTTPURL;
+use \Carrot3 as C;
 
 /**
  * URLからホスト名を抽出する修飾子
@@ -17,11 +14,11 @@ use \Carrot3\HTTPURL;
 function smarty_modifier_host_name ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)
-		&& ($url = URL::create($value))
-		&& ($url instanceof HTTPURL)) {
+	} else if (!C\StringUtils::isBlank($value)
+		&& ($url = C\URL::create($value))
+		&& ($url instanceof C\HTTPURL)) {
 
 		return $url['host']->getName();
 	}

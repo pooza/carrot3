@@ -4,9 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
-use \Carrot3\URL;
+use \Carrot3 as C;
 
 /**
  * URL短縮修飾子
@@ -16,10 +14,10 @@ use \Carrot3\URL;
 function smarty_modifier_short_url ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
-		return URL::create($value)->getShortURL()->getContents();
+	} else if (!C\StringUtils::isBlank($value)) {
+		return C\URL::create($value)->getShortURL()->getContents();
 	}
 }
 

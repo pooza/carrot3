@@ -4,8 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * メールアドレス変換修飾子
@@ -15,9 +14,9 @@ use \Carrot3\StringUtils;
 function smarty_modifier_email2link ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
+	} else if (!C\StringUtils::isBlank($value)) {
 		return mb_ereg_replace(
 			'[-+._[:alnum:]]+@([-._[:alnum:]]+)+[[:alpha:]]+',
 			'<a href="mailto:\\0">\\0</a>',

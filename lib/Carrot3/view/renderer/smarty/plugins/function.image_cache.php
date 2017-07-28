@@ -4,9 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\Tuple;
-use \Carrot3\StringUtils;
-use \Carrot3\Loader;
+use \Carrot3 as C;
 
 /**
  * キャッシュ画像関数
@@ -16,8 +14,8 @@ use \Carrot3\Loader;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_function_image_cache ($params, &$smarty) {
-	$params = Tuple::create($params);
-	if (StringUtils::isBlank($params['size'])) {
+	$params = C\Tuple::create($params);
+	if (C\StringUtils::isBlank($params['size'])) {
 		$params['size'] = 'image';
 	}
 
@@ -31,7 +29,7 @@ function smarty_function_image_cache ($params, &$smarty) {
 		$element->registerStyleClass($params['style_class']);
 		$element->setID($params['container_id']);
 
-		switch ($mode = StringUtils::toLower($params['mode'])) {
+		switch ($mode = C\StringUtils::toLower($params['mode'])) {
 			case 'size':
 				return $info['pixel_size'];
 			case 'pixel_size':
@@ -41,7 +39,7 @@ function smarty_function_image_cache ($params, &$smarty) {
 				return $info[$mode];
 			case 'lightbox':
 			case 'lity':
-				$anchor = Loader::getInstance()->createObject($mode . 'AnchorElement');
+				$anchor = C\Loader::getInstance()->createObject($mode . 'AnchorElement');
 				$element = $element->wrap($anchor);
 				$element->setCaption($info['alt']);
 				$element->setImage(

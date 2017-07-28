@@ -4,10 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\Tuple;
-use \Carrot3\StringUtils;
-use \Carrot3\URL;
-use \Carrot3\Controller;
+use \Carrot3 as C;
 
 /**
  * 外部コンテンツをインクルード
@@ -15,18 +12,18 @@ use \Carrot3\Controller;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_function_include_url ($params, &$smarty) {
-	$params = Tuple::create($params);
+	$params = C\Tuple::create($params);
 
-	if (StringUtils::isBlank($params['src'])) {
-		$url = URL::create($params, 'carrot');
+	if (C\StringUtils::isBlank($params['src'])) {
+		$url = C\URL::create($params, 'carrot');
 	} else {
-		$url = URL::create($params['src']);
+		$url = C\URL::create($params['src']);
 	}
 	if (!$url) {
 		return null;
 	}
 
-	if (!$url['host']->isForeign(Controller::getInstance()->getHost())) {
+	if (!$url['host']->isForeign(C\Controller::getInstance()->getHost())) {
 		$url->setUserAgent($smarty->getUserAgent());
 	}
 	return $url->fetch();

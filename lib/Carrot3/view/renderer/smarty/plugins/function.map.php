@@ -4,12 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\Tuple;
-use \Carrot3\GoogleMapsService;
-use \Carrot3\StringUtils;
-use \Carrot3\StringFormat;
-use \Carrot3\DivisionElement;
-use \Carrot3\SpanElement;
+use \Carrot3 as C;
 
 /**
  * GoogleMaps関数
@@ -17,24 +12,24 @@ use \Carrot3\SpanElement;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_function_map ($params, &$smarty) {
-	$params = Tuple::create($params);
+	$params = C\Tuple::create($params);
 	try {
-		$service = new GoogleMapsService;
+		$service = new C\GoogleMapsService;
 		$service->setUserAgent($smarty->getUserAgent());
 		if ($params['lat'] && ($params['lng'] || $params['lon'])) {
-			if (StringUtils::isBlank($params['lng'])) {
+			if (C\StringUtils::isBlank($params['lng'])) {
 				$params['lng'] = $params['lon'];
 				$params->removeParameter('lon');
 			}
-			$addr = new StringFormat('lat=%s,lng=%s');
+			$addr = new C\StringFormat('lat=%s,lng=%s');
 			$addr[] = $params['lat'];
 			$addr[] = $params['lng'];
 			$params['addr'] = $addr->getContents();
 		}
 		$element = $service->createElement($params['addr'], $params);
 	} catch (\Exception $e) {
-		$element = new DivisionElement;
-		$span = $element->addElement(new SpanElement);
+		$element = new C\DivisionElement;
+		$span = $element->addElement(new C\SpanElement);
 		$span->registerStyleClass('alert');
 		$span->setBody('ジオコードが取得できません。');
 	}

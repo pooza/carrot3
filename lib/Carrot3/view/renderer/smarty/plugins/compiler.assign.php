@@ -4,8 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\Tuple;
-use \Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * テンプレート上で、変数のアサインを行う
@@ -18,9 +17,9 @@ use \Carrot3\StringUtils;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_compiler_assign ($params, &$compiler) {
-	$params = Tuple::create($compiler->_parse_attrs($params));
+	$params = C\Tuple::create($compiler->_parse_attrs($params));
 
-	if (StringUtils::isBlank($params['var'])) {
+	if (C\StringUtils::isBlank($params['var'])) {
 		$compiler->_syntax_error('assign: varが未定義です。', E_USER_WARNING);
 		return;
 	}
@@ -30,7 +29,7 @@ function smarty_compiler_assign ($params, &$compiler) {
 	}
 
 	$var = null;
-	foreach (StringUtils::explode('.', str_replace('.', "'.'", $params['var'])) as $part) {
+	foreach (C\StringUtils::explode('.', str_replace('.', "'.'", $params['var'])) as $part) {
 		if ($part == "''") {
 			$var .= '[]';
 		} else {

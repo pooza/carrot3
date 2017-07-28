@@ -4,8 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\ParameterHolder;
-use \Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * 文字コード標準化修飾子
@@ -15,10 +14,10 @@ use \Carrot3\StringUtils;
 function smarty_modifier_encoding ($value) {
 	if (is_array($value)) {
 		return $value;
-	} else if ($value instanceof ParameterHolder) {
+	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
-	} else if (!StringUtils::isBlank($value)) {
-		return StringUtils::convertEncoding($value, 'utf-8');
+	} else if (!C\StringUtils::isBlank($value)) {
+		return C\StringUtils::convertEncoding($value, 'utf-8');
 	}
 }
 

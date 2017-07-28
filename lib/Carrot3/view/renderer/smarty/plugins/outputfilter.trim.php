@@ -4,7 +4,7 @@
  * @subpackage view.renderer.smarty.plugins
  */
 
-use \Carrot3\StringUtils;
+use \Carrot3 as C;
 
 /**
  * トリミング出力フィルタ
@@ -12,6 +12,6 @@ use \Carrot3\StringUtils;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_outputfilter_trim ($source, &$smarty) {
-	return StringUtils::trim($source);
+	return C\StringUtils::trim($source);
 }
 
