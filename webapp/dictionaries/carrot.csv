@@ -1,6 +1,5 @@
 label,ja
 account,アカウント
-bsutility,BSUtility
 cookie,Cookie
 create_date,作成日
 data,データ
@@ -35,3 +34,4 @@ twitter_id,Twitter ID
 update_date,更新日
 useragent,ユーザーエージェント
 user_agent,ユーザーエージェント
+utils,Utils

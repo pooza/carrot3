@@ -60,7 +60,7 @@ class BackupAction extends C\Action {
 		} catch (\Exception $e) {
 			$message = new C\StringFormat('バックアップに失敗しました。 (%s)');
 			$message[] = $e->getMessage();
-			$this->request->setError('Utils', $message);
+			$this->request->setError('utils', $message);
 			return $this->handleError();
 		}
 	}

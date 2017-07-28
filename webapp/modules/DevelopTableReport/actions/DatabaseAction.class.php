@@ -23,7 +23,7 @@ class DatabaseAction extends C\Action {
 
 	private function getDatabase () {
 		if (!$this->database) {
-			$this->database = Database::getInstance($this->request['database']);
+			$this->database = C\Database::getInstance($this->request['database']);
 		}
 		return $this->database;
 	}
