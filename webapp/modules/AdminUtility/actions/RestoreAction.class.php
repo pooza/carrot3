@@ -1,6 +1,6 @@
 <?php
 /**
- * @package jp.co.dipps.carrot3
+ * @package jp.co.b-shock.carrot3
  * @subpackage AdminUtility
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */

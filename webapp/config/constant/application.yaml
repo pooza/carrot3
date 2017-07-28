@@ -13,9 +13,9 @@ author:
   name: 有限会社 ビーショック
   email: info@b-shock.co.jp
 crypt:
-  password: SCUKY7ADP8SN6HV6
+  password: __YOUR_PASSWORD__
   digest:
-    salt: SCUKY7ADP8SN6HV6
+    salt: __YOUR_SALT__
 serialize:
   storage: memcache
 session:

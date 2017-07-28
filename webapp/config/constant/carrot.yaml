@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.0.0-dev
+  ver: 3.0.0
 
 admin:
   email:
@@ -268,7 +268,7 @@ useragent:
   mobile:
     deny_on_https: no
 user:
-  class:
+  class: Carrot3\User
 view:
   frame_options: sameorigin
   content_type_options: nosniff
