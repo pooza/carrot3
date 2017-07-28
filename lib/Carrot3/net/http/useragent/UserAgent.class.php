@@ -299,25 +299,6 @@ abstract class UserAgent extends ParameterHolder {
 	}
 
 	/**
-	 * GPS情報を取得するリンクを返す
-	 *
-	 * @access public
-	 * @param HTTPRedirector $url 対象リンク
-	 * @param string $label ラベル
-	 * @return AnchorElement リンク
-	 */
-	public function createGPSAnchorElement (HTTPRedirector $url, $label) {
-		$formatter = new StringFormat('CarrotLib.handleGPS(\'%s\')');
-		$formatter[] = URL::encode($url->getURL()->getContents());
-		$wrapper = URL::create('javascript:' . $formatter->getContents());
-
-		$element = new AnchorElement;
-		$element->setURL($wrapper);
-		$element->setBody($label);
-		return $element;
-	}
-
-	/**
 	 * 一致すべきパターンを返す
 	 *
 	 * @access public
