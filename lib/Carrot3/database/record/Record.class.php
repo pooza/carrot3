@@ -412,7 +412,7 @@ abstract class Record implements \ArrayAccess,
 	 * @return string 添付ファイルベース名
 	 */
 	public function getAttachmentBaseName ($name) {
-		return sprintf('%06d_%s', $this->getID(), $name);
+		return sprintf('%010d_%s', $this->getID(), $name);
 	}
 
 	/**
@@ -524,7 +524,7 @@ abstract class Record implements \ArrayAccess,
 	 * @return string 画像ファイルベース名
 	 */
 	public function getImageFileBaseName ($size) {
-		return sprintf('%06d_%s', $this->getID(), $size);
+		return sprintf('%010d_%s', $this->getID(), $size);
 	}
 
 	/**
