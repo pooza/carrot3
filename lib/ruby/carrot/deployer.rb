@@ -5,29 +5,25 @@ require 'fileutils'
 module Carrot
   class Deployer
     def self.clean
-      begin
-        raise 'kariyonをアンインストールしてください。' if kariyon?
-        if carrot?
-          puts "delete #{dest}"
-          File.unlink(dest)
-        end
-      rescue => e
-        puts "#{e.class}: #{e.message}"
-        exit 1
+      raise 'kariyonをアンインストールしてください。' if kariyon?
+      if carrot?
+        puts "delete #{dest}"
+        File.unlink(dest)
       end
+    rescue => e
+      puts "#{e.class}: #{e.message}"
+      exit 1
     end
 
     def self.create
-      begin
-        raise 'kariyonをアンインストールしてください。' if kariyon?
-        unless carrot?
-          puts "link #{ROOT_DIR} -> #{dest}"
-          File.symlink(ROOT_DIR, dest)
-        end
-      rescue => e
-        puts "#{e.class}: #{e.message}"
-        exit 1
+      raise 'kariyonをアンインストールしてください。' if kariyon?
+      unless carrot?
+        puts "link #{ROOT_DIR} -> #{dest}"
+        File.symlink(ROOT_DIR, dest)
       end
+    rescue => e
+      puts "#{e.class}: #{e.message}"
+      exit 1
     end
 
     def self.carrot? (f = nil)
