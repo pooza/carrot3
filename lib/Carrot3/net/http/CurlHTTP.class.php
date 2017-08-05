@@ -75,7 +75,7 @@ class CurlHTTP extends HTTP {
 		$this->setAttribute('post', true);
 		if ($file && ($renderer instanceof ParameterHolder)) {
 			$params = $renderer->getParameters();
-			$params['file'] = new CURLFile($file->getPath());
+			$params['file'] = new \CURLFile($file->getPath());
 			$request->setHeader('Content-Type', 'multipart/form-data');
 			$this->setAttribute('safe_upload', true);
 			$this->setAttribute('postfields', $params);

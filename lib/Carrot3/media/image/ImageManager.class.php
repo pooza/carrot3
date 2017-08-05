@@ -376,8 +376,9 @@ class ImageManager {
 	 * @return Image サムネイル
 	 */
 	protected function convert (ImageContainer $record, $pixel, $contents, $flags = 0) {
-		$class = $this->loader->getClass(BS_IMAGE_RENDERERS_DEFAULT_CLASS);
-		$image = new $class;
+		$params = ImageManager::getRendererEntries()['default'];
+		$class = $this->loader->getClass($params['class']);
+		$image = new $class($params);
 		$image->setBackgroundColor($this->getBackgroundColor());
 		$image->setImage($contents);
 		$flags |= $this->flags;

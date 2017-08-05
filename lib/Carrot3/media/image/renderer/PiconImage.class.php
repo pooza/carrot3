@@ -69,6 +69,16 @@ class PiconImage extends Image {
 	}
 
 	/**
+	 * URLを返す
+	 *
+	 * @access public
+	 * @return URL
+	 */
+	public function getURL () {
+		return $this->url;
+	}
+
+	/**
 	 * URLを設定
 	 *
 	 * @access public

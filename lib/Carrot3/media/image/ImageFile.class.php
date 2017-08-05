@@ -23,9 +23,12 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 */
 	public function __construct ($path, $class = null) {
 		if (StringUtils::isBlank($class)) {
-			$class = BS_IMAGE_RENDERERS_DEFAULT_CLASS;
-		} else if ($class instanceof ParameterHolder) {
-			$class = $class['class'];
+			$class = ImageManager::getRendererEntries()['default'];
+		}
+		if ($class instanceof ParameterHolder) {
+			$params = Tuple::create($class);
+			$class = $params['class'];
+			$this->rendererParameters = $params;
 		}
 		$this->rendererClass = $this->loader->getClass($class);
 		parent::__construct($path);

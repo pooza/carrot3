@@ -43,12 +43,8 @@ class PiconService extends CurlHTTP {
 		$params['width'] = $width;
 		$params['height'] = $height;
 		$params['background_color'] = BS_IMAGE_THUMBNAIL_BGCOLOR;
-		try {
-			$response = $this->sendPOST('/resize', $params, $this->createFile($image));
-			$image->setImage($response->getRenderer()->getContents());
-		} catch (\Exception $e) {
-			//何もしない。
-		}
+		$response = $this->sendPOST('/resize', $params, $this->createFile($image));
+		$image->setImage($response->getRenderer()->getContents());
 	}
 
 	/**
@@ -63,12 +59,8 @@ class PiconService extends CurlHTTP {
 		$params = new WWWFormRenderer;
 		$params['width'] = $width;
 		$params['method'] = $method;
-		try {
-			$response = $this->sendPOST('/resize_width', $params, $this->createFile($image));
-			$image->setImage($response->getRenderer()->getContents());
-		} catch (\Exception $e) {
-			//何もしない。
-		}
+		$response = $this->sendPOST('/resize_width', $params, $this->createFile($image));
+		$image->setImage($response->getRenderer()->getContents());
 	}
 
 	/**
