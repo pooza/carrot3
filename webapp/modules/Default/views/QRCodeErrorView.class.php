@@ -8,7 +8,7 @@
 namespace Carrot3\DefaultModule;
 use \Carrot3 as C;
 
-class C\QRCodeErrorView extends C\View {
+class QRCodeErrorView extends C\View {
 	public function execute () {
 		$this->setStatus(404);
 	}
