@@ -21,7 +21,7 @@ class PasswordValidator extends RegexValidator {
 	 */
 	public function initialize ($params = []) {
 		if (!isset($params['digits'])) {
-			$params['digits'] = 6;
+			$params['digits'] = 8;
 		}
 		$params['match'] = true;
 		$params['match_error'] = $params['digits'] . '桁以上の英数字を入力して下さい。';
