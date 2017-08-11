@@ -119,6 +119,8 @@ png2ico:
   platform: yes
 proctools:
   platform: yes
+pw:
+  platform: yes
 root:
   constant: yes
 ruby:

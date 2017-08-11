@@ -25,6 +25,7 @@ class POP3 extends Socket {
 			$message = new StringFormat('%sに接続できません。 (%s)');
 			$message[] = $this;
 			$message[] = $this->getPrevLine();
+			$this->client = null;
 			throw new MailException($message);
 		}
 	}
@@ -115,6 +116,7 @@ class POP3 extends Socket {
 			$message = new StringFormat('%s (%s)');
 			$message[] = $this->getPrevLine();
 			$message[] = $command;
+			$this->client = null;
 			throw new MailException($message);
 		}
 		return true;
