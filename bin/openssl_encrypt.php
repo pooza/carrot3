@@ -1,14 +1,14 @@
 #!/usr/local/bin/php
 <?php
-define('BS_ROOT_DIR', dirname(dirname(__FILE__)));
-define('DOMAIN', basename(BS_ROOT_DIR));
+define('BS_ROOT_DIR', dirname(__DIR__));
 require_once BS_ROOT_DIR . '/lib/Spyc.php';
-require_once BS_ROOT_DIR . '/lib/carrot/crypt/cryptor/BSCryptor.interface.php';
-require_once BS_ROOT_DIR . '/lib/carrot/crypt/cryptor/BSOpenSSLCryptor.class.php';
+require_once BS_ROOT_DIR . '/lib/Carrot3/crypt/cryptor/Cryptor.interface.php';
+require_once BS_ROOT_DIR . '/lib/Carrot3/crypt/cryptor/OpenSSLCryptor.class.php';
 
 function parse ($file) {
-  $path = BS_ROOT_DIR . '/webapp/config/constant/' . $file . '.yaml';
-  return flatten('bs', Spyc::YAMLLoad($path));
+  return flatten('bs', Spyc::YAMLLoad(
+    BS_ROOT_DIR . '/webapp/config/constant/' . $file . '.yaml'
+  ));
 }
 
 function flatten ($prefix, $node) {
@@ -23,7 +23,7 @@ function flatten ($prefix, $node) {
   return $values;
 }
 
-foreach ([DOMAIN, 'application', 'carrot'] as $file) {
+foreach ([basename(BS_ROOT_DIR), 'application', 'carrot'] as $file) {
   foreach (parse($file) as $key => $value) {
     if (!defined($key)) {
       define($key, $value);
@@ -32,11 +32,12 @@ foreach ([DOMAIN, 'application', 'carrot'] as $file) {
 }
 
 $source = $_SERVER['argv'][1];
-$cryptor = new BSOpenSSLCryptor;
+$cryptor = new \Carrot3\OpenSSLCryptor;
 $encrypted = base64_encode($cryptor->encrypt($source));
 $decrypted = $cryptor->decrypt(base64_decode($encrypted));
-?>
-source:    <?= $source ?> 
-encrypted: <?= $encrypted ?> 
-method:    <?= BS_CRYPT_METHOD ?> 
-verify:    <?= ($source === $decrypted) ? 'OK' : 'NG' ?> 
+echo json_encode([
+  'source' => $source,
+  'encrypted' => $encrypted,
+  'method' => BS_CRYPT_METHOD,
+  'verify' => (($source === $decrypted) ? 'OK' : 'NG'),
+], JSON_PRETTY_PRINT) . "\n";
