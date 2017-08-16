@@ -24,9 +24,6 @@ class GoogleAnalyticsService extends ParameterHolder implements Assignable {
 
 	private function getRootDomainName () {
 		$domain = StringUtils::explode('.', $this->controller->getHost()->getName());
-		if ($domain->shift() == 'test') {
-			$domain->shift();
-		}
 		$domain->unshift(null);
 		return $domain->join('.');
 	}
@@ -58,39 +55,18 @@ class GoogleAnalyticsService extends ParameterHolder implements Assignable {
 	 * @param UserAgent $useragent 対象UserAgent
 	 * @return string トラッキングコード
 	 */
-	public function getTrackingCode (UserAgent $useragent = null) {
-		if (BS_DEBUG) {
-			return null;
-		}
-
+	public function createTrackingCode (UserAgent $useragent = null) {
 		if (!$useragent) {
 			$useragent = $this->request->getUserAgent();
 		}
-
-		if ($useragent->isMobile()) {
-			$renderer = new ImageElement;
-			$renderer->setURL($this->getBeaconURL());
-		} else {
-			$renderer = new Smarty;
-			$renderer->setUserAgent($useragent);
-			$renderer->setTemplate('GoogleAnalytics');
-			$renderer->setAttribute('params', $this);
+		if (BS_DEBUG || $useragent->isMobile()) {
+			return null;
 		}
+		$renderer = new Smarty;
+		$renderer->setUserAgent($useragent);
+		$renderer->setTemplate('GoogleAnalytics');
+		$renderer->setAttribute('params', $this);
 		return $renderer->getContents();
-	}
-
-	private function getBeaconURL () {
-		$url = URL::create();
-		$url['path'] = BS_SERVICE_GOOGLE_ANALYTICS_BEACON_HREF;
-		$url->setParameter('guid', 'ON');
-		$url->setParameter('utmac', 'MO-' . $this->getID());
-		$url->setParameter('utmn', Numeric::getRandom(0, 0x7fffffff));
-		$url->setParameter('utmp', $this->request->getURL()->getFullPath());
-		if (StringUtils::isBlank($referer = $this->controller->getAttribute('REFERER'))) {
-			$referer = '-';
-		}
-		$url->setParameter('utmr', $referer);
-		return $url;
 	}
 
 	/**

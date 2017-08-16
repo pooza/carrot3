@@ -17,10 +17,6 @@ function smarty_function_analytics ($params, &$smarty) {
 	if ($id = $params['id']) {
 		$service->setID($id);
 	}
-
-	try {
-		return $service->getTrackingCode();
-	} catch (\Exception $e) {
-	}
+	return $service->createTrackingCode();
 }
 
