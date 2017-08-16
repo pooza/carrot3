@@ -17,10 +17,12 @@ class DirectoryIterator extends Iterator {
 	/**
 	 * @access public
 	 * @param Directory $directory ディレクトリ
+	 * @param integer $flags フラグのビット列
+	 *   self::WITHOUT_DOTTED ドットファイルを除く
 	 */
-	public function __construct (Directory $directory) {
+	public function __construct (Directory $directory, $flags = 0) {
 		$this->directory = $directory;
-		parent::__construct($directory->getEntryNames());
+		parent::__construct($directory->getEntryNames($flags));
 	}
 
 	/**
@@ -30,7 +32,9 @@ class DirectoryIterator extends Iterator {
 	 * @return mixed ファイル又はディレクトリ
 	 */
 	public function current () {
-		return $this->directory->getEntry(parent::current());
+		if ($name = parent::current()) {
+			return $this->directory->getEntry($name);
+		}
 	}
 }
 

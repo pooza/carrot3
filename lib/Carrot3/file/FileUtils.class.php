@@ -62,25 +62,6 @@ class FileUtils {
 	}
 
 	/**
-	 * 無視対象か？
-	 *
-	 * @access public
-	 * @param string $name ファイル名、またはパス
-	 * @return boolean 無視対象ならTrue
-	 * @static
-	 */
-	static public function isIgnoreName ($name) {
-		$name = basename($name);
-		$config = ConfigManager::getInstance()->compile('file');
-		foreach ($config['ignore_patterns'] as $pattern) {
-			if (mb_ereg($pattern, $name)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * 拡張子を返す
 	 *
 	 * @access public
@@ -130,7 +111,7 @@ class FileUtils {
 	 * @return File 一時ファイル
 	 * @static
 	 */
-	static public function createTemporaryFile ($suffix = null, $class = 'File') {
+	static public function createTemporaryFile ($suffix = null, $class = 'Carrot3\\File') {
 		if (StringUtils::isBlank($suffix)) {
 			$name = Utils::getUniqueID();
 		} else {

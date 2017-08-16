@@ -179,7 +179,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 */
 	public function clearIgnoreFiles () {
-		if ($this->isIgnore() || $this->isDotted()) {
+		if ($this->isDotted()) {
 			$this->delete();
 		}
 	}
@@ -208,16 +208,6 @@ abstract class DirectoryEntry {
 			$this->basename = basename($this->getPath(), $this->getSuffix());
 		}
 		return $this->basename;
-	}
-
-	/**
-	 * 無視対象か？
-	 *
-	 * @access public
-	 * @return boolean 無視対象ならTrue
-	 */
-	public function isIgnore () {
-		return FileUtils::isIgnoreName($this->getName());
 	}
 
 	/**

@@ -75,7 +75,7 @@ class BackupManager {
 		}
 		foreach ($this->config['directories'] as $name) {
 			if ($dir = FileUtils::getDirectory($name)) {
-				$zip->register($dir, null, Directory::WITHOUT_ALL_IGNORE);
+				$zip->register($dir);
 			}
 		}
 		foreach ($this->getOptionalEntries() as $entry) {
@@ -149,7 +149,7 @@ class BackupManager {
 			$dest = FileUtils::getDirectory($name);
 			$dest->clear();
 			foreach ($this->temporaryDir->getEntry($name) as $file) {
-				if (!$file->isIgnore()) {
+				if (!$file->isDotted()) {
 					$file->moveTo($dest);
 				}
 			}

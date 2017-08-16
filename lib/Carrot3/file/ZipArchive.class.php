@@ -88,12 +88,9 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 * @param string $prefix エントリー名のプレフィックス
 	 * @param integer $flags フラグのビット列
 	 *   Directory::WITHOUT_DOTTED ドットファイルを除く
-	 *   Directory::WITHOUT_IGNORE 無視ファイルを除く
 	 */
 	public function register (DirectoryEntry $entry, $prefix = null, $flags = 0) {
 		if (($flags & Directory::WITHOUT_DOTTED) && $entry->isDotted()) {
-			return;
-		} else if (($flags & Directory::WITHOUT_IGNORE) && $entry->isIgnore()) {
 			return;
 		}
 

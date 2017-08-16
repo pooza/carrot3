@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class PictogramTest extends Test {
 	public function execute () {
-		$this->assert('getInstance', $picto = Pictogram::getInstance('晴れ'));
+		$this->assert('getInstance', $picto = Pictogram::create('晴れ'));
 		$this->assert('getID', $picto->getID() == 63647);
 		$this->assert('getNumericReference', $picto->getNumericReference() == '&#63647;');
 	}

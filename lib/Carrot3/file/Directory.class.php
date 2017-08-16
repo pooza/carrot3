@@ -19,9 +19,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	const SORT_ASC = 'asc';
 	const SORT_DESC = 'dsc';
 	const WITHOUT_DOTTED = 1;
-	const WITHOUT_IGNORE = 2;
-	const WITHOUT_ALL_IGNORE = 4;
-	const WITH_RECURSIVE = 8;
+	const WITH_RECURSIVE = 2;
 
 	/**
 	 * @access public
@@ -73,15 +71,12 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * @access public
 	 * @param integer $flags フラグのビット列
 	 *   self::WITHOUT_DOTTED ドットファイルを除く
-	 *   self::WITHOUT_IGNORE 無視ファイルを除く
 	 * @return Tuple 抽出されたエントリー名
 	 */
 	public function getEntryNames ($flags = null) {
 		$names = Tuple::create();
 		foreach ($this->getAllEntryNames() as $name) {
 			if (($flags & self::WITHOUT_DOTTED) && FileUtils::isDottedName($name)) {
-				continue;
-			} else if (($flags & self::WITHOUT_IGNORE) && FileUtils::isIgnoreName($name)) {
 				continue;
 			}
 			if (fnmatch('*' . $this->getDefaultSuffix(), $name)) {
@@ -249,7 +244,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 			$date = Date::create()->setParameter('month', '-1');
 		}
 		foreach ($this as $entry) {
-			if ($entry->isIgnore() || $entry->isDotted()) {
+			if ($entry->isDotted()) {
 				continue;
 			}
 			if ($entry->getUpdateDate()->isPast($date)) {
@@ -309,10 +304,9 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * @access public
 	 * @param integer $flags フラグのビット列
 	 *   self::WITHOUT_DOTTED ドットファイルを除く
-	 *   self::WITHOUT_IGNORE 無視ファイルを除く
 	 * @return ZipArchive ZIPアーカイブ
 	 */
-	public function getArchive ($flags = self::WITHOUT_ALL_IGNORE) {
+	public function getArchive ($flags = self::WITHOUT_DOTTED) {
 		if (!extension_loaded('zip')) {
 			throw new FileException('zipモジュールがロードされていません。');
 		}

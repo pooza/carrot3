@@ -39,7 +39,7 @@ class TestManager implements \IteratorAggregate {
 	private function load ($namespace, Directory $dir) {
 		$tests = Tuple::create();
 		foreach ($dir as $entry) {
-			if (!$entry->isIgnore()) {
+			if (!$entry->isDotted()) {
 				if ($entry instanceof Directory) {
 					$tests->merge($this->load($namespace, $entry));
 				} else if ($entry instanceof File) {
