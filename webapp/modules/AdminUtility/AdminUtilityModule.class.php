@@ -9,13 +9,6 @@ namespace Carrot3\AdminUtilityModule;
 use \Carrot3 as C;
 
 class AdminUtilityModule extends C\Module {
-
-	/**
-	 * タイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getTitle () {
 		return 'ユーティリティ';
 	}

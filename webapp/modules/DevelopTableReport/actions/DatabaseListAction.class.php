@@ -9,13 +9,6 @@ namespace Carrot3\DevelopTableReportModule;
 use \Carrot3 as C;
 
 class DatabaseListAction extends C\Action {
-
-	/**
-	 * タイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getTitle () {
 		return 'データベース一覧';
 	}

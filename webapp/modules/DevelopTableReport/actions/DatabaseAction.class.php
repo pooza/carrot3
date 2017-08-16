@@ -11,12 +11,6 @@ use \Carrot3 as C;
 class DatabaseAction extends C\Action {
 	private $database;
 
-	/**
-	 * タイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getTitle () {
 		return 'データベース:' . $this->getDatabase()->getName();
 	}

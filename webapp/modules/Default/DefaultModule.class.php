@@ -9,15 +9,6 @@ namespace Carrot3\DefaultModule;
 use \Carrot3 as C;
 
 class DefaultModule extends C\Module {
-
-	/**
-	 * タイトルを返す
-	 *
-	 * 固有のモジュールではないと考えられるので、タイトルは不要。
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getTitle () {
 		return null;
 	}

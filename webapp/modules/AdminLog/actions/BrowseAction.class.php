@@ -11,12 +11,6 @@ use \Carrot3 as C;
 class BrowseAction extends C\Action {
 	private $exception;
 
-	/**
-	 * タイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getTitle () {
 		return '管理ログ';
 	}

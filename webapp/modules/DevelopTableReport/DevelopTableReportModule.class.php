@@ -9,23 +9,10 @@ namespace Carrot3\DevelopTableReportModule;
 use \Carrot3 as C;
 
 class DevelopTableReportModule extends C\Module {
-
-	/**
-	 * タイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getTitle () {
 		return 'TableReport管理モジュール';
 	}
 
-	/**
-	 * メニューでのタイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getMenuTitle () {
 		return 'TableReport';
 	}

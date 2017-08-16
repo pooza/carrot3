@@ -12,12 +12,6 @@ class TableAction extends C\Action {
 	private $database;
 	private $tableProfile;
 
-	/**
-	 * タイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getTitle () {
 		return 'テーブル:' . $this->getTableProfile()->getName();
 	}

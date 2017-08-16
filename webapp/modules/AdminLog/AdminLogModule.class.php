@@ -11,22 +11,10 @@ use \Carrot3 as C;
 class AdminLogModule extends C\Module {
 	private $logger;
 
-	/**
-	 * タイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getTitle () {
 		return '管理ログ閲覧モジュール';
 	}
 
-	/**
-	 * メニューでのタイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getMenuTitle () {
 		return '管理ログ';
 	}
