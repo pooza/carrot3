@@ -13,7 +13,7 @@ use \Carrot3 as C;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-function smarty_function_image_cache ($params, &$smarty) {
+function smarty_function_image ($params, &$smarty) {
 	$params = C\Tuple::create($params);
 	if (C\StringUtils::isBlank($params['size'])) {
 		$params['size'] = 'image';

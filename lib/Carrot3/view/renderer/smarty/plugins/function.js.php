@@ -7,15 +7,15 @@
 use \Carrot3 as C;
 
 /**
- * CSSキャッシュ関数
+ * JavaScriptキャッシュ関数
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-function smarty_function_css_cache ($params, &$smarty) {
+function smarty_function_js ($params, &$smarty) {
 	$params = C\Tuple::create($params);
 	if (C\StringUtils::isBlank($params['name'])) {
 		$params['name'] = 'carrot';
 	}
-	return (new C\StyleSet($params['name']))->createElement()->getContents();
+	return (new C\JavaScriptSet($params['name']))->createElement()->getContents();
 }
 

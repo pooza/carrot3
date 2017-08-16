@@ -13,8 +13,8 @@
   {const name='app_name_ja'}
   {$title|default:$module.title}
 {/strip}</title>
-{js_cache name=$jsset}
-{css_cache name=$styleset}
+{js name=$jsset}
+{css name=$styleset}
 </head>
 <body {if $body.id}id="{$body.id}"{/if} class="{if $is_debug}debug{/if}">
 
