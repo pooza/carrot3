@@ -92,7 +92,6 @@ modules:
   parent: webapp
 movies:
   parent: carrotlib
-  suffix: .mp4
 movie_file:
   parent: var
   suffix: .png
@@ -100,7 +99,6 @@ movie_file:
     month: 1
 musics:
   parent: carrotlib
-  suffix: .mp3
 mysql:
   platform: yes
 output:

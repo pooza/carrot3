@@ -23,15 +23,10 @@ function smarty_function_music ($params, &$smarty) {
 		case 'type':
 			return $file[$mode];
 		default:
-			if (C\StringUtils::isBlank($params['href_prefix'])) {
-				$finder = new C\RecordFinder($params);
-				if ($record = $finder->execute()) {
-					$url = C\FileUtils::createURL('musics');
-					$url['path'] .= $record->getTable()->getDirectory()->getName() . '/';
-					$params['href_prefix'] = $url->getContents();
-				}
+			if ($record = (new C\RecordFinder($params))->execute()) {
+				$params['href_prefix'] = C\FileUtils::createURL('musics')->getContents();
 			}
-			return $file->createElement($params)->getContents();
+			return $file->createElement($params, $smarty->getUserAgent())->getContents();
 	}
 }
 

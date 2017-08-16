@@ -16,14 +16,6 @@ function smarty_function_movie ($params, &$smarty) {
 	if (!$file = C\MovieFile::search($params)) {
 		return null;
 	}
-	if (C\StringUtils::isBlank($params['href_prefix'])) {
-		$finder = new C\RecordFinder($params);
-		if ($record = $finder->execute()) {
-			$url = C\FileUtils::createURL('movies');
-			$url['path'] .= $record->getTable()->getDirectory()->getName() . '/';
-			$params['href_prefix'] = $url->getContents();
-		}
-	}
 
 	switch ($mode = C\StringUtils::toLower($params['mode'])) {
 		case 'size':
@@ -37,6 +29,9 @@ function smarty_function_movie ($params, &$smarty) {
 		case 'type':
 			return $file[$mode];
 		default:
+			if ($record = (new C\RecordFinder($params))->execute()) {
+				$params['href_prefix'] = C\FileUtils::createURL('movies')->getContents();
+			}
 			return $file->createElement($params, $smarty->getUserAgent())->getContents();
 	}
 }

@@ -55,10 +55,8 @@ class FileUtils {
 	 */
 	static public function createURL ($name, $path = '') {
 		if (self::getDirectory($name)) {
-			$url = clone DirectoryLayout::getInstance()->createURL($name);
-			if (!StringUtils::isBlank($path)) {
-				$url['path'] .= $path;
-			}
+			$url = DirectoryLayout::getInstance()->createURL($name);
+			$url['path'] .= $path;
 			return $url;
 		}
 	}
