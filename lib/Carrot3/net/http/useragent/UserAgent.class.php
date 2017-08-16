@@ -19,7 +19,7 @@ abstract class UserAgent extends ParameterHolder {
 	protected $type;
 	protected $digest;
 	const ACCESSOR = 'ua';
-	const DEFAULT_NAME = 'Mozilla/4.0';
+	const DEFAULT_NAME = 'Mozilla/5.0';
 
 	/**
 	 * @access protected
@@ -30,7 +30,6 @@ abstract class UserAgent extends ParameterHolder {
 		$this->supports = Tuple::create();
 		$this['name'] = $name;
 		$this['type'] = $this->getType();
-		$this['type_lower'] = StringUtils::toLower($this->getType());
 		$this['is_mobile'] = $this->isMobile();
 		$this['is_smartphone'] = $this->isSmartPhone();
 		$this['is_tablet'] = $this->isTablet();

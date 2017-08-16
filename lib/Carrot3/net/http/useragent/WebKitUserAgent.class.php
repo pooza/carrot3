@@ -12,7 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class WebKitUserAgent extends UserAgent {
-	const DEFAULT_NAME = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6;) AppleWebKit/533';
+	const DEFAULT_NAME = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36';
 	const ACCESSOR = 'force_webkit';
 
 	/**
@@ -38,9 +38,7 @@ class WebKitUserAgent extends UserAgent {
 	 * @return boolean Google ChromeならTrue
 	 */
 	public function isChrome () {
-		return (StringUtils::isContain('Chrome', $this->getName())
-			&& !StringUtils::isContain('Edge', $this->getName())
-		);
+		return StringUtils::isContain('Chrome', $this->getName()) && !$this->isEdge();
 	}
 
 	/**
@@ -60,10 +58,7 @@ class WebKitUserAgent extends UserAgent {
 	 * @return boolean SafariならTrue
 	 */
 	public function isSafari () {
-		return (StringUtils::isContain('Macintosh', $this->getName())
-			&& !StringUtils::isContain('Chrome', $this->getName())
-			&& !StringUtils::isContain('Edge', $this->getName())
-		);
+		return StringUtils::isContain('Macintosh', $this->getName()) && !$this->isChrome();
 	}
 
 	/**
