@@ -178,7 +178,7 @@ abstract class DirectoryEntry {
 	 *
 	 * @access public
 	 */
-	public function clearIgnoreFiles () {
+	public function clearDottedFiles () {
 		if ($this->isDotted()) {
 			$this->delete();
 		}

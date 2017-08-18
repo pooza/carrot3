@@ -225,11 +225,11 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 *
 	 * @access public
 	 */
-	public function clearIgnoreFiles () {
+	public function clearDottedFiles () {
 		foreach ($this as $entry) {
-			$entry->clearIgnoreFiles();
+			$entry->clearDottedFiles();
 		}
-		parent::clearIgnoreFiles();
+		parent::clearDottedFiles();
 		$this->entries = null;
 	}
 
