@@ -1,7 +1,7 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage filter.filterset
+ * @subpackage filter
  */
 
 namespace Carrot3;
@@ -12,7 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  * @abstract
  */
-class DefaultFilterSet extends Tuple {
+class FilterSet extends Tuple {
 	use BasicObject;
 
 	/**

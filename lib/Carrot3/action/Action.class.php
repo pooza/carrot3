@@ -470,18 +470,8 @@ abstract class Action implements HTTPRedirector, Assignable {
 			throw new \BadFunctionCallException($this . 'が初期化できません。');
 		}
 		$this->controller->register($this);
-		$this->createFilterSet()->execute();
+		(new FilterSet)->execute();
 		return View::NONE;
-	}
-
-	/**
-	 * フィルターセットを生成して返す
-	 *
-	 * @access public
-	 * @return FilterSet フィルターセット
-	 */
-	public function createFilterSet () {
-		return $this->loader->createObject(BS_FILTERSET_CLASS . 'FilterSet');
 	}
 
 	/**
