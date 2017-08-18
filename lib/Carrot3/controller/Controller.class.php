@@ -184,10 +184,11 @@ class Controller {
 			$env = Tuple::create();
 			$env->setParameters($_ENV);
 			$env->setParameters($_SERVER);
-			$keys = Tuple::create();
-			$keys[] = $name;
-			$keys[] = 'HTTP_' . $name;
-			$keys[] = 'HTTP_' . str_replace('-', '_', $name);
+			$keys = Tuple::create([
+				$name,
+				'HTTP_' . $name,
+				'HTTP_' . str_replace('-', '_', $name),
+			]);
 			$keys->uniquize();
 			foreach ($keys as $key) {
 				if (!StringUtils::isBlank($value = $env[$key])) {
