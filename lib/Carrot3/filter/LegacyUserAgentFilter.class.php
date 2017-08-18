@@ -14,10 +14,10 @@ namespace Carrot3;
 class LegacyUserAgentFilter extends Filter {
 	public function execute () {
 		if ($this->request->getUserAgent()->isLegacy()) {
-			$action = $this->controller->getAction('legacy_user_agent');
-
 			//フィルタの中からはforwardできないので。
-			$this->controller->registerAction($action);
+			$this->controller->register(
+				$this->controller->getAction('legacy_user_agent')
+			);
 		}
 	}
 }

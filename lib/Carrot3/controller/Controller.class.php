@@ -148,7 +148,7 @@ class Controller {
 	 * @access public
 	 * @param Action $action アクション
 	 */
-	public function registerAction (Action $action) {
+	public function register (Action $action) {
 		if (self::ACTION_REGISTER_LIMIT < $this->getActionStack()->count()) {
 			throw new \BadFunctionCallException('フォワードが多すぎます。');
 		}

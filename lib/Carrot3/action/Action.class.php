@@ -469,7 +469,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 		if (!$this->initialize()) {
 			throw new \BadFunctionCallException($this . 'が初期化できません。');
 		}
-		$this->controller->registerAction($this);
+		$this->controller->register($this);
 		$this->createFilterSet()->execute();
 		return View::NONE;
 	}
