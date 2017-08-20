@@ -16,6 +16,6 @@ function smarty_function_js ($params, &$smarty) {
 	if (C\StringUtils::isBlank($params['name'])) {
 		$params['name'] = 'carrot';
 	}
-	return (new C\JavaScriptSet($params['name']))->createElement()->getContents();
+	return (new C\ScriptSet($params['name']))->createElement()->getContents();
 }
 

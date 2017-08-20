@@ -9,7 +9,7 @@ namespace Carrot3;
 /**
  * 書類セット
  *
- * JavaScriptSet/StyleSetの基底クラス
+ * ScriptSet/StyleSetの基底クラス
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  * @abstract
@@ -30,10 +30,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access protected
 	 * @param string $name 書類セット名
 	 */
-	public function __construct ($name = 'carrot') {
-		if (StringUtils::isBlank($name)) {
-			$name = 'carrot';
-		}
+	public function __construct ($name) {
 		$this->name = $name;
 		$this->documents = Tuple::create();
 
