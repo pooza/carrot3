@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class JavaScriptSet extends DocumentSet {
+class ScriptSet extends DocumentSet {
 
 	/**
 	 * 書類のクラス名を返す
