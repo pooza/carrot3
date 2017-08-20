@@ -36,8 +36,6 @@ image:
       - image/gif
       - image/jpeg
       - image/png
-infection:
-  class: Carrot3\InfectionValidator
 kana:
   class: Carrot3\KanaValidator
 largefile:
@@ -78,8 +76,6 @@ string:
   class: Carrot3\StringValidator
   params:
     max: 1024
-styleset:
-  class: Carrot3\StyleSetValidator
 tel:
   class: Carrot3\PhoneNumberValidator
 tel_separated:
