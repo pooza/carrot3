@@ -12,10 +12,9 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class CookieFilter extends Filter {
-	private $cookieName;
-
 	public function initialize ($params = []) {
 		$this['cookie_error'] = 'Cookie機能が有効でない、又はセッションのタイムアウトです。';
+		$this['excluded_actions'] = ['Login'];
 		return parent::initialize($params);
 	}
 
@@ -23,20 +22,22 @@ class CookieFilter extends Filter {
 		if ($this->request instanceof ConsoleRequest) {
 			return;
 		}
-
-		$this->cookieName = Crypt::digest($this->controller->getName('en'));
 		switch ($this->request->getMethod()) {
 			case 'HEAD':
 			case 'GET':
 				$time = Date::create()->setParameter('hour', '+' . BS_COOKIE_CHECKER_HOURS);
-				$this->user->setAttribute($this->cookieName, true, $time);
+				$this->user->setAttribute($this->createKey(), true, $time);
 				break;
 			default:
-				if (StringUtils::isBlank($this->user->getAttribute($this->cookieName))) {
+				if (StringUtils::isBlank($this->user->getAttribute($this->createKey()))) {
 					$this->request->setError('cookie', $this['cookie_error']);
 				}
 				break;
 		}
+	}
+
+	private function createKey () {
+		return Crypt::digest($this->controller->getName('en'));
 	}
 }
 

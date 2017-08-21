@@ -121,8 +121,7 @@ abstract class Filter extends ParameterHolder {
 	 * @return boolean 除外されたアクションならTrue
 	 */
 	public function isExcludedAction () {
-		$actions = Tuple::create($this['excluded_actions']);
-		return $actions->isContain($this->action->getName());
+		return Tuple::create($this['excluded_actions'])->isContain($this->action->getName());
 	}
 
 	/**
