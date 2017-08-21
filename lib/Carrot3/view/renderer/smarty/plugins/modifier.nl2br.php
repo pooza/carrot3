@@ -17,7 +17,7 @@ function smarty_modifier_nl2br ($value) {
 	} else if ($value instanceof C\ParameterHolder) {
 		return $value->getParameters();
 	} else if (!C\StringUtils::isBlank($value)) {
-		return nl2br($value, !BS_VIEW_HTML5);
+		return nl2br($value, false);
 	}
 	return $value;
 }

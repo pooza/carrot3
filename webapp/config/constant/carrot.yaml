@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.0.12
+  ver: 3.0.13
 
 admin:
   email:
@@ -68,9 +68,6 @@ ffmpeg:
     darwin: /opt/local
     linux: /usr
   convert:
-    flv:
-      video_codec: flv
-      audio_codec: aac
     mp4:
       video_codec: libx264
       audio_codec: aac
@@ -277,7 +274,6 @@ view:
   content_type_options: nosniff
   ua_compatible: IE=edge
   xss_protection: 1; mode=block
-  html5: yes
   layout:
     smartphone:
       width: 600

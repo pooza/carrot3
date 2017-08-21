@@ -75,8 +75,6 @@
   suffixes: ['.wmv']
 - type: text/yaml
   suffixes: ['.yaml', '.yml']
-- type: application/xhtml+xml
-  suffixes: ['.xhtml']
 - type: application/vnd.ms-excel
   suffixes: ['.xls']
 - type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet

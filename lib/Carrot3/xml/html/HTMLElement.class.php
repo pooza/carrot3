@@ -71,6 +71,7 @@ class HTMLElement extends XMLElement {
 	 */
 	public function setUserAgent (UserAgent $useragent) {
 		$this->useragent = $useragent;
+		$this->contents = null;
 	}
 
 	/**
@@ -94,6 +95,7 @@ class HTMLElement extends XMLElement {
 			return;
 		}
 		$this->attributes['id'] = $id;
+		$this->contents = null;
 	}
 
 	/**
@@ -164,6 +166,7 @@ class HTMLElement extends XMLElement {
 		}
 		$this->styleClasses->uniquize();
 		$this->styleClasses->trim();
+		$this->contents = null;
 	}
 
 	/**
@@ -212,37 +215,6 @@ class HTMLElement extends XMLElement {
 	}
 
 	/**
-	 * コンテナの説明文を設定
-	 *
-	 * @access public
-	 * @param string $value 説明文
-	 * @param Tuple $tags スマートタグのクラス名の配列
-	 * @return DivisionElement ラッパー要素
-	 */
-	public function setDescription ($value, Tuple $tags = null) {
-		if (StringUtils::isBlank($value)) {
-			return $this;
-		}
-		if ($tags) {
-			$value = SmartTag::parse($value, $tags, Tuple::create());
-		}
-
-		$wrapper = $this->createWrapper();
-		$element = $wrapper->addElement(new DivisionElement);
-		if ($this->getUserAgent()->isMobile()) {
-			$element->setAttribute('align', 'left');
-			$element = $element->createElement('font');
-			$element->setAttribute('size', '-1');
-			$element->setAttribute('color', '#888888');
-		} else {
-			$element->registerStyleClass('description');
-			$element->registerStyleClass('clearfix');
-		}
-		$element->setBody($value);
-		return $wrapper;
-	}
-
-	/**
 	 * div要素のラッパーを返す
 	 *
 	 * @access protected
@@ -270,8 +242,8 @@ class HTMLElement extends XMLElement {
 			$this->attributes->removeParameter('class');
 		}
 
-		if ($this->isHTML5() && StringUtils::isBlank($this->contents)) {
-			$this->createHTML5Contents();
+		if (StringUtils::isBlank($this->contents)) {
+			$this->createContents();
 		}
 		return parent::getContents();
 	}
@@ -283,35 +255,18 @@ class HTMLElement extends XMLElement {
 	 * @param string $contents XML文書
 	 */
 	public function setContents ($contents) {
-		if ($this->isHTML5()) {
-			$this->attributes->clear();
-			$this->elements->clear();
-			$this->body = null;
-			$this->contents = $contents;
-			if (extension_loaded('tidy')) {
-				$tidy = new tidy;
-				$tidy->parseString($contents);
-
-				$root = $tidy->body()->child[0];
-				if ($root->name != $this->getName()) {
-					throw new XMLException($this->getName() . '要素の内容が正しくありません。');
-				}
-				$this->setAttributes(Tuple::create($root->attribute));
-				foreach (Tuple::create($root->child) as $child) {
-					$this->parseTidy($this, $child);
-				}
-			}
-		} else {
-			return parent::setContents($contents);
-		}
+		$this->attributes->clear();
+		$this->elements->clear();
+		$this->body = null;
+		$this->contents = $contents;
 	}
 
 	/**
-	 * HTML5としての出力を生成
+	 * 出力を生成
 	 *
 	 * @access protected
 	 */
-	protected function createHTML5Contents () {
+	protected function createContents () {
 		$this->contents = '<' . $this->getName();
 		foreach ($this->attributes as $key => $value) {
 			if (!StringUtils::isBlank($value)) {
@@ -331,40 +286,6 @@ class HTMLElement extends XMLElement {
 			$this->contents .= $this->getBody();
 			$this->contents .= '</' . $this->getName() . '>';
 		}
-	}
-
-	/**
-	 * tidyでパース
-	 *
-	 * @access protected
-	 * @param HTMLElement $parent 親要素
-	 * @param tidyNode $node 対象tidyノード
-	 */
-	protected function parseTidy (HTMLElement $parent, tidyNode $node) {
-		switch ($node->type) {
-			case TIDY_NODETYPE_START:
-			case TIDY_NODETYPE_STARTEND:
-				$element = new HTMLElement($node->name);
-				$element->setAttributes(Tuple::create($node->attribute));
-				$parent->addElement($element);
-				foreach (Tuple::create($node->child) as $child) {
-					$this->parseTidy($element, $child);
-				}
-				break;
-			case TIDY_NODETYPE_TEXT:
-				$parent->setBody($node->value);
-				break;
-		}
-	}
-
-	/**
-	 * HTML5の要素か？
-	 *
-	 * @access protected
-	 * @return boolean HTML5ならTrue
-	 */
-	protected function isHTML5 () {
-		return !!BS_VIEW_HTML5;
 	}
 
 	/**

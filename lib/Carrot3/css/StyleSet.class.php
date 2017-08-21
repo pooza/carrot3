@@ -44,10 +44,6 @@ class StyleSet extends DocumentSet {
 		$element->setEmptyElement(true);
 		$element->setAttribute('rel', 'stylesheet');
 		$element->setAttribute('href', $this->getURL()->getContents());
-		if (!BS_VIEW_HTML5) {
-			$element->setAttribute('type', $this->getType());
-			$element->setAttribute('charset', $this->getEncoding());
-		}
 		return $element;
 	}
 

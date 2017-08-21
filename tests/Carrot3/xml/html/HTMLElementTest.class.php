@@ -11,11 +11,6 @@ class HTMLElementTest extends Test {
 		$element->setEmptyElement(true);
 		$element->setAttribute('type', 'checkbox');
 		$element->setAttribute('checked', 'checked');
-
-		if (BS_VIEW_HTML5) {
-			$this->assert('getContents', $element->getContents() == '<input type="checkbox" checked>');
-		} else {
-			$this->assert('getContents', $element->getContents() == '<input type="checkbox" checked="checked" />');
-		}
+		$this->assert('getContents', $element->getContents() == '<input type="checkbox" checked>');
 	}
 }

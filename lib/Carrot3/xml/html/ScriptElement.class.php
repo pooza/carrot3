@@ -14,21 +14,6 @@ namespace Carrot3;
 class ScriptElement extends HTMLElement {
 
 	/**
-	 * @access public
-	 * @param string $name 要素の名前
-	 * @param UserAgent $useragent 対象UserAgent
-	 */
-	public function __construct ($name = null, UserAgent $useragent = null) {
-		parent::__construct($name, $useragent);
-		if (!BS_VIEW_HTML5) {
-			$this->setAttribute('type', 'text/javascript');
-			if (!$this->getUserAgent()->isMobile()) {
-				$this->setAttribute('charset', 'utf-8');
-			}
-		}
-	}
-
-	/**
 	 * 本文を設定
 	 *
 	 * @access public

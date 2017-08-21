@@ -42,10 +42,6 @@ class ScriptSet extends DocumentSet {
 	public function createElement () {
 		$element = new ScriptElement;
 		$element->setAttribute('src', $this->getURL()->getContents());
-		if (!BS_VIEW_HTML5) {
-			$element->setAttribute('type', $this->getType());
-			$element->setAttribute('charset', $this->getEncoding());
-		}
 		return $element;
 	}
 
