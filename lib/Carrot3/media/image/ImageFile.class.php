@@ -60,12 +60,15 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @access protected
 	 */
 	protected function analyze () {
-		$this->attributes['path'] = $this->getPath();
-		$this->attributes['type'] = $this->getRenderer()->getType();
-		$this->attributes['width'] = $this->getRenderer()->getWidth();
-		$this->attributes['height'] = $this->getRenderer()->getHeight();
-		$this->attributes['height_full'] = $this->getRenderer()->getHeight();
-		$this->attributes['pixel_size'] = $this['width'] . '×' . $this['height'];
+		try {
+			$this->attributes['path'] = $this->getPath();
+			$this->attributes['type'] = $this->getRenderer()->getType();
+			$this->attributes['width'] = (int)$this->getRenderer()->getWidth();
+			$this->attributes['height'] = (int)$this->getRenderer()->getHeight();
+			$this->attributes['pixel_size'] = $this['width'] . '×' . $this['height'];
+		} catch (\Exception $e) {
+			$this->attributes['error'] = $e->getMessage();
+		}
 	}
 
 	/**
@@ -287,16 +290,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @static
 	 */
 	static public function search ($file, $class = 'ImageFile') {
-		if (!$file = parent::search($file, $class)) {
-			return;
-		}
-		switch ($file->getType()) {
-			case MIMEType::getType('jpg'):
-			case MIMEType::getType('png'):
-			case MIMEType::getType('gif'):
-				return parent::search($file, 'ImageFile');
-		}
-		return $file;
+		return parent::search($file, $class);
 	}
 }
 

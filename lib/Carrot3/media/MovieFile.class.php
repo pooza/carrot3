@@ -25,8 +25,8 @@ class MovieFile extends MediaFile implements ImageContainer {
 		}
 		if (mb_ereg(' ([[:digit:]]{2,4})x([[:digit:]]{2,4})', $this->output, $matches)) {
 			$info = $this->getImageInfo('image');
-			$this->attributes['width'] = $info['width'];
-			$this->attributes['height'] = $info['height'];
+			$this->attributes['width'] = (int)$info['width'];
+			$this->attributes['height'] = (int)$info['height'];
 			$this->attributes['pixel_size'] = $this['width'] . '×' . $this['height'];
 			$this->attributes['aspect'] = $this['width'] / $this['height'];
 		}
