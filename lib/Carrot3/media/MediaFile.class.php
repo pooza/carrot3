@@ -145,28 +145,6 @@ abstract class MediaFile extends File implements \ArrayAccess, Assignable {
 	}
 
 	/**
-	 * スタイル属性を返す
-	 *
-	 * @access protected
-	 * @param ParameterHolder $params パラメータ配列
-	 * @return CSSSelector スタイル属性
-	 */
-	protected function getStyles (ParameterHolder $params) {
-		$style = new CSSSelector;
-		if ($params['width']) {
-			$style['width'] = $params['width'] . 'px';
-		} else {
-			$style['width'] = $this['width'] . 'px';
-		}
-		if ($params['height']) {
-			$style['height'] = $params['height'] . 'px';
-		} else {
-			$style['height'] = $this['height_full'] . 'px';
-		}
-		return $style;
-	}
-
-	/**
 	 * メディアURLを返す
 	 *
 	 * @access protected

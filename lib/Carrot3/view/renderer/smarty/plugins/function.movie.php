@@ -22,7 +22,6 @@ function smarty_function_movie ($params, &$smarty) {
 			return $file['pixel_size'];
 		case 'width':
 		case 'height':
-		case 'height_full':
 		case 'pixel_size':
 		case 'seconds':
 		case 'duration':
