@@ -42,9 +42,15 @@ function smarty_function_image ($params, &$smarty) {
 				$anchor = C\Loader::getInstance()->createObject($mode . 'AnchorElement');
 				$element = $element->wrap($anchor);
 				$element->setCaption($info['alt']);
-				$element->setImage(
-					$record, $params['size'], $params['pixel_full'], $params['flags_full']
-				);
+				try {
+					$element->setImage(
+						$record, $params['size'], $params['pixel_full'], $params['flags_full']
+					);
+				} catch (\Exception $e) {
+					$record->removeImageCache($params['size']);
+					$element = new C\DivisionElement;
+					$element->setBody($e->getMessage());
+				}
 				break;
 		}
 		return $element->getContents();
