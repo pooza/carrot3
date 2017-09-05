@@ -314,9 +314,10 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * タイムアウト時間を返す
 	 *
 	 * @access public
-	 * @return integer タイムアウト時間(秒)、設定の必要がない場合はNULL
+	 * @return integer タイムアウト時間(秒)、制限しない場合は0
 	 */
 	public function getTimeLimit () {
+		return 120;
 	}
 
 	/**

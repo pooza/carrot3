@@ -42,9 +42,7 @@ class ExecutionFilter extends Filter {
 			if ($limit = $this->action->getMemoryLimit()) {
 				ini_set('memory_limit', $limit . 'M');
 			}
-			if ($limit = $this->action->getTimeLimit()) {
-				set_time_limit($limit);
-			}
+			set_time_limit($this->action->getTimeLimit());
 			return $this->action->execute();
 		} else {
 			return $this->action->getDefaultView();
