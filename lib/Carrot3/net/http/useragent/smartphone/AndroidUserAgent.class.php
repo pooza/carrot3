@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class AndroidUserAgent extends WebKitUserAgent {
+class AndroidUserAgent extends BlinkUserAgent {
 
 	/**
 	 * @access protected
