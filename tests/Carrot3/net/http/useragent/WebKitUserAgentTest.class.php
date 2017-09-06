@@ -14,6 +14,9 @@ class WebKitUserAgentTest extends Test {
 		$this->assert('create_Safari08', $useragent instanceof WebKitUserAgent);
 		$this->assert('getVersion_Safari08', $useragent->getVersion() == '85.7');
 		$this->assert('isLegacy_Safari08', $useragent->isLegacy());
+		$this->assert('isChrome_Safari08', !$useragent->isChrome());
+		$this->assert('isEdge_Safari08', !$useragent->isEdge());
+		$this->assert('isSafari_Safari08', $useragent->isSafari());
 
 		// Safari 5.0
 		$useragent = UserAgent::create(
@@ -22,5 +25,8 @@ class WebKitUserAgentTest extends Test {
 		$this->assert('create_Safari5', $useragent instanceof WebKitUserAgent);
 		$this->assert('getVersion_Safari5', $useragent->getVersion() == '533.16');
 		$this->assert('isLegacy_Safari5', !$useragent->isLegacy());
+		$this->assert('isChrome_Safari5', !$useragent->isChrome());
+		$this->assert('isEdge_Safari5', !$useragent->isEdge());
+		$this->assert('isSafari_Safari5', $useragent->isSafari());
 	}
 }

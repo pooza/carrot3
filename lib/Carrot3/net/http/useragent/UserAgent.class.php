@@ -352,12 +352,13 @@ abstract class UserAgent extends ParameterHolder {
 
 	static private function getTypes () {
 		return Tuple::create([
-			'WindowsPhone',
 			'Tasman',
 			'Trident',
 			'Gecko',
 			'Android',
 			'iOS',
+			'Edge',
+			'Blink',
 			'WebKit',
 			'Presto',
 			'LegacyMozilla',
