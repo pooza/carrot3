@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.0.15
+  ver: 3.0.16
 
 admin:
   email:
@@ -44,9 +44,6 @@ clamav:
     default: /usr/local
     darwin: /opt/local
     linux: /usr
-cookie:
-  checker:
-    hours: 6
 crypt:
   engine: open_ssl
   method: AES-256-CBC
@@ -134,9 +131,6 @@ module:
   default:
     module: Default
     action: Default
-  cookie_disabled:
-    module: Default
-    action: CookieDisabled
   not_found:
     module: Default
     action: NotFound
