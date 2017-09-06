@@ -20,6 +20,8 @@ app:
     ja: unknown
     en: unknown
   ver: unknown
+  memory_limit: 128M
+  time_limit: 120
   http_cache:
     mode: private
     seconds: 60

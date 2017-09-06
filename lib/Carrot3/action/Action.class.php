@@ -308,7 +308,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @return mixed memory_limitディレクティブにそのまま渡す。 -1, '128M' 等。
 	 */
 	public function getMemoryLimit () {
-		return '128M';
+		return BS_APP_MEMORY_LIMIT;
 	}
 
 	/**
@@ -318,7 +318,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @return integer タイムアウト時間(秒)、制限しない場合は0
 	 */
 	public function getTimeLimit () {
-		return 120;
+		return BS_APP_TIME_LIMIT;
 	}
 
 	/**
