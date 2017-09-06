@@ -49,5 +49,5 @@ php_flag session.use_cookies On
 php_flag session.cookie_httponly On
 php_flag session.use_only_cookies On
 php_flag session.use_strict_mode On
-php_flag session.use_trans_sid Off
+php_value session.cookie_lifetime 86400
 #php_flag session.cookie_secure On #常時httpsのサイトではコメントを外す
