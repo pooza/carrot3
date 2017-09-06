@@ -55,13 +55,6 @@ crypt:
 date:
   timezone: Asia/Tokyo
 debug: yes
-decoration_mail:
-  type:
-    docomo: application/x-decomail-template
-    au: application/x-kddi-htmlmail
-    softbank: application/x-htmlmail-template
-filterset:
-  class: Default
 ffmpeg:
   dir:
     default: /usr/local

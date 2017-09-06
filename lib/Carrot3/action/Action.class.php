@@ -305,9 +305,10 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * メモリ上限を返す
 	 *
 	 * @access public
-	 * @return integer メモリ上限(MB)、設定の必要がない場合はNULL
+	 * @return mixed memory_limitディレクティブにそのまま渡す。 -1, '128M' 等。
 	 */
 	public function getMemoryLimit () {
+		return '128M';
 	}
 
 	/**

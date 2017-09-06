@@ -39,9 +39,7 @@ class ExecutionFilter extends Filter {
 			if (!ValidateManager::getInstance()->execute() || !$this->action->validate()) {
 				return $this->action->handleError();
 			}
-			if ($limit = $this->action->getMemoryLimit()) {
-				ini_set('memory_limit', $limit . 'M');
-			}
+			ini_set('memory_limit', $this->action->getMemoryLimit());
 			set_time_limit($this->action->getTimeLimit());
 			return $this->action->execute();
 		} else {
