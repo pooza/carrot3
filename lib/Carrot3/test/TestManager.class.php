@@ -62,7 +62,6 @@ class TestManager implements \IteratorAggregate {
 	public function execute ($name = null) {
 		foreach ($this as $test) {
 			if (StringUtils::isBlank($name) || $test->isMatched($name)) {
-				$this->put('---');
 				$message = new StringFormat('%s:');
 				$message[] = Utils::getClass($test);
 				$this->put($message);

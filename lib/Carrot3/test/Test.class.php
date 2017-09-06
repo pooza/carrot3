@@ -93,10 +93,6 @@ abstract class Test {
 		} catch (\Exception $e) {
 			return $this->setError($name);
 		}
-
-		$message = new StringFormat('  %s OK');
-		$message[] = $name;
-		$this->manager->put($message);
 	}
 
 	/**
