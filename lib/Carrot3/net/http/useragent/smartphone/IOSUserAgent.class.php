@@ -14,15 +14,6 @@ namespace Carrot3;
 class IOSUserAgent extends WebKitUserAgent {
 
 	/**
-	 * @access protected
-	 * @param string $name ユーザーエージェント名
-	 */
-	protected function __construct ($name = null) {
-		parent::__construct($name);
-		$this->supports['flash'] = false;
-	}
-
-	/**
 	 * スマートフォンか？
 	 *
 	 * @access public

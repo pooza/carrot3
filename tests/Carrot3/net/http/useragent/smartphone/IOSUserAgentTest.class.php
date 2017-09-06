@@ -13,7 +13,6 @@ class IOSUserAgentTest extends Test {
 		);
 		$this->assert('create_iPhone', $useragent instanceof IOSUserAgent);
 		$this->assert('isSmartPhone_iPhone', $useragent->isSmartPhone());
-		$this->assert('hasSupport_flash_iPhone', !$useragent->hasSupport('flash'));
 
 		// iPad
 		$useragent = UserAgent::create(
@@ -21,6 +20,5 @@ class IOSUserAgentTest extends Test {
 		);
 		$this->assert('create_iPad', $useragent instanceof IOSUserAgent);
 		$this->assert('isTablet_iPad', $useragent->isTablet());
-		$this->assert('hasSupport_flash_iPad', !$useragent->hasSupport('flash'));
 	}
 }

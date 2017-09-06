@@ -22,6 +22,5 @@ class WebKitUserAgentTest extends Test {
 		$this->assert('create_Safari5', $useragent instanceof WebKitUserAgent);
 		$this->assert('getVersion_Safari5', $useragent->getVersion() == '533.16');
 		$this->assert('isLegacy_Safari5', !$useragent->isLegacy());
-		$this->assert('hasSupport_flash_Safari5', $useragent->hasSupport('flash'));
 	}
 }

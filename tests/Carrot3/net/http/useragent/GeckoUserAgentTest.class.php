@@ -22,6 +22,5 @@ class GeckoUserAgentTest extends Test {
 		$this->assert('create_Fx3', $useragent instanceof GeckoUserAgent);
 		$this->assert('getVersion_Fx3', $useragent->getVersion() == '1.9');
 		$this->assert('isLegacy_Fx3', !$useragent->isLegacy());
-		$this->assert('hasSupport_flash_Fx3', $useragent->hasSupport('flash'));
 	}
 }

@@ -32,34 +32,6 @@ abstract class MobileUserAgent extends UserAgent {
 	}
 
 	/**
-	 * セッションハンドラを生成して返す
-	 *
-	 * @access public
-	 * @return SessionHandler
-	 */
-	public function createSession () {
-		if (!!$this->hasSupport('cookie')) {
-			return new SessionHandler;
-		} else {
-			return new MobileSessionHandler;
-		}
-	}
-
-	/**
-	 * クエリーパラメータを返す
-	 *
-	 * @access public
-	 * @return WWWFormRenderer
-	 */
-	public function getQuery () {
-		$query = parent::getQuery();
-		if (!$this->hasSupport('cookie')) {
-			$query[$this->request->getSession()->getName()] = $session->getID();
-		}
-		return $query;
-	}
-
-	/**
 	 * ケータイ環境か？
 	 *
 	 * @access public
@@ -141,7 +113,6 @@ abstract class MobileUserAgent extends UserAgent {
 			$this->digest = Crypt::digest([
 				Utils::getClass($this),
 				$this->getDisplayInfo()['width'],
-				(int)$this->hasSupport('cookie'),
 			]);
 		}
 		return $this->digest;

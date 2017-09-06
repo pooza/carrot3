@@ -26,9 +26,6 @@ class WebKitUserAgent extends UserAgent {
 		$this['is_safari'] = $this->isSafari();
 		$this->supports['html5_video'] = true;
 		$this->supports['html5_audio'] = true;
-		$this->supports['flash'] = true;
-		$this->supports['cookie'] = true;
-		$this->supports['attach_file'] = true;
 	}
 
 	/**

@@ -24,8 +24,6 @@ class SoftBankUserAgent extends MobileUserAgent {
 		}
 		parent::__construct($name);
 		$this['is_3gc'] = $this->is3GC();
-		$this->supports['cookie'] = true;
-		$this->supports['attach_file'] = true;
 	}
 
 	/**

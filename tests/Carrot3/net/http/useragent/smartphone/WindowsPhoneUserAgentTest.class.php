@@ -13,6 +13,5 @@ class WindowsPhoneUserAgentTest extends Test {
 		);
 		$this->assert('create_ASUS_Galaxy', $useragent instanceof WindowsPhoneUserAgent);
 		$this->assert('isSmartPhone_ASUS_Galaxy', $useragent->isSmartPhone());
-		$this->assert('hasSupport_flash_ASUS_Galaxy', !$useragent->hasSupport('flash'));
 	}
 }

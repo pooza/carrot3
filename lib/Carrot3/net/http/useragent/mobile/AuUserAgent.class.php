@@ -25,7 +25,6 @@ class AuUserAgent extends MobileUserAgent {
 		parent::__construct($name);
 		$this->bugs['multipart_form'] = true;
 		$this->supports['image_copyright'] = true;
-		$this->supports['cookie'] = true;
 		$this['is_wap2'] = $this->isWAP2();
 	}
 

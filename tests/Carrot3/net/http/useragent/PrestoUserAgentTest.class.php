@@ -14,6 +14,5 @@ class PrestoUserAgentTest extends Test {
 		$this->assert('create_Opera10', $useragent instanceof PrestoUserAgent);
 		$this->assert('getVersion_Opera10', $useragent->getVersion() == '2.2.15');
 		$this->assert('isLegacy_Opera10', !$useragent->isLegacy());
-		$this->assert('hasSupport_flash_Opera10', $useragent->hasSupport('flash'));
 	}
 }

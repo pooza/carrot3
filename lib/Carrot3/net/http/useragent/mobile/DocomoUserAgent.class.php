@@ -25,7 +25,6 @@ class DocomoUserAgent extends MobileUserAgent {
 		parent::__construct($name);
 		$this['is_foma'] = $this->isFOMA();
 		$this['version'] = $this->getVersion();
-		$this->supports['cookie'] = $this->isFOMA() && (1 < $this->getVersion());
 	}
 
 	/**
@@ -69,18 +68,6 @@ class DocomoUserAgent extends MobileUserAgent {
 	 */
 	public function getDefaultImageType () {
 		return 'image/jpeg';
-	}
-
-	/**
-	 * クエリーパラメータを返す
-	 *
-	 * @access public
-	 * @return WWWFormRenderer
-	 */
-	public function getQuery () {
-		$query = parent::getQuery();
-		$query['guid'] = 'ON';
-		return $query;
 	}
 
 	/**

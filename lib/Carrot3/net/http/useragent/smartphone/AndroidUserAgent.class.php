@@ -21,7 +21,6 @@ class AndroidUserAgent extends WebKitUserAgent {
 		parent::__construct($name);
 		$this->supports['html5_audio'] = version_compare('534.30', $this->getVersion(), '<');
 		$this->supports['html5_video'] = version_compare('534.30', $this->getVersion(), '<');
-		$this->supports['flash'] = false;
 	}
 
 	/**

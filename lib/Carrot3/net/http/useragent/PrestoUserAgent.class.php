@@ -21,9 +21,6 @@ class PrestoUserAgent extends UserAgent {
 		parent::__construct($name);
 		$this->supports['html5_video'] = true;
 		$this->supports['html5_audio'] = true;
-		$this->supports['flash'] = true;
-		$this->supports['cookie'] = true;
-		$this->supports['attach_file'] = true;
 	}
 
 	/**
