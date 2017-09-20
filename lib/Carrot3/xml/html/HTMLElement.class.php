@@ -142,8 +142,8 @@ class HTMLElement extends XMLElement {
 	 * @param mixed $styles スタイル
 	 */
 	public function setStyles ($styles) {
-		if ($styles instanceof CSSSelector) {
-			$this->styles = $styles;
+		if ($styles instanceof ParameterHolder) {
+			$this->styles = new CSSSelector($styles);
 		} else {
 			$this->styles->clear();
 			$this->styles->setContents($styles);
