@@ -10,7 +10,7 @@ use \Carrot3 as C;
 
 class DeniedUserAgentView extends C\SmartyView {
 	public function execute () {
-		$this->setStatus(400);
+		$this->setStatus(406);
 	}
 }
 
