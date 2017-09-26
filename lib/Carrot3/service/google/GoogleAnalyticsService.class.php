@@ -49,7 +49,6 @@ class GoogleAnalyticsService extends ParameterHolder implements Assignable {
 	 */
 	public function createTrackingCode () {
 		$renderer = new Smarty;
-		$renderer->setUserAgent($useragent);
 		$renderer->setTemplate('GoogleAnalytics');
 		$renderer->setAttribute('params', $this);
 		return $renderer->getContents();
