@@ -25,9 +25,7 @@ class FormElement extends HTMLElement {
 		foreach ($this->getUserAgent()->getQuery() as $key => $value) {
 			$this->addHiddenField($key, $value);
 		}
-		if (!$this->getUserAgent()->isMobile()) {
-			$this->disableMultiSubmit();
-		}
+		$this->disableMultiSubmit();
 	}
 
 	/**

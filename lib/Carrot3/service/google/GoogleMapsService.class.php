@@ -61,23 +61,17 @@ class GoogleMapsService extends CurlHTTP {
 			throw new ServiceException($message);
 		}
 
-		if ($this->useragent->isMobile()) {
-			$params->removeParameter('width');
-			$params->removeParameter('height');
-			return $this->createImageElement($geocode, $params);
-		} else {
-			$info = $this->useragent->getDisplayInfo();
-			if (!$params['max_width'] && $info['width']) {
-				$params['max_width'] = $info['width'];
-			}
-			if ($params['max_width'] && ($params['max_width'] < $params['width'])) {
-				$params['width'] = $params['max_width'];
-				$params['height'] = Numeric::round(
-					$params['height'] * $params['width'] / $params['max_width']
-				);
-			}
-			return $geocode->createElement($params);
+		$info = $this->useragent->getDisplayInfo();
+		if (!$params['max_width'] && $info['width']) {
+			$params['max_width'] = $info['width'];
 		}
+		if ($params['max_width'] && ($params['max_width'] < $params['width'])) {
+			$params['width'] = $params['max_width'];
+			$params['height'] = Numeric::round(
+				$params['height'] * $params['width'] / $params['max_width']
+			);
+		}
+		return $geocode->createElement($params);
 	}
 
 	/**

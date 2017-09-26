@@ -69,7 +69,7 @@ class GoogleFaviconsService extends CurlHTTP {
 			}
 		}
 		return $file;
-	} 
+	}
 
 	/**
 	 * @access public

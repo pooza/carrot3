@@ -39,19 +39,6 @@ class AuUserAgent extends MobileUserAgent {
 	}
 
 	/**
-	 * 旧機種か？
-	 *
-	 * @access public
-	 * @return boolean 旧機種ならばTrue
-	 */
-	public function isLegacy () {
-		if (BS_USERAGENT_MOBILE_DENY_ON_HTTPS && $this->request->isSSL()) {
-			return true;
-		}
-		return !$this->isWAP2();
-	}
-
-	/**
 	 * 画面情報を返す
 	 *
 	 * @access public

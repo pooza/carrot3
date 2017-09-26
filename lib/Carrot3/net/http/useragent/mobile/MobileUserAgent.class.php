@@ -42,6 +42,16 @@ abstract class MobileUserAgent extends UserAgent {
 	}
 
 	/**
+	 * 旧機種か？
+	 *
+	 * @access public
+	 * @return boolean 旧機種ならばTrue
+	 */
+	public function isLegacy () {
+		return true;
+	}
+
+	/**
 	 * キャリア名を返す
 	 *
 	 * @access public
@@ -84,22 +94,6 @@ abstract class MobileUserAgent extends UserAgent {
 			'width' => BS_IMAGE_MOBILE_SIZE_QVGA_WIDTH,
 			'height' => BS_IMAGE_MOBILE_SIZE_QVGA_HEIGHT,
 		]);
-	}
-
-	/**
-	 * ムービー表示用のHTML要素を返す
-	 *
-	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
-	 * @param UserAgent $useragent 対象ブラウザ
-	 * @return DivisionElement 要素
-	 */
-	public function createMovieElement (ParameterHolder $params) {
-		$container = new DivisionElement;
-		$anchor = $container->addElement(new AnchorElement);
-		$anchor->setURL($params['url']);
-		$anchor->setBody($params['label']);
-		return $container;
 	}
 
 	/**

@@ -212,12 +212,7 @@ class TwitterService extends CurlHTTP {
 	 * @return Tuple タイムライン
 	 */
 	public function getTimeline ($account, $count = 10) {
-		$key = Tuple::create([
-			$account,
-			$count,
-			__CLASS__,
-			__FUNCTION__,
-		])->join(':');
+		$key = Tuple::create([$account, $count, __CLASS__, __FUNCTION__])->join(':');
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$timeline = $this->getSerializeHandler()->getAttribute($key, $date)) {
@@ -230,14 +225,12 @@ class TwitterService extends CurlHTTP {
 			$json = new JSONRenderer;
 			$json->setContents($response->getRenderer()->getContents());
 			foreach ($json->getResult() as $entry) {
-				$urls = self::createTweetURLs($entry['id_str'], $account);
 				$timeline[] = Tuple::create([
 					'id' => $entry['id_str'],
 					'from_user' => $entry['user']['screen_name'],
 					'text' => $entry['text'],
 					'created_at' => $entry['created_at'],
-					'url0' => $urls['url0'],
-					'url_mobile' => $urls['url_mobile'],
+					'url' => self::createTweetURL($entry['id_str'], $account)->getContents(),
 					'profile_image_url' => $entry['user']['profile_image_url_https'],
 				]);
 			}
@@ -255,12 +248,7 @@ class TwitterService extends CurlHTTP {
 	 * @return Tuple ツイート
 	 */
 	public function searchTweets ($keyword, $count = 10) {
-		$key = Tuple::create([
-			$keyword,
-			$count,
-			__CLASS__,
-			__FUNCTION__,
-		])->join(':');
+		$key = Tuple::create([$keyword, $count, __CLASS__, __FUNCTION__])->join(':');
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$timeline = $this->getSerializeHandler()->getAttribute($key, $date)) {
@@ -273,14 +261,15 @@ class TwitterService extends CurlHTTP {
 			$json = new JSONRenderer;
 			$json->setContents($response->getRenderer()->getContents());
 			foreach ($json->getResult()['statuses'] as $entry) {
-				$urls = self::createTweetURLs($entry['id'], $entry['user']['screen_name']);
 				$timeline[] = Tuple::create([
 					'id' => $entry['id'],
 					'from_user' => $entry['user']['screen_name'],
 					'text' => $entry['text'],
 					'created_at' => $entry['created_at'],
-					'url0' => $urls['url0'],
-					'url_mobile' => $urls['url_mobile'],
+					'url' => self::createTweetURL(
+						$entry['id'],
+						$entry['user']['screen_name']
+					)->getContents(),
 					'profile_image_url' => $entry['user']['profile_image_url_https'],
 				]);
 			}
@@ -297,11 +286,7 @@ class TwitterService extends CurlHTTP {
 	 * @return Tuple プロフィール
 	 */
 	public function getProfile ($account) {
-		$key = Tuple::create([
-			$account,
-			__CLASS__,
-			__FUNCTION__,
-		])->join(':');
+		$key = Tuple::create([$account, __CLASS__, __FUNCTION__])->join(':');
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$profile = $this->getSerializeHandler()->getAttribute($key, $date)) {
@@ -384,46 +369,18 @@ class TwitterService extends CurlHTTP {
 	 * @access public
 	 * @param string $id ツイートID
 	 * @param string $account アカウント名
-	 * @param UserAgent $useragent 対象ブラウザ
 	 * @return HTTPURL URL
 	 * @static
 	 */
-	static public function createTweetURL ($id, $account, UserAgent $useragent = null) {
+	static public function createTweetURL ($id, $account) {
+		if ($account instanceof TwitterAccount) {
+			$account = $account->getName();
+		}
 		$url = URL::create();
 		$url['scheme'] = 'https';
-		if (!$useragent) {
-			$useragent = $this->request->getUserAgent();
-		}
-		if ($useragent->isMobile()) {
-			$url['host'] = 'mobile.twitter.com';
-		} else {
-			$url['host'] = 'twitter.com';
-		}
+		$url['host'] = 'twitter.com';
 		$url['path'] = '/' . $account . '/status/' . $id;
 		return $url;
-	}
-
-	/**
-	 * ツイートのURLをまとめて返す
-	 *
-	 * @access public
-	 * @param string $id ツイートID
-	 * @param string $account アカウント名
-	 * @param string $prefix 要素名のプリフィックス
-	 * @return Tuple URL文字列の配列
-	 * @static
-	 */
-	static public function createTweetURLs ($id, $account, $prefix = 'url') {
-		$urls = Tuple::create();
-		$useragents = Tuple::create([
-			null => UserAgent::create(UserAgent::DEFAULT_NAME),
-			'_mobile' => UserAgent::create(DocomoUserAgent::DEFAULT_NAME),
-		]);
-		foreach ($useragents as $suffix => $useragent) {
-			$url = self::createTweetURL($id, $account, $useragent);
-			$urls[$prefix . $suffix] = $url->getContents();
-		}
-		return $urls;
 	}
 }
 

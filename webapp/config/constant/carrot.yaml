@@ -253,9 +253,6 @@ tidy5:
 unzip:
   dir:
     default: /usr
-useragent:
-  mobile:
-    deny_on_https: no
 user:
   class: Carrot3\User
 view:

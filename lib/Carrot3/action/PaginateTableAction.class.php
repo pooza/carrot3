@@ -38,11 +38,7 @@ abstract class PaginateTableAction extends TableAction {
 	 * @return integer ページサイズ
 	 */
 	protected function getPageSize () {
-		if ($this->request->isMobile()) {
-			return 10;
-		} else {
-			return 50;
-		}
+		return 50;
 	}
 
 	/**

@@ -48,19 +48,6 @@ class DocomoUserAgent extends MobileUserAgent {
 	}
 
 	/**
-	 * 旧機種か？
-	 *
-	 * @access public
-	 * @return boolean 旧機種ならばTrue
-	 */
-	public function isLegacy () {
-		if (BS_USERAGENT_MOBILE_DENY_ON_HTTPS && $this->request->isSSL()) {
-			return true;
-		}
-		return ($this->getVersion() < 2) && !StringUtils::isContain('bot', $this->getName());
-	}
-
-	/**
 	 * 規定の画像形式を返す
 	 *
 	 * @access public

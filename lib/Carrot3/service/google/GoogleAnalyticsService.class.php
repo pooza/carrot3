@@ -19,13 +19,6 @@ class GoogleAnalyticsService extends ParameterHolder implements Assignable {
 	 */
 	protected function __construct () {
 		$this['id'] = BS_SERVICE_GOOGLE_ANALYTICS_ID;
-		$this['domain'] = $this->getRootDomainName();
-	}
-
-	private function getRootDomainName () {
-		$domain = StringUtils::explode('.', $this->controller->getHost()->getName());
-		$domain->unshift(null);
-		return $domain->join('.');
 	}
 
 	/**
@@ -52,16 +45,9 @@ class GoogleAnalyticsService extends ParameterHolder implements Assignable {
 	 * トラッキングコードを返す
 	 *
 	 * @access public
-	 * @param UserAgent $useragent 対象UserAgent
 	 * @return string トラッキングコード
 	 */
-	public function createTrackingCode (UserAgent $useragent = null) {
-		if (!$useragent) {
-			$useragent = $this->request->getUserAgent();
-		}
-		if (BS_DEBUG || $useragent->isMobile()) {
-			return null;
-		}
+	public function createTrackingCode () {
 		$renderer = new Smarty;
 		$renderer->setUserAgent($useragent);
 		$renderer->setTemplate('GoogleAnalytics');

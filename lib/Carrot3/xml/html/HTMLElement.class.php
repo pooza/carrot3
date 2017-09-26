@@ -178,14 +178,10 @@ class HTMLElement extends XMLElement {
 	 */
 	public function setAlignment ($value) {
 		$wrapper = $this->createWrapper();
-		if ($this->getUserAgent()->isMobile()) {
-			$wrapper->setAttribute('align', $value);
-		} else {
-			if ($value == 'center') {
-				$wrapper->setStyle('width', '100%');
-			}
-			$wrapper->registerStyleClass($value);
+		if ($value == 'center') {
+			$wrapper->setStyle('width', '100%');
 		}
+		$wrapper->registerStyleClass($value);
 		return $wrapper;
 	}
 
@@ -200,15 +196,7 @@ class HTMLElement extends XMLElement {
 		$wrapper = $this->createWrapper();
 		if (!StringUtils::isBlank($value)) {
 			$element = $wrapper->addElement(new DivisionElement);
-			if ($this->getUserAgent()->isMobile()) {
-				$element->setAttribute('align', 'center');
-				$element = $element->createElement('font');
-				$element->setAttribute('size', '-1');
-				$element->setAttribute('color', '#888888');
-				$value .= '<br/><br/>';
-			} else {
-				$element->registerStyleClass('caption');
-			}
+			$element->registerStyleClass('caption');
 			$element->setBody($value);
 		}
 		return $wrapper;
