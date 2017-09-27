@@ -212,7 +212,7 @@ class User extends ParameterHolder {
 		$this->getSession()->write(__CLASS__, $this->id);
 		$this->getSession()->refresh();
 		foreach ($identifier->getCredentials() as $credential) {
-			$this->addCredential($credential);
+			$this->allow($credential);
 		}
 	}
 
@@ -223,7 +223,7 @@ class User extends ParameterHolder {
 	 */
 	public function logout () {
 		$this->id = null;
-		$this->clearCredentials();
+		$this->revokeAll();
 		$this->getSession()->write(__CLASS__, null);
 		$this->getSession()->refresh();
 	}
@@ -244,7 +244,7 @@ class User extends ParameterHolder {
 	 * @access public
 	 * @param string $credential クレデンシャル
 	 */
-	public function addCredential ($credential) {
+	public function allow ($credential) {
 		$this->credentials[$credential] = true;
 	}
 
@@ -254,7 +254,7 @@ class User extends ParameterHolder {
 	 * @access public
 	 * @param string $credential クレデンシャル
 	 */
-	public function removeCredential ($credential) {
+	public function revoke ($credential) {
 		$this->credentials[$credential] = false;
 	}
 
@@ -263,7 +263,7 @@ class User extends ParameterHolder {
 	 *
 	 * @access public
 	 */
-	public function clearCredentials () {
+	public function revokeAll () {
 		$this->credentials->clear();
 	}
 
