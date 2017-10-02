@@ -137,8 +137,7 @@ class Memcache implements \ArrayAccess {
 	 */
 	public function set ($name, $value, $flag = null, $expire = 0) {
 		if ($value instanceof ParameterHolder) {
-			$value = Tuple::create($value);
-			$value = $value->decode();
+			$value = Tuple::create($value)->decode();
 		} else if (is_object($value)) {
 			throw new MemcacheException('オブジェクトを登録できません。');
 		}

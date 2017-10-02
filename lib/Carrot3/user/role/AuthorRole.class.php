@@ -83,10 +83,7 @@ class AuthorRole implements Role {
 	 * @return boolean 正しいユーザーならTrue
 	 */
 	public function auth ($password = null) {
-		return (!StringUtils::isBlank(BS_AUTHOR_PASSWORD)
-			&& !StringUtils::isBlank($password)
-			&& Crypt::getInstance()->auth(BS_AUTHOR_PASSWORD, $password)
-		);
+		return Crypt::getInstance()->auth(BS_AUTHOR_PASSWORD, $password);
 	}
 
 	/**
@@ -97,8 +94,7 @@ class AuthorRole implements Role {
 	 */
 	public function getCredentials () {
 		if (!$this->credentials) {
-			$this->credentials = Tuple::create();
-			$this->credentials[] = self::CREDENTIAL;
+			$this->credentials = Tuple::create([self::CREDENTIAL]);
 		}
 		return $this->credentials;
 	}

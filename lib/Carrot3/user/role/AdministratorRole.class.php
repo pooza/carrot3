@@ -80,10 +80,7 @@ class AdministratorRole implements Role {
 	 * @return boolean 正しいユーザーならTrue
 	 */
 	public function auth ($password = null) {
-		return (!StringUtils::isBlank(BS_ADMIN_PASSWORD)
-			&& !StringUtils::isBlank($password)
-			&& Crypt::getInstance()->auth(BS_ADMIN_PASSWORD, $password)
-		);
+		return Crypt::getInstance()->auth(BS_ADMIN_PASSWORD, $password);
 	}
 
 	/**
@@ -94,8 +91,7 @@ class AdministratorRole implements Role {
 	 */
 	public function getCredentials () {
 		if (!$this->credentials) {
-			$this->credentials = Tuple::create();
-			$this->credentials[] = self::CREDENTIAL;
+			$this->credentials = Tuple::create([self::CREDENTIAL]);
 			if (BS_DEBUG) {
 				$this->credentials[] = 'Develop';
 				$this->credentials[] = 'Debug';

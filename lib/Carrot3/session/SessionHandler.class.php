@@ -95,10 +95,7 @@ class SessionHandler {
 	 */
 	public function write ($key, $value) {
 		if (is_array($value) || ($value instanceof ParameterHolder)) {
-			$value = Tuple::create($value);
-			$value = $value->decode();
-		} else if ($value instanceof ParameterHolder) {
-			$value = $value->getParameters();
+			$value = Tuple::create($value)->decode();
 		}
 		$_SESSION[$key] = $value;
 	}
