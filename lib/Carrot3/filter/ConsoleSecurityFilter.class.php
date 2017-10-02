@@ -16,11 +16,15 @@ class ConsoleSecurityFilter extends Filter {
 		return ltrim($this->controller->getAttribute('USER'), '_');
 	}
 
+	private function getProcessOwner () {
+		return $this->controller->getPlatform()->getProcessOwner();
+	}
+
 	public function execute () {
-		if (($user = $this->getRealUser()) != Process::getCurrentUser()) {
+		if (($user = $this->getRealUser()) != $this->getProcessOwner()) {
 			$message = new StringFormat('実行ユーザー "%s" が正しくありません。');
 			$message[] = $user;
-			throw new ConsoleException($message);
+			throw new Exception($message);
 		}
 		if (PHP_SAPI != 'cli') {
 			return Controller::COMPLETED;

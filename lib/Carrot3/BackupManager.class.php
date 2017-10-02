@@ -1,7 +1,6 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage backup
  */
 
 namespace Carrot3;

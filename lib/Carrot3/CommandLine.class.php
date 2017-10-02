@@ -1,7 +1,6 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage console
  */
 
 namespace Carrot3;
@@ -30,7 +29,7 @@ class CommandLine {
 	 */
 	public function __construct ($command) {
 		if (StringUtils::isBlank($command)) {
-			throw new ConsoleException('コマンド名が空です。');
+			throw new Exception('コマンド名が空です。');
 		}
 		$this->command = $command;
 		$this->params = Tuple::create();
@@ -55,7 +54,7 @@ class CommandLine {
 	 */
 	public function setDirectory (Directory $dir) {
 		if (!$dir->isExists()) {
-			throw new ConsoleException($dir . 'が存在しません。');
+			throw new Exception($dir . 'が存在しません。');
 		}
 		$this->directory = $dir;
 	}
@@ -206,7 +205,7 @@ class CommandLine {
 
 		if ($this->directory) {
 			if (!$file = $this->directory->getEntry($this->command)) {
-				throw new ConsoleException($this->command . 'が見つかりません。');
+				throw new Exception($this->command . 'が見つかりません。');
 			}
 			$contents->unshift($file->getPath());
 		} else {

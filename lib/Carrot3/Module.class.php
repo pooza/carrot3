@@ -1,7 +1,6 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage module
  */
 
 namespace Carrot3;
@@ -38,7 +37,7 @@ class Module implements HTTPRedirector, Assignable {
 		$this->actions = Tuple::create();
 
 		if (!$this->getDirectory()) {
-			throw new ModuleException($this . 'のディレクトリが見つかりません。');
+			throw new Exception($this . 'のディレクトリが見つかりません。');
 		}
 		if ($file = $this->getConfigFile('module')) {
 			$this->config = Tuple::create(ConfigManager::getInstance()->compile($file));

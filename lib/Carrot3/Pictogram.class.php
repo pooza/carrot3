@@ -1,7 +1,6 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage mobile
  */
 
 namespace Carrot3;
@@ -49,7 +48,7 @@ class Pictogram implements Assignable, ImageContainer {
 		if (StringUtils::isBlank($id = self::getPictogramCode($name))) {
 			$message = new StringFormat('絵文字 "%s" が見つかりません。');
 			$message[] = $name;
-			throw new MobileException($message);
+			throw new Exception($message);
 		}
 		if (!self::$instances[$id]) {
 			self::$instances[$id] = new self($id);
