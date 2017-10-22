@@ -15,9 +15,7 @@ module Carrot
       body.push(":programname, isequal, \"#{program_name}\" -?#{template_name}")
       body.push('')
       puts "create #{dest}"
-      File.open(dest, 'w') do |file|
-        file.write(body.join("\n"))
-      end
+      File.write(dest, body.join("\n"))
     rescue => e
       puts "#{e.class}: #{e.message}"
       exit 1
