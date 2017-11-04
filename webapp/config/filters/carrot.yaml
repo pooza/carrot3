@@ -3,6 +3,5 @@
 # @package jp.co.b-shock.carrot3
 # @author 小石達也 <tkoishi@b-shock.co.jp>
 
-- class: NullByteRequestFilter
 - class: EncodingRequestFilter
 - class: NewLineRequestFilter
