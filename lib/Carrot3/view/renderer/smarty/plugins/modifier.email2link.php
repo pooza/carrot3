@@ -18,7 +18,7 @@ function smarty_modifier_email2link ($value) {
 		return $value->getParameters();
 	} else if (!C\StringUtils::isBlank($value)) {
 		return mb_ereg_replace(
-			'[-+._[:alnum:]]+@([-._[:alnum:]]+)+[[:alpha:]]+',
+			'[-+._[:alnum:]]+@([-.[:alnum:]]+)+[[:alpha:]]+',
 			'<a href="mailto:\\0">\\0</a>',
 			$value
 		);

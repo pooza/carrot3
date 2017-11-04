@@ -19,7 +19,7 @@ class MailAddress implements Assignable {
 	private $domain;
 	private $url;
 	private $mx = [];
-	const PATTERN = '^([-+._[:alnum:]]+)@(([-._[:alnum:]])+[[:alpha:]]+)$';
+	const PATTERN = '^([-+._[:alnum:]]+)@(([-.[:alnum:]])+[[:alpha:]]+)$';
 
 	/**
 	 * @access private
