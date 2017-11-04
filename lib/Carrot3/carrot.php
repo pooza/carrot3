@@ -114,8 +114,6 @@ define('BS_VAR_DIR', BS_ROOT_DIR . '/var');
 define('BS_BIN_DIR', BS_ROOT_DIR . '/bin');
 define('BS_WEBAPP_DIR', BS_ROOT_DIR . '/webapp');
 
-set_include_path(implode(PATH_SEPARATOR, [BS_LIB_DIR, get_include_path()]));
-
 if (PHP_SAPI == 'cli') {
 	$_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 	$_SERVER['HTTP_USER_AGENT'] = 'Console';
@@ -133,7 +131,7 @@ $configure->compile('constant/carrot');
 mb_internal_encoding('utf-8');
 mb_regex_encoding('utf-8');
 date_default_timezone_set(BS_DATE_TIMEZONE);
-ini_set('realpath_cache_size', '128K');
+ini_set('realpath_cache_size', '256K');
 ini_set('log_errors', 1);
 ini_set('error_log', 'syslog');
 ini_set('upload_tmp_dir', FileUtils::getPath('tmp'));
