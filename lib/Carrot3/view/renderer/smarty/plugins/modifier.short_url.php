@@ -12,12 +12,6 @@ use \Carrot3 as C;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_modifier_short_url ($value) {
-	if (is_array($value)) {
-		return $value;
-	} else if ($value instanceof C\ParameterHolder) {
-		return $value->getParameters();
-	} else if (!C\StringUtils::isBlank($value)) {
-		return C\URL::create($value)->getShortURL()->getContents();
-	}
+	return C\URL::create($value)->getShortURL()->getContents();
 }
 

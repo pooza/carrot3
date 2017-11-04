@@ -12,12 +12,6 @@ use \Carrot3 as C;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_modifier_encoding ($value) {
-	if (is_array($value)) {
-		return $value;
-	} else if ($value instanceof C\ParameterHolder) {
-		return $value->getParameters();
-	} else if (!C\StringUtils::isBlank($value)) {
-		return C\StringUtils::convertEncoding($value, 'utf-8');
-	}
+	return C\StringUtils::convertEncoding($value, 'utf-8');
 }
 

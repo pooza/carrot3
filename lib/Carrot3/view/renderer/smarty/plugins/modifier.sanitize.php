@@ -12,13 +12,8 @@ use \Carrot3 as C;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_modifier_sanitize ($value) {
-	if (is_array($value)) {
-		return $value;
-	} else if ($value instanceof C\ParameterHolder) {
-		return $value->getParameters();
-	} else if (!C\StringUtils::isBlank($value)) {
-		$value = C\StringUtils::unsanitize($value);
-		return C\StringUtils::sanitize($value);
-	}
+	return C\StringUtils::sanitize(
+		C\StringUtils::unsanitize($value)
+	);
 }
 

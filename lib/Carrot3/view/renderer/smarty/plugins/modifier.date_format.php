@@ -15,16 +15,10 @@ use \Carrot3 as C;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_modifier_date_format ($value, $format = 'Y/m/d H:i:s') {
-	if (is_array($value)) {
+	if ($date = C\Date::create($value)) {
+		return $date->format($format);
+	} else {
 		return $value;
-	} else if ($value instanceof C\ParameterHolder) {
-		return $value->getParameters();
-	} else if (!C\StringUtils::isBlank($value)) {
-		if ($date = C\Date::create($value)) {
-			return $date->format($format);
-		} else {
-			return $value;
-		}
 	}
 }
 

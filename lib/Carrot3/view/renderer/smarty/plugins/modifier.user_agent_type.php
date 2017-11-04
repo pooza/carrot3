@@ -12,14 +12,8 @@ use \Carrot3 as C;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_modifier_user_agent_type ($value) {
-	if (is_array($value)) {
-		return $value;
-	} else if ($value instanceof C\ParameterHolder) {
-		return $value->getParameters();
-	} else if (!C\StringUtils::isBlank($value)) {
-		if ($useragent = C\UserAgent::create($value)) {
-			return $useragent->getType();
-		}
+	if ($useragent = C\UserAgent::create($value)) {
+		return $useragent->getType();
 	}
 }
 

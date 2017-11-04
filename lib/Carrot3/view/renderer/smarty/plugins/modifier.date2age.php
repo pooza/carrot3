@@ -12,14 +12,8 @@ use \Carrot3 as C;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 function smarty_modifier_date2age ($value) {
-	if (is_array($value)) {
-		return $value;
-	} else if ($value instanceof C\ParameterHolder) {
-		return $value->getParameters();
-	} else if (!C\StringUtils::isBlank($value)) {
-		if ($date = C\Date::create($value)) {
-			return $date->getAge();
-		}
+	if ($date = C\Date::create($value)) {
+		return $date->getAge();
 	}
 }
 
