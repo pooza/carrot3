@@ -69,7 +69,7 @@ class CommandLine {
 	 */
 	public function push ($value, $flags = self::WITH_QUOTE) {
 		if ($flags & self::WITH_QUOTE) {
-			$value =  self::quote($value);
+			$value = self::quote($value);
 		}
 		$this->params[] = $value;
 	}

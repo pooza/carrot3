@@ -45,7 +45,7 @@ class OpenSSLCryptor implements Cryptor {
 			$salted .= $dx;
 		}
 		$key = substr($salted, 0, 32);
-		$iv  = substr($salted, 32,16);
+		$iv = substr($salted, 32,16);
 
 		return $salt . openssl_encrypt($data, BS_CRYPT_METHOD, $key, OPENSSL_RAW_DATA, $iv);
 	}

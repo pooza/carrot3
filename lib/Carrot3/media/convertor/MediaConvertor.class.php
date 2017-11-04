@@ -151,7 +151,7 @@ abstract class MediaConvertor {
 	 * @static
 	 */
 	static protected function getOptions () {
-		return  Tuple::create([
+		return Tuple::create([
 			'video_codec' => 'vcodec',
 			'audio_codec' => 'acodec',
 			'size' => 's',

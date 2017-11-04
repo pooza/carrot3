@@ -89,7 +89,7 @@ abstract class ConfigCompiler extends ParameterHolder {
 	 */
 	static public function quote ($value) {
 		if (is_array($value) || ($value instanceof ParameterHolder)) {
-			$body =  Tuple::create();
+			$body = Tuple::create();
 			foreach ($value as $key => $item) {
 				$body[] = sprintf('%s => %s', self::quote($key), self::quote($item));
 			}
