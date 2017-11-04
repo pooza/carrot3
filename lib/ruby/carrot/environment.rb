@@ -16,7 +16,7 @@ module Carrot
     end
 
     def self.development?
-      return Carrot::Constants.new['BS_DEBUG']
+      return Carrot::Constants.new["BS_DEBUG"]
     end
 
     def self.platform
