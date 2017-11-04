@@ -525,7 +525,6 @@ class StringUtils {
 		} else {
 			$value = self::unsanitize($value);
 			$value = strip_tags($value);
-			$value = SmartTag::parse($value);
 		}
 		return $value;
 	}
