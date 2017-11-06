@@ -909,10 +909,10 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 */
 	static public function create ($class) {
 		$table = Loader::getInstance()->createObject($class . self::CLASS_SUFFIX);
-		if (!($table instanceof TableHandler)) {
-			throw new DatabaseException($class . 'はテーブルハンドラではありません。');
+		if ($table instanceof TableHandler) {
+			return $table;
 		}
-		return $table;
+		throw new DatabaseException($class . 'はテーブルハンドラではありません。');
 	}
 
 	/**
