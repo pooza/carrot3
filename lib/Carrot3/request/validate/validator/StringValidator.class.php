@@ -26,8 +26,6 @@ class StringValidator extends Validator {
 		$this['min'] = null;
 		$this['min_error'] = '短すぎます。';
 		$this['invalid_error'] = '正しくありません。';
-		$this['wrong_character'] = true;
-		$this['wrong_character_error'] = '機種依存文字が含まれています。';
 		return parent::initialize($params);
 	}
 
@@ -54,9 +52,6 @@ class StringValidator extends Validator {
 			}
 			if (!StringUtils::isBlank($this['max']) && ($this['max'] < StringUtils::getWidth($value))) {
 				$this->error = $this['max_error'];
-			}
-			if (!!$this['wrong_character'] && StringUtils::isContainWrongCharacter($value)) {
-				$this->error = $this['wrong_character_error'];
 			}
 		}
 		return StringUtils::isBlank($this->error);

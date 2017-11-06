@@ -144,52 +144,6 @@ class StringUtils {
 	}
 
 	/**
-	 * 機種依存文字等を置き換え
-	 *
-	 * @access public
-	 * @param mixed $value 変換対象の文字列又は配列
-	 * @return mixed 変換後
-	 * @static
-	 * @link http://php.nekosuke.com/000056.htm 参考
-	 */
-	static public function convertWrongCharacters ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
-			foreach ($value as $key => $item) {
-				$value[$key] = self::convertWrongCharacters($item);
-			}
-		} else {
-			$searches = [];
-			$replaces = [];
-			foreach (ConfigManager::getInstance()->compile('wrong_characters') as $rule) {
-				$searches[] = eval('return "' . $rule['search'] . '";');
-				$replaces[] = $rule['replace'];
-			}
-
-			$value = str_replace($searches, $replaces, $value);
-		}
-		return $value;
-	}
-
-	/**
-	 * 機種依存文字等が含まれているか？
-	 *
-	 * @access public
-	 * @param mixed $value 変換対象の文字列
-	 * @return boolean 機種依存文字が含まれていたらTrue
-	 * @static
-	 * @link http://php.nekosuke.com/000056.htm 参考
-	 */
-	static public function isContainWrongCharacter ($value) {
-		foreach (ConfigManager::getInstance()->compile('wrong_characters') as $rule) {
-			$search = eval('return "' . $rule['search'] . '";');
-			if (self::isContain($value, $search)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * 改行を標準化
 	 *
 	 * @access public

@@ -7,14 +7,6 @@ namespace Carrot3;
  */
 class StringTest extends Test {
 	public function execute () {
-		$string = StringUtils::convertWrongCharacters('㈱㈲');
-		$this->assert('convertWrongCharacters', $string == '(株)(有)');
-
-		$file = FileUtils::getDirectory('sample')->getEntry('dirty.csv', 'CSVFile');
-		$records = StringUtils::convertWrongCharacters($file->getEngine()->getRecords());
-		$this->assert('convertWrongCharacters', $records[0][1] == '(有)');
-		$this->assert('convertWrongCharacters', $records[2][0] == '(2)');
-
 		$string = " \r\n   test\n   ";
 		$this->assert('trim', StringUtils::trim($string) == "test");
 
