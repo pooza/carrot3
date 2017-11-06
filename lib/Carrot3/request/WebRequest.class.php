@@ -197,4 +197,3 @@ class WebRequest extends Request {
 		return !StringUtils::isBlank($this[FormElement::SUBMITTED_FIELD]);
 	}
 }
-

@@ -462,4 +462,3 @@ class Smarty extends \Smarty implements TextRenderer {
 		return $base . '/' . $source;
 	}
 }
-

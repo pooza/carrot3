@@ -43,4 +43,3 @@ class HostSecurityFilter extends Filter {
 		return $this->networks;
 	}
 }
-

@@ -33,4 +33,3 @@ class MPEG4MediaConvertor extends MediaConvertor {
 		return 'MovieFile';
 	}
 }
-

@@ -77,4 +77,3 @@ interface FeedEntry {
 	 */
 	public function setDocument (FeedDocument $document);
 }
-

@@ -49,4 +49,3 @@ abstract class MailSender {
 		LogManager::getInstance()->put($message, $this);
 	}
 }
-

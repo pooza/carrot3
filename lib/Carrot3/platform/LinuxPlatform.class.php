@@ -23,4 +23,3 @@ class LinuxPlatform extends Platform {
 		return rtrim(exec('file -bi ' . $file->getPath()));
 	}
 }
-

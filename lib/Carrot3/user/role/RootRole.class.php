@@ -85,4 +85,3 @@ class RootRole implements Role {
 		return Tuple::create();
 	}
 }
-

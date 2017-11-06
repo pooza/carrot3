@@ -430,4 +430,3 @@ class Date extends ParameterHolder implements Assignable {
 		return self::$gengos;
 	}
 }
-

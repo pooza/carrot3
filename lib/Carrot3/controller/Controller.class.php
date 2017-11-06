@@ -290,4 +290,3 @@ class Controller {
 		);
 	}
 }
-

@@ -76,4 +76,3 @@ class SMTPMailSender extends MailSender {
 		return self::$smtp;
 	}
 }
-

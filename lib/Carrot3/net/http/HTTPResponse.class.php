@@ -128,4 +128,3 @@ class HTTPResponse extends MIMEDocument {
 		}
 	}
 }
-

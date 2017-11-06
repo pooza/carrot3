@@ -47,4 +47,3 @@ class VideoElement extends HTMLElement {
 		$this->registerSource($url);
 	}
 }
-

@@ -19,4 +19,3 @@ function smarty_function_analytics ($params, &$smarty) {
 	}
 	return $service->createTrackingCode();
 }
-

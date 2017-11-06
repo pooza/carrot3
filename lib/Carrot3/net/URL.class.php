@@ -56,7 +56,6 @@ abstract class URL implements \ArrayAccess, Assignable {
 		switch ($params['scheme']) {
 			case 'mailto':
 			case 'tel':
-			case 'skype':
 				return new ContactURL($params);
 			case 'javascript':
 				return new JavaScriptURL($params);
@@ -301,4 +300,3 @@ abstract class URL implements \ArrayAccess, Assignable {
 		return $value;
 	}
 }
-

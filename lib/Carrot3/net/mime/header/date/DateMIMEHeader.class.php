@@ -48,4 +48,3 @@ class DateMIMEHeader extends MIMEHeader {
 		$this->date = Date::create($this->contents);
 	}
 }
-

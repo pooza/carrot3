@@ -61,4 +61,3 @@ abstract class AddressMIMEHeader extends MIMEHeader {
 		$this->email = MailAddress::create($this->contents);
 	}
 }
-

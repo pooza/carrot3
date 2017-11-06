@@ -274,4 +274,3 @@ class CommandLine {
 		return escapeshellarg($value);
 	}
 }
-

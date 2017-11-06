@@ -65,4 +65,3 @@ class AnchorElement extends HTMLElement {
 		return $this;
 	}
 }
-

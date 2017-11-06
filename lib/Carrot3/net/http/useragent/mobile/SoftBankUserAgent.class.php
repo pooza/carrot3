@@ -74,4 +74,3 @@ class SoftBankUserAgent extends MobileUserAgent {
 		return '^(J-PHONE|MOT|Vodafone|SoftBank)';
 	}
 }
-

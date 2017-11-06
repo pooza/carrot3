@@ -312,4 +312,3 @@ abstract class Request extends HTTPRequest {
 		return false;
 	}
 }
-

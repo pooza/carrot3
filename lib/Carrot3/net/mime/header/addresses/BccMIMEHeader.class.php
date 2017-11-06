@@ -24,4 +24,3 @@ class BccMIMEHeader extends AddressesMIMEHeader {
 		return false;
 	}
 }
-

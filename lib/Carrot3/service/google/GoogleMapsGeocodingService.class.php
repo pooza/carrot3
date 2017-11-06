@@ -77,4 +77,3 @@ class GoogleMapsGeocodingService extends CurlHTTP {
 		return sprintf('Google Maps Geocoding "%s"', $this->getName());
 	}
 }
-

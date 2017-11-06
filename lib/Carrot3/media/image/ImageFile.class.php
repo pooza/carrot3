@@ -293,4 +293,3 @@ class ImageFile extends MediaFile implements ImageContainer {
 		return parent::search($file, $class);
 	}
 }
-

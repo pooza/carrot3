@@ -144,4 +144,3 @@ class FormElement extends HTMLElement {
 		return $hidden;
 	}
 }
-

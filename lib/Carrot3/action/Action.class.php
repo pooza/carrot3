@@ -506,4 +506,3 @@ abstract class Action implements HTTPRedirector, Assignable {
 		return sprintf('%sのアクション"%s"', $this->getModule(), $this->getName());
 	}
 }
-

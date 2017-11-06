@@ -58,4 +58,3 @@ class PhoneNumberValidator extends RegexValidator {
 		return parent::execute($value);
 	}
 }
-

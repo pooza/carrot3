@@ -13,4 +13,3 @@ class DeniedUserAgentAction extends C\Action {
 		return C\View::ERROR;
 	}
 }
-

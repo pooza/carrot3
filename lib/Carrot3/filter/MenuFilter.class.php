@@ -91,4 +91,3 @@ class MenuFilter extends Filter {
 		return $this->controller->getModule();
 	}
 }
-

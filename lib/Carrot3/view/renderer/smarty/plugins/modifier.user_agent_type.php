@@ -16,4 +16,3 @@ function smarty_modifier_user_agent_type ($value) {
 		return $useragent->getType();
 	}
 }
-

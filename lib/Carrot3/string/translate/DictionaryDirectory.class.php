@@ -45,4 +45,3 @@ class DictionaryDirectory extends Directory {
 		return 'DictionaryFile';
 	}
 }
-

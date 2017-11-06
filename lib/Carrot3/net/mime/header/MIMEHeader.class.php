@@ -222,4 +222,3 @@ class MIMEHeader extends ParameterHolder {
 		return false;
 	}
 }
-

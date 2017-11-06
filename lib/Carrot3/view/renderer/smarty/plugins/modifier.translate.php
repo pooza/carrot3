@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_modifier_translate ($value, $dictionary = null, $language = null) {
 	return C\TranslateManager::getInstance()->execute($value, $dictionary, $language);
 }
-

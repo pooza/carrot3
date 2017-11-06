@@ -15,4 +15,3 @@ class BackupAction extends C\Action {
 		return C\View::NONE;
 	}
 }
-

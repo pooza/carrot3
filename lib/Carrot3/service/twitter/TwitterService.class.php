@@ -383,4 +383,3 @@ class TwitterService extends CurlHTTP {
 		return $url;
 	}
 }
-

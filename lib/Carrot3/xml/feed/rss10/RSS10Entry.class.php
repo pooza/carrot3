@@ -52,4 +52,3 @@ class RSS10Entry extends RSS09Entry {
 		$element->setBody($date->format(\DateTime::W3C));
 	}
 }
-

@@ -81,4 +81,3 @@ class FilterSet extends Tuple {
 		parent::setParameter($name, $filter, $position);
 	}
 }
-

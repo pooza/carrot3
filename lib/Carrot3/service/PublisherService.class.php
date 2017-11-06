@@ -55,4 +55,3 @@ class PublisherService extends CurlHTTP {
 		return sprintf('Hubサービス "%s"', $this->getName());
 	}
 }
-

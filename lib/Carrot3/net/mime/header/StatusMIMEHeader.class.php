@@ -38,4 +38,3 @@ class StatusMIMEHeader extends MIMEHeader {
 		parent::setContents($status);
 	}
 }
-

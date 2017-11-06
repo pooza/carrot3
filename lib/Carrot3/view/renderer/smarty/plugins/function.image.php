@@ -56,4 +56,3 @@ function smarty_function_image ($params, &$smarty) {
 		return $element->getContents();
 	}
 }
-

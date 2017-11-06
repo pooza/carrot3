@@ -37,4 +37,3 @@ interface Exporter {
 	 */
 	public function setHeader (Tuple $row);
 }
-

@@ -111,4 +111,3 @@ class DefaultSerializeStorage implements SerializeStorage {
 		return '規定シリアライズストレージ';
 	}
 }
-

@@ -83,4 +83,3 @@ class SerializeEntryHandler extends TableHandler {
 		]);
 	}
 }
-

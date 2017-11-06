@@ -45,4 +45,3 @@ class StringFormat extends Tuple {
 		return $this->getContents();
 	}
 }
-

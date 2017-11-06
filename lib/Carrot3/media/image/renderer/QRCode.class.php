@@ -125,4 +125,3 @@ class QRCode implements ImageRenderer {
 		return $this->error;
 	}
 }
-

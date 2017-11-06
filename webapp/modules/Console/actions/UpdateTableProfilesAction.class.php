@@ -21,4 +21,3 @@ class UpdateTableProfilesAction extends C\Action {
 		return C\View::NONE;
 	}
 }
-

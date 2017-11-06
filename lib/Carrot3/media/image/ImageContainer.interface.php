@@ -78,4 +78,3 @@ interface ImageContainer {
 	 */
 	public function getLabel ($language = 'ja');
 }
-

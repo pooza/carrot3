@@ -119,4 +119,3 @@ class YAMLConfigParser extends \Spyc implements ConfigParser {
 		return '要素が含まれていません。';
 	}
 }
-

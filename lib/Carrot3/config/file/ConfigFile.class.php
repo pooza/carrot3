@@ -127,4 +127,3 @@ class ConfigFile extends File {
 		return sprintf('設定ファイル "%s"', $this->getShortPath());
 	}
 }
-

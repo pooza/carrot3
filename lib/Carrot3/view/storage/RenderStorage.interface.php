@@ -54,4 +54,3 @@ interface RenderStorage {
 	 */
 	public function clear ();
 }
-

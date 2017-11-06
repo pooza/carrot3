@@ -23,4 +23,3 @@ class MailException extends NetException {
 		return true;
 	}
 }
-

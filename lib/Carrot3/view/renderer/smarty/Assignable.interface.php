@@ -21,4 +21,3 @@ interface Assignable {
 	 */
 	public function assign ();
 }
-

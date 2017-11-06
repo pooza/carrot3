@@ -110,4 +110,3 @@ interface FeedDocument {
 	 */
 	public function getEntryTitles ();
 }
-

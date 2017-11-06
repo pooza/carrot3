@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_function_picto ($params, &$smarty) {
 	return C\Pictogram::create($params['name'])->getContents();
 }
-

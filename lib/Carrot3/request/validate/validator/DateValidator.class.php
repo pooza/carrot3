@@ -72,4 +72,3 @@ class DateValidator extends Validator {
 		return true;
 	}
 }
-

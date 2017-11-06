@@ -46,4 +46,3 @@ class SQLiteDataSourceName extends DataSourceName {
 		return 'SQLite';
 	}
 }
-

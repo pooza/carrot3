@@ -87,4 +87,3 @@ abstract class DataSourceName extends ParameterHolder {
 		return $constants[$name];
 	}
 }
-

@@ -44,4 +44,3 @@ class TableAction extends C\Action {
 		return !!$this->getTableProfile();
 	}
 }
-

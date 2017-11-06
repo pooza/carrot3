@@ -68,4 +68,3 @@ class JSONSerializer implements Serializer {
 		return 'JSONシリアライザー';
 	}
 }
-

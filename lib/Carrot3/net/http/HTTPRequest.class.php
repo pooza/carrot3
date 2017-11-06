@@ -188,4 +188,3 @@ class HTTPRequest extends MIMEDocument {
 		return self::getMethods()->isContain(StringUtils::toUpper($method));
 	}
 }
-

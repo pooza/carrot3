@@ -44,4 +44,3 @@ class BackupDatabaseAction extends C\Action {
 		return !!$this->getDatabase();
 	}
 }
-

@@ -21,4 +21,3 @@ class LegacyUserAgentFilter extends Filter {
 		}
 	}
 }
-

@@ -58,4 +58,3 @@ class PairValidator extends Validator {
 		return true;
 	}
 }
-

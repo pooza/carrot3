@@ -33,4 +33,3 @@ class LegacyMozillaUserAgent extends UserAgent {
 		return '^Mozilla/[1-4]\\..*\((Mac|Win|X11)';
 	}
 }
-

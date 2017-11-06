@@ -112,4 +112,3 @@ abstract class MobileUserAgent extends UserAgent {
 		return $this->digest;
 	}
 }
-

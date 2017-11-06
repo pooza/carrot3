@@ -384,4 +384,3 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return sprintf('ディレクトリ "%s"', $this->getShortPath());
 	}
 }
-

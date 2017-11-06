@@ -45,4 +45,3 @@ class InlineFrameElement extends HTMLElement {
 		$this->setAttribute('src', $url->getURL()->getContents());
 	}
 }
-

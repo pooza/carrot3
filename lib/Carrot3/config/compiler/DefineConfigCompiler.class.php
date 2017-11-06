@@ -45,4 +45,3 @@ class DefineConfigCompiler extends ConfigCompiler {
 		}
 	}
 }
-

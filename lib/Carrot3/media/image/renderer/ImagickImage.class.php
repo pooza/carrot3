@@ -246,4 +246,3 @@ class ImagickImage extends Image {
 		return true;
 	}
 }
-

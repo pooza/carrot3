@@ -89,4 +89,3 @@ class PiconService extends CurlHTTP {
 		return sprintf('picon "%s"', $this->getName());
 	}
 }
-

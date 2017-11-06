@@ -46,4 +46,3 @@ class ContentTransferEncodingMIMEHeader extends MIMEHeader {
 		return 'base64';
 	}
 }
-

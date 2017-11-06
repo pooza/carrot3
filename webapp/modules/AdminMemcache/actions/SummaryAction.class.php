@@ -31,4 +31,3 @@ class SummaryAction extends C\Action {
 		return C\View::SUCCESS;
 	}
 }
-

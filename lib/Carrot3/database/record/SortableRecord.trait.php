@@ -164,4 +164,3 @@ trait SortableRecord {
 		}
 	}
 }
-

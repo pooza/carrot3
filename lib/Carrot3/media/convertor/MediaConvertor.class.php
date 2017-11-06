@@ -180,4 +180,3 @@ abstract class MediaConvertor {
 		return Numeric::round($num / 2) * 2;
 	}
 }
-

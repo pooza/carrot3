@@ -30,4 +30,3 @@ class KanaRequestFilter extends RequestFilter {
 		return parent::initialize($params);
 	}
 }
-

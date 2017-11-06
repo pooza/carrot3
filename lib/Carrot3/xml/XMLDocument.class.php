@@ -125,4 +125,3 @@ class XMLDocument extends XMLElement implements TextRenderer {
 		return mb_ereg_replace('<!--.*?-->', null, $value);
 	}
 }
-

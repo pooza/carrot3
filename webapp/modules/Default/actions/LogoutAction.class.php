@@ -14,4 +14,3 @@ class LogoutAction extends C\Action {
 		return $this->getModule()->getAction('Login')->redirect();
 	}
 }
-

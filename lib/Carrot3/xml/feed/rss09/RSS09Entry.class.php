@@ -114,4 +114,3 @@ class RSS09Entry extends XMLElement implements FeedEntry {
 		$this->setName($document->getEntryElementName());
 	}
 }
-

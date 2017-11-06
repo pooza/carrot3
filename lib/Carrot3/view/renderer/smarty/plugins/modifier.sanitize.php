@@ -16,4 +16,3 @@ function smarty_modifier_sanitize ($value) {
 		C\StringUtils::unsanitize($value)
 	);
 }
-

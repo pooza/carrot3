@@ -28,4 +28,3 @@ class GeocodeAction extends C\Action {
 		return 'JSONView';
 	}
 }
-

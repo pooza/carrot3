@@ -91,4 +91,3 @@ class Crypt {
 		return hash($method, $value . BS_CRYPT_DIGEST_SALT);
 	}
 }
-

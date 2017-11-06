@@ -38,4 +38,3 @@ interface UserIdentifier {
 	 */
 	public function getCredentials ();
 }
-

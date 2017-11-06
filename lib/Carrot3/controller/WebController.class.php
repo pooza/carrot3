@@ -29,4 +29,3 @@ class WebController extends Controller {
 		return $this->searchDirectories;
 	}
 }
-

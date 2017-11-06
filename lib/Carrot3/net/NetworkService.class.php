@@ -41,4 +41,3 @@ class NetworkService {
 		return getservbyport($port, $protocol);
 	}
 }
-

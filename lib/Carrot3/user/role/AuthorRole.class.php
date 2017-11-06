@@ -99,4 +99,3 @@ class AuthorRole implements Role {
 		return $this->credentials;
 	}
 }
-

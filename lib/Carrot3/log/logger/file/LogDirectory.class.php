@@ -55,4 +55,3 @@ class LogDirectory extends Directory {
 		return self::SORT_DESC;
 	}
 }
-

@@ -150,4 +150,3 @@ class POP3 extends Socket {
 		return NetworkService::getPort('pop3');
 	}
 }
-

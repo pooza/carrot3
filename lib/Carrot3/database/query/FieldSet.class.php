@@ -69,4 +69,3 @@ class FieldSet extends Tuple {
 		return $this->join(', ');
 	}
 }
-

@@ -23,4 +23,3 @@ class WebMMediaConvertor extends MediaConvertor {
 		return 'MovieFile';
 	}
 }
-

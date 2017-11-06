@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_outputfilter_trim ($source, &$smarty) {
 	return C\StringUtils::trim($source);
 }
-

@@ -14,4 +14,3 @@ namespace Carrot3;
 class ReplyToMIMEHeader extends AddressMIMEHeader {
 	protected $name = 'Reply-To';
 }
-

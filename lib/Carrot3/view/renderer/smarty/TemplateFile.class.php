@@ -62,4 +62,3 @@ class TemplateFile extends File {
 		return $this->compiled;
 	}
 }
-

@@ -35,4 +35,3 @@ class SecurityFilter extends Filter {
 		return true;
 	}
 }
-

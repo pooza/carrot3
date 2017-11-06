@@ -13,4 +13,3 @@ class NotFoundView extends C\SmartyView {
 		$this->setStatus(404);
 	}
 }
-

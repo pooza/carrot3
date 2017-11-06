@@ -32,4 +32,3 @@ trait SerializableMethods {
 		Controller::getInstance()->removeAttribute($this);
 	}
 }
-

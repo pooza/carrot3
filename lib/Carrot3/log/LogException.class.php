@@ -23,4 +23,3 @@ class LogException extends Exception {
 		return false;
 	}
 }
-

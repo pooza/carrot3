@@ -60,4 +60,3 @@ class PgSQLDataSourceName extends DataSourceName {
 		return 'PostgreSQL';
 	}
 }
-

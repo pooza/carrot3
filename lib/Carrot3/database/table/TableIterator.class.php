@@ -46,4 +46,3 @@ class TableIterator extends Iterator {
 		return $this->current();
 	}
 }
-

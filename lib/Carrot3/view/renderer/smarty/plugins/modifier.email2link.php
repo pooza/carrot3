@@ -18,4 +18,3 @@ function smarty_modifier_email2link ($value) {
 		$value
 	);
 }
-

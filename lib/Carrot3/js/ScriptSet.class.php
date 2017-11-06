@@ -53,4 +53,3 @@ class ScriptSet extends DocumentSet {
 		return sprintf('JavaScriptセット "%s"', $this->getName());
 	}
 }
-

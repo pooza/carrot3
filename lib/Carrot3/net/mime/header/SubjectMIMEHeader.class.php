@@ -27,4 +27,3 @@ class SubjectMIMEHeader extends MIMEHeader {
 		return $this->contents;
 	}
 }
-

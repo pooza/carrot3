@@ -132,4 +132,3 @@ abstract class Filter extends ParameterHolder {
 		return sprintf('フィルタ "%s"', Utils::getClass($this));
 	}
 }
-

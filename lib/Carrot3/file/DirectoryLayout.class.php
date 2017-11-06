@@ -104,4 +104,3 @@ class DirectoryLayout extends ParameterHolder {
 		return clone $info['url'];
 	}
 }
-

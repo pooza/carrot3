@@ -162,4 +162,3 @@ class Iterator implements \Iterator, \Countable {
 		return count($this->keys);
 	}
 }
-

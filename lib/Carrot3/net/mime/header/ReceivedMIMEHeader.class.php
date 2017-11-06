@@ -85,4 +85,3 @@ class ReceivedMIMEHeader extends MIMEHeader {
 		return false;
 	}
 }
-

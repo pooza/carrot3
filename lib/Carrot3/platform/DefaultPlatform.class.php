@@ -13,4 +13,3 @@ namespace Carrot3;
  */
 class DefaultPlatform extends Platform {
 }
-

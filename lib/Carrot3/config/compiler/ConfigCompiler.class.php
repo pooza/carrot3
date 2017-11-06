@@ -138,4 +138,3 @@ abstract class ConfigCompiler extends ParameterHolder {
 		return $value;
 	}
 }
-

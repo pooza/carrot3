@@ -81,4 +81,3 @@ class DictionaryFile extends CSVFile implements Dictionary {
 		return sprintf('辞書ファイル "%s"', $this->getShortPath());
 	}
 }
-

@@ -18,4 +18,3 @@ function smarty_function_css ($params, &$smarty) {
 	}
 	return (new C\StyleSet($params['name']))->createElement()->getContents();
 }
-

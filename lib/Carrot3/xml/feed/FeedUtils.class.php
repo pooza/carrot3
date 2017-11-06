@@ -63,4 +63,3 @@ class FeedUtils {
 		return $entry;
 	}
 }
-

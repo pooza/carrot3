@@ -18,4 +18,3 @@ function smarty_modifier_tel2link ($value) {
 		$value
 	);
 }
-

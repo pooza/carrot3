@@ -132,4 +132,3 @@ class Utils {
 		return $classes;
 	}
 }
-

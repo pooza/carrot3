@@ -108,4 +108,3 @@ class WebKitUserAgent extends UserAgent {
 		return 'AppleWebKit';
 	}
 }
-

@@ -56,4 +56,3 @@ class SmartyValidator extends Validator {
 		return StringUtils::isBlank($this->error);
 	}
 }
-

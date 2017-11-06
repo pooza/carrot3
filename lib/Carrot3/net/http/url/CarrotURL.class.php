@@ -167,4 +167,3 @@ class CarrotURL extends HTTPURL {
 		$this->attributes['path'] = $path->join('/');
 	}
 }
-

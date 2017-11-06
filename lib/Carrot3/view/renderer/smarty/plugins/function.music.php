@@ -29,4 +29,3 @@ function smarty_function_music ($params, &$smarty) {
 			return $file->createElement($params, $smarty->getUserAgent())->getContents();
 	}
 }
-

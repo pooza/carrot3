@@ -83,4 +83,3 @@ class FileRenderStorage implements RenderStorage {
 		$this->directory->clear();
 	}
 }
-

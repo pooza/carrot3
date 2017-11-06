@@ -175,4 +175,3 @@ abstract class TableProfile implements Assignable, Serializable {
 		return sprintf('テーブルプロフィール "%s"', $this->getName());
 	}
 }
-

@@ -105,4 +105,3 @@ class Coordinate {
 		return $this->image;
 	}
 }
-

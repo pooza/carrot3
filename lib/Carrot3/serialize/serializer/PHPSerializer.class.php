@@ -63,4 +63,3 @@ class PHPSerializer implements Serializer {
 		return 'PHPシリアライザー';
 	}
 }
-

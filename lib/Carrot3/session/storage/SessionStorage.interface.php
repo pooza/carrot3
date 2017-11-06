@@ -21,4 +21,3 @@ interface SessionStorage {
 	 */
 	public function initialize ();
 }
-

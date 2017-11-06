@@ -144,4 +144,3 @@ if (BS_DEBUG) {
 		throw new Exception($e->getMessage());
 	}
 }
-

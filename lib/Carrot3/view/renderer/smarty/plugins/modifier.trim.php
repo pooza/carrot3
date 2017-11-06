@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_modifier_trim ($value) {
 	return C\StringUtils::trim($value);
 }
-

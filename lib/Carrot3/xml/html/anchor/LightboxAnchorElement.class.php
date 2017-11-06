@@ -23,4 +23,3 @@ class LightboxAnchorElement extends ImageAnchorElement {
 		$this->setAttribute('rel', 'lightbox');
 	}
 }
-

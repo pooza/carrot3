@@ -119,4 +119,3 @@ abstract class Test {
 		return $this->errors;
 	}
 }
-

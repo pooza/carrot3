@@ -34,4 +34,3 @@ function smarty_function_movie ($params, &$smarty) {
 			return $file->createElement($params, $smarty->getUserAgent())->getContents();
 	}
 }
-

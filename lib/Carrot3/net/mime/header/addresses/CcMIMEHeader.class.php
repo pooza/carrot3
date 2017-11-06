@@ -14,4 +14,3 @@ namespace Carrot3;
 class CcMIMEHeader extends AddressesMIMEHeader {
 	protected $name = 'Cc';
 }
-

@@ -73,4 +73,3 @@ class ContentTypeMIMEHeader extends MIMEHeader {
 		return $renderer->getType();
 	}
 }
-

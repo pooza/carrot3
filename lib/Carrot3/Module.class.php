@@ -475,4 +475,3 @@ class Module implements HTTPRedirector, Assignable {
 		return self::$prefixes;
 	}
 }
-

@@ -186,4 +186,3 @@ abstract class ParameterHolder
 		return Utils::getClass($this);
 	}
 }
-

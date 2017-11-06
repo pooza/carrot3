@@ -25,4 +25,3 @@ class DefaultUserAgent extends UserAgent {
 		return '.*';
 	}
 }
-

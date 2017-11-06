@@ -98,4 +98,3 @@ class RenderManager {
 		$this->storage->clear();
 	}
 }
-

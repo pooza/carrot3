@@ -47,4 +47,3 @@ class RegexValidator extends Validator {
 		return true;
 	}
 }
-

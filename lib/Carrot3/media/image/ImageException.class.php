@@ -13,4 +13,3 @@ namespace Carrot3;
  */
 class ImageException extends MediaException {
 }
-

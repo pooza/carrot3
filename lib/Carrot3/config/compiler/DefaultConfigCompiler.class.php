@@ -35,4 +35,3 @@ class DefaultConfigCompiler extends ConfigCompiler {
 		return $config;
 	}
 }
-

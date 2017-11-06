@@ -82,4 +82,3 @@ class ConsumptionTaxHandler {
 		return Numeric::round($price / (1 + $this->getRate($date)));
 	}
 }
-

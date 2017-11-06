@@ -77,4 +77,3 @@ class LogManager implements \IteratorAggregate {
 		return $this->loggers->getIterator();
 	}
 }
-

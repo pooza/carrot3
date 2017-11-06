@@ -129,4 +129,3 @@ class RSS10Document extends RSS09Document {
 		return $entry;
 	}
 }
-

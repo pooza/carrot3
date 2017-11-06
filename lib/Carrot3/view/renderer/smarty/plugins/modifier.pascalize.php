@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_modifier_pascalize ($value) {
 	return C\StringUtils::pascalize($value);
 }
-

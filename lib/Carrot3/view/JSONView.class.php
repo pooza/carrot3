@@ -73,4 +73,3 @@ class JSONView extends View {
 		parent::render();
 	}
 }
-

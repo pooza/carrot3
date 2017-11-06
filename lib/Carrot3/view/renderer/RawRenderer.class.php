@@ -87,4 +87,3 @@ class RawRenderer implements Renderer {
 		return null;
 	}
 }
-

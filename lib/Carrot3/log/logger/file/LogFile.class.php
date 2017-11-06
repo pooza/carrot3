@@ -62,4 +62,3 @@ class LogFile extends File {
 		return sprintf('ログファイル "%s"', $this->getShortPath());
 	}
 }
-

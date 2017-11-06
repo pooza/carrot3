@@ -247,4 +247,3 @@ class View extends HTTPResponse {
 		header($header);
 	}
 }
-

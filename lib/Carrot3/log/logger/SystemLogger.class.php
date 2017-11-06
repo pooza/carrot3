@@ -111,4 +111,3 @@ class SystemLogger extends Logger {
 		return $this->entries;
 	}
 }
-

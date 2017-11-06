@@ -76,4 +76,3 @@ class OpenSSLCryptor implements Cryptor {
 		return openssl_decrypt($ct, BS_CRYPT_METHOD, $key, OPENSSL_RAW_DATA, $iv);
 	}
 }
-

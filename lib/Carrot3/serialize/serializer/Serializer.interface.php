@@ -47,4 +47,3 @@ interface Serializer {
 	 */
 	public function getSuffix ();
 }
-

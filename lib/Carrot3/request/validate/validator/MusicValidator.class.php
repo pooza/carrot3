@@ -46,4 +46,3 @@ class MusicValidator extends Validator {
 		return StringUtils::isBlank($this->error);
 	}
 }
-

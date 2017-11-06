@@ -148,4 +148,3 @@ class Atom10Entry extends XMLElement implements FeedEntry {
 		return 'tag:' . $id;
 	}
 }
-

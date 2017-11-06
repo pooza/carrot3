@@ -66,4 +66,3 @@ class TimeValidator extends Validator {
 		return true;
 	}
 }
-

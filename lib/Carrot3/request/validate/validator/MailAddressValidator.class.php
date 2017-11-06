@@ -39,4 +39,3 @@ class MailAddressValidator extends Validator {
 		return true;
 	}
 }
-

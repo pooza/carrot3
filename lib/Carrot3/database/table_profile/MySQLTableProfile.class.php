@@ -123,4 +123,3 @@ class MySQLTableProfile extends TableProfile {
 		return ($this->getStorageEngine() != 'InnoDB');
 	}
 }
-

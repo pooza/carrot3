@@ -33,4 +33,3 @@ class HorizontalRuleElement extends HTMLElement {
 		return true;
 	}
 }
-

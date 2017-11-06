@@ -48,4 +48,3 @@ interface Serializable {
 	 */
 	public function __toString ();
 }
-

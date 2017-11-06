@@ -83,4 +83,3 @@ abstract class Validator extends ParameterHolder {
 		return $this->error;
 	}
 }
-

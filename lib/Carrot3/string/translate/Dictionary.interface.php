@@ -31,4 +31,3 @@ interface Dictionary {
 	 */
 	public function getDictionaryName ();
 }
-

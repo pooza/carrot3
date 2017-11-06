@@ -65,4 +65,3 @@ abstract class PaginateTableAction extends TableAction {
 		return true;
 	}
 }
-

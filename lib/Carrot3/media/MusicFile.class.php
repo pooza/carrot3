@@ -108,4 +108,3 @@ class MusicFile extends MediaFile {
 		return parent::search($file, $class);
 	}
 }
-

@@ -13,4 +13,3 @@ class QRCodeErrorView extends C\View {
 		$this->setStatus(404);
 	}
 }
-

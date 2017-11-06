@@ -81,4 +81,3 @@ class SmartyView extends View {
 		}
 	}
 }
-

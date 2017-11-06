@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_modifier_nl2br ($value) {
 	return nl2br($value, false);
 }
-

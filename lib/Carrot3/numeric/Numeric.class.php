@@ -130,4 +130,3 @@ class Numeric {
 		return mt_rand($from, $to);
 	}
 }
-

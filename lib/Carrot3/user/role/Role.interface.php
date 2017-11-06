@@ -32,4 +32,3 @@ interface Role extends UserIdentifier {
 	 */
 	public function getName ($language = 'ja');
 }
-

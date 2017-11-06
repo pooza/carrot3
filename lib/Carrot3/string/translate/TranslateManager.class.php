@@ -213,4 +213,3 @@ class TranslateManager implements \IteratorAggregate {
 		return self::$languages;
 	}
 }
-

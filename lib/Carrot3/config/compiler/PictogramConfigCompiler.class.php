@@ -31,4 +31,3 @@ class PictogramConfigCompiler extends DefaultConfigCompiler {
 		return $pictograms;
 	}
 }
-

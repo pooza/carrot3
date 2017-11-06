@@ -52,4 +52,3 @@ interface Renderer {
 	 */
 	public function getError ();
 }
-

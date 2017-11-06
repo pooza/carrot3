@@ -25,4 +25,3 @@ class LityAnchorElement extends ImageAnchorElement {
 		$this->setAttribute('data-lity', 'data-lity');
 	}
 }
-

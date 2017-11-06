@@ -81,4 +81,3 @@ trait SerializableTable {
 		Controller::getInstance()->setAttribute($this, parent::getResult());
 	}
 }
-

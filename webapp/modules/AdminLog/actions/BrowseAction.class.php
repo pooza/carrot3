@@ -58,4 +58,3 @@ class BrowseAction extends C\Action {
 		}
 	}
 }
-

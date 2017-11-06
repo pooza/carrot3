@@ -58,4 +58,3 @@ class MySQLDataSourceName extends DataSourceName {
 		return 'MySQL';
 	}
 }
-

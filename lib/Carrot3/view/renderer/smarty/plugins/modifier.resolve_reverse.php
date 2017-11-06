@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_modifier_resolve_reverse ($value) {
 	return (new C\Host($value))->resolveReverse();
 }
-

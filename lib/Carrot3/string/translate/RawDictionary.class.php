@@ -36,4 +36,3 @@ class RawDictionary implements Dictionary {
 		return Utils::getClass($this);
 	}
 }
-

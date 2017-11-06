@@ -16,4 +16,3 @@ function smarty_modifier_date2age ($value) {
 		return $date->getAge();
 	}
 }
-

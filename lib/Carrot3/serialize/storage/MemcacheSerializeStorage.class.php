@@ -124,4 +124,3 @@ class MemcacheSerializeStorage implements SerializeStorage {
 		return 'memcacheシリアライズストレージ';
 	}
 }
-

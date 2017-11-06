@@ -386,4 +386,3 @@ class XMLElement implements \IteratorAggregate {
 		return new Iterator($this->elements);
 	}
 }
-

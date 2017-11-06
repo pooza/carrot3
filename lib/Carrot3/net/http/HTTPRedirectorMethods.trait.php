@@ -33,4 +33,3 @@ trait HTTPRedirectorMethods {
 		return clone $this->getURL();
 	}
 }
-

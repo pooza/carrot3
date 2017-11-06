@@ -90,4 +90,3 @@ class ValidateManager implements \IteratorAggregate {
 		return $this->fields->getIterator();
 	}
 }
-

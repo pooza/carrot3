@@ -45,4 +45,3 @@ class JavaScriptURL extends URL {
 		return $this;
 	}
 }
-

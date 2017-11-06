@@ -139,4 +139,3 @@ class FileUtils {
 		return $dir;
 	}
 }
-

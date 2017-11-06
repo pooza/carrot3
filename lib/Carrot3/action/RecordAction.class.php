@@ -158,4 +158,3 @@ abstract class RecordAction extends Action {
 		return parent::validate();
 	}
 }
-

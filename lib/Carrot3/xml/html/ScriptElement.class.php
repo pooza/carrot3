@@ -31,4 +31,3 @@ class ScriptElement extends HTMLElement {
 		$this->contents = null;
 	}
 }
-

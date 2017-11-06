@@ -111,4 +111,3 @@ class ConsoleRequest extends Request {
 		return $this->getUserAgent();
 	}
 }
-

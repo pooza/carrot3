@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_outputfilter_encoding ($source, &$smarty) {
 	return C\StringUtils::convertEncoding($source, $smarty->getEncoding(), 'utf-8');
 }
-

@@ -79,4 +79,3 @@ class FileValidator extends Validator {
 		return true;
 	}
 }
-

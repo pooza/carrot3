@@ -21,4 +21,3 @@ class ConsoleSessionHandler extends SessionHandler {
 	public function __construct () {
 	}
 }
-

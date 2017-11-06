@@ -45,4 +45,3 @@ function smarty_block_form ($params, $contents, &$smarty) {
 
 	return $form->getContents();
 }
-

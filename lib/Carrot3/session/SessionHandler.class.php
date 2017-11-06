@@ -127,4 +127,3 @@ class SessionHandler {
 		return $this->directory;
 	}
 }
-

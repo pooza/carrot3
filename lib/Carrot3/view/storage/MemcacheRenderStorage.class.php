@@ -82,4 +82,3 @@ class MemcacheRenderStorage implements RenderStorage {
 		}
 	}
 }
-

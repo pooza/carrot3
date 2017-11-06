@@ -47,4 +47,3 @@ class PNGMediaConvertor extends MediaConvertor {
 		return parent::execute($source);
 	}
 }
-

@@ -98,4 +98,3 @@ class GoogleChartService extends CurlHTTP {
 		return sprintf('Google Chart "%s"', $this->getName());
 	}
 }
-

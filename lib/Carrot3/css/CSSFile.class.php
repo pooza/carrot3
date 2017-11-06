@@ -62,4 +62,3 @@ class CSSFile extends File {
 		return sprintf('CSSファイル "%s"', $this->getShortPath());
 	}
 }
-

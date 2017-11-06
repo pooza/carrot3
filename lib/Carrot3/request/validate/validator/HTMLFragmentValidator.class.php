@@ -87,4 +87,3 @@ class HTMLFragmentValidator extends Validator {
 		return $message;
 	}
 }
-

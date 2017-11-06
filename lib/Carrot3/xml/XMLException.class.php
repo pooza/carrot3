@@ -13,4 +13,3 @@ namespace Carrot3;
  */
 class XMLException extends Exception {
 }
-

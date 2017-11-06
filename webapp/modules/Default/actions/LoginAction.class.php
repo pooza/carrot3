@@ -33,4 +33,3 @@ class LoginAction extends C\Action {
 		return !$this->request->hasErrors();
 	}
 }
-

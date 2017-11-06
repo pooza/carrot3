@@ -216,4 +216,3 @@ class Socket {
 		return sprintf('TCP/IPソケット "%s"', $this->getName());
 	}
 }
-

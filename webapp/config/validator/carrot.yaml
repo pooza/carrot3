@@ -110,4 +110,3 @@ zipcode_separated:
     fields:
       - zipcode1
       - zipcode2
-

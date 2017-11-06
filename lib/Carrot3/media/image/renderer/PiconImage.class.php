@@ -101,4 +101,3 @@ class PiconImage extends Image {
 		return $this->service;
 	}
 }
-

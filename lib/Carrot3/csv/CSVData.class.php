@@ -295,4 +295,3 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 		return new Iterator($this->getRecords());
 	}
 }
-

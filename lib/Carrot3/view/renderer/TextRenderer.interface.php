@@ -21,4 +21,3 @@ interface TextRenderer extends Renderer {
 	 */
 	public function getEncoding ();
 }
-

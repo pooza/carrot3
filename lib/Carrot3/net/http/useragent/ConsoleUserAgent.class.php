@@ -52,4 +52,3 @@ class ConsoleUserAgent extends UserAgent {
 		return '^Console$';
 	}
 }
-

@@ -30,4 +30,3 @@ class PasswordValidator extends RegexValidator {
 		return Validator::initialize($params);
 	}
 }
-

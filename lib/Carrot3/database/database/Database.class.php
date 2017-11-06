@@ -515,4 +515,3 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 		return $databases;
 	}
 }
-

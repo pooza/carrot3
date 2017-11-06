@@ -33,4 +33,3 @@ class DivisionElement extends HTMLElement {
 		return $this;
 	}
 }
-

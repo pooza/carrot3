@@ -27,4 +27,3 @@ class KanaValidator extends RegexValidator {
 		return Validator::initialize($params);
 	}
 }
-

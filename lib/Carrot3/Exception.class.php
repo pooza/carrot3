@@ -71,4 +71,3 @@ class Exception extends \Exception {
 		return false;
 	}
 }
-

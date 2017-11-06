@@ -13,4 +13,3 @@ class DefaultModule extends C\Module {
 		return null;
 	}
 }
-

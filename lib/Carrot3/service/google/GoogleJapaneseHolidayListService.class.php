@@ -205,4 +205,3 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 		return sprintf('Google Calendar 祝日取得 "%s"', $this->getName());
 	}
 }
-

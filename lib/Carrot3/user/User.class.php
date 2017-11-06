@@ -313,4 +313,3 @@ class User extends ParameterHolder {
 		return true;
 	}
 }
-

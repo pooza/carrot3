@@ -266,4 +266,3 @@ class SMTP extends Socket {
 		return NetworkService::getPort('smtp');
 	}
 }
-

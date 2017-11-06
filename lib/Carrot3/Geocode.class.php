@@ -102,4 +102,3 @@ class Geocode extends ParameterHolder {
 		return $this->stations;
 	}
 }
-

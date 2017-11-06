@@ -55,4 +55,3 @@ class StyleSet extends DocumentSet {
 		return sprintf('スタイルセット "%s"', $this->getName());
 	}
 }
-

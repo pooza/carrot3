@@ -47,4 +47,3 @@ class JPEGMediaConvertor extends MediaConvertor {
 		return parent::execute($source);
 	}
 }
-

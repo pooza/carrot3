@@ -17,4 +17,3 @@ class DevelopTableReportModule extends C\Module {
 		return 'TableReport';
 	}
 }
-

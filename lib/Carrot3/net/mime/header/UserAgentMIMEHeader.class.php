@@ -51,4 +51,3 @@ class UserAgentMIMEHeader extends MIMEHeader {
 		}
 	}
 }
-

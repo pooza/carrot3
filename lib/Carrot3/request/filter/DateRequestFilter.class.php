@@ -34,4 +34,3 @@ class DateRequestFilter extends RequestFilter {
 		return $value;
 	}
 }
-

@@ -31,4 +31,3 @@ class MemcacheSessionStorage implements SessionStorage {
 		return true;
 	}
 }
-

@@ -94,4 +94,3 @@ trait SortableTable {
 		$this->getDatabase()->exec($sql);
 	}
 }
-

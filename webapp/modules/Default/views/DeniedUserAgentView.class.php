@@ -13,4 +13,3 @@ class DeniedUserAgentView extends C\SmartyView {
 		$this->setStatus(406);
 	}
 }
-

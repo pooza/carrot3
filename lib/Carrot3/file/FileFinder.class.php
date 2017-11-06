@@ -132,4 +132,3 @@ class FileFinder {
 		$this->outputClass = $this->loader->getClass($class);
 	}
 }
-

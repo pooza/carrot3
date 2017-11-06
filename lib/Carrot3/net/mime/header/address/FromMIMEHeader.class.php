@@ -14,4 +14,3 @@ namespace Carrot3;
 class FromMIMEHeader extends AddressMIMEHeader {
 	protected $name = 'From';
 }
-

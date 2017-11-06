@@ -26,4 +26,3 @@ class ContentDispositionMIMEHeader extends MIMEHeader {
 		}
 	}
 }
-

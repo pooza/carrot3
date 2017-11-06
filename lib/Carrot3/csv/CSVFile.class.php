@@ -91,4 +91,3 @@ class CSVFile extends File {
 		return sprintf('CSVファイル "%s"', $this->getShortPath());
 	}
 }
-

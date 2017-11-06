@@ -200,4 +200,3 @@ class CurlHTTP extends HTTP {
 		$this->name = null;
 	}
 }
-

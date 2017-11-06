@@ -308,4 +308,3 @@ class Pictogram implements Assignable, ImageContainer {
 		return $this->controller->getAttribute($key);
 	}
 }
-

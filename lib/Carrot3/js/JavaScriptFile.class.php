@@ -61,4 +61,3 @@ class JavaScriptFile extends File {
 		return sprintf('JavaScriptファイル "%s"', $this->getShortPath());
 	}
 }
-

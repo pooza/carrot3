@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_function_const ($params, &$smarty) {
 	return (new C\ConstantHandler)[$params['name']];
 }
-

@@ -22,4 +22,3 @@ interface URLShorter {
 	 */
 	public function getShortURL (HTTPRedirector $url);
 }
-

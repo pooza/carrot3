@@ -92,4 +92,3 @@ class HeartRailsExpressService extends CurlHTTP {
 		return sprintf('HeartRails Express "%s"', $this->getName());
 	}
 }
-

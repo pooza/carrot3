@@ -18,4 +18,3 @@ class DatabaseListAction extends C\Action {
 		return C\View::SUCCESS;
 	}
 }
-

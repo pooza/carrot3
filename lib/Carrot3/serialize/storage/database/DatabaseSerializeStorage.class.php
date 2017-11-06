@@ -131,4 +131,3 @@ class DatabaseSerializeStorage implements SerializeStorage {
 		return 'データベースシリアライズストレージ';
 	}
 }
-

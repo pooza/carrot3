@@ -35,4 +35,3 @@ class DatabaseAction extends C\Action {
 		return !!$this->getDatabase();
 	}
 }
-

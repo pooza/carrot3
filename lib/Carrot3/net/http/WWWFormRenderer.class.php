@@ -113,4 +113,3 @@ class WWWFormRenderer extends ParameterHolder implements Renderer {
 		return null;
 	}
 }
-

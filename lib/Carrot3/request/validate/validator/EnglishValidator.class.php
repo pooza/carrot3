@@ -27,4 +27,3 @@ class EnglishValidator extends RegexValidator {
 		return Validator::initialize($params);
 	}
 }
-

@@ -201,4 +201,3 @@ class MIMEUtils {
 		return '.' . StringUtils::explode('.', $filename)->pop();
 	}
 }
-

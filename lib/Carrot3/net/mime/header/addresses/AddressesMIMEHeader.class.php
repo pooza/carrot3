@@ -73,4 +73,3 @@ abstract class AddressesMIMEHeader extends MIMEHeader {
 		$this->contents = $contents->join(', ');
 	}
 }
-

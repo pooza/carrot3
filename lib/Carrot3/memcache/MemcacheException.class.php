@@ -33,4 +33,3 @@ class MemcacheException extends Exception {
 		return true;
 	}
 }
-

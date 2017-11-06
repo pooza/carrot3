@@ -28,4 +28,3 @@ class GoogleHubService extends PublisherService {
 		$this->setURL(URL::create('https://' . $host->getName()));
 	}
 }
-

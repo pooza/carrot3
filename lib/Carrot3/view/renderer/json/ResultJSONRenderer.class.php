@@ -56,4 +56,3 @@ class ResultJSONRenderer extends JSONRenderer {
 		$this->result = Tuple::create($contents);
 	}
 }
-

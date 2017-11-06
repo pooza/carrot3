@@ -60,4 +60,3 @@ class SQLiteTableProfile extends TableProfile {
 		return $this->constraints;
 	}
 }
-

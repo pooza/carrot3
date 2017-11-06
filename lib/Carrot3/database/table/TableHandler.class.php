@@ -928,4 +928,3 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 		);
 	}
 }
-

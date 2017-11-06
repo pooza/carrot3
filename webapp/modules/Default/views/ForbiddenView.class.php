@@ -13,4 +13,3 @@ class ForbiddenView extends C\SmartyView {
 		$this->setStatus(403);
 	}
 }
-

@@ -48,4 +48,3 @@ class PrestoUserAgent extends UserAgent {
 		return 'Presto';
 	}
 }
-

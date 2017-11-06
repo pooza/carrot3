@@ -184,4 +184,3 @@ class PlainTextRenderer implements TextRenderer, \IteratorAggregate {
 		return new Iterator(StringUtils::explode($this->lineSeparator, $this->contents));
 	}
 }
-

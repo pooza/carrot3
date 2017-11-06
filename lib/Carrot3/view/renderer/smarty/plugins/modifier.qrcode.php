@@ -21,4 +21,3 @@ function smarty_modifier_qrcode ($value) {
 	$element->setURL($url);
 	return $element->getContents();
 }
-

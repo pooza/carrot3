@@ -74,4 +74,3 @@ class SendmailMailSender extends MailSender {
 		return $command;
 	}
 }
-

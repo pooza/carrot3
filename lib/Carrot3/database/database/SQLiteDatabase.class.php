@@ -145,4 +145,3 @@ class SQLiteDatabase extends Database {
 		return $this->version;
 	}
 }
-

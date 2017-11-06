@@ -79,4 +79,3 @@ class PostgreSQLTableProfile extends TableProfile {
 		return $criteria;
 	}
 }
-

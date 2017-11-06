@@ -57,4 +57,3 @@ class IOSUserAgent extends WebKitUserAgent {
 		return 'i(Phone|Pod|Pad);';
 	}
 }
-

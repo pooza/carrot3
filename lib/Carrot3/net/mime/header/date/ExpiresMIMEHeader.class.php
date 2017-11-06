@@ -24,4 +24,3 @@ class ExpiresMIMEHeader extends DateMIMEHeader {
 		return false;
 	}
 }
-

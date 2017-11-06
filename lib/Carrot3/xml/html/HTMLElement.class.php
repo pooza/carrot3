@@ -325,4 +325,3 @@ class HTMLElement extends XMLElement {
 		return $parent;
 	}
 }
-

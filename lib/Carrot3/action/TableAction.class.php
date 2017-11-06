@@ -129,4 +129,3 @@ abstract class TableAction extends Action {
 		return !$this->request->hasErrors();
 	}
 }
-

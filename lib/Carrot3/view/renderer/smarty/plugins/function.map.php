@@ -35,4 +35,3 @@ function smarty_function_map ($params, &$smarty) {
 	}
 	return $element->getContents();
 }
-

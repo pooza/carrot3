@@ -63,4 +63,3 @@ class CSSSelector extends Tuple {
 		}
 	}
 }
-

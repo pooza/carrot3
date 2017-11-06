@@ -31,4 +31,3 @@ interface HolidayList extends \ArrayAccess {
 	 */
 	public function getHolidays ();
 }
-

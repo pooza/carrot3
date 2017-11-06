@@ -49,4 +49,3 @@ class SiteMapXMLDocument extends XMLDocument {
 		return $element;
 	}
 }
-

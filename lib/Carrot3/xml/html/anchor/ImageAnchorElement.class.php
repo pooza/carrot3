@@ -33,4 +33,3 @@ abstract class ImageAnchorElement extends AnchorElement {
 		$this->setURL($images->createURL($record, $size, $pixel));
 	}
 }
-

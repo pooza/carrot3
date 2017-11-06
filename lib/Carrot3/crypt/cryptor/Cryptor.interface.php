@@ -36,4 +36,3 @@ interface Cryptor {
 	 */
 	public function decrypt ($value);
 }
-

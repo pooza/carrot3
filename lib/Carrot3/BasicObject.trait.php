@@ -38,4 +38,3 @@ trait BasicObject {
 		}
 	}
 }
-

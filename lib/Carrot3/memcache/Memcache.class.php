@@ -214,4 +214,3 @@ class Memcache implements \ArrayAccess {
 		$this->memcached->flush();
 	}
 }
-

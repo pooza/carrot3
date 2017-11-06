@@ -58,4 +58,3 @@ class GeckoUserAgent extends UserAgent {
 		return 'Gecko/[[:digit:]]+';
 	}
 }
-

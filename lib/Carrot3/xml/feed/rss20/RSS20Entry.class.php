@@ -13,4 +13,3 @@ namespace Carrot3;
  */
 class RSS20Entry extends RSS09Entry {
 }
-

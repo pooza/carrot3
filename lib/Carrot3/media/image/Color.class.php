@@ -81,4 +81,3 @@ class Color extends ParameterHolder {
 		return sprintf('%02x%02x%02x', $this['red'], $this['green'], $this['blue']);
 	}
 }
-

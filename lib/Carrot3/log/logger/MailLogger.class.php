@@ -58,4 +58,3 @@ class MailLogger extends Logger {
 		$mail->send();
 	}
 }
-

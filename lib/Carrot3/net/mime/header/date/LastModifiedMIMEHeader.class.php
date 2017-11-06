@@ -14,4 +14,3 @@ namespace Carrot3;
 class LastModifiedMIMEHeader extends DateMIMEHeader {
 	protected $name = 'Last-Modified';
 }
-

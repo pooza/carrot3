@@ -187,4 +187,3 @@ class HTTP extends Socket {
 		throw new HTTPException($message);
 	}
 }
-

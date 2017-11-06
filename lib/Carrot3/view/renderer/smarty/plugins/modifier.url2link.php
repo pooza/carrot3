@@ -18,4 +18,3 @@ function smarty_modifier_url2link ($value) {
 		$value
 	);
 }
-

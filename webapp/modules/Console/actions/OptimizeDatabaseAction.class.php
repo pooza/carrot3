@@ -44,4 +44,3 @@ class OptimizeDatabaseAction extends C\Action {
 		return !!$this->getDatabase();
 	}
 }
-

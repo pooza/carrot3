@@ -23,4 +23,3 @@ class MP3MediaConvertor extends MediaConvertor {
 		return 'MusicFile';
 	}
 }
-

@@ -312,4 +312,3 @@ class SmartyCompiler extends \Smarty_Compiler {
 		throw new ViewException($error_msg);
 	}
 }
-

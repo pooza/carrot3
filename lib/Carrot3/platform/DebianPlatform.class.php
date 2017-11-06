@@ -31,4 +31,3 @@ class DebianPlatform extends LinuxPlatform {
 		}
 	}
 }
-

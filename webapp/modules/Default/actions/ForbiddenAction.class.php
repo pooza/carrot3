@@ -13,4 +13,3 @@ class ForbiddenAction extends C\Action {
 		return C\View::ERROR;
 	}
 }
-

@@ -35,4 +35,3 @@ class UpdateAction extends C\Action {
 		return !!$this->getDatabase();
 	}
 }
-

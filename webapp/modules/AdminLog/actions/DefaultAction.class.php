@@ -17,4 +17,3 @@ class DefaultAction extends C\Action {
 		return $this->execute();
 	}
 }
-

@@ -212,4 +212,3 @@ class Atom10Document extends XMLDocument implements FeedDocument {
 		return FeedUtils::getEntryTitles($this);
 	}
 }
-

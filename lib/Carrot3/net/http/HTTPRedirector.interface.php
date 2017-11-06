@@ -37,4 +37,3 @@ interface HTTPRedirector {
 	 */
 	public function createURL ();
 }
-

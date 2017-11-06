@@ -46,4 +46,3 @@ class MovieValidator extends Validator {
 		return StringUtils::isBlank($this->error);
 	}
 }
-

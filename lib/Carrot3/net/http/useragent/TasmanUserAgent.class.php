@@ -36,4 +36,3 @@ class TasmanUserAgent extends UserAgent {
 		return 'MSIE [1-5]\\.[[:digit:]]+; Mac';
 	}
 }
-

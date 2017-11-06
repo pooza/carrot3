@@ -141,4 +141,3 @@ class ExcelExporter implements Exporter, Renderer {
 		return null;
 	}
 }
-

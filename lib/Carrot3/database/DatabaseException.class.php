@@ -33,4 +33,3 @@ class DatabaseException extends Exception {
 		return true;
 	}
 }
-

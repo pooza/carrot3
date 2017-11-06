@@ -57,4 +57,3 @@ class StringValidator extends Validator {
 		return StringUtils::isBlank($this->error);
 	}
 }
-

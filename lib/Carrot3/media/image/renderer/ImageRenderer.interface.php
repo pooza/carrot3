@@ -37,4 +37,3 @@ interface ImageRenderer extends Renderer {
 	 */
 	public function getHeight ();
 }
-

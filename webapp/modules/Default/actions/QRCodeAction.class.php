@@ -40,4 +40,3 @@ class QRCodeAction extends C\Action {
 		return !$this->request->hasErrors();
 	}
 }
-

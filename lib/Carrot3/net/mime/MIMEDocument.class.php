@@ -509,4 +509,3 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 		return sprintf('MIME文書 "%s"', $this->getMessageID());
 	}
 }
-

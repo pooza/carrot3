@@ -37,4 +37,3 @@ class DirectoryIterator extends Iterator {
 		}
 	}
 }
-

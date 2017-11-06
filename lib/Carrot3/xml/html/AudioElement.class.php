@@ -47,4 +47,3 @@ class AudioElement extends HTMLElement {
 		$this->registerSource($url);
 	}
 }
-

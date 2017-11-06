@@ -153,4 +153,3 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 		return Utils::getClass($this);
 	}
 }
-

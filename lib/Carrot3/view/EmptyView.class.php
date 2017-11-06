@@ -36,4 +36,3 @@ class EmptyView extends View {
 		$this->putHeaders();
 	}
 }
-

@@ -39,4 +39,3 @@ class EncodingValidator extends Validator {
 		return true;
 	}
 }
-

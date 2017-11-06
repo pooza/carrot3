@@ -103,4 +103,3 @@ class MySQLDatabase extends Database {
 		return ($this->getVersion() < 5);
 	}
 }
-

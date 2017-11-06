@@ -13,4 +13,3 @@ class AdminUtilityModule extends C\Module {
 		return 'ユーティリティ';
 	}
 }
-

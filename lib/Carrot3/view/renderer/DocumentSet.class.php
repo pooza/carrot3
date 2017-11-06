@@ -335,4 +335,3 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		return sprintf('%s "%s"', Utils::getClass($this), $this->getName());
 	}
 }
-

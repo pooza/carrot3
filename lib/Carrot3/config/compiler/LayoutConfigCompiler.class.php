@@ -28,4 +28,3 @@ class LayoutConfigCompiler extends ConfigCompiler {
 		return $this->getBody();
 	}
 }
-

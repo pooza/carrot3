@@ -29,4 +29,3 @@ class XPriorityMIMEHeader extends MIMEHeader {
 		parent::setContents($contents);
 	}
 }
-

@@ -23,4 +23,3 @@ class PingAction extends C\Action {
 		return 'JSONView';
 	}
 }
-

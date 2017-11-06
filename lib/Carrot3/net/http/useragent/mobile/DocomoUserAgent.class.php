@@ -96,4 +96,3 @@ class DocomoUserAgent extends MobileUserAgent {
 		return $info;
 	}
 }
-

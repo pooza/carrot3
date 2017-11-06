@@ -65,4 +65,3 @@ class RecordFinder extends ParameterHolder {
 		return $this->table;
 	}
 }
-

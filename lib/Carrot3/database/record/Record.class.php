@@ -725,4 +725,3 @@ abstract class Record implements \ArrayAccess,
 		return sprintf('%s(%s)', $word, $this->getID());
 	}
 }
-

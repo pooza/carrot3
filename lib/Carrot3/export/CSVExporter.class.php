@@ -139,4 +139,3 @@ class CSVExporter implements Exporter, TextRenderer {
 		return null;
 	}
 }
-

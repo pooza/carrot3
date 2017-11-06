@@ -100,4 +100,3 @@ class AdministratorRole implements Role {
 		return $this->credentials;
 	}
 }
-

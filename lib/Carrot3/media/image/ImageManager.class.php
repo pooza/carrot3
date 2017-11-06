@@ -523,4 +523,3 @@ class ImageManager {
 		return self::$renderers;
 	}
 }
-

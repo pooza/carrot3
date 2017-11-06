@@ -34,4 +34,3 @@ class BlinkUserAgent extends WebKitUserAgent {
 		return 'Chrome';
 	}
 }
-

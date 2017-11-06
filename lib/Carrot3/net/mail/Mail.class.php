@@ -179,4 +179,3 @@ class Mail extends MIMEDocument {
 		return $sender;
 	}
 }
-

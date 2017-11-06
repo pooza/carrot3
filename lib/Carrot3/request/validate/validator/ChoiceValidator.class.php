@@ -66,4 +66,3 @@ class ChoiceValidator extends Validator {
 		return $choices;
 	}
 }
-

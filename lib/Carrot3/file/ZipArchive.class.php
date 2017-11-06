@@ -196,4 +196,3 @@ class ZipArchive extends \ZipArchive implements Renderer {
 		return null;
 	}
 }
-

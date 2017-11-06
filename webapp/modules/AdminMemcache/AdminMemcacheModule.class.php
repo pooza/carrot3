@@ -30,4 +30,3 @@ class AdminMemcacheModule extends C\Module {
 		return 'Memcache';
 	}
 }
-

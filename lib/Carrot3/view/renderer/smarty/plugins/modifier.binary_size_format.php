@@ -16,4 +16,3 @@ use \Carrot3 as C;
 function smarty_modifier_binary_size_format ($value) {
 	return C\Numeric::getBinarySize($value);
 }
-

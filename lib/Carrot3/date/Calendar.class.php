@@ -115,4 +115,3 @@ class Calendar extends ParameterHolder {
 		throw new DateException('カレンダーから日付を削除できません。');
 	}
 }
-

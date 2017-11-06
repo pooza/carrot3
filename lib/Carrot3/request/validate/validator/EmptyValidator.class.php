@@ -60,4 +60,3 @@ class EmptyValidator extends Validator {
 		}
 	}
 }
-

@@ -68,4 +68,3 @@ class GoogleURLShortnerService extends CurlHTTP implements URLShorter {
 		return sprintf('Google URL Shortner "%s"', $this->getName());
 	}
 }
-

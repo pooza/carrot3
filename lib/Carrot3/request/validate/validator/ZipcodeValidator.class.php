@@ -49,4 +49,3 @@ class ZipcodeValidator extends RegexValidator {
 		return parent::execute($value);
 	}
 }
-

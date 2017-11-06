@@ -69,4 +69,3 @@ class AdminLogModule extends C\Module {
 		return $this->getLogger()->getDates();
 	}
 }
-

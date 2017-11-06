@@ -63,4 +63,3 @@ class ContactURL extends URL {
 		return $this;
 	}
 }
-

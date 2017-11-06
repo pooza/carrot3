@@ -46,4 +46,3 @@ class NGWordValidator extends Validator {
 		return StringUtils::isBlank($this->error);
 	}
 }
-

@@ -46,4 +46,3 @@ class YouTubeService extends CurlHTTP {
 		return sprintf('YouTube "%s"', $this->getName());
 	}
 }
-

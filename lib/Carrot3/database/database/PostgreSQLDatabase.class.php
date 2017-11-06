@@ -87,4 +87,3 @@ class PostgreSQLDatabase extends Database {
 		$this->log($this . 'を最適化しました。');
 	}
 }
-

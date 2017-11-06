@@ -98,4 +98,3 @@ class TestManager implements \IteratorAggregate {
 		return $this->tests->getIterator();
 	}
 }
-

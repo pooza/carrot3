@@ -18,4 +18,3 @@ function smarty_function_js ($params, &$smarty) {
 	}
 	return (new C\ScriptSet($params['name']))->createElement()->getContents();
 }
-

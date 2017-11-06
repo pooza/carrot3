@@ -67,4 +67,3 @@ class AuUserAgent extends MobileUserAgent {
 		return '^(UP\\.Browser|KDDI)';
 	}
 }
-

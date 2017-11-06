@@ -14,4 +14,3 @@ use \Carrot3 as C;
 function smarty_modifier_short_url ($value) {
 	return C\URL::create($value)->getShortURL()->getContents();
 }
-

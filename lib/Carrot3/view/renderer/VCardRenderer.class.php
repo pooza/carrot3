@@ -86,4 +86,3 @@ class VCardRenderer extends ParameterHolder implements Renderer {
 		return null;
 	}
 }
-

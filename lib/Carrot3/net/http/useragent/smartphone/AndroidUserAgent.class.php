@@ -68,4 +68,3 @@ class AndroidUserAgent extends BlinkUserAgent {
 		return 'Android';
 	}
 }
-

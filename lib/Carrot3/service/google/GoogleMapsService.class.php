@@ -202,4 +202,3 @@ class GoogleMapsService extends CurlHTTP {
 		return sprintf('Google Maps "%s"', $this->getName());
 	}
 }
-

@@ -69,4 +69,3 @@ class SmartyMail extends Mail {
 		parent::send();
 	}
 }
-

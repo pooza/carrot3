@@ -30,4 +30,3 @@ class ObjectRegisterConfigCompiler extends ConfigCompiler {
 		return $this->getBody();
 	}
 }
-

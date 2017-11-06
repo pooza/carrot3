@@ -28,4 +28,3 @@ class RSS20Document extends RSS09Document {
 		);
 	}
 }
-

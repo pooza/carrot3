@@ -69,4 +69,3 @@ class ExecutionFilter extends Filter {
 		return true;
 	}
 }
-

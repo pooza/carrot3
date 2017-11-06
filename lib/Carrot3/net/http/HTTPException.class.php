@@ -32,4 +32,3 @@ class HTTPException extends NetException {
 		$this->response = $response;
 	}
 }
-

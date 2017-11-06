@@ -19,4 +19,3 @@ function smarty_outputfilter_mail ($source, &$smarty) {
 	}
 	return $mime->getBody();
 }
-

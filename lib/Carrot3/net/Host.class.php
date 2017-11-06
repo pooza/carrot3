@@ -203,4 +203,3 @@ class Host implements Assignable, ImageContainer {
 		return $this->getName();
 	}
 }
-

@@ -34,4 +34,3 @@ class EdgeUserAgent extends WebKitUserAgent {
 		return 'Edge';
 	}
 }
-

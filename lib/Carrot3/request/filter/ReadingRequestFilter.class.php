@@ -29,4 +29,3 @@ class ReadingRequestFilter extends RequestFilter {
 		return $value;
 	}
 }
-

@@ -14,4 +14,3 @@ namespace Carrot3;
 class XMailerMIMEHeader extends MIMEHeader {
 	protected $name = 'X-Mailer';
 }
-

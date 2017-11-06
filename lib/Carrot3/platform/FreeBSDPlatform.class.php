@@ -26,4 +26,3 @@ class FreeBSDPlatform extends Platform {
 		}
 	}
 }
-

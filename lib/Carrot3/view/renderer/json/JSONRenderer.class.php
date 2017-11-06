@@ -105,4 +105,3 @@ class JSONRenderer implements Renderer {
 		return null;
 	}
 }
-

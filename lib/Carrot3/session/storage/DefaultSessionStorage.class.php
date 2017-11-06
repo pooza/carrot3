@@ -25,4 +25,3 @@ class DefaultSessionStorage implements SessionStorage {
 		return true;
 	}
 }
-

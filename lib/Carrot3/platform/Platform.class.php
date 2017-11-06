@@ -137,4 +137,3 @@ abstract class Platform extends ParameterHolder {
 		}
 	}
 }
-

@@ -23,4 +23,3 @@ class DateException extends Exception {
 		return false;
 	}
 }
-

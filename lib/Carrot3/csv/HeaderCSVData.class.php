@@ -149,4 +149,3 @@ class HeaderCSVData extends CSVData {
 		return parent::validate();
 	}
 }
-

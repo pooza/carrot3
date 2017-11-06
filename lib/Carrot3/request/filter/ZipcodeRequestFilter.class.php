@@ -29,4 +29,3 @@ class ZipcodeRequestFilter extends RequestFilter {
 		return $value;
 	}
 }
-

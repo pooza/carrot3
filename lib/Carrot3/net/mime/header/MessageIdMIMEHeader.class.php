@@ -55,4 +55,3 @@ class MessageIdMIMEHeader extends MIMEHeader {
 		return false;
 	}
 }
-

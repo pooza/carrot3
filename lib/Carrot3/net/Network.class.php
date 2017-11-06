@@ -85,4 +85,3 @@ class Network extends Host {
 		return sprintf('ネットワーク "%s"', $this->getCIDR());
 	}
 }
-

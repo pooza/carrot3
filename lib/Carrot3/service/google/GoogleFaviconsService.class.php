@@ -79,4 +79,3 @@ class GoogleFaviconsService extends CurlHTTP {
 		return sprintf('Google favicons "%s"', $this->getName());
 	}
 }
-

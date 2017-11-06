@@ -23,4 +23,3 @@ class PurgeAction extends C\Action {
 		return C\View::NONE;
 	}
 }
-

@@ -33,4 +33,3 @@ class FileException extends Exception {
 		return true;
 	}
 }
-

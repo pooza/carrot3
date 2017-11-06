@@ -68,4 +68,3 @@ class BitlyService extends CurlHTTP implements URLShorter {
 		return sprintf('bit.ly "%s"', $this->getName());
 	}
 }
-

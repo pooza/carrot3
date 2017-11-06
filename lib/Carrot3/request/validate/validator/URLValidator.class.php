@@ -59,4 +59,3 @@ class URLValidator extends Validator {
 		return StringUtils::isBlank($this->error);
 	}
 }
-

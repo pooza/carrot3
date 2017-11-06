@@ -201,4 +201,3 @@ class RSS09Document extends XMLDocument implements FeedDocument {
 		return FeedUtils::getEntryTitles($this);
 	}
 }
-

@@ -23,4 +23,3 @@ class TranslateException extends Exception {
 		return false;
 	}
 }
-

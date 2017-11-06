@@ -56,4 +56,3 @@ class SerializeEntry extends Record {
 		return false;
 	}
 }
-

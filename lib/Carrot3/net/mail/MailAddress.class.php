@@ -128,4 +128,3 @@ class MailAddress implements Assignable {
 		return sprintf('メールアドレス "%s"', $this->getContents());
 	}
 }
-

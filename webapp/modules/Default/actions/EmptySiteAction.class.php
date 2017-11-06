@@ -13,4 +13,3 @@ class EmptySiteAction extends C\Action {
 		return C\View::ERROR;
 	}
 }
-

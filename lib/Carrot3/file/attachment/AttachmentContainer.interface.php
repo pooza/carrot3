@@ -49,4 +49,3 @@ interface AttachmentContainer {
 	 */
 	public function getAttachmentFileName ($name);
 }
-

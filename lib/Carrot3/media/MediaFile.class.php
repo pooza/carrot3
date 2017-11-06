@@ -271,4 +271,3 @@ abstract class MediaFile extends File implements \ArrayAccess, Assignable {
 		}
 	}
 }
-

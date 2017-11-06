@@ -99,4 +99,3 @@ class IniConfigParser implements ConfigParser {
 		return '要素が含まれていません。';
 	}
 }
-

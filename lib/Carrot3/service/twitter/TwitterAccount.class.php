@@ -254,4 +254,3 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 		return sprintf('Twitterアカウント "%s"', $this->name);
 	}
 }
-

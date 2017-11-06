@@ -126,4 +126,3 @@ class POP3Mail extends MIMEDocument {
 		return sprintf('POP3メール "%s"', $this->getMessageID());
 	}
 }
-

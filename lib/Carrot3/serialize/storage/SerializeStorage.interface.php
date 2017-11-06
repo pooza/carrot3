@@ -64,4 +64,3 @@ interface SerializeStorage {
 	 */
 	public function getUpdateDate ($name);
 }
-

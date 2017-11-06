@@ -96,4 +96,3 @@ class TridentUserAgent extends UserAgent {
 		return '(MSIE|Trident)';
 	}
 }
-

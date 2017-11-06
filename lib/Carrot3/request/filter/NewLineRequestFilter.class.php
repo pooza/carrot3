@@ -25,4 +25,3 @@ class NewLineRequestFilter extends RequestFilter {
 		return StringUtils::convertLineSeparator($value);
 	}
 }
-

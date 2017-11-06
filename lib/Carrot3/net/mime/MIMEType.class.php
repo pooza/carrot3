@@ -118,4 +118,3 @@ class MIMEType extends ParameterHolder {
 		return self::getInstance()->getSuffixes()[$type];
 	}
 }
-

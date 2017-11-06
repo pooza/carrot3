@@ -29,4 +29,3 @@ interface ConfigParser extends TextRenderer {
 	 */
 	public function getResult ();
 }
-

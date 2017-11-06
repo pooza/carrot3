@@ -393,4 +393,3 @@ class Image implements ImageRenderer {
 		return self::$suffixes;
 	}
 }
-

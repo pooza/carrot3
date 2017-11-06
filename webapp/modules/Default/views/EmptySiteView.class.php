@@ -13,4 +13,3 @@ class EmptySiteView extends C\SmartyView {
 		$this->setStatus(404);
 	}
 }
-

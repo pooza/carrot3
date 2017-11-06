@@ -33,4 +33,3 @@ class FakeUserAgentFilter extends Filter {
 		}
 	}
 }
-

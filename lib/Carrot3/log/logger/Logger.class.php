@@ -114,4 +114,3 @@ abstract class Logger {
 		return mb_ereg('Exception$', $priority);
 	}
 }
-

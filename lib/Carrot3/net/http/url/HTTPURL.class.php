@@ -404,4 +404,3 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		return View::NONE;
 	}
 }
-

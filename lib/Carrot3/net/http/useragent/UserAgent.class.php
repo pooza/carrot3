@@ -370,4 +370,3 @@ abstract class UserAgent extends ParameterHolder {
 		]);
 	}
 }
-

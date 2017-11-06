@@ -40,4 +40,3 @@ trait Singleton {
 		throw new \RuntimeException(__CLASS__ . 'はコピーできません。');
 	}
 }
-

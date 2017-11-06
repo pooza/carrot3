@@ -14,4 +14,3 @@ namespace Carrot3;
 class ToMIMEHeader extends AddressesMIMEHeader {
 	protected $name = 'To';
 }
-

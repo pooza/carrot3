@@ -64,4 +64,3 @@ class GoogleAnalyticsService extends ParameterHolder implements Assignable {
 		return $this->params;
 	}
 }
-

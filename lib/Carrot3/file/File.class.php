@@ -523,4 +523,3 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 		return sprintf('ファイル "%s"', $this->getShortPath());
 	}
 }
-

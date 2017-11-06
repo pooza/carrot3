@@ -151,4 +151,3 @@ class Criteria extends Tuple {
 		return $contents->join(' ' . $this->getGlue() . ' ');
 	}
 }
-

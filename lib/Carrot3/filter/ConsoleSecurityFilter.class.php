@@ -31,4 +31,3 @@ class ConsoleSecurityFilter extends Filter {
 		}
 	}
 }
-

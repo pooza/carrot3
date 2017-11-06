@@ -32,4 +32,3 @@ function smarty_function_carrot_url ($params, &$smarty) {
 
 	return $url->getContents();
 }
-
