@@ -119,14 +119,10 @@ if (PHP_SAPI == 'cli') {
 	$_SERVER['HTTP_USER_AGENT'] = 'Console';
 	$_SERVER['SERVER_NAME'] = basename(BS_ROOT_DIR);
 }
-if (!$file = ConfigManager::getConfigFile('constant/' . $_SERVER['SERVER_NAME'])) {
-	throw new \RuntimeException('サーバ定義(' . $_SERVER['SERVER_NAME'] . ') が見つかりません。');
-}
 
-$configure = ConfigManager::getInstance();
-$configure->compile($file);
-$configure->compile('constant/application');
-$configure->compile('constant/carrot');
+foreach ([$_SERVER['SERVER_NAME'], 'application', 'carrot'] as $key) {
+	ConfigManager::getInstance()->compile('constant/' . $key);
+}
 
 mb_internal_encoding('utf-8');
 mb_regex_encoding('utf-8');
