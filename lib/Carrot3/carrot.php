@@ -69,14 +69,9 @@ spl_autoload_register(function ($name) {
 	Loader::getInstance()->includeClass($name);
 });
 
-set_error_handler(function ($errno, $errstr, $errfile, $errline) {
-	if ($errno & error_reporting()) {
-		throw new \RuntimeException(sprintf(
-			'%s (file:%s line:%d)',
-			$errstr,
-			str_replace(BS_ROOT_DIR . '/', '', $errfile),
-			$errline
-		), $errno);
+set_error_handler(function ($severity, $message, $file, $line) {
+	if (error_reporting() & $severity) {
+		throw new \ErrorException($message, 0, $severity, $file, $line);
 	}
 });
 
