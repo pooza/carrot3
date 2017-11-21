@@ -297,6 +297,30 @@ class StringUtils {
 	}
 
 	/**
+	 * ハイフン化された文字列を返す
+	 *
+	 * @access public
+	 * @param mixed $value 変換対象の文字列又は配列
+	 * @return mixed 変換後
+	 * @static
+	 */
+	static public function hyphenize ($value) {
+		if (is_array($value) || ($value instanceof ParameterHolder)) {
+			foreach ($value as $key => $item) {
+				$value[$key] = self::hyphenize($item);
+			}
+		} else {
+			foreach (self::eregMatchAll('[- _]*[[:upper:]]+[^[:upper:]]*', $value) as $matches) {
+				$value = str_replace($matches[0], '-' . $matches[0], $value);
+			}
+			$value = mb_ereg_replace('-{2,}', '-', $value);
+			$value = ltrim($value, '-');
+			$value = self::toLower($value);
+		}
+		return $value;
+	}
+
+	/**
 	 * 名前をインクリメント
 	 *
 	 * 末尾が数値ならインクリメント。そうでなければ末尾に "2" を加える。
