@@ -22,8 +22,9 @@ class TranslateManager implements \IteratorAggregate {
 	 */
 	protected function __construct () {
 		$this->dictionaries = Tuple::create();
-		foreach ($this->getDirectory() as $dictionary) {
-			$this->register($dictionary);
+
+		foreach ($this->getDirectory()->getEntryNames(Directory::WITHOUT_DOTTED) as $name) {
+			$this->register($this->getDirectory()->getEntry($name));
 		}
 		$this->setDictionaryPriority(
 			$this->loader->getClass('DictionaryFile') . '.carrot',

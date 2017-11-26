@@ -25,7 +25,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 
 	/**
 	 * @access public
-	 * @param string $contents 
+	 * @param string $contents
 	 */
 	public function __construct ($contents = null) {
 		$this->records = Tuple::create();
@@ -36,7 +36,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * 行をセットして、レコード配列を生成
 	 *
 	 * @access public
-	 * @param Tuple $lines 
+	 * @param Tuple $lines
 	 */
 	public function setLines (Tuple $lines) {
 		$lines = StringUtils::convertEncoding($lines);
@@ -95,7 +95,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * レコードを追加
 	 *
 	 * @access public
-	 * @param Tuple $record 
+	 * @param Tuple $record
 	 */
 	public function addRecord (Tuple $record) {
 		if (StringUtils::isBlank($record[0])) {
