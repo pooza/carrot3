@@ -165,7 +165,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 			$values['class'] = Utils::getClass($this);
 			$values['name'] = $this->getName();
 			foreach ($this as $entry) {
-				$values[$entry->getPath()] = $entry->getUpdateDate()->getTimestamp();
+				$values[$entry->getPath()] = $entry->digest();
 			}
 			$this->digest = Crypt::digest($values);
 		}
