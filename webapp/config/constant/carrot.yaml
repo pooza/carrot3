@@ -75,6 +75,9 @@ ffmpeg:
       audio_codec: libvorbis
       audio_sampling_frequency: 44100
     mp3:
+geocode:
+  map:
+    function: CarrotMapsLib.handleMap
 image:
   storable: yes
   renderers:

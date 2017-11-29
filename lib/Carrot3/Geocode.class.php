@@ -56,6 +56,7 @@ class Geocode extends ParameterHolder {
 	public function createElement (ParameterHolder $params) {
 		$params = Tuple::create($params);
 		$container = new DivisionElement;
+		$container->setStyle('text-align', $params['align']);
 		$inner = $container->addElement(new DivisionElement);
 		$script = $container->addElement(new ScriptElement);
 
@@ -65,20 +66,16 @@ class Geocode extends ParameterHolder {
 		$inner->setID($id);
 		$inner->setStyle('width', $params['width']);
 		$inner->setStyle('height', $params['height']);
+		$inner->setStyle('display', 'inline-block');
 		$inner->setBody('Loading...');
 
-		$serializer = new JSONSerializer;
-		$statement = new StringFormat('CarrotMapsLib.handleMap($(%s), %f, %f, %d);');
-		$statement[] = $serializer->encode($inner->getID());
-		$statement[] = $this['lat'];
-		$statement[] = $this['lng'];
+		$statement = new StringFormat('%s(document.getElementById(%s), %f, %f, %d);');
+		$statement[] = BS_GEOCODE_MAP_FUNCTION;
+		$statement[] = (new JSONSerializer)->encode($inner->getID());
+		$statement[] = $params['lat'];
+		$statement[] = $params['lng'];
 		$statement[] = $params['zoom'];
 		$script->setBody($statement);
-
-		if ($params['align']) {
-			$container->setStyle('width', $params['width']);
-			$container = $container->setAlignment($params['align']);
-		}
 		return $container;
 	}
 
