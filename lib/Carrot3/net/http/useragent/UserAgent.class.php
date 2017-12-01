@@ -114,6 +114,7 @@ abstract class UserAgent extends ParameterHolder {
 		$view->getRenderer()->setUserAgent($this);
 		$view->getRenderer()->addModifier('sanitize');
 		$view->getRenderer()->addOutputFilter('trim');
+		$view->getRenderer()->addOutputFilter('strip_comment');
 		$view->setAttributes($this->request->getAttributes());
 		$view->setAttribute('module', $view->getModule());
 		$view->setAttribute('action', $view->getAction());

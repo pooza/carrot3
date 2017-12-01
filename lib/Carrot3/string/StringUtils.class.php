@@ -508,6 +508,25 @@ class StringUtils {
 	}
 
 	/**
+	 * HTMLコメントを取り除く
+	 *
+	 * @access public
+	 * @param mixed $value 変換対象の文字列又は配列
+	 * @return mixed 変換後
+	 * @static
+	 */
+	static public function stripHTMLComment ($value) {
+		if (is_array($value) || ($value instanceof ParameterHolder)) {
+			foreach ($value as $key => $item) {
+				$value[$key] = self::stripTags($item);
+			}
+		} else {
+			$value = mb_ereg_replace('\\<!--.*?--\\>', '', $value);
+		}
+		return $value;
+	}
+
+	/**
 	 * コントロール文字を取り除く
 	 *
 	 * @access public

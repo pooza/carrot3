@@ -25,9 +25,11 @@ abstract class MobileUserAgent extends UserAgent {
 	 */
 	public function initializeView (SmartyView $view) {
 		parent::initializeView($view);
-		$view->getRenderer()->addModifier('pictogram');
+		$view->getRenderer()->addModifier('sanitize');
 		$view->getRenderer()->addOutputFilter('mobile');
 		$view->getRenderer()->addOutputFilter('encoding');
+		$view->getRenderer()->addOutputFilter('trim');
+		$view->getRenderer()->addOutputFilter('strip_comment');
 		return true;
 	}
 
