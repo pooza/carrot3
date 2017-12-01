@@ -72,8 +72,8 @@ class Geocode extends ParameterHolder {
 		$statement = new StringFormat('%s(document.getElementById(%s), %f, %f, %d);');
 		$statement[] = BS_GEOCODE_MAP_FUNCTION;
 		$statement[] = (new JSONSerializer)->encode($inner->getID());
-		$statement[] = $params['lat'];
-		$statement[] = $params['lng'];
+		$statement[] = $this['lat'];
+		$statement[] = $this['lng'];
 		$statement[] = $params['zoom'];
 		$script->setBody($statement);
 		return $container;
