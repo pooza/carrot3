@@ -63,7 +63,7 @@ class AdminLogModule extends C\Module {
 	 * 日付配列を返す
 	 *
 	 * @access public
-	 * @return mixed[][] 日付配列
+	 * @return Date[] 日付配列
 	 */
 	public function getDates () {
 		return $this->getLogger()->getDates();

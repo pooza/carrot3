@@ -74,10 +74,8 @@ abstract class Logger {
 	 * @return Date 直近日
 	 */
 	public function getLastDate () {
-		if ($month = $this->getDates()->getIterator()->getFirst()) {
-			if ($date = $month->getIterator()->getFirst()) {
-				return Date::create($date);
-			}
+		if ($first = $this->getDates()->getIterator()->getFirst()) {
+			return Date::create($first);
 		}
 		return Date::create();
 	}

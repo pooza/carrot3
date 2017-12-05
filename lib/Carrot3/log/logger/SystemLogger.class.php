@@ -81,11 +81,7 @@ class SystemLogger extends Logger {
 				if (!$date = Date::create($file->getBaseName())) {
 					continue;
 				}
-				$month = $date->format('Y-m');
-				if (!$this->dates[$month]) {
-					$this->dates[$month] = Tuple::create();
-				}
-				$this->dates[$month][$date->format('Y-m-d')] = $date->format('Y-m-d(ww)');
+				$this->dates[$date->format('Y-m-d')] = $date->format('Y-m-d(ww)');
 			}
 		}
 		return $this->dates;
@@ -101,11 +97,9 @@ class SystemLogger extends Logger {
 	public function getEntries (Date $date) {
 		if (!$this->entries) {
 			$this->entries = Tuple::create();
-			if ($month = $this->getDates()[$date->format('Y-m')]) {
-				if ($month->hasParameter($name = $date->format('Y-m-d'))) {
-					$file = $this->getDirectory()->getEntry($name);
-					$this->entries->setParameters($file->getEntries());
-				}
+			if ($this->getDates()->hasParameter($date->format('Y-m-d'))) {
+				$file = $this->getDirectory()->getEntry($date->format('Y-m-d'));
+				$this->entries->setParameters($file->getEntries());
 			}
 		}
 		return $this->entries;
