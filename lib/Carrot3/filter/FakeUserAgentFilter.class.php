@@ -19,17 +19,16 @@ class FakeUserAgentFilter extends Filter {
 				return;
 			}
 		}
-
-		$names = Tuple::create([
-			TridentUserAgent::ACCESSOR => TridentUserAgent::DEFAULT_NAME,
-			WebKitUserAgent::ACCESSOR => WebKitUserAgent::DEFAULT_NAME,
-		]);
-		foreach ($names as $field => $name) {
-			if ($this->request[$field] || $this->user->getAttribute($field)) {
-				$this->user->setAttribute($field, 1);
-				$this->request->setUserAgent(UserAgent::create($name));
-				break;
-			}
+		if (StringUtils::isBlank($this->request[WebKitUserAgent::ACCESSOR])) {
+			$flag = !!$this->user->getAttribute(WebKitUserAgent::ACCESSOR);
+		} else {
+			$flag = !!$this->request[WebKitUserAgent::ACCESSOR];
+		}
+		$this->user->setAttribute(WebKitUserAgent::ACCESSOR, $flag);
+		if ($flag) {
+			$this->request->setUserAgent(
+				UserAgent::create(WebKitUserAgent::DEFAULT_NAME)
+			);
 		}
 	}
 }

@@ -13,7 +13,6 @@ namespace Carrot3;
  */
 class TridentUserAgent extends UserAgent {
 	const DEFAULT_NAME = 'Mozilla/5.0 (Trident/7.0; rv 11.0)';
-	const ACCESSOR = 'force_trident';
 
 	/**
 	 * @access protected
