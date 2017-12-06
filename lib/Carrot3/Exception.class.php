@@ -31,12 +31,22 @@ class Exception extends \Exception {
 			LogManager::getInstance()->put($this);
 		}
 		if ($this->isAlertable()) {
-			$format = new StringFormat("Service: %s\n[%s] %s");
-			$format[] =$this->controller->getHost()->getName();
-			$format[] = $this->getName($this);
-			$format[] = $message;
-			(new SlackWebhookService)->say($format);
+			$this->alert();
 		}
+	}
+
+	/**
+	 * 名前を返す
+	 *
+	 * @access public
+	 * @return string 名前
+	 */
+	public function alert () {
+		$message = new StringFormat("Service: %s\nPriority: %s\n%s");
+		$message[] =$this->controller->getHost()->getName();
+		$message[] = $this->getName($this);
+		$message[] = $this->getMessage();
+		(new SlackWebhookService)->say($message);
 	}
 
 	/**

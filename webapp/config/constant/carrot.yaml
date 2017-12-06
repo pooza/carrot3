@@ -222,7 +222,6 @@ service:
       api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg
     analytics:
       id:
-      beacon_href: /carrotlib/php/ga.php
     calendar:
       api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg
     url_shortener:
