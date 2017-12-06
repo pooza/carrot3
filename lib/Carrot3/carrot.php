@@ -9,29 +9,6 @@
 namespace Carrot3;
 
 /**
- * スーパーグローバル配列の保護
- *
- * @access public
- * @param mixed[] $values 保護の対象
- * @return mixed[] サニタイズ後の配列
- * @link http://www.peak.ne.jp/support/phpcyber/ 参考
- */
-function protect ($values) {
-	if (is_array($values)) {
-		foreach (['_SESSION', '_COOKIE', '_SERVER', '_ENV', '_FILES', 'GLOBALS'] as $name) {
-			if (isset($values[$name])) {
-				throw new \RuntimeException('失敗しました。');
-			}
-		}
-		foreach ($values as &$value) {
-			$value = protect($value);
-		}
-		return $values;
-	}
-	return str_replace("\0", '', $values);
-}
-
-/**
  * デバッグ出力
  *
  * @access public
@@ -87,21 +64,6 @@ register_shutdown_function(function () {
 		));
 	}
 });
-
-// @link http://www.peak.ne.jp/support/phpcyber/ 参考
-$_GET = protect($_GET);
-$_POST = protect($_POST);
-$_COOKIE = protect($_COOKIE);
-foreach (['PHP_SELF', 'PATH_INFO'] as $name) {
-	if (!isset($_SERVER[$name])) {
-		continue;
-	}
-	$_SERVER[$name] = str_replace(
-		['<', '>', "'", '"', "\r", "\n", "\0"],
-		['%3C', '%3E', '%27', '%22', '', '', ''],
-		$_SERVER[$name]
-	);
-}
 
 define('BS_LIB_DIR', BS_ROOT_DIR . '/lib');
 define('BS_SHARE_DIR', BS_ROOT_DIR . '/share');
