@@ -23,78 +23,6 @@ var CarrotLib = {
     }
   },
 
-  putSmartTag: function (tag, field, name, params) {
-    var tag = '[[' + tag;
-    if (name) {
-      name = name.gsub('<', '\\lt').gsub('>', '\\gt');
-      name = name.gsub(':', '\\:').gsub('[', '\\[').gsub(']', '\\]');
-      tag += ':' + name;
-      if (params) {
-        var encoded = [];
-        for (var key in params) {
-          if (params[key] != null) {
-            encoded.push(key + '=' + encodeURIComponent(params[key]));
-          }
-        }
-        if (0 < encoded.length) {
-          tag += ':' + encoded.join(';');
-        }
-      }
-    }
-    tag += ']]';
-    if (Prototype.Browser.IE) {
-      field.focus();
-      field.document.selection.createRange().text = tag;
-    } else {
-      var position = field.selectionStart;
-      field.value = field.value.substr(0, position)
-        + tag
-        + field.value.substr(field.selectionEnd, field.value.length);
-      field.selectionStart = position + tag.length;
-      field.selectionEnd = field.selectionStart;
-    }
-  },
-
-  denyTakeOut: function () {
-    function disableEvent (element, eventName) {
-      element.observe(eventName, function (event) {
-        event.preventDefault();
-      });
-    }
-
-    function cover (element) {
-      var cover = document.createElement('img');
-      cover.src = '/carrotlib/images/spacer.gif';
-      cover.setStyle({
-        left: element.offsetLeft + 'px',
-        top: element.offsetTop + 'px',
-        width: element.width + 'px',
-        height: element.height + 'px',
-        position: 'absolute'
-      });
-      element.parentNode.appendChild(cover);
-    }
-
-    ['img', 'area', 'video', 'audio'].each (function (tag) {
-      $$(tag).each (function (element) {
-        disableEvent(element, 'contextmenu');
-        disableEvent(element, 'selectstart');
-        disableEvent(element, 'mousedown');
-        element.unselectable = 'on';
-        element.galleryimg = 'no';
-        if (element.parentNode.tagName.toLowerCase() != 'a') {
-          if (navigator.userAgent.match(/i(Phone|Pad|Pod)/)) {
-            if (!element.getAttribute('usemap')) {
-              cover(element);
-            }
-          } else {
-            disableEvent(element, 'touchstart');
-          }
-        }
-      });
-    });
-  },
-
   getQueryParameter: function (name) {
     var q = location.search || location.hash;
     if (q && q.match(/\?/)) {
@@ -114,28 +42,6 @@ var CarrotLib = {
       return encodeURIComponent(id);
     }
     return '';
-  },
-
-  // @link http://memorandum.char-aznable.com/web_design/javascript.html
-  backToTop: function () {
-    var x1 = x2 = x3 = 0;
-    var y1 = y2 = y3 = 0;
-    if (document.documentElement) {
-      x1 = document.documentElement.scrollLeft || 0;
-      y1 = document.documentElement.scrollTop || 0;
-    }
-    if (document.body) {
-      x2 = document.body.scrollLeft || 0;
-      y2 = document.body.scrollTop || 0;
-    }
-    x3 = window.scrollX || 0;
-    y3 = window.scrollY || 0;
-    var x = Math.max(x1, Math.max(x2, x3));
-    var y = Math.max(y1, Math.max(y2, y3));
-    window.scrollTo(Math.floor(x / 2), Math.floor(y / 2));
-    if (x > 0 || y > 0) {
-      window.setTimeout('CarrotLib.backToTop()', 25);
-    }
   },
 
   initialized: true
