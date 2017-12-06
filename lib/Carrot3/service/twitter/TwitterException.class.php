@@ -11,5 +11,5 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class TwitterException extends Exception {
+class TwitterException extends ServiceException {
 }

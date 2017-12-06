@@ -38,7 +38,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 */
 	static public function create ($contents = null, $class = 'HTTP') {
 		if (!$class = Loader::getInstance()->getClass($class . 'URL')) {
-			throw new NetException('URLクラスが見つかりません。');
+			throw new Exception('URLクラスが見つかりません。');
 		}
 
 		if (StringUtils::isBlank($contents)) {

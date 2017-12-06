@@ -14,22 +14,12 @@ namespace Carrot3;
 class DatabaseException extends Exception {
 
 	/**
-	 * メールを送るか
+	 * アラートを送るか
 	 *
 	 * @access public
-	 * @return boolean メールを送るならTrue
+	 * @return boolean アラートを送るならTrue
 	 */
-	public function isMailable () {
-		return true;
-	}
-
-	/**
-	 * ツイートするか
-	 *
-	 * @access public
-	 * @return boolean ツイートするならTrue
-	 */
-	public function isTweetable () {
+	public function isAlertable () {
 		return true;
 	}
 }

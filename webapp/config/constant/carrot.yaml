@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.0.30
+  ver: 3.0.31
 
 admin:
   email:
@@ -110,7 +110,6 @@ languages:
 log:
   loggers:
     - System
-    - Mail
 logger:
   dir:
     default: /usr
@@ -235,6 +234,9 @@ service:
     access_token: 139985635-LEKAX9Soa2zrjjtOf0MWR8KQdFJM8cGCgX7myMo
     access_token_secret: MfGm4toy0En5ZntHJFt6O4xOcZzAnfwnW9rDUaY
     minutes: 5
+  slack:
+    webhook:
+      url: /services/T818MGY3S/B8A93KZL2/L5StOlVmm3Apqd0NED9zQUWJ
 session:
   storage: Memcache
 smtp:

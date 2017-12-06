@@ -11,6 +11,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class Exception extends \Exception {
+	use BasicObject;
 
 	/**
 	 * @access public
@@ -28,6 +29,13 @@ class Exception extends \Exception {
 		parent::__construct($message, $code, $prev);
 		if ($this->isLoggable()) {
 			LogManager::getInstance()->put($this);
+		}
+		if ($this->isAlertable()) {
+			$format = new StringFormat("Service: %s\n[%s] %s");
+			$format[] =$this->controller->getHost()->getName();
+			$format[] = $this->getName($this);
+			$format[] = $message;
+			(new SlackWebhookService)->say($format);
 		}
 	}
 
@@ -52,22 +60,12 @@ class Exception extends \Exception {
 	}
 
 	/**
-	 * メールを送るか
+	 * アラートを送るか
 	 *
 	 * @access public
-	 * @return boolean メールを送るならTrue
+	 * @return boolean アラートを送るならTrue
 	 */
-	public function isMailable () {
-		return false;
-	}
-
-	/**
-	 * ツイートするか
-	 *
-	 * @access public
-	 * @return boolean ツイートするならTrue
-	 */
-	public function isTweetable () {
+	public function isAlertable () {
 		return false;
 	}
 }

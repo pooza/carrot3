@@ -48,7 +48,7 @@ class CarrotURL extends HTTPURL {
 	public function setContents ($contents) {
 		if (!StringUtils::isBlank($contents)) {
 			if (is_string($contents)) {
-				throw new NetException('CarrotURLは文字列から生成できません。');
+				throw new Exception('CarrotURLは文字列から生成できません。');
 			}
 			if (is_array($contents) || ($contents instanceof ParameterHolder)) {
 				$contents = Tuple::create($contents);
