@@ -36,7 +36,7 @@ class Exception extends \Exception {
 	}
 
 	/**
-	 * 名前を返す
+	 * アラートをとばす
 	 *
 	 * @access public
 	 * @return string 名前
