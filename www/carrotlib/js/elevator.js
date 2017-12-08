@@ -11,16 +11,13 @@ Elevator = Class.create({
     options = Object.extend({
       x: 0,
       yMin: 0,
-      yMargin: 0,
-      seconds: 0.1
+      yMargin: 10,
+      seconds: 0.1,
+      container: window
     }, options);
 
     new PeriodicalExecuter(function () {
-      if (Prototype.Browser.IE){
-        var y = (document.body.scrollTop || document.documentElement.scrollTop);
-      } else  {
-        var y = self.pageYOffset;
-      }
+      var y = options.container.pageYOffset;
       if (y < options.yMin) {
         y = options.yMin;
       } else {
