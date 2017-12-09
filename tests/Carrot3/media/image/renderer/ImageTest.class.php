@@ -11,7 +11,7 @@ class ImageTest extends Test {
 		$this->assert('getSuffixes', Image::getSuffixes()->isContain('.gif'));
 
 		$dir = FileUtils::getDirectory('root');
-		$src = $dir->getEntry('www/carrotlib/images/button/pictogram.gif', 'ImageFile');
+		$src = $dir->getEntry('www/carrotlib/images/button/line.gif', 'ImageFile');
 		$dest = FileUtils::createTemporaryFile('gif', 'ImageFile');
 		$dest->setContents($src->getContents());
 		$this->assert('getType', $dest->getType() == 'image/gif');

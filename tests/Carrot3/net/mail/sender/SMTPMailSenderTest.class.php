@@ -13,7 +13,8 @@ class SMTPMailSenderTest extends Test {
 		} else {
 			$this->assert('initialize', $sender->initialize());
 			$mail = new SmartyMail;
-			$mail->getRenderer()->setTemplate('Exception.mail');
+			$dir = FileUtils::getDirectory('sample');
+			$mail->getRenderer()->setTemplate($dir->getEntry('Exception.mail.tpl'), 'TemplateFile');
 			$mail->getRenderer()->setAttribute('message', Utils::getClass($this));
 			$mail->getRenderer()->setAttribute('priority', Utils::getClass($this));
 			$this->assert('send', !$sender->send($mail));
