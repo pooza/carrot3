@@ -13,6 +13,7 @@ namespace Carrot3;
  * @abstract
  */
 abstract class DataSourceName extends ParameterHolder {
+	protected $constants;
 
 	/**
 	 * @access public
@@ -83,6 +84,11 @@ abstract class DataSourceName extends ParameterHolder {
 	 * @return string 定数
 	 */
 	public function getConstant ($name) {
-		return (new ConstantHandler)['PDO_' . $name];
+		if (!$this->constants) {
+			$this->constants = new ConstantHandler(
+				'PDO_' . $this['connection_name']
+			);
+		}
+		return $this->constants[$name];
 	}
 }
