@@ -196,8 +196,7 @@ class Controller {
 				}
 			}
 
-			$constants = new ConstantHandler;
-			if (!StringUtils::isBlank($value = $constants[$name])) {
+			if (!StringUtils::isBlank($value = (new ConstantHandler)[$name])) {
 				return $value;
 			}
 		}

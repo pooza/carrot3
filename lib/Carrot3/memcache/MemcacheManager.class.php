@@ -22,7 +22,7 @@ class MemcacheManager {
 	 * @access protected
 	 */
 	protected function __construct () {
-		$this->constants = new ConstantHandler('memcache');
+		$this->constants = new ConstantHandler('MEMCACHE');
 	}
 
 	/**

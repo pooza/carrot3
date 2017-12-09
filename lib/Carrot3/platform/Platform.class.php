@@ -115,8 +115,8 @@ abstract class Platform extends ParameterHolder {
 	 */
 	public function getDirectory ($name) {
 		$constants = new ConstantHandler($name);
-		foreach ([$this->getName(), 'default'] as $suffix) {
-			if (!StringUtils::isBlank($path = $constants['dir_' . $suffix])) {
+		foreach ([$this->getName(), 'DEFAULT'] as $suffix) {
+			if (!StringUtils::isBlank($path = $constants['DIR_' . $suffix])) {
 				return new Directory($path);
 			}
 		}
@@ -129,8 +129,8 @@ abstract class Platform extends ParameterHolder {
 	 * @return string プロセスオーナーのユーザー名
 	 */
 	public function getProcessOwner () {
-		$constants = new ConstantHandler('app_process');
-		foreach ([$this->getName(), 'default'] as $suffix) {
+		$constants = new ConstantHandler('APP_PROCESS');
+		foreach ([$this->getName(), 'DEFAULT'] as $suffix) {
 			if (!StringUtils::isBlank($owner = $constants['uid_' . $suffix])) {
 				return $owner;
 			}

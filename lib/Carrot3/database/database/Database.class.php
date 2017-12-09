@@ -38,8 +38,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 			self::$instances = Tuple::create();
 		}
 		if (!self::$instances[$name] || ($flags & self::RECONNECT)) {
-			$constants = new ConstantHandler('PDO');
-			$dsn = $constants[$name . '_DSN'];
+			$dsn = (new ConstantHandler)['PDO_' .  $name . '_DSN'];
 			if (mb_ereg('^([[:alnum:]]+):', $dsn, $matches)) {
 				$class = Loader::getInstance()->getClass($matches[1] . 'DataSourceName');
 				if (($dsn = new $class($dsn, $name)) && ($db = $dsn->connect())) {

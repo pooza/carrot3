@@ -35,7 +35,7 @@ class HostSecurityFilter extends Filter {
 				$this->networks[] = new Network('0.0.0.0/0');
 			} else {
 				$this->networks[] = new Network('127.0.0.1/32');
-				foreach (Tuple::create(BS_ADMIN_NETWORKS) as $network) {
+				foreach (StringUtils::explode(',', BS_ADMIN_NETWORKS) as $network) {
 					$this->networks[] = new Network($network);
 				}
 			}

@@ -208,8 +208,7 @@ class TranslateManager implements \IteratorAggregate {
 	static public function getLanguages () {
 		if (!self::$languages) {
 			self::$languages = self::getInstance()->getHash(
-				Tuple::create(BS_LANGUAGES),
-				'en'
+				Tuple::explode(',', BS_LANGUAGES), 'en'
 			);
 		}
 		return self::$languages;

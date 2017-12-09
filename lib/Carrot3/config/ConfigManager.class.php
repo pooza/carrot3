@@ -81,12 +81,14 @@ class ConfigManager {
 			$name = BS_WEBAPP_DIR . '/config/' . $name;
 		}
 		$class = Loader::getInstance()->getClass($class);
-		$file = new $class($name . '.yaml');
-		if ($file->isExists()) {
-			if (!$file->isReadable()) {
-				throw new ConfigException($file . 'が読めません。');
+		foreach (['.yaml', '.ini'] as $suffix) {
+			$file = new $class($name . $suffix);
+			if ($file->isExists()) {
+				if (!$file->isReadable()) {
+					throw new ConfigException($file . 'が読めません。');
+				}
+				return $file;
 			}
-			return $file;
 		}
 	}
 }

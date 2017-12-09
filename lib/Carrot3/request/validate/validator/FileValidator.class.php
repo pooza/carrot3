@@ -20,7 +20,7 @@ class FileValidator extends Validator {
 		} else if (StringUtils::toUpper($this['suffixes']) == self::ATTACHABLE) {
 			$suffixes = MIMEType::getInstance()->getSuffixes();
 		} else {
-			$suffixes = StringUtils::explode(',', $this['suffixes']);
+			$suffixes = Tuple::create($this['suffixes']);
 		}
 		$suffixes->uniquize();
 		$suffixes->trim();

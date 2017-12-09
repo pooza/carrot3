@@ -129,6 +129,10 @@ class SerializeHandler {
 	 * @static
 	 */
 	static public function getClasses () {
-		return Tuple::create(BS_SERIALIZE_CLASSES);
+		if (StringUtils::isBlank(BS_SERIALIZE_CLASSES)) {
+			return Tuple::create();
+		} else {
+			return StringUtils::explode(',', BS_SERIALIZE_CLASSES);
+		}
 	}
 }
