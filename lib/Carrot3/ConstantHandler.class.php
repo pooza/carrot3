@@ -97,7 +97,7 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 		} else {
 			$key = StringUtils::toUpper($name);
 			$keys[$key] = $key;
-			foreach ([self::PREFIX, null] as $prefix) {
+			foreach ([self::PREFIX, ''] as $prefix) {
 				$key = Tuple::create();
 				if (!StringUtils::isBlank($prefix)) {
 					$key[] = self::PREFIX;

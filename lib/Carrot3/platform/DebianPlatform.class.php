@@ -24,8 +24,8 @@ class DebianPlatform extends LinuxPlatform {
 	 */
 	public function getDirectory ($name) {
 		$constants = new ConstantHandler($name);
-		foreach ([$this->getName(), 'linux', 'default'] as $suffix) {
-			if (!StringUtils::isBlank($path = $constants['dir_' . $suffix])) {
+		foreach ([$this->getName(), 'LINUX', 'DEFAULT'] as $suffix) {
+			if (!StringUtils::isBlank($path = $constants['DIR_' . $suffix])) {
 				return new Directory($path);
 			}
 		}

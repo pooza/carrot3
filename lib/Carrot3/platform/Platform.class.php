@@ -131,7 +131,7 @@ abstract class Platform extends ParameterHolder {
 	public function getProcessOwner () {
 		$constants = new ConstantHandler('APP_PROCESS');
 		foreach ([$this->getName(), 'DEFAULT'] as $suffix) {
-			if (!StringUtils::isBlank($owner = $constants['uid_' . $suffix])) {
+			if (!StringUtils::isBlank($owner = $constants['UID_' . $suffix])) {
 				return $owner;
 			}
 		}

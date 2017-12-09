@@ -154,7 +154,7 @@ class CurlHTTP extends HTTP {
 		if (!$this->getEngine()) {
 			return;
 		}
-		foreach (['CURLOPT', 'CURL', null] as $prefix) {
+		foreach (['CURLOPT', 'CURL', ''] as $prefix) {
 			$constants = new ConstantHandler($prefix);
 			if ($constants->hasParameter($name)) {
 				curl_setopt($this->getEngine(), $constants[$name], $value);
