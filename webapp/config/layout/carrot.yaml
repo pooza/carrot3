@@ -113,8 +113,6 @@ pgsql:
   platform: yes
 php:
   platform: yes
-png2ico:
-  platform: yes
 proctools:
   platform: yes
 pw:

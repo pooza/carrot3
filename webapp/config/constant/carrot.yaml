@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.0.35
+  ver: 3.0.36
 
 admin:
   email:
@@ -28,7 +28,6 @@ app:
   process:
     uid:
       default: nobody
-      darwin: www
       freebsd: www
       debian: www-data
 author:
@@ -42,8 +41,7 @@ clamav:
   command: clamdscan
   dir:
     default: /usr/local
-    darwin: /opt/local
-    linux: /usr
+    debian: /usr
 crypt:
   engine: open_ssl
   method: AES-256-CBC
@@ -57,14 +55,11 @@ debug: yes
 ffmpeg:
   dir:
     default: /usr/local
-    darwin: /opt/local
-    linux: /usr
+    debian: /usr
   convert:
     mp4:
       video_codec: libx264
       audio_codec: aac
-      vpre:
-        linux: libx264-default
     jpg:
       ss: 2
       vframes: 1
@@ -103,8 +98,7 @@ image:
 image_magick:
   dir:
     default: /usr/local
-    darwin: /opt/local
-    linux: /usr
+    debian: /usr
 languages:
   - ja
 log:
@@ -148,7 +142,7 @@ module:
 mysql:
   dir:
     default: /usr/local
-    darwin: /opt/local/lib/mysql56
+    debian: /usr
 net:
   url:
     shorter: google_url_shortner
@@ -175,21 +169,15 @@ pdo:
 pgsql:
   dir:
     default: /usr/local
-    darwin: /opt/local/lib/postgresql96
+    debian: /usr
 php:
   dir:
     default: /usr/local
-    darwin: /opt/local
+    debian: /usr
 pictogram:
-png2ico:
-  dir:
-    default: /usr/local
-    darwin: /opt/local
-    linux: /usr
 proctools:
   dir:
     default: /usr
-    darwin: /opt/local
 pw:
   dir:
     freebsd: /usr
@@ -198,12 +186,12 @@ render:
 ruby:
   dir:
     default: /usr/local
-    darwin: /opt/local
+    debian: /usr
 sendmail:
   dir:
     default: /usr
 serialize:
-  storage: Default
+  storage: Memcache
   serializer: JSON
   classes:
 service:
@@ -244,16 +232,15 @@ smtp:
 sqlite3:
   dir:
     default: /usr/local
-    darwin: /opt/local
-    linux: /usr
+    debian: /usr
 sudo:
   dir:
     default: /usr
-    darwin: /opt/local
     freebsd: /usr/local
 tidy5:
   dir:
     default: /usr/local
+    debian: /usr
 unzip:
   dir:
     default: /usr
