@@ -5,9 +5,9 @@ namespace Carrot3;
  * @package jp.co.b-shock.carrot3
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class DefaultSerializeStorageTest extends Test {
+class FileSerializeStorageTest extends Test {
 	public function execute () {
-		$storage = new DefaultSerializeStorage;
+		$storage = new FileSerializeStorage;
 		if ($storage->initialize()) {
 			$key = Utils::getClass($this);
 			$storage->setAttribute($key, '木の水晶球');
