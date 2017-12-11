@@ -29,7 +29,7 @@ app:
     uid:
       default: nobody
       freebsd: www
-      debian: www-data
+      ubuntu: www-data
 author:
   name:
   email:
@@ -41,7 +41,7 @@ clamav:
   command: clamdscan
   dir:
     default: /usr/local
-    debian: /usr
+    ubuntu: /usr
 crypt:
   engine: open_ssl
   method: AES-256-CBC
@@ -55,7 +55,7 @@ debug: yes
 ffmpeg:
   dir:
     default: /usr/local
-    debian: /usr
+    ubuntu: /usr
   convert:
     mp4:
       video_codec: libx264
@@ -98,7 +98,7 @@ image:
 image_magick:
   dir:
     default: /usr/local
-    debian: /usr
+    ubuntu: /usr
 languages:
   - ja
 log:
@@ -142,7 +142,7 @@ module:
 mysql:
   dir:
     default: /usr/local
-    debian: /usr
+    ubuntu: /usr
 net:
   url:
     shorter: google_url_shortner
@@ -169,11 +169,11 @@ pdo:
 pgsql:
   dir:
     default: /usr/local
-    debian: /usr
+    ubuntu: /usr
 php:
   dir:
     default: /usr/local
-    debian: /usr
+    ubuntu: /usr
 pictogram:
 proctools:
   dir:
@@ -186,7 +186,7 @@ render:
 ruby:
   dir:
     default: /usr/local
-    debian: /usr
+    ubuntu: /usr
 sendmail:
   dir:
     default: /usr
@@ -232,7 +232,7 @@ smtp:
 sqlite3:
   dir:
     default: /usr/local
-    debian: /usr
+    ubuntu: /usr
 sudo:
   dir:
     default: /usr
@@ -240,7 +240,7 @@ sudo:
 tidy5:
   dir:
     default: /usr/local
-    debian: /usr
+    ubuntu: /usr
 unzip:
   dir:
     default: /usr
