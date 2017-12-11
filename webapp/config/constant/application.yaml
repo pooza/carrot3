@@ -16,10 +16,6 @@ crypt:
   password: __YOUR_PASSWORD__
   digest:
     salt: __YOUR_SALT__
-serialize:
-  storage: memcache
-session:
-  storage: memcache
 service:
   google:
     analytics:
