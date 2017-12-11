@@ -10,7 +10,7 @@ module Carrot
   class Constants
     def initialize
       @constants = {}
-      ['carrot', 'application', Carrot::Environment.name].each do |name|
+      ['carrot', 'application', Environment.name].each do |name|
         path = File.join(ROOT_DIR, 'webapp/config/constant', "#{name}.yaml")
         @constants.update(flatten('BS', YAML.load_file(path), '_'))
       end
@@ -18,7 +18,7 @@ module Carrot
 
     def [] (name)
       [
-        "#{name}_#{Carrot::Environment.platform}",
+        "#{name}_#{Environment.platform}",
         "#{name}_DEFAULT",
         name,
       ].each do |name|

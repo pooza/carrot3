@@ -39,8 +39,8 @@ module Carrot
     private
     def self.dest
       return File.join(
-        Carrot::Constants.new['BS_APP_DEPLOY_DIR'],
-        Carrot::Environment.name
+        Constants.new['BS_APP_DEPLOY_DIR'],
+        Environment.name
       )
     end
   end

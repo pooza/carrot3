@@ -17,7 +17,7 @@ module Carrot
 
     def execute
       log nil
-      log "#{Carrot::Environment.name} #{@period} tasks:"
+      log "#{Environment.name} #{@period} tasks:"
       self.each do |action|
         log "== module:#{action[:m]} action:#{action[:a]}"
         system(*create_command(action))
@@ -35,10 +35,10 @@ module Carrot
 
     def create_command (action)
       command = [
-        File.join(Carrot::Constants.new['BS_SUDO_DIR'], 'bin/sudo'),
+        File.join(Constants.new['BS_SUDO_DIR'], 'bin/sudo'),
         '-u',
-        Carrot::Constants.new['BS_APP_PROCESS_UID'],
-        File.join(Carrot::Constants.new['BS_PHP_DIR'], 'bin/php'),
+        Constants.new['BS_APP_PROCESS_UID'],
+        File.join(Constants.new['BS_PHP_DIR'], 'bin/php'),
         File.join(ROOT_DIR, 'bin/carrotctl.php')
       ]
       action.each do |key, value|
@@ -49,12 +49,12 @@ module Carrot
     end
 
     def tasks
-      if Carrot::Environment.development?
+      if Environment.development?
         key = "BS_PERIODIC_DEVELOPMENT_#{@period}"
       else
         key = "BS_PERIODIC_PRODUCTION_#{@period}"
       end
-      return Carrot::Constants.new[key] || []
+      return Constants.new[key] || []
     end
 
     def silent?

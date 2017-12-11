@@ -9,7 +9,7 @@ module Carrot
   class DSN
     def initialize (name = 'default')
       @name = name
-      @dsn = Carrot::Constants.new["BS_PDO_#{name}_DSN"]
+      @dsn = Constants.new["BS_PDO_#{name}_DSN"]
       dsn = @dsn.split(':')
       @scheme = dsn.first
       @db = dsn[1].sub('%BS_VAR_DIR%', File.join(ROOT_DIR, 'var'))

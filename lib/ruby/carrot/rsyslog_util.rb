@@ -11,7 +11,7 @@ module Carrot
     def self.create
       body = []
       body.push("$template #{template_name}, \"#{log_path}\"")
-      body.push("$FileOwner #{Carrot::Constants.new['BS_APP_PROCESS_UID']}")
+      body.push("$FileOwner #{Constants.new['BS_APP_PROCESS_UID']}")
       body.push(":programname, isequal, \"#{program_name}\" -?#{template_name}")
       body.push('')
       puts "create #{dest}"
@@ -33,11 +33,11 @@ module Carrot
 
     private
     def self.program_name
-      return "carrot-#{Carrot::Environment.name}"
+      return "carrot-#{Environment.name}"
     end
 
     def self.template_name
-      return "FilePath#{Carrot::Environment.name.gsub('.', '').capitalize}"
+      return "FilePath#{Environment.name.gsub('.', '').capitalize}"
     end
 
     def self.log_path

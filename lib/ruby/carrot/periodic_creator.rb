@@ -40,7 +40,7 @@ module Carrot
     def self.dirs
       dirs = []
       ['daily', 'hourly', 'frequently'].each do |period|
-        case Carrot::Environment.platform
+        case Environment.platform
           when 'FreeBSD', 'Darwin'
             dirs.push(File.join('/usr/local/etc/periodic', period))
           when 'Debian'
@@ -55,11 +55,11 @@ module Carrot
     end
 
     def dest
-      return "#{prefix}#{self[:basename]}-#{Carrot::Environment.name}"
+      return "#{prefix}#{self[:basename]}-#{Environment.name}"
     end
 
     def prefix
-      case Carrot::Environment.platform
+      case Environment.platform
       when 'FreeBSD', 'Darwin'
         return "/usr/local/etc/periodic/#{self[:period]}/900."
       when 'Debian'
