@@ -188,6 +188,20 @@ class WebRequest extends Request {
 	}
 
 	/**
+	 * 静的ファイルを返す
+	 *
+	 * @access public
+	 * @return File リクエストされた静的ファイルがあれば返す
+	 */
+	public function getStaticFile () {
+		$path = $this->getURL()['path'];
+		if (mb_ereg('/$', $path)) {
+			$path .= 'index.html';
+		}
+		return FileUtils::getDirectory('www')->getEntry($path);
+	}
+
+	/**
 	 * Submitされたか？
 	 *
 	 * @access public
