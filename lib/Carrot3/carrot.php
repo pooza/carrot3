@@ -33,13 +33,9 @@ function p ($var) {
  * @access public
  * @param mixed $var 出力対象
  */
-function putlog ($var) {
+function l ($var) {
 	LogManager::getInstance()->put($var, 'debug');
 }
-
-/*
- * ここから処理開始
- */
 
 spl_autoload_register(function ($name) {
 	require_once BS_LIB_DIR . '/Carrot3/loader/Loader.class.php';
