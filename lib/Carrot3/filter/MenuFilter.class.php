@@ -41,6 +41,9 @@ class MenuFilter extends Filter {
 
 	private function getMenuItem ($values) {
 		$values = Tuple::create($values);
+		if ($values['pc_only'] && $this->request->getUserAgent()->isSmartPhone()) {
+			return;
+		}
 		if (!StringUtils::isBlank($values['module'])) {
 			if (!$module = $this->controller->getModule($values['module'])) {
 				$message = new StringFormat('モジュール "%s" がありません。');
