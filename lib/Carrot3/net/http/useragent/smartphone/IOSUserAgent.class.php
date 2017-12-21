@@ -14,6 +14,15 @@ namespace Carrot3;
 class IOSUserAgent extends WebKitUserAgent {
 
 	/**
+	 * @access protected
+	 * @param string $name ユーザーエージェント名
+	 */
+	protected function __construct ($name = null) {
+		parent::__construct($name);
+		$this->supports['html5_force_datepicker'] = true;
+	}
+
+	/**
 	 * スマートフォンか？
 	 *
 	 * @access public
