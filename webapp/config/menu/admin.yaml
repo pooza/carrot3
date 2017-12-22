@@ -8,7 +8,7 @@
 - module: AdminMemcache
   href: /AdminMemcache/?pane=default_pane
   target: _self
-- module: DevelopTableReport
+- module: AdminTableReport
 - separator: yes
 - title: ログアウト
   module: Default

@@ -1,6 +1,6 @@
 {*
 @package jp.co.b-shock.carrot3
-@subpackage DevelopTableReport
+@subpackage AdminTableReport
 @author 小石達也 <tkoishi@b-shock.co.jp>
 *}
 {include file='AdminHeader'}

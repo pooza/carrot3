@@ -1,19 +1,18 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage DevelopTableReport
+ * @subpackage AdminTableReport
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 
-namespace Carrot3\DevelopTableReportModule;
+namespace Carrot3\AdminTableReportModule;
 use \Carrot3 as C;
 
-class TableAction extends C\Action {
+class DatabaseAction extends C\Action {
 	private $database;
-	private $tableProfile;
 
 	public function getTitle () {
-		return 'テーブル:' . $this->getTableProfile()->getName();
+		return 'データベース:' . $this->getDatabase()->getName();
 	}
 
 	private function getDatabase () {
@@ -23,16 +22,8 @@ class TableAction extends C\Action {
 		return $this->database;
 	}
 
-	private function getTableProfile () {
-		if (!$this->tableProfile) {
-			$this->tableProfile = $this->getDatabase()->getTableProfile($this->request['table']);
-		}
-		return $this->tableProfile;
-	}
-
 	public function execute () {
 		$this->request->setAttribute('database', $this->getDatabase());
-		$this->request->setAttribute('table', $this->getTableProfile());
 		return C\View::SUCCESS;
 	}
 
@@ -41,6 +32,6 @@ class TableAction extends C\Action {
 	}
 
 	public function validate () {
-		return !!$this->getTableProfile();
+		return !!$this->getDatabase();
 	}
 }

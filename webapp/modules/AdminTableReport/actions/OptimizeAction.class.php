@@ -1,14 +1,14 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage DevelopTableReport
+ * @subpackage AdminTableReport
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 
-namespace Carrot3\DevelopTableReportModule;
+namespace Carrot3\AdminTableReportModule;
 use \Carrot3 as C;
 
-class UpdateAction extends C\Action {
+class OptimizeAction extends C\Action {
 	private $database;
 
 	private function getDatabase () {
@@ -19,9 +19,8 @@ class UpdateAction extends C\Action {
 	}
 
 	public function execute () {
-		foreach ($this->getDatabase()->getTableNames() as $table) {
-			$this->getDatabase()->getTableProfile($table)->removeSerialized();
-		}
+		$this->getDatabase()->optimize();
+
 		$url = $this->getModule()->getAction('Database')->createURL();
 		$url->setParameter('database', $this->getDatabase()->getName());
 		return $url->redirect();
