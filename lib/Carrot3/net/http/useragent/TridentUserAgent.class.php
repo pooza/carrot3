@@ -20,8 +20,8 @@ class TridentUserAgent extends UserAgent {
 	 */
 	protected function __construct ($name = null) {
 		parent::__construct($name);
-		$this->supports['html5_audio'] = true;
-		$this->supports['html5_video'] = true;
+		$this->supports['html5_audio'] = !$this->isLegacy();
+		$this->supports['html5_video'] = !$this->isLegacy();
 	}
 
 	/**
