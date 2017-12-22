@@ -190,14 +190,18 @@ abstract class UserAgent extends ParameterHolder {
 	}
 
 	/**
-	 * バグがあるか？
+	 * 再生可能か？
 	 *
 	 * @access public
-	 * @param string $name バグ名
-	 * @return boolean バグがあるならTrue
+	 * @param MediaFile $file
+	 * @return boolean 再生できるならTrue
 	 */
-	public function hasBug ($name) {
-		return !!$this->bugs[$name];
+	public function isPlayable (MediaFile $file) {
+		$types = Tuple::create([
+			'audio/mpeg',
+			'video/mp4',
+		]);
+		return (!$this->isLegacy() && $types->isContain($file->getType()));
 	}
 
 	/**

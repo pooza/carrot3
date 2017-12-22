@@ -93,7 +93,6 @@ class AdministratorRole implements Role {
 		if (!$this->credentials) {
 			$this->credentials = Tuple::create([self::CREDENTIAL]);
 			if (BS_DEBUG) {
-				$this->credentials[] = 'Develop';
 				$this->credentials[] = 'Debug';
 			}
 		}

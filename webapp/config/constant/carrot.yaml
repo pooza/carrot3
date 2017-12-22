@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.0.39
+  ver: 3.0.40
 
 admin:
   email:
@@ -120,7 +120,6 @@ module:
   cache_parameters: yes
   prefixes:
     - Admin
-    - Develop
     - User
     - Agent
     - Console
