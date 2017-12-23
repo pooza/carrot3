@@ -256,6 +256,7 @@ abstract class UserAgent extends ParameterHolder {
 				__CLASS__,
 				(int)$this->hasSupport('html5_video'),
 				(int)$this->hasSupport('html5_audio'),
+				(int)$this->hasSupport('touch'),
 				(int)$this->isMobile(),
 				(int)$this->isSmartPhone(),
 				(int)$this->isTablet(),

@@ -19,6 +19,7 @@ class IOSUserAgent extends WebKitUserAgent {
 	 */
 	protected function __construct ($name = null) {
 		parent::__construct($name);
+		$this->supports['touch'] = true;
 		$this->supports['html5_force_datepicker'] = true;
 	}
 
