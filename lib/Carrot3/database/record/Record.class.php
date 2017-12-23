@@ -634,8 +634,9 @@ abstract class Record implements \ArrayAccess,
 	public function digest () {
 		if (!$this->digest) {
 			$this->digest = Crypt::digest([
-				Utils::getClass($this),
+				__CLASS__,
 				$this->getID(),
+				$this->getUpdateDate()->getTimestamp(),
 			]);
 		}
 		return $this->digest;
