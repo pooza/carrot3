@@ -97,16 +97,6 @@ abstract class Platform extends ParameterHolder {
 	}
 
 	/**
-	 * ファイルの内容から、メディアタイプを返す
-	 *
-	 * @access public
-	 * @return string メディアタイプ
-	 */
-	public function analyzeFile (File $file) {
-		return rtrim(exec('file -b --mime-type ' . $file->getPath()));
-	}
-
-	/**
 	 * ディレクトリを返す
 	 *
 	 * @access public

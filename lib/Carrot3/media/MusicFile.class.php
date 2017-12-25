@@ -14,29 +14,7 @@ namespace Carrot3;
 class MusicFile extends MediaFile {
 
 	/**
-	 * ファイルの内容から、メディアタイプを返す
-	 *
-	 * fileinfoだけでは認識できないメディアタイプがある。
-	 *
-	 * @access public
-	 * @return string メディアタイプ
-	 */
-	public function analyzeType () {
-		if (($type = parent::analyzeType()) == MIMEType::DEFAULT_TYPE) {
-			if (!$this->attributes->count()) {
-				$this->analyze();
-			}
-			foreach (['wma'] as $type) {
-				if (StringUtils::isContain('Audio: ' . $type, $this->output)) {
-					return MIMEType::getType($type);
-				}
-			}
-		}
-		return $type;
-	}
-
-	/**
-	 * mp3に変換して返す
+	 * AACに変換して返す
 	 *
 	 * @access public
 	 * @param MediaConvertor $convertor コンバータ
@@ -44,7 +22,7 @@ class MusicFile extends MediaFile {
 	 */
 	public function convert (MediaConvertor $convertor = null) {
 		if (!$convertor) {
-			$convertor = new MP3MediaConvertor;
+			$convertor = new AACMediaConvertor;
 		}
 		return $convertor->execute($this);
 	}

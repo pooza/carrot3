@@ -33,33 +33,6 @@ class MovieFile extends MediaFile implements ImageContainer {
 	}
 
 	/**
-	 * ファイルの内容から、メディアタイプを返す
-	 *
-	 * fileinfoだけでは認識できないメディアタイプがある。
-	 *
-	 * @access public
-	 * @return string メディアタイプ
-	 */
-	public function analyzeType () {
-		if (($type = parent::analyzeType()) == MIMEType::DEFAULT_TYPE) {
-			foreach (['.webm'] as $type) {
-				if ($this->getSuffix() == $type) {
-					return MIMEType::getType($type);
-				}
-			}
-			if (!$this->attributes->count()) {
-				$this->analyze();
-			}
-			foreach (['wmv'] as $type) {
-				if (StringUtils::isContain('Video: ' . $type, $this->output)) {
-					return MIMEType::getType($type);
-				}
-			}
-		}
-		return $type;
-	}
-
-	/**
 	 * 動画トラックを持つか？
 	 *
 	 * @access public

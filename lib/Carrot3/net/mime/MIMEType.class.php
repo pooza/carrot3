@@ -14,15 +14,27 @@ namespace Carrot3;
 class MIMEType extends ParameterHolder {
 	use Singleton;
 	private $suffixes;
+	private $aliases;
 	const DEFAULT_TYPE = 'application/octet-stream';
 
 	/**
 	 * @access protected
 	 */
 	protected function __construct () {
+		$this->suffixes = Tuple::create();
+		$this->aliases = Tuple::create();
 		foreach (ConfigManager::getInstance()->compile('mime') as $entry) {
-			foreach ($entry['suffixes'] as $suffix) {
-				$this['.' . ltrim($suffix, '.')] = $entry['type'];
+			$entry = Tuple::create($entry);
+			if ($entry['suffixes']) {
+				foreach ($entry['suffixes'] as $suffix) {
+					$this['.' . ltrim($suffix, '.')] = $entry['type'];
+					if (!$this->suffixes->hasParameter($entry['type'])) {
+						$this->suffixes[$entry['type']] = '.' . ltrim($suffix, '.');
+					}
+				}
+			}
+			if ($entry['alias_to']) {
+				$this->aliases[$entry['type']] = $entry['alias_to'];
 			}
 		}
 	}
@@ -54,23 +66,29 @@ class MIMEType extends ParameterHolder {
 	}
 
 	/**
+	 * タイプのエイリアスを解決して返す
+	 *
+	 * @access public
+	 * @param string $type タイプ
+	 * @return string エイリアス解決後のタイプ
+	 */
+	public function resolveType ($type) {
+		if (StringUtils::isBlank($type)) {
+			return MIMEType::DEFAULT_TYPE;
+		}
+		if ($alias = $this->aliases[$type]) {
+			return $alias;
+		}
+		return $type;
+	}
+
+	/**
 	 * サフィックスを返す
 	 *
 	 * @access public
 	 * @return Tuple サフィックス
 	 */
 	public function getSuffixes () {
-		if (!$this->suffixes) {
-			$this->suffixes = Tuple::create();
-			foreach (ConfigManager::getInstance()->compile('mime') as $entry) {
-				foreach ($entry['suffixes'] as $suffix) {
-					if ($this->suffixes->hasParameter($entry['type'])) {
-						continue;
-					}
-					$this->suffixes[$entry['type']] = '.' . ltrim($suffix, '.');
-				}
-			}
-		}
 		return $this->suffixes;
 	}
 

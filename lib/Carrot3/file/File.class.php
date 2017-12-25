@@ -106,21 +106,16 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 		if (!$this->isExists()) {
 			return null;
 		}
-
 		if (!$this->isBinary()) {
 			return $this->getType();
 		}
-		if (extension_loaded('fileinfo') && defined('FILEINFO_MIME_TYPE')) {
-			$finfo = new \finfo(FILEINFO_MIME_TYPE);
-			$type = $finfo->file($this->getPath());
-		} else {
-			$type = $this->controller->getPlatform()->analyzeFile($this);
-		}
 
-		if (StringUtils::isBlank($type)) {
-			$type = MIMEType::DEFAULT_TYPE;
+		if (extension_loaded('fileinfo')) {
+			$type = (new \finfo(FILEINFO_MIME_TYPE))->file($this->getPath());
+		} else {
+			$type = rtrim(exec('file -b --mime-type ' . $file->getPath()));
 		}
-		return $type;
+		return MIMEType::getInstance()->resolveType($type);
 	}
 
 	/**
@@ -224,8 +219,6 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 			throw new FileException($message);
 		} else if (($mode[0] == 'r') && !$this->isExists()) {
 			throw new FileException($this . 'が存在しません。');
-		} else if ($this->isCompressed()) {
-			throw new FileException($this . 'はgzip圧縮されています。');
 		} else if ($this->isOpened()) {
 			throw new FileException($this . 'は既に開かれています。');
 		}
@@ -303,16 +296,7 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 	public function getLines () {
 		if (!$this->lines) {
 			$this->lines = Tuple::create();
-			if ($this->isCompressed()) {
-				if (!extension_loaded('zlib')) {
-					throw new FileException('zlibモジュールがロードされていません。');
-				}
-				foreach (gzfile($this->getPath()) as $line) {
-					$this->lines[] = rtrim($line);
-				}
-			} else {
-				$this->lines->merge(file($this->getPath(), FILE_IGNORE_NEW_LINES));
-			}
+			$this->lines->merge(file($this->getPath(), FILE_IGNORE_NEW_LINES));
 		}
 		return $this->lines;
 	}
@@ -324,14 +308,7 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 	 * @return string 読み込んだ内容
 	 */
 	public function getContents () {
-		if ($this->isCompressed()) {
-			if (!extension_loaded('zlib')) {
-				throw new FileException('zlibモジュールがロードされていません。');
-			}
-			return readgzfile($this->getPath());
-		} else {
-			return file_get_contents($this->getPath());
-		}
+		return file_get_contents($this->getPath());
 	}
 
 	/**
@@ -341,30 +318,8 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 	 * @param string $contents 書き込む内容
 	 */
 	public function setContents ($contents) {
-		if ($this->isCompressed()) {
-			if (!extension_loaded('zlib')) {
-				throw new FileException('zlibモジュールがロードされていません。');
-			}
-			$contents = gzencode($contents, 9);
-		}
 		file_put_contents($this->getPath(), $contents, LOCK_EX);
 		$this->size = null;
-	}
-
-	/**
-	 * gzip圧縮
-	 *
-	 * @access public
-	 */
-	public function compress () {
-		if (!extension_loaded('zlib')) {
-			throw new FileException('zlibモジュールがロードされていません。');
-		}
-		if ($this->isCompressed()) {
-			throw new FileException($this . 'をgzip圧縮することはできません。');
-		}
-		$this->setContents(gzencode($this->getContents(), 9));
-		$this->rename($this->getName() . '.gz');
 	}
 
 	/**
@@ -388,16 +343,6 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 		}
 
 		return false;
-	}
-
-	/**
-	 * gzip圧縮されているか？
-	 *
-	 * @access public
-	 * @return boolean gzip圧縮されていたらTrue
-	 */
-	public function isCompressed () {
-		return ($this->getSuffix() == '.gz');
 	}
 
 	/**
