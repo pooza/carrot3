@@ -5,6 +5,8 @@
 
 - type: audio/x-aac
   suffixes: ['.aac']
+- type: audio/x-hx-aac-adts
+  alias_to: audio/x-aac
 - type: application/postscript
   suffixes: ['.ai']
 - type: audio/x-aiff
@@ -17,6 +19,8 @@
   suffixes: ['.csv']
 - type: application/vnd.ms-word
   suffixes: ['.doc']
+- type: application/msword
+  alias_to: application/vnd.ms-word
 - type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
   suffixes: ['.docx']
 - type: message/rfc822
@@ -43,6 +47,8 @@
   suffixes: ['.json']
 - type: audio/mp4
   suffixes: ['.m4a']
+- type: audio/x-m4a
+  alias_to: audio/mp4
 - type: video/quicktime
   suffixes: ['.mov', '.qt']
 - type: audio/mpeg
@@ -73,6 +79,8 @@
   suffixes: ['.webm']
 - type: video/x-ms-wmv
   suffixes: ['.wmv']
+- type: video/x-ms-asf
+  alias_to: video/x-ms-wmv
 - type: text/yaml
   suffixes: ['.yaml', '.yml']
 - type: application/vnd.ms-excel
