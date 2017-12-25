@@ -32,6 +32,9 @@ class MailAddressValidator extends Validator {
 	 * @return boolean 妥当な値ならばTrue
 	 */
 	public function execute ($value) {
+		if (!extension_loaded('filter')) {
+			throw new ValidateException('filterモジュールがロードされていません。');
+		}
 		if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
 			$this->error = $this['invalid_error'];
 			return false;
