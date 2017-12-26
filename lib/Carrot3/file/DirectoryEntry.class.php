@@ -74,14 +74,20 @@ abstract class DirectoryEntry {
 	public function rename ($name) {
 		if (!$this->isExists()) {
 			throw new FileException($this . 'が存在しません。');
-		} else if (!$this->isWritable($this->getPath())) {
-			throw new FileException($this . 'をリネームできません。');
 		} else if (StringUtils::isContain('/', $name)) {
 			throw new FileException($this . 'をリネームできません。');
 		}
 
 		$path = $this->getDirectory()->getPath() . '/' . basename($name);
-		$this->controller->getPlatform()->renameFile($this, $path);
+
+		$command = new CommandLine('mv');
+		$command->setStderrRedirectable();
+		$command->push($this->getPath());
+		$command->push($path);
+		if ($command->getReturnCode()) {
+			throw new FileException($command->getResult());
+		}
+
 		$this->setPath($path);
 		$this->getDirectory()->clearEntryNames();
 	}
@@ -148,12 +154,17 @@ abstract class DirectoryEntry {
 	public function moveTo (Directory $dir) {
 		if (!$this->isExists()) {
 			throw new FileException($this . 'が存在しません。');
-		} else if (!$this->isWritable() || !$dir->isWritable()) {
-			throw new FileException($this . 'を移動できません。');
 		}
 
 		$path = $dir->getPath() . '/' . $this->getName();
-		$this->controller->getPlatform()->renameFile($this, $path);
+		$command = new CommandLine('mv');
+		$command->setStderrRedirectable();
+		$command->push($this->getPath());
+		$command->push($path);
+		if ($command->getReturnCode()) {
+			throw new FileException($command->getResult());
+		}
+
 		$this->setPath($path);
 	}
 
@@ -342,7 +353,7 @@ abstract class DirectoryEntry {
 	 * @param integer $flags フラグのビット列
 	 */
 	public function setMode ($mode, $flags = 0) {
-		if (!$this->isWritable() || !chmod($this->getPath(), $mode)) {
+		if (!chmod($this->getPath(), $mode)) {
 			throw new FileException($this . 'のファイルモードを変更できません。');
 		}
 	}

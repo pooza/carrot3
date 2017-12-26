@@ -196,11 +196,6 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 	 * @access public
 	 */
 	public function delete () {
-		if (!$this->isWritable($this->getPath())) {
-			throw new FileException($this . 'を削除できません。');
-		} else if ($this->isOpened()) {
-			throw new FileException($this . 'は既に開かれています。');
-		}
 		if (!unlink($this->getPath())) {
 			throw new FileException($this . 'を削除できません。');
 		}

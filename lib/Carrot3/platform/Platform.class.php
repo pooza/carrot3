@@ -34,8 +34,8 @@ abstract class Platform extends ParameterHolder {
 	static public function create ($name) {
 		try {
 			$class = Loader::getInstance()->getClass($name . 'Platform');
-		} catch (\Exception $e) {
-			$class = 'DefaultPlatform';
+		} catch (LoaderException $e) {
+			$class = Loader::getInstance()->getClass('DefaultPlatform');
 		}
 		return new $class([
 			'name' => $name,
@@ -81,19 +81,6 @@ abstract class Platform extends ParameterHolder {
 			}
 		}
 		return $constants;
-	}
-
-	/**
-	 * ファイルをリネーム
-	 *
-	 * @access public
-	 * @param DirectoryEntry $file 対象ファイル
-	 * @param string $path リネーム後のパス
-	 */
-	public function renameFile (DirectoryEntry $file, $path) {
-		if (!rename($file->getPath(), $path)) {
-			throw new FileException($this . 'を移動できません。');
-		}
 	}
 
 	/**

@@ -149,17 +149,6 @@ class ImageFile extends MediaFile implements ImageContainer {
 
 		$this->removeImageCache('image');
 		$this->setContents($this->getRenderer()->getContents());
-
-		if (!BS_IMAGE_STORABLE) {
-			$command = new CommandLine('bin/mogrify');
-			$command->setDirectory(FileUtils::getDirectory('image_magick'));
-			if ($command->isExists()) {
-				$command->addValue('-comment', true);
-				$command->addValue('kddi_copyright=on,copy="NO"');
-				$command->addValue($this->getPath());
-				$command->execute();
-			}
-		}
 	}
 
 	/**

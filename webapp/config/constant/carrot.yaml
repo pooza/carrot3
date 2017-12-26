@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.0.42
+  ver: 3.0.43
 
 admin:
   email:
@@ -74,7 +74,6 @@ geocode:
   map:
     function: CarrotMapsLib.handleMap
 image:
-  storable: yes
   renderers:
     default:
       class: Image

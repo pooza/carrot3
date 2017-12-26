@@ -10,5 +10,13 @@ class PlatformTest extends Test {
 		$platform = $this->controller->getPlatform();
 		$this->assert('getPlatform', $platform instanceof Platform);
 		$this->assert('getName', !!$platform->getName());
+
+		$platform = Platform::create('freebsd');
+		$this->assert('create_FreeBSD', $platform instanceof Platform);
+		$this->assert('getProcessOwner_FreeBSD', $platform->getProcessOwner() == 'www');
+
+		$platform = Platform::create('ubuntu');
+		$this->assert('create_Ubuntu', $platform instanceof Platform);
+		$this->assert('getProcessOwner_Ubuntu', $platform->getProcessOwner() == 'www-data');
 	}
 }

@@ -138,10 +138,11 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		$path = $this->getPath() . '/' . StringUtils::stripControlCharacters($name);
 		if ($this->hasSubDirectory() && is_dir($path)) {
 			return new Directory($path);
-		} else if (is_file($path)) {
-			return new $class($path);
-		} else if (is_file($path .= $this->getDefaultSuffix())) {
-			return new $class($path);
+		}
+		foreach ([$path, $path . $this->getDefaultSuffix()] as $path) {
+			if (is_file($path) || is_link($path)) {
+				return new $class($path);
+			}
 		}
 	}
 
@@ -199,9 +200,15 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * @access public
 	 */
 	public function delete () {
-		$this->clear();
-		if (!rmdir($this->getPath())) {
-			throw new FileException($this . 'を削除できません。');
+		if ($this->isLink()) {
+			if (!unlink($this->getPath())) {
+				throw new FileException($this . 'を削除できません。');
+			}
+		} else {
+			$this->clear();
+			if (!rmdir($this->getPath())) {
+				throw new FileException($this . 'を削除できません。');
+			}
 		}
 	}
 
@@ -213,7 +220,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	public function clear () {
 		$iterator = new \DirectoryIterator($this->getPath());
 		foreach ($iterator as $entry) {
-			if ($entry->isDot() || !$entry->isWritable()) {
+			if ($entry->isDot()) {
 				continue;
 			}
 			$this->getEntry($entry->getFileName())->delete();
