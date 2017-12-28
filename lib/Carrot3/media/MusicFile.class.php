@@ -14,7 +14,7 @@ namespace Carrot3;
 class MusicFile extends MediaFile {
 
 	/**
-	 * AACに変換して返す
+	 * MP3に変換して返す
 	 *
 	 * @access public
 	 * @param MediaConvertor $convertor コンバータ
@@ -22,7 +22,7 @@ class MusicFile extends MediaFile {
 	 */
 	public function convert (MediaConvertor $convertor = null) {
 		if (!$convertor) {
-			$convertor = new AACMediaConvertor;
+			$convertor = new MP3MediaConvertor;
 		}
 		return $convertor->execute($this);
 	}

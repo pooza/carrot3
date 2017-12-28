@@ -113,7 +113,7 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 		if (extension_loaded('fileinfo')) {
 			$type = (new \finfo(FILEINFO_MIME_TYPE))->file($this->getPath());
 		} else {
-			$type = rtrim(exec('file -b --mime-type ' . $file->getPath()));
+			$type = rtrim(exec('file -b --mime-type ' . $this->getPath()));
 		}
 		return MIMEType::getInstance()->resolveType($type);
 	}

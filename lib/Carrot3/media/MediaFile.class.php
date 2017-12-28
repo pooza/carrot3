@@ -104,6 +104,19 @@ abstract class MediaFile extends File implements \ArrayAccess, Assignable {
 	}
 
 	/**
+	 * ファイルの内容から、メディアタイプを返す
+	 *
+	 * @access public
+	 * @return string メディアタイプ
+	 */
+	public function analyzeType () {
+		if (($type = parent::analyzeType()) == MIMEType::DEFAULT_TYPE) {
+			$type = parent::getType();
+		}
+		return MIMEType::getInstance()->resolveType($type);
+	}
+
+	/**
 	 * 表示用のHTML要素を返す
 	 *
 	 * @access public

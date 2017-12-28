@@ -41,7 +41,7 @@ class MusicValidator extends Validator {
 				}
 			}
 		} catch (\Exception $e) {
-			$this->error = $this['invalid_error'];
+			$this->error = $this['invalid_error'] . '(' . $e->getMessage() . ')';
 		}
 		return StringUtils::isBlank($this->error);
 	}

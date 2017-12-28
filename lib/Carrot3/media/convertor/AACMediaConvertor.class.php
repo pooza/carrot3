@@ -7,7 +7,7 @@
 namespace Carrot3;
 
 /**
- * MPEG4 Audio (AAC)への変換
+ * AACへの変換
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */

@@ -72,7 +72,7 @@ class FileUtils {
 	static public function getSuffix ($name) {
 		$parts = StringUtils::explode('.', $name);
 		if (1 < $parts->count()) {
-			return '.' . $parts->getIterator()->getLast();
+			return StringUtils::toLower('.' . $parts->getIterator()->getLast());
 		}
 	}
 
