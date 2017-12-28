@@ -126,7 +126,6 @@ abstract class UserAgent extends ParameterHolder {
 		$view->setAttribute('server_host', $this->controller->getHost());
 		$view->setAttribute('is_ssl', $this->request->isSSL());
 		$view->setAttribute('is_debug', BS_DEBUG);
-		$view->setAttribute('is_image_storable', BS_IMAGE_STORABLE);
 		$view->setAttribute('session', [
 			'name' => $this->request->getSession()->getName(),
 			'id' => $this->request->getSession()->getID(),
@@ -352,7 +351,6 @@ abstract class UserAgent extends ParameterHolder {
 	public function assign () {
 		$values = $this->getParameters();
 		$values['supports'] = $this->supports;
-		$values['bugs'] = $this->bugs;
 		return $values;
 	}
 
