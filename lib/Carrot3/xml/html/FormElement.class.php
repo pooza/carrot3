@@ -25,7 +25,6 @@ class FormElement extends HTMLElement {
 		foreach ($this->getUserAgent()->getQuery() as $key => $value) {
 			$this->addHiddenField($key, $value);
 		}
-		$this->disableMultiSubmit();
 	}
 
 	/**
@@ -116,15 +115,6 @@ class FormElement extends HTMLElement {
 	public function addSubmitFields () {
 		$this->addHiddenField('dummy', '符号形式識別用文字列');
 		$this->addHiddenField(self::SUBMITTED_FIELD, 1);
-	}
-
-	/**
-	 * 二度押し防止
-	 *
-	 * @access public
-	 */
-	public function disableMultiSubmit () {
-		$this->setAttribute('onsubmit', 'this.onsubmit=function(){return false}');
 	}
 
 	/**
