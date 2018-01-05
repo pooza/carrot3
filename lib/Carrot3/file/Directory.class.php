@@ -220,7 +220,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	public function clear () {
 		$iterator = new \DirectoryIterator($this->getPath());
 		foreach ($iterator as $entry) {
-			if ($entry->isDot()) {
+			if (FileUtils::isDottedName($entry->getFileName())) {
 				continue;
 			}
 			$this->getEntry($entry->getFileName())->delete();
