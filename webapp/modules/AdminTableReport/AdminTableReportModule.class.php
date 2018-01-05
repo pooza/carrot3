@@ -10,10 +10,10 @@ use \Carrot3 as C;
 
 class AdminTableReportModule extends C\Module {
 	public function getTitle () {
-		return 'TableReport管理モジュール';
+		return 'データベースモジュール';
 	}
 
 	public function getMenuTitle () {
-		return 'TableReport';
+		return 'データベース';
 	}
 }
