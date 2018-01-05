@@ -20,7 +20,6 @@ class SessionHandler {
 	 * @access public
 	 */
 	public function __construct () {
-		session_write_close();
 		ini_set('session.use_cookies', 1);
 		ini_set('session.cookie_httponly', 1);
 		ini_set('session.use_only_cookies', 1);
@@ -68,7 +67,9 @@ class SessionHandler {
 	 */
 	protected function getStorage () {
 		if (!$this->storage) {
-			$this->storage = $this->loader->createObject(BS_SESSION_STORAGE . 'SessionStorage');
+			$this->storage = $this->loader->createObject(
+				BS_SESSION_STORAGE . 'SessionStorage'
+			);
 		}
 		return $this->storage;
 	}
