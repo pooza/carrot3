@@ -68,6 +68,7 @@ class HTMLFragmentValidator extends Validator {
 			'^trimming empty <([^>]+)>' => '<%s>タグの中身が空です。',
 			'^<[^>]+> attribute "[^"]+" has invalid value' => null,
 			'^<[^>]+> proprietary attribute "[^"]+"' => null,
+			'^<[^>]+> illegal characters found in URI' => null,
 		];
 		$message = str_replace('Warning: ', '', $message);
 		foreach ($templates as $pattern => $template) {
