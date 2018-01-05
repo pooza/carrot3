@@ -198,16 +198,14 @@ class StringUtils {
 	 * @return mixed 変換後
 	 * @static
 	 */
-	static public function truncate ($value, $length, $suffix = '...') {
+	static public function truncate ($value, $length, $suffix = '…') {
 		if (is_array($value) || ($value instanceof ParameterHolder)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::truncate($item, $length, $suffix);
 			}
 		} else if ($length < self::getWidth($value)) {
 			$value = mb_ereg_replace('[[:space:]]', null, $value);
-			$value = self::convertEncoding($value, 'eucjp-win', 'utf-8');
-			$value = mb_strcut($value, 0, $length, 'eucjp-win') . $suffix;
-			$value = self::convertEncoding($value, 'utf-8', 'eucjp-win');
+			$value = mb_strcut($value, 0, $length) . $suffix;
 		}
 		return $value;
 	}

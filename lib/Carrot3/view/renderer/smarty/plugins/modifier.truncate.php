@@ -13,6 +13,6 @@ use \Carrot3 as C;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-function smarty_modifier_truncate ($value, $length = 80, $suffix = '...') {
+function smarty_modifier_truncate ($value, $length = 80, $suffix = '…') {
 	return C\StringUtils::truncate($value, $length, $suffix);
 }
