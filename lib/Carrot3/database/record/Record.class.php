@@ -462,7 +462,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $size
 	 */
 	public function removeImageCache ($size) {
-		(new ImageManager)->removeThumbnail($this, $size);
+		(new ImageManager)->removeEntry($this, $size);
 	}
 
 	/**
@@ -475,7 +475,7 @@ abstract class Record implements \ArrayAccess,
 	 * @return Tuple 画像の情報
 	 */
 	public function getImageInfo ($size, $pixel = null, $flags = 0) {
-		return (new ImageManager)->getImageInfo($this, $size, $pixel, $flags);
+		return (new ImageManager)->getInfo($this, $size, $pixel, $flags);
 	}
 
 	/**

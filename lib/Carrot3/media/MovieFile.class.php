@@ -137,7 +137,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 		if (!parent::validate()) {
 			return false;
 		}
-		return (MIMEUtils::getMainType($this->analyzeType()) == 'video');
+		return ($this->getMainType() == 'video');
 	}
 
 	/**
@@ -163,7 +163,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 */
 	public function getImageInfo ($size, $pixel = null, $flags = 0) {
 		if ($file = $this->getImageFile('image')) {
-			$info = (new ImageManager)->getImageInfo($file, $size, $pixel, $flags);
+			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
 			$info['alt'] = $this->getLabel();
 			return $info;
 		}
@@ -216,18 +216,5 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 */
 	public function __toString () {
 		return sprintf('動画ファイル "%s"', $this->getShortPath());
-	}
-
-	/**
-	 * 探す
-	 *
-	 * @access public
-	 * @param mixed $file パラメータ配列、File、ファイルパス文字列
-	 * @param string $class クラス名
-	 * @return File ファイル
-	 * @static
-	 */
-	static public function search ($file, $class = 'MovieFile') {
-		return parent::search($file, $class);
 	}
 }

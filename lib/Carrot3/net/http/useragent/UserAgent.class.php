@@ -198,9 +198,11 @@ abstract class UserAgent extends ParameterHolder {
 	public function isPlayable (MediaFile $file) {
 		$types = Tuple::create([
 			'audio/mpeg',
+			'audio/aac',
+			'audio/mp4',
 			'video/mp4',
 		]);
-		return (!$this->isLegacy() && $types->isContain($file->getType()));
+		return (!$this->isLegacy() && $types->isContain($file->analyzeType()));
 	}
 
 	/**

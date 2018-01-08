@@ -3,10 +3,12 @@
 # @package jp.co.b-shock.carrot3
 # @author 小石達也 <tkoishi@b-shock.co.jp>
 
-- type: audio/x-aac
+- type: audio/aac
   suffixes: ['.aac']
+- type: audio/x-aac
+  alias_to: audio/aac
 - type: audio/x-hx-aac-adts
-  alias_to: audio/x-aac
+  alias_to: audio/aac
 - type: application/postscript
   suffixes: ['.ai']
 - type: audio/x-aiff

@@ -22,7 +22,6 @@ class ImageManager {
 	const WIDTH_FIXED = 2;
 	const HEIGHT_FIXED = 4;
 	const WITHOUT_SQUARE = 8;
-	const FORCE_GIF = 16;
 
 	/**
 	 * @access public
@@ -32,16 +31,6 @@ class ImageManager {
 		$this->directory = FileUtils::getDirectory('image_cache');
 		$this->setFlags($flags);
 		$this->setUserAgent($this->request->getUserAgent());
-	}
-
-	/**
-	 * 保存可能か？
-	 *
-	 * @access public
-	 * @return boolean 保存可能ならTrue
-	 */
-	public function isStorable () {
-		return !!BS_IMAGE_STORABLE;
 	}
 
 	/**
@@ -162,7 +151,6 @@ class ImageManager {
 	 *   self::WIDTH_FIXED 幅固定
 	 *   self::HEIGHT_FIXED 高さ固定
 	 *   self::WITHOUT_SQUARE 正方形に整形しない
-	 *   self::FORCE_GIF gif形式を強制
 	 * @return URL URL
 	 */
 	public function createURL (ImageContainer $record, $size, $pixel = null, $flags = 0) {
@@ -177,86 +165,13 @@ class ImageManager {
 	}
 
 	/**
-	 * サムネイルのURLを返す
-	 *
-	 * createURLのエイリアス
-	 *
-	 * @access public
-	 * @param ImageContainer $record 対象レコード
-	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセル数
-	 * @param integer $flags フラグのビット列
-	 * @return URL URL
-	 */
-	final public function getURL (ImageContainer $record, $size, $pixel = null, $flags = 0) {
-		return $this->createURL($record, $size, $pixel, $flags);
-	}
-
-	/**
-	 * サムネイルを返す
-	 *
-	 * @access public
-	 * @param ImageContainer $record 対象レコード
-	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセル数
-	 * @param integer $flags フラグのビット列
-	 *   self::WIDTH_FIXED 幅固定
-	 *   self::HEIGHT_FIXED 高さ固定
-	 *   self::WITHOUT_SQUARE 正方形に整形しない
-	 *   self::FORCE_GIF gif形式を強制
-	 * @return Image サムネイル
-	 */
-	public function getThumbnail (ImageContainer $record, $size, $pixel, $flags = 0) {
-		$flags |= $this->flags;
-		if (!$file = $this->getFile($record, $size, $pixel, $flags)) {
-			return null;
-		}
-		try {
-			return $file->getRenderer();
-		} catch (\Exception $e) {
-			$file->delete();
-			LogManager::getInstance()->put($file . 'を削除しました。');
-		}
-	}
-
-	/**
-	 * サムネイルを設定する
-	 *
-	 * @access public
-	 * @param ImageContainer $record 対象レコード
-	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセル数
-	 * @param mixed $contents サムネイルの内容
-	 * @param integer $flags フラグのビット列
-	 *   self::WIDTH_FIXED 幅固定
-	 *   self::HEIGHT_FIXED 高さ固定
-	 *   self::WITHOUT_SQUARE 正方形に整形しない
-	 *   self::FORCE_GIF gif形式を強制
-	 * @param Image サムネイル
-	 */
-	public function setThumbnail (ImageContainer $record, $size, $pixel, $contents, $flags = 0) {
-		$flags |= $this->flags;
-		$dir = $this->getEntryDirectory($record, $size);
-		$name = $this->createFileName($record->getImageFile($size), $pixel, $flags);
-		if ($flags & self::FORCE_GIF) {
-			$dir->setDefaultSuffix('.gif');
-		}
-		if (!$file = $dir->getEntry($name, 'ImageFile')) {
-			$file = $dir->createEntry($name, 'ImageFile');
-		}
-		$file->setRenderer($this->convert($record, $pixel, $contents, $flags));
-		$file->save();
-		return $file->getRenderer();
-	}
-
-	/**
 	 * サムネイルを削除する
 	 *
 	 * @access public
 	 * @param ImageContainer $record 対象レコード
 	 * @param string $size サイズ名
 	 */
-	public function removeThumbnail (ImageContainer $record, $size) {
+	public function removeEntry (ImageContainer $record, $size) {
 		if ($dir = $this->getEntryDirectory($record, $size)) {
 			$dir->delete();
 		}
@@ -274,12 +189,18 @@ class ImageManager {
 	 *   self::WIDTH_FIXED 幅固定
 	 *   self::HEIGHT_FIXED 高さ固定
 	 *   self::WITHOUT_SQUARE 正方形に整形しない
-	 *   self::FORCE_GIF gif形式を強制
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo (ImageContainer $record, $size, $pixel = null, $flags = 0) {
+	public function getInfo (ImageContainer $record, $size, $pixel = null, $flags = 0) {
 		$flags |= $this->flags;
-		if (!$image = $this->getThumbnail($record, $size, $pixel, $flags)) {
+		if (!$file = $this->getFile($record, $size, $pixel, $flags)) {
+			return;
+		}
+		try {
+			$image = $file->getRenderer();
+		} catch (\Exception $e) {
+			$file->delete();
+			LogManager::getInstance()->put($file . 'を削除しました。' . $e->getMessage());
 			return;
 		}
 
@@ -295,86 +216,33 @@ class ImageManager {
 		return $info;
 	}
 
-	/**
-	 * サムネイルファイルを返す
-	 *
-	 * @access protected
-	 * @param ImageContainer $record 対象レコード
-	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセル数
-	 * @param integer $flags フラグのビット列
-	 *   self::WIDTH_FIXED 幅固定
-	 *   self::HEIGHT_FIXED 高さ固定
-	 *   self::WITHOUT_SQUARE 正方形に整形しない
-	 *   self::FORCE_GIF gif形式を強制
-	 * @return File サムネイルファイル
-	 */
 	protected function getFile (ImageContainer $record, $size, $pixel, $flags = 0) {
 		if (!$source = $record->getImageFile($size)) {
 			return null;
 		}
-
 		$flags |= $this->flags;
 		$dir = $this->getEntryDirectory($record, $size);
 		$name = $this->createFileName($record->getImageFile($size), $pixel, $flags);
-		if ($flags & self::FORCE_GIF) {
-			$name .= '.gif';
-		}
 		if (!$file = $dir->getEntry($name, 'ImageFile')) {
-			$this->setThumbnail($record, $size, $pixel, $source, $flags);
-			$file = $dir->getEntry($name, 'ImageFile');
+			$dir = $this->getEntryDirectory($record, $size);
+			$name = $this->createFileName($record->getImageFile($size), $pixel, $flags);
+			if (!$file = $dir->getEntry($name, 'ImageFile')) {
+				$file = $dir->createEntry($name, 'ImageFile');
+			}
+			$file->setRenderer($this->convert($record, $pixel, $source, $flags));
+			$file->save();
 		}
 		return $file;
 	}
 
-	/**
-	 * サムネイルファイルのファイル名を返す
-	 *
-	 * @access protected
-	 * @param ImageFile $file 対象ファイル
-	 * @param integer $pixel ピクセル数
-	 * @param integer $flags フラグのビット列
-	 *   self::WIDTH_FIXED 幅固定
-	 *   self::HEIGHT_FIXED 高さ固定
-	 *   self::WITHOUT_SQUARE 正方形に整形しない
-	 * @return File サムネイルファイル
-	 */
 	protected function createFileName (ImageFile $file, $pixel, $flags = 0) {
-		$values = Tuple::create([
-			'id' => $file->getID(),
-			'pixel' => $pixel,
+		return Crypt::digest([
+			$file->getID(),
+			$pixel,
+			$this->flags | $flags,
 		]);
-		$flags |= $this->flags;
-		if (!$pixel) {
-			if ($width = $this->getDefaultWidth()) {
-				$values['prefix'] = 'w';
-				$values['pixel'] = $width;
-			}
-		} else if ($flags & self::WITHOUT_SQUARE) {
-			$values['prefix'] = 's';
-		} else if ($flags & self::WIDTH_FIXED) {
-			$values['prefix'] = 'w';
-		} else if ($flags & self::HEIGHT_FIXED) {
-			$values['prefix'] = 'h';
-		}
-		return Crypt::digest($values);
 	}
 
-	/**
-	 * 画像を変換して返す
-	 *
-	 * @access protected
-	 * @param ImageContainer $record 対象レコード
-	 * @param integer $pixel ピクセル数
-	 * @param mixed $contents サムネイルの内容
-	 * @param integer $flags フラグのビット列
-	 *   self::WIDTH_FIXED 幅固定
-	 *   self::HEIGHT_FIXED 高さ固定
-	 *   self::WITHOUT_SQUARE 正方形に整形しない
-	 *   self::FORCE_GIF gif形式を強制
-	 * @param string $class レンダラーのクラス
-	 * @return Image サムネイル
-	 */
 	protected function convert (ImageContainer $record, $pixel, $contents, $flags = 0) {
 		$params = ImageManager::getRendererEntries()['default'];
 		$class = $this->loader->getClass($params['class']);
@@ -382,11 +250,7 @@ class ImageManager {
 		$image->setBackgroundColor($this->getBackgroundColor());
 		$image->setImage($contents);
 		$flags |= $this->flags;
-		if ($flags & self::FORCE_GIF) {
-			$image->setType(MIMEType::getType('gif'));
-		} else {
-			$image->setType($this->getType());
-		}
+		$image->setType($this->getType());
 
 		if ($pixel) {
 			if ($flags & self::WITHOUT_SQUARE) {
@@ -408,14 +272,6 @@ class ImageManager {
 		return $image;
 	}
 
-	/**
-	 * サムネイル名を生成して返す
-	 *
-	 * @access protected
-	 * @param ImageContainer $record 対象レコード
-	 * @param string $size サイズ名
-	 * @return string サムネイル名
-	 */
 	protected function createEntryName (ImageContainer $record, $size) {
 		return Crypt::digest([
 			Utils::getClass($record),
@@ -424,14 +280,6 @@ class ImageManager {
 		]);
 	}
 
-	/**
-	 * サムネイルエントリーの格納ディレクトリを返す
-	 *
-	 * @access protected
-	 * @param ImageContainer $record 対象レコード
-	 * @param string $size サイズ名
-	 * @return string サムネイル名
-	 */
 	protected function getEntryDirectory (ImageContainer $record, $size) {
 		$name = $this->createEntryName($record, $size);
 		if (!$dir = $this->directory->getEntry($name)) {
@@ -445,7 +293,7 @@ class ImageManager {
 	 * 画像情報から、HTMLのimg要素を返す
 	 *
 	 * @access public
-	 * @param Tuple $info getImageInfoで取得した画像情報
+	 * @param Tuple $info getInfoで取得した画像情報
 	 * @return XMLElement img要素
 	 */
 	public function createElement (Tuple $info) {
@@ -461,20 +309,14 @@ class ImageManager {
 	 * @param ParameterHolder $params パラメータ配列
 	 * @return ImageContainer 画像コンテナ
 	 */
-	public function getContainer (ParameterHolder $params) {
+	public function search (ParameterHolder $params) {
 		$params = Tuple::create($params);
 		if (!StringUtils::isBlank($path = $params['src'])) {
-			$finder = new FileFinder;
+			$finder = new MediaFileFinder;
 			if ($dir = $params['dir']) {
 				$finder->registerDirectory($dir);
 			}
-			if ($file = $finder->execute($path)) {
-				if ($file->getMainType() == 'image') {
-					return new ImageFile($file->getPath());
-				} else if ($file->getMainType() == 'video') {
-					return new MovieFile($file->getPath());
-				}
-			}
+			return $finder->execute($path);
 		}
 
 		$finder = new RecordFinder($params);

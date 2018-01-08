@@ -170,39 +170,6 @@ class HTMLElement extends XMLElement {
 	}
 
 	/**
-	 * コンテナの配置を設定して返す
-	 *
-	 * @access protected
-	 * @param string $value 配置
-	 * @return DivisionElement ラッパー要素
-	 */
-	public function setAlignment ($value) {
-		$wrapper = $this->createWrapper();
-		if ($value == 'center') {
-			$wrapper->setStyle('width', '100%');
-		}
-		$wrapper->registerStyleClass($value);
-		return $wrapper;
-	}
-
-	/**
-	 * コンテナのキャプションを設定
-	 *
-	 * @access public
-	 * @param string $value キャプション
-	 * @return DivisionElement ラッパー要素
-	 */
-	public function setCaption ($value) {
-		$wrapper = $this->createWrapper();
-		if (!StringUtils::isBlank($value)) {
-			$element = $wrapper->addElement(new DivisionElement);
-			$element->registerStyleClass('caption');
-			$element->setBody($value);
-		}
-		return $wrapper;
-	}
-
-	/**
 	 * div要素のラッパーを返す
 	 *
 	 * @access protected

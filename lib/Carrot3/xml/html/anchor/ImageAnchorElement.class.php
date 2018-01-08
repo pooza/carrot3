@@ -25,7 +25,6 @@ abstract class ImageAnchorElement extends AnchorElement {
 	 *   self::WIDTH_FIXED 幅固定
 	 *   self::HEIGHT_FIXED 高さ固定
 	 *   self::WITHOUT_SQUARE 正方形に整形しない
-	 *   self::FORCE_GIF gif形式を強制
 	 * @return URL URL
 	 */
 	public function setImage (ImageContainer $record, $size, $pixel = null, $flags = 0) {

@@ -20,8 +20,8 @@ function smarty_function_image ($params, &$smarty) {
 	}
 
 	$manager = $smarty->getUserAgent()->createImageManager($params['flags']);
-	if (($record = $manager->getContainer($params))
-		&& ($info = $manager->getImageInfo($record, $params['size'], $params['pixel']))) {
+	if (($record = $manager->search($params))
+		&& ($info = $manager->getInfo($record, $params['size'], $params['pixel']))) {
 
 		$element = $manager->createElement($info);
 		$element->setAttribute('align', $params['align']);
@@ -41,7 +41,6 @@ function smarty_function_image ($params, &$smarty) {
 			case 'lity':
 				$anchor = C\Loader::getInstance()->createObject($mode . 'AnchorElement');
 				$element = $element->wrap($anchor);
-				$element->setCaption($info['alt']);
 				try {
 					$element->setImage(
 						$record, $params['size'], $params['pixel_full'], $params['flags_full']

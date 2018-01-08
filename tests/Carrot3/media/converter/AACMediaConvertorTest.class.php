@@ -11,7 +11,7 @@ class AACMediaConvertorTest extends Test {
 		if ($file = FileUtils::getDirectory('sample')->getEntry('roper.mp3')) {
 			$source = $file->copyTo(FileUtils::getDirectory('tmp'), 'MusicFile');
 			$dest = $convertor->execute($source);
-			$this->assert('analyzeType', ($dest->analyzeType() == 'audio/x-aac'));
+			$this->assert('analyzeType', ($dest->analyzeType() == 'audio/aac'));
 			$source->delete();
 			$dest->delete();
 		}

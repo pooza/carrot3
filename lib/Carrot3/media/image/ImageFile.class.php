@@ -179,7 +179,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @param string $size
 	 */
 	public function removeImageCache ($size) {
-		(new ImageManager)->removeThumbnail($this, $size);
+		(new ImageManager)->removeEntry($this, $size);
 	}
 
 	/**
@@ -192,7 +192,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @return Tuple 画像の情報
 	 */
 	public function getImageInfo ($size, $pixel = null, $flags = 0) {
-		return (new ImageManager)->getImageInfo($this, $size, $pixel, $flags);
+		return (new ImageManager)->getInfo($this, $size, $pixel, $flags);
 	}
 
 	/**
@@ -239,7 +239,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 		if (!parent::validate()) {
 			return false;
 		}
-		return (MIMEUtils::getMainType($this->analyzeType()) == 'image');
+		return ($this->getMainType() == 'image');
 	}
 
 	/**
@@ -267,18 +267,5 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 */
 	public function __toString () {
 		return sprintf('画像ファイル "%s"', $this->getShortPath());
-	}
-
-	/**
-	 * 探す
-	 *
-	 * @access public
-	 * @param mixed $file パラメータ配列、File、ファイルパス文字列
-	 * @param string $class クラス名
-	 * @return File ファイル
-	 * @static
-	 */
-	static public function search ($file, $class = 'ImageFile') {
-		return parent::search($file, $class);
 	}
 }

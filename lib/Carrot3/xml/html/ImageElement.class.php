@@ -24,19 +24,6 @@ class ImageElement extends HTMLElement {
 	}
 
 	/**
-	 * 対象UserAgentを設定
-	 *
-	 * @access public
-	 * @param UserAgent $useragent 対象UserAgent
-	 */
-	public function setUserAgent (UserAgent $useragent) {
-		parent::setUserAgent($useragent);
-		if (!BS_IMAGE_STORABLE && $useragent->hasSupport('image_copyright')) {
-			$this->setAttribute('copyright', 'yes');
-		}
-	}
-
-	/**
 	 * 空要素か？
 	 *
 	 * @access public

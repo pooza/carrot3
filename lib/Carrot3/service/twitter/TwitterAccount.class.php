@@ -153,7 +153,7 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 */
 	public function getImageInfo ($size, $pixel = null, $flags = 0) {
 		if ($file = $this->getImageFile()) {
-			$info = (new ImageManager)->getImageInfo($file, $size, $pixel, $flags);
+			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
 			$info['alt'] = $this->getLabel();
 			return $info;
 		}

@@ -34,6 +34,14 @@ class ImagickImage extends Image {
 	}
 
 	/**
+	 * @access public
+	 */
+	public function __destruct () {
+		parent::__destruct();
+		unset($this->imagick);
+	}
+
+	/**
 	 * Imagickオブジェクトを返す
 	 *
 	 * @access public
@@ -203,11 +211,11 @@ class ImagickImage extends Image {
 		if ($this->getAspect() < $dest->getAspect()) {
 			$width = ceil($dest->getHeight() * $this->getAspect());
 			$x = Numeric::round(($dest->getWidth() - $width) / 2);
-			$coord = $dest->getCoordinate($x, 0);
+			$coord = $dest->createCoordinate($x, 0);
 		} else {
 			$height = ceil($dest->getWidth() / $this->getAspect());
 			$y = Numeric::round(($dest->getHeight() - $height) / 2);
-			$coord = $dest->getCoordinate(0, $y);
+			$coord = $dest->createCoordinate(0, $y);
 		}
 
 		$resized = clone $this->getImagick();

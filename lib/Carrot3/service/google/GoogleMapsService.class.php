@@ -110,7 +110,7 @@ class GoogleMapsService extends CurlHTTP {
 		$address = $params['address'];
 		$params->removeParameter('address');
 		$file = $this->getImageFile($geocode, $params);
-		$info = $file->getImageInfo('roadmap', null, ImageManager::FORCE_GIF);
+		$info = $file->getImageInfo('roadmap');
 
 		$image = new ImageElement;
 		$image->setURL(URL::create($info['url']));

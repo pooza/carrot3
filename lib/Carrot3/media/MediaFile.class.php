@@ -10,9 +10,8 @@ namespace Carrot3;
  * メディアファイル
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
- * @abstract
  */
-abstract class MediaFile extends File implements \ArrayAccess, Assignable {
+class MediaFile extends File implements \ArrayAccess, Assignable {
 	protected $attributes;
 	protected $output;
 	protected $types;
@@ -123,9 +122,10 @@ abstract class MediaFile extends File implements \ArrayAccess, Assignable {
 	 * @param ParameterHolder $params パラメータ配列
 	 * @param UserAgent $useragent 対象ブラウザ
 	 * @return DivisionElement 要素
-	 * @abstract
 	 */
-	abstract public function createElement (ParameterHolder $params, UserAgent $useragent = null);
+	public function createElement (ParameterHolder $params, UserAgent $useragent = null) {
+		throw new MediaException(__FUNCTION__ . 'が未実装です。');
+	}
 
 	/**
 	 * 幅でリサイズ
@@ -265,22 +265,20 @@ abstract class MediaFile extends File implements \ArrayAccess, Assignable {
 	 * @return File ファイル
 	 * @static
 	 */
-	static public function search ($file, $class = 'File') {
-		$files = new FileFinder($class);
+	static public function search ($file, $class = 'MediaFile') {
+		$files = new MediaFileFinder($class);
 		if (is_array($file) || ($file instanceof ParameterHolder)) {
 			$params = Tuple::create($file);
-			if (StringUtils::isBlank($path = $params['src'])) {
-				$records = new RecordFinder($params);
-				if ($record = $records->execute()) {
+			if (StringUtils::isBlank($params['src'])) {
+				if ($record = (new RecordFinder($params))->execute()) {
 					if ($attachment = $record->getAttachment($params['size'])) {
 						return $files->execute($attachment);
 					}
 				}
 			} else {
-				return $files->execute($path);
+				return $files->execute($file);
 			}
-		} else {
-			return $files->execute($file);
 		}
+		return $files->execute($file);
 	}
 }

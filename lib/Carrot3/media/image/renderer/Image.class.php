@@ -36,6 +36,13 @@ class Image implements ImageRenderer {
 	}
 
 	/**
+	 * @access public
+	 */
+	public function __destruct () {
+		unset($this->gd);
+	}
+
+	/**
 	 * GD画像リソースを返す
 	 *
 	 * @access public
@@ -196,7 +203,7 @@ class Image implements ImageRenderer {
 	 * @param integer $y Y座標
 	 * @return Coordinate 座標
 	 */
-	public function getCoordinate ($x, $y) {
+	public function createCoordinate ($x, $y) {
 		return new Coordinate($this, $x, $y);
 	}
 
@@ -208,7 +215,7 @@ class Image implements ImageRenderer {
 	 */
 	public function getOrigin () {
 		if (!$this->origin) {
-			$this->origin = $this->getCoordinate(0, 0);
+			$this->origin = $this->createCoordinate(0, 0);
 		}
 		return $this->origin;
 	}
@@ -268,11 +275,11 @@ class Image implements ImageRenderer {
 		if ($this->getAspect() < $dest->getAspect()) {
 			$width = ceil($dest->getHeight() * $this->getAspect());
 			$x = Numeric::round(($dest->getWidth() - $width) / 2);
-			$coord = $dest->getCoordinate($x, 0);
+			$coord = $dest->createCoordinate($x, 0);
 		} else {
 			$height = ceil($dest->getWidth() / $this->getAspect());
 			$y = Numeric::round(($dest->getHeight() - $height) / 2);
-			$coord = $dest->getCoordinate(0, $y);
+			$coord = $dest->createCoordinate(0, $y);
 		}
 
 		imagecopyresampled(

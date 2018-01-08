@@ -42,9 +42,14 @@ class FileFinder {
 	public function execute ($file) {
 		if ($file instanceof File) {
 			return $this->execute($file->getPath());
-		} else if (Utils::isPathAbsolute($path = $file)) {
+		}
+
+		if (is_array($file) || ($file instanceof ParameterHolder)) {
+			$file = $file['src'];
+		}
+		if (Utils::isPathAbsolute($file)) {
 			$class = $this->loader->getClass($this->getOutputClass());
-			return new $class($path);
+			return new $class($file);
 		}
 		foreach ($this->directories as $dir) {
 			foreach ($this->suffixes as $suffix) {
@@ -129,6 +134,8 @@ class FileFinder {
 	 * @param string $class 出力クラス
 	 */
 	public function setOutputClass ($class) {
-		$this->outputClass = $this->loader->getClass($class);
+		if (!StringUtils::isBlank($class)) {
+			$this->outputClass = $this->loader->getClass($class);
+		}
 	}
 }
