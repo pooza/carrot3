@@ -25,6 +25,8 @@ class RSS10Document extends RSS09Document {
 		$this->setAttribute('xmlns:dc', 'http://purl.org/dc/elements/1.1/');
 		$this->setDate(Date::create());
 		$this->setAuthor(AuthorRole::getInstance()->getName('ja'));
+		$items = $this->getChannel()->createElement('items');
+		$items->createElement('rdf:Seq');
 	}
 
 	/**
@@ -59,11 +61,7 @@ class RSS10Document extends RSS09Document {
 	 * @return XMLElement items要素
 	 */
 	public function getItems () {
-		if (!$element = $this->getChannel()->getElement('items')) {
-			$element = $this->getChannel()->createElement('items');
-			$element->createElement('rdf:Seq');
-		}
-		return $element;
+		return $this->getChannel()->getElement('items');
 	}
 
 	/**
