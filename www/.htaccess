@@ -1,9 +1,8 @@
-# .htaccess
-#
 # @package __PACKAGE__
 # @author 小石達也 <tkoishi@b-shock.co.jp>
 
 # 各種セキュリティ
+Header set X-Frame-Options sameorigin
 Header unset X-Powered-By
 Header set X-Content-Type-Options nosniff
 Header set X-XSS-Protection "1; mode=block"
@@ -14,14 +13,13 @@ ErrorDocument 404 /NotFound
 
 # MIME
 AddType application/x-httpd-php .php
-AddType video/webm .webm
 
 # mod_rewrite
 RewriteEngine on
 RewriteRule ^(.*/)*\.git/ / [F,L]
-#RewriteCond %{SERVER_PORT} !^443$ [OR] #常時httpsのサイトでは以下3行コメントを外し、適切に設定
+# 常時httpsのサイトでは以下2行コメントを外す
 #RewriteCond %{HTTPS} off
-#RewriteRule .* https://www.example.com%{REQUEST_URI} [R=301,L]
+#RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 RewriteRule ^([A-Z][A-Za-z0-9]+)/([A-Z][A-Za-z0-9]+)/([_a-z0-9]+)$ /carrotctl.php?m=$1&a=$2&id=$3 [L,QSA]
 RewriteRule ^([A-Z][A-Za-z0-9]+)/([A-Z][A-Za-z0-9]+)$ /carrotctl.php?m=$1&a=$2 [L,QSA]
 RewriteRule ^([A-Z][A-Za-z0-9]+)/$ /carrotctl.php?m=$1 [L,QSA]
@@ -42,8 +40,6 @@ php_value short_open_tag Off
 php_value default_charset UTF-8
 php_value mbstring.language Japanese
 php_value mbstring.detect_order auto
-php_value date.timezone Asia/Tokyo
-php_flag mbstring.encoding_translation Off
 php_flag session.use_cookies On
 php_flag session.cookie_httponly On
 php_flag session.use_only_cookies On

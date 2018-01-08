@@ -77,8 +77,6 @@ foreach ([$_SERVER['SERVER_NAME'], 'application', 'carrot'] as $key) {
 	ConfigManager::getInstance()->compile('constant/' . $key);
 }
 
-mb_internal_encoding('utf-8');
-mb_regex_encoding('utf-8');
 date_default_timezone_set(BS_DATE_TIMEZONE);
 ini_set('realpath_cache_size', '256K');
 ini_set('log_errors', 1);
