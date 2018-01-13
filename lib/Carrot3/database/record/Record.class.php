@@ -349,7 +349,7 @@ abstract class Record implements \ArrayAccess,
 	 * @return File 添付ファイル
 	 */
 	public function getAttachment ($name) {
-		$finder = new FileFinder;
+		$finder = new MediaFileFinder;
 		$finder->clearDirectories();
 		$finder->registerDirectory($this->getTable()->getDirectory());
 		$finder->registerSuffixes(MIMEType::getInstance()->getAllSuffixes());

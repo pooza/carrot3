@@ -45,6 +45,36 @@ class PiconImage extends Image {
 	}
 
 	/**
+	 * 幅を返す
+	 *
+	 * @access public
+	 * @return integer 幅
+	 */
+	public function getWidth () {
+		return getimagesizefromstring($this->getContents())[0];
+	}
+
+	/**
+	 * 高さを返す
+	 *
+	 * @access public
+	 * @return integer 高さ
+	 */
+	public function getHeight () {
+		return getimagesizefromstring($this->getContents())[1];
+	}
+
+	/**
+	 * ファイルの内容から、メディアタイプを返す
+	 *
+	 * @access public
+	 * @return string メディアタイプ
+	 */
+	public function analyzeType () {
+		return getimagesizefromstring($this->getContents())['mime'];
+	}
+
+	/**
 	 * サイズ変更
 	 *
 	 * @access public
