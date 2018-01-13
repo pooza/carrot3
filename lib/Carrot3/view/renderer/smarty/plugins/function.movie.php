@@ -13,7 +13,7 @@ use \Carrot3 as C;
  */
 function smarty_function_movie ($params, &$smarty) {
 	$params = C\Tuple::create($params);
-	if (!$file = C\MovieFile::search($params)) {
+	if (!$file = C\MediaFileFinder::search($params)) {
 		return null;
 	}
 

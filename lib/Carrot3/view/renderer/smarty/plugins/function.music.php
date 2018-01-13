@@ -13,7 +13,7 @@ use \Carrot3 as C;
  */
 function smarty_function_music ($params, &$smarty) {
 	$params = C\Tuple::create($params);
-	if (!$file = C\MusicFile::search($params)) {
+	if (!$file = C\MediaFileFinder::search($params)) {
 		return null;
 	}
 

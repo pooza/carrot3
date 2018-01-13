@@ -22,7 +22,7 @@ class MediaFileFinder extends FileFinder {
 	 */
 	public function execute ($file) {
 		if ($file = parent::execute($file)) {
-			switch ($type = $file->getMainType()) {
+			switch ($file->getMainType()) {
 				case 'image':
 					return new ImageFile($file->getPath());
 				case 'video':
@@ -31,5 +31,29 @@ class MediaFileFinder extends FileFinder {
 					return new MusicFile($file->getPath());
 			}
 		}
+	}
+
+	/**
+	 * 探す
+	 *
+	 * @access public
+	 * @param mixed $file パラメータ配列、File、ファイルパス文字列
+	 * @return File ファイル
+	 * @static
+	 */
+	static public function search ($file) {
+		if (is_array($file) || ($file instanceof ParameterHolder)) {
+			$params = Tuple::create($file);
+			if (StringUtils::isBlank($params['src'])) {
+				if ($record = (new RecordFinder($params))->execute()) {
+					if ($attachment = $record->getAttachment($params['size'])) {
+						return (new self)->execute($attachment);
+					}
+				}
+			} else {
+				return (new self)->execute($file);
+			}
+		}
+		return (new self)->execute($file);
 	}
 }
