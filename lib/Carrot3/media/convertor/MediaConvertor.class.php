@@ -113,7 +113,7 @@ abstract class MediaConvertor {
 				throw new MediaException($command->getResult()->getIterator()->getLast());
 			}
 		}
-		return Utils::executeMethod($this->getClass(), 'search', [$file]);
+		return MediaFileFinder::search($file);
 	}
 
 	/**
