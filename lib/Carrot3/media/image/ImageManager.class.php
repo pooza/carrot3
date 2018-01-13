@@ -311,8 +311,8 @@ class ImageManager {
 	 */
 	public function search (ParameterHolder $params) {
 		$params = Tuple::create($params);
-		if ($path = $params['src']) {
-			return (new MediaFileFinder)->execute($path);
+		if (!StringUtils::isBlank($params['src'])) {
+			return (new MediaFileFinder)->execute($params);
 		}
 
 		$container = (new RecordFinder($params))->execute();
