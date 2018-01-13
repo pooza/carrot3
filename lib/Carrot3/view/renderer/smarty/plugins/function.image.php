@@ -30,13 +30,6 @@ function smarty_function_image ($params, &$smarty) {
 		$element->setID($params['container_id']);
 
 		switch ($mode = C\StringUtils::toLower($params['mode'])) {
-			case 'size':
-				return $info['pixel_size'];
-			case 'pixel_size':
-			case 'width':
-			case 'height':
-			case 'url':
-				return $info[$mode];
 			case 'lightbox':
 			case 'lity':
 				$anchor = C\Loader::getInstance()->createObject($mode . 'AnchorElement');

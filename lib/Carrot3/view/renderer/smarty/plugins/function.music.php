@@ -13,19 +13,11 @@ use \Carrot3 as C;
  */
 function smarty_function_music ($params, &$smarty) {
 	$params = C\Tuple::create($params);
-	if (!$file = C\MediaFileFinder::search($params)) {
+	if (!$file = (new C\MediaFileFinder)->execute($params)) {
 		return null;
 	}
-
-	switch ($mode = C\StringUtils::toLower($params['mode'])) {
-		case 'seconds':
-		case 'duration':
-		case 'type':
-			return $file[$mode];
-		default:
-			if ($record = (new C\RecordFinder($params))->execute()) {
-				$params['href_prefix'] = C\FileUtils::createURL('musics')->getContents();
-			}
-			return $file->createElement($params, $smarty->getUserAgent())->getContents();
+	if ($record = (new C\RecordFinder($params))->execute()) {
+		$params['href_prefix'] = C\FileUtils::createURL('musics')->getContents();
 	}
+	return $file->createElement($params, $smarty->getUserAgent())->getContents();
 }

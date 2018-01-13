@@ -13,24 +13,11 @@ use \Carrot3 as C;
  */
 function smarty_function_movie ($params, &$smarty) {
 	$params = C\Tuple::create($params);
-	if (!$file = C\MediaFileFinder::search($params)) {
+	if (!$file = (new C\MediaFileFinder)->execute($params)) {
 		return null;
 	}
-
-	switch ($mode = C\StringUtils::toLower($params['mode'])) {
-		case 'size':
-			return $file['pixel_size'];
-		case 'width':
-		case 'height':
-		case 'pixel_size':
-		case 'seconds':
-		case 'duration':
-		case 'type':
-			return $file[$mode];
-		default:
-			if ($record = (new C\RecordFinder($params))->execute()) {
-				$params['href_prefix'] = C\FileUtils::createURL('movies')->getContents();
-			}
-			return $file->createElement($params, $smarty->getUserAgent())->getContents();
+	if ($record = (new C\RecordFinder($params))->execute()) {
+		$params['href_prefix'] = C\FileUtils::createURL('movies')->getContents();
 	}
+	return $file->createElement($params, $smarty->getUserAgent())->getContents();
 }
