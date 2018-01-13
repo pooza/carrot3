@@ -10,8 +10,9 @@ namespace Carrot3;
  * メディアファイル
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
+ * @abstract
  */
-class MediaFile extends File implements Assignable {
+abstract class MediaFile extends File implements Assignable {
 	protected $output;
 	protected $types;
 
@@ -99,10 +100,9 @@ class MediaFile extends File implements Assignable {
 	 * @param ParameterHolder $params パラメータ配列
 	 * @param UserAgent $useragent 対象ブラウザ
 	 * @return DivisionElement 要素
+	 * @abstract
 	 */
-	public function createElement (ParameterHolder $params, UserAgent $useragent = null) {
-		throw new MediaException(__FUNCTION__ . 'が未実装です。');
-	}
+	abstract public function createElement (ParameterHolder $params, UserAgent $useragent = null);
 
 	/**
 	 * 幅でリサイズ

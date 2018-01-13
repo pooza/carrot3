@@ -42,11 +42,19 @@ class FileFinder {
 	public function execute ($file) {
 		if ($file instanceof File) {
 			return $this->execute($file->getPath());
+		} else if (is_array($file) || ($file instanceof ParameterHolder)) {
+			$params = Tuple::create($file);
+			if (StringUtils::isBlank($params['src'])) {
+				if ($record = (new RecordFinder($params))->execute()) {
+					if ($attachment = $record->getAttachment($params['size'])) {
+						return $this->execute($attachment);
+					}
+				}
+			} else {
+				return $this->execute($file['src']);
+			}
 		}
 
-		if (is_array($file) || ($file instanceof ParameterHolder)) {
-			$file = $file['src'];
-		}
 		if (Utils::isPathAbsolute($file)) {
 			$class = $this->loader->getClass($this->getOutputClass());
 			return new $class($file);
