@@ -311,16 +311,12 @@ class ImageManager {
 	 */
 	public function search (ParameterHolder $params) {
 		$params = Tuple::create($params);
-		if (!StringUtils::isBlank($path = $params['src'])) {
-			$finder = new MediaFileFinder;
-			if ($dir = $params['dir']) {
-				$finder->registerDirectory($dir);
-			}
-			return $finder->execute($path);
+		if ($path = $params['src']) {
+			return (new MediaFileFinder)->execute($path);
 		}
 
-		$finder = new RecordFinder($params);
-		if (!($container = $finder->execute()) && ($class = $params['class'])) {
+		$container = (new RecordFinder($params))->execute();
+		if (!$container && ($class = $params['class'])) {
 			$class = $this->loader->getClass($class);
 			if (is_subclass_of($class, 'Record')) {
 				$container = TableHandler::create($class)->getRecord($params['id']);

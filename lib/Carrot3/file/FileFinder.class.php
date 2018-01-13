@@ -44,6 +44,9 @@ class FileFinder {
 			return $this->execute($file->getPath());
 		} else if (is_array($file) || ($file instanceof ParameterHolder)) {
 			$params = Tuple::create($file);
+			if ($dir = $params['dir']) {
+				$this->registerDirectory($dir);
+			}
 			if (StringUtils::isBlank($params['src'])) {
 				if ($record = (new RecordFinder($params))->execute()) {
 					if ($attachment = $record->getAttachment($params['size'])) {
