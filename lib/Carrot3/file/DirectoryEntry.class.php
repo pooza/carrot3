@@ -32,7 +32,6 @@ abstract class DirectoryEntry {
 			$this->id = Crypt::digest([
 				$this->getPath(),
 				fileinode($this->getPath()),
-				$this->getUpdateDate()->getTimestamp(),
 			]);
 		}
 		return $this->id;

@@ -12,16 +12,17 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class DictionaryFile extends CSVFile implements Dictionary {
-	private $words;
 
 	/**
 	 * @access public
 	 * @param string $path パス
+	 * @param string $class レンダラークラス名
 	 */
-	public function __construct ($path) {
-		parent::__construct($path, new HeaderCSVData);
-		$this->getEngine()->setEncoding('utf-8');
-		$this->getEngine()->setRecordSeparator("\n");
+	public function __construct ($path, $class = 'HeaderCSVData') {
+		parent::__construct($path, $class);
+		if ($this->isExists() && !$this->getSerialized()) {
+			$this->serialize();
+		}
 	}
 
 	/**
@@ -31,13 +32,7 @@ class DictionaryFile extends CSVFile implements Dictionary {
 	 * @return Tuple 辞書の内容
 	 */
 	public function getWords () {
-		if (!$this->words) {
-			if (StringUtils::isBlank($this->getSerialized())) {
-				$this->serialize();
-			}
-			$this->words = Tuple::create($this->getSerialized());
-		}
-		return $this->words;
+		return Tuple::create($this->getSerialized());
 	}
 
 	/**
@@ -68,9 +63,10 @@ class DictionaryFile extends CSVFile implements Dictionary {
 	 * @access public
 	 */
 	public function serialize () {
-		$words = clone $this->getEngine()->getRecords();
-		$words->flatten();
-		$this->controller->setAttribute($this, $words);
+		$this->controller->setAttribute(
+			$this,
+			(clone $this->getRenderer()->getRecords())->flatten()
+		);
 	}
 
 	/**

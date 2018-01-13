@@ -166,7 +166,7 @@ class Pictogram implements Assignable, ImageContainer {
 	public function getImageInfo ($size, $pixel = null, $flags = 0) {
 		if (!$this->imageinfo) {
 			$this->imageinfo = Tuple::create();
-			$image = $this->getImageFile('image')->getEngine();
+			$image = $this->getImageFile('image')->getRenderer();
 			$this->imageinfo['url'] = $this->getURL()->getContents();
 			$this->imageinfo['width'] = $image->getWidth();
 			$this->imageinfo['height'] = $image->getHeight();

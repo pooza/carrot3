@@ -50,7 +50,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @param string $name 新しい名前
 	 */
 	public function rename ($name) {
-		$name .= Image::getSuffixes()[$this->getEngine()->getType()];
+		$name .= Image::getSuffixes()[$this->getRenderer()->getType()];
 		parent::rename($name);
 	}
 
@@ -61,7 +61,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 */
 	protected function analyze () {
 		try {
-			$this->attributes['path'] = $this->getPath();
+			File::analyze();
 			$this->attributes['type'] = $this->getRenderer()->getType();
 			$this->attributes['width'] = (int)$this->getRenderer()->getWidth();
 			$this->attributes['height'] = (int)$this->getRenderer()->getHeight();
@@ -97,19 +97,6 @@ class ImageFile extends MediaFile implements ImageContainer {
 			$this->renderer = new $this->rendererClass($params);
 		}
 		return $this->renderer;
-	}
-
-	/**
-	 * レンダラーを返す
-	 *
-	 * getRendererのエイリアス
-	 *
-	 * @access public
-	 * @return ImageRenderer レンダラー
-	 * @final
-	 */
-	final public function getEngine () {
-		return $this->getRenderer();
 	}
 
 	/**
@@ -214,7 +201,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @param ImageFile $file 画像ファイル
 	 */
 	public function setImageFile ($name, ImageFile $file) {
-		$this->getEngine()->setImage($file);
+		$this->getRenderer()->setImage($file);
 		$this->save();
 	}
 

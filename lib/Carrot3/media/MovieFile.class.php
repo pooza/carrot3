@@ -33,6 +33,16 @@ class MovieFile extends MediaFile implements ImageContainer {
 	}
 
 	/**
+	 * 削除
+	 *
+	 * @access public
+	 */
+	public function delete () {
+		$this->removeImageCache('image');
+		parent::delete();
+	}
+
+	/**
 	 * 動画トラックを持つか？
 	 *
 	 * @access public

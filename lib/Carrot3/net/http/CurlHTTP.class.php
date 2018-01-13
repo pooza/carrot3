@@ -96,7 +96,7 @@ class CurlHTTP extends HTTP {
 
 		$response = new HTTPResponse;
 		$response->setURL($request->getURL());
-		if (($contents = curl_exec($this->getEngine())) === false) {
+		if (($contents = curl_exec($this->getCurl())) === false) {
 			throw new HTTPException($request->getURL() . 'へ送信できません。');
 		}
 		$response->setContents($this->trimResponse($contents));
@@ -125,7 +125,7 @@ class CurlHTTP extends HTTP {
 	 * @access protected
 	 * @return handle Curlエンジン
 	 */
-	protected function getEngine () {
+	protected function getCurl () {
 		if (!$this->engine) {
 			if (!extension_loaded('curl')) {
 				throw new HTTPException('curlモジュールがロードされていません。');
@@ -151,13 +151,13 @@ class CurlHTTP extends HTTP {
 	 * @param mixed $value 属性値
 	 */
 	public function setAttribute ($name, $value) {
-		if (!$this->getEngine()) {
+		if (!$this->getCurl()) {
 			return;
 		}
 		foreach (['CURLOPT', 'CURL', ''] as $prefix) {
 			$constants = new ConstantHandler($prefix);
 			if ($constants->hasParameter($name)) {
-				curl_setopt($this->getEngine(), $constants[$name], $value);
+				curl_setopt($this->getCurl(), $constants[$name], $value);
 				return;
 			}
 		}

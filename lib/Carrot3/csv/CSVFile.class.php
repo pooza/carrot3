@@ -12,30 +12,21 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class CSVFile extends File {
-	private $engine;
-	const DEFAULT_ENGINE_CLASS = 'CSVData';
+	protected $renderer;
 
 	/**
 	 * @access public
 	 * @param string $path パス
-	 * @param CSVData $engine CSVエンジン
+	 * @param string $class レンダラークラス名
 	 */
-	public function __construct ($path, CSVData $engine = null) {
+	public function __construct ($path, $class = 'CSVData') {
 		parent::__construct($path);
-
-		if (!$engine) {
-			$engine = $this->loader->createObject(self::DEFAULT_ENGINE_CLASS);
-		}
-		$this->setEngine($engine);
-	}
-
-	/**
-	 * @access public
-	 * @param string $method メソッド名
-	 * @param mixed[] $values 引数
-	 */
-	public function __call ($method, $values) {
-		return Utils::executeMethod($this->getEngine(), $method, $values);
+		$class = $this->loader->getClass($class);
+		$csv = new $class;
+		$csv->setContents(file_get_contents($path));
+		$csv->setEncoding('utf-8');
+		$csv->setRecordSeparator("\n");
+		$this->setRenderer($csv);
 	}
 
 	/**
@@ -49,29 +40,33 @@ class CSVFile extends File {
 	}
 
 	/**
-	 * CSVエンジンを返す
+	 * レンダラーを返す
 	 *
 	 * @access public
-	 * @return CSVData CSVエンジン
+	 * @return ImageRenderer レンダラー
 	 */
-	public function getEngine () {
-		if (!$this->engine) {
-			throw new FileException('CSVエンジンが未設定です。');
-		}
-		return $this->engine;
+	public function getRenderer () {
+		return $this->renderer;
 	}
 
 	/**
-	 * CSVエンジンを設定
+	 * レンダラーを設定
 	 *
 	 * @access public
-	 * @param CSVData $engine CSVエンジン
+	 * @param CSVData $renderer レンダラー
 	 */
-	public function setEngine (CSVData $engine) {
-		$this->engine = $engine;
-		if ($this->isExists()) {
-			$this->engine->setLines($this->getLines());
-		}
+	public function setRenderer (CSVData $renderer) {
+		$this->renderer = $renderer;
+	}
+
+	/**
+	 * 全て返す
+	 *
+	 * @access public
+	 * @return string 読み込んだ内容
+	 */
+	public function getContents () {
+		return $this->getRenderer()->getContents();
 	}
 
 	/**
@@ -80,7 +75,18 @@ class CSVFile extends File {
 	 * @access public
 	 */
 	public function save () {
-		$this->setContents($this->getEngine()->getContents());
+		$this->setContents($this->getRenderer()->getContents());
+	}
+
+	/**
+	 * 書き換える
+	 *
+	 * @access public
+	 * @param string $contents 書き込む内容
+	 */
+	public function setContents ($contents) {
+		$this->renderer->setContents($contents);
+		parent::setContents($contents);
 	}
 
 	/**

@@ -13,7 +13,7 @@ namespace Carrot3;
  */
 class Crypt {
 	use Singleton, BasicObject;
-	private $engine;
+	private $cryptor;
 
 	/**
 	 * 暗号化器を返す
@@ -21,11 +21,11 @@ class Crypt {
 	 * @access public
 	 * @return Cryptor 暗号化器
 	 */
-	public function getEngine () {
-		if (!$this->engine) {
-			$this->engine = $this->loader->createObject(BS_CRYPT_ENGINE . 'Cryptor');
+	public function getCryptor () {
+		if (!$this->cryptor) {
+			$this->cryptor = $this->loader->createObject(BS_CRYPT_ENGINE . 'Cryptor');
 		}
-		return $this->engine;
+		return $this->cryptor;
 	}
 
 	/**
@@ -36,7 +36,7 @@ class Crypt {
 	 * @return string 暗号化された文字列
 	 */
 	public function encrypt ($value) {
-		$value = $this->getEngine()->encrypt($value);
+		$value = $this->getCryptor()->encrypt($value);
 		$value = MIMEUtils::encodeBase64($value);
 		return $value;
 	}
@@ -50,7 +50,7 @@ class Crypt {
 	 */
 	public function decrypt ($value) {
 		$value = MIMEUtils::decodeBase64($value);
-		$value = $this->getEngine()->decrypt($value);
+		$value = $this->getCryptor()->decrypt($value);
 		$value = trim($value);
 		return $value;
 	}

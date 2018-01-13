@@ -326,7 +326,6 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 */
 	public function setContents ($contents) {
 		file_put_contents($this->getPath(), $contents, LOCK_EX);
-		$this->size = null;
 	}
 
 	/**
@@ -453,7 +452,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @param mixed 要素
 	 */
 	public function offsetSet ($key, $value) {
-		throw new MediaException($this . 'の属性を設定できません。');
+		throw new FileException($this . 'の属性を設定できません。');
 	}
 
 	/**
@@ -461,7 +460,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @param string $key 添え字
 	 */
 	public function offsetUnset ($key) {
-		throw new MediaException($this . 'の属性を削除できません。');
+		throw new FileException($this . 'の属性を削除できません。');
 	}
 
 	/**
