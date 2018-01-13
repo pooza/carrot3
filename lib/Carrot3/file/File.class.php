@@ -11,13 +11,13 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class File extends DirectoryEntry implements Renderer, Serializable {
+class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializable {
 	use SerializableMethods;
 	protected $error;
 	protected $handle;
+	protected $attributes;
 	private $mode;
 	private $lines;
-	private $size;
 	private $binary = false;
 	const LINE_SEPARATOR = "\n";
 
@@ -27,6 +27,7 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 	 */
 	public function __construct ($path) {
 		$this->setPath($path);
+		$this->analyze();
 	}
 
 	/**
@@ -74,6 +75,17 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 	 */
 	public function getMainType () {
 		return MIMEUtils::getMainType($this->getType());
+	}
+
+	/**
+	 * ファイルを解析
+	 *
+	 * @access protected
+	 */
+	protected function analyze () {
+		$this->attributes['filename'] = $this->getName();
+		$this->attributes['path'] = $this->getPath();
+		$this->attributes['size'] = $this->getSize();
 	}
 
 	/**
@@ -370,13 +382,9 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 	 * @return integer ファイルサイズ
 	 */
 	public function getSize () {
-		if (StringUtils::isBlank($this->size)) {
-			if (!$this->isExists()) {
-				throw new FileException($this . 'が存在しません。');
-			}
-			$this->size = filesize($this->getPath());
+		if ($this->isExists()) {
+			return filesize($this->getPath());
 		}
-		return $this->size;
 	}
 
 	/**
@@ -398,6 +406,62 @@ class File extends DirectoryEntry implements Renderer, Serializable {
 	 */
 	public function isUploaded () {
 		return is_uploaded_file($this->getPath());
+	}
+
+	/**
+	 * 属性を返す
+	 *
+	 * @access public
+	 * @param string $name 属性名
+	 * @return mixed 属性
+	 */
+	public function getAttribute ($name) {
+		return $this->attributes[$name];
+	}
+
+	/**
+	 * 全ての属性を返す
+	 *
+	 * @access public
+	 * @return Tuple 全ての属性
+	 */
+	public function getAttributes () {
+		return $this->attributes;
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 * @return boolean 要素が存在すればTrue
+	 */
+	public function offsetExists ($key) {
+		return $this->attributes->hasParameter($key);
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 * @return mixed 要素
+	 */
+	public function offsetGet ($key) {
+		return $this->getAttribute($key);
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 * @param mixed 要素
+	 */
+	public function offsetSet ($key, $value) {
+		throw new MediaException($this . 'の属性を設定できません。');
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 */
+	public function offsetUnset ($key) {
+		throw new MediaException($this . 'の属性を削除できません。');
 	}
 
 	/**

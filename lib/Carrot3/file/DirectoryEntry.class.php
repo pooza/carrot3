@@ -14,11 +14,9 @@ namespace Carrot3;
  */
 abstract class DirectoryEntry {
 	use BasicObject;
-	protected $name;
 	protected $path;
 	protected $id;
 	private $suffix;
-	private $basename;
 	private $shortPath;
 	private $linkTarget;
 	protected $directory;
@@ -34,6 +32,7 @@ abstract class DirectoryEntry {
 			$this->id = Crypt::digest([
 				$this->getPath(),
 				fileinode($this->getPath()),
+				$this->getUpdateDate()->getTimestamp(),
 			]);
 		}
 		return $this->id;
@@ -46,10 +45,7 @@ abstract class DirectoryEntry {
 	 * @return string 名前
 	 */
 	public function getName () {
-		if (!$this->name) {
-			$this->name = basename($this->getPath());
-		}
-		return $this->name;
+		return basename($this->getPath());
 	}
 
 	/**
@@ -123,8 +119,6 @@ abstract class DirectoryEntry {
 			throw new FileException($message);
 		}
 		$this->path = $path;
-		$this->name = null;
-		$this->basename = null;
 		$this->suffix = null;
 	}
 
@@ -215,10 +209,7 @@ abstract class DirectoryEntry {
 	 * @return string ベース名
 	 */
 	public function getBaseName () {
-		if (!$this->basename) {
-			$this->basename = basename($this->getPath(), $this->getSuffix());
-		}
-		return $this->basename;
+		return basename($this->getPath(), $this->getSuffix());
 	}
 
 	/**

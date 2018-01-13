@@ -11,8 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class MediaFile extends File implements \ArrayAccess, Assignable {
-	protected $attributes;
+class MediaFile extends File implements Assignable {
 	protected $output;
 	protected $types;
 
@@ -32,27 +31,6 @@ class MediaFile extends File implements \ArrayAccess, Assignable {
 	}
 
 	/**
-	 * 属性を返す
-	 *
-	 * @access public
-	 * @param string $name 属性名
-	 * @return mixed 属性
-	 */
-	public function getAttribute ($name) {
-		return $this->attributes[$name];
-	}
-
-	/**
-	 * 全ての属性を返す
-	 *
-	 * @access public
-	 * @return Tuple 全ての属性
-	 */
-	public function getAttributes () {
-		return $this->attributes;
-	}
-
-	/**
 	 * バイナリファイルか？
 	 *
 	 * @access public
@@ -68,6 +46,9 @@ class MediaFile extends File implements \ArrayAccess, Assignable {
 	 * @access protected
 	 */
 	protected function analyze () {
+		parent::analyze();
+		$this->attributes['type'] = $this->analyzeType();
+
 		$command = $this->createCommand();
 		$command->push('-i', null);
 		$command->push($this->getPath());
@@ -78,15 +59,11 @@ class MediaFile extends File implements \ArrayAccess, Assignable {
 			$this->error = $matches[0];
 			return;
 		}
-
 		if (mb_ereg('Duration: ([.:[:digit:]]+),', $this->output, $matches)) {
 			$this->attributes['duration'] = $matches[1];
 			$sec = StringUtils::explode(':', $matches[1]);
 			$this->attributes['seconds'] = ($sec[0] * 3600) + ($sec[1] * 60) + $sec[2];
 		}
-		$this->attributes['path'] = $this->getPath();
-		$this->attributes['name'] = $this->getName();
-		$this->attributes['type'] = $this->analyzeType();
 	}
 
 	/**
@@ -187,41 +164,6 @@ class MediaFile extends File implements \ArrayAccess, Assignable {
 	}
 
 	/**
-	 * @access public
-	 * @param string $key 添え字
-	 * @return boolean 要素が存在すればTrue
-	 */
-	public function offsetExists ($key) {
-		return $this->attributes->hasParameter($key);
-	}
-
-	/**
-	 * @access public
-	 * @param string $key 添え字
-	 * @return mixed 要素
-	 */
-	public function offsetGet ($key) {
-		return $this->getAttribute($key);
-	}
-
-	/**
-	 * @access public
-	 * @param string $key 添え字
-	 * @param mixed 要素
-	 */
-	public function offsetSet ($key, $value) {
-		throw new MediaException($this . 'の属性を設定できません。');
-	}
-
-	/**
-	 * @access public
-	 * @param string $key 添え字
-	 */
-	public function offsetUnset ($key) {
-		throw new MediaException($this . 'の属性を削除できません。');
-	}
-
-	/**
 	 * コマンドラインを返す
 	 *
 	 * @access public
@@ -254,31 +196,5 @@ class MediaFile extends File implements \ArrayAccess, Assignable {
 	 */
 	public function assign () {
 		return $this->getSerialized();
-	}
-
-	/**
-	 * 探す
-	 *
-	 * @access public
-	 * @param mixed $file パラメータ配列、File、ファイルパス文字列
-	 * @param string $class クラス名
-	 * @return File ファイル
-	 * @static
-	 */
-	static public function search ($file, $class = 'MediaFile') {
-		$files = new MediaFileFinder($class);
-		if (is_array($file) || ($file instanceof ParameterHolder)) {
-			$params = Tuple::create($file);
-			if (StringUtils::isBlank($params['src'])) {
-				if ($record = (new RecordFinder($params))->execute()) {
-					if ($attachment = $record->getAttachment($params['size'])) {
-						return $files->execute($attachment);
-					}
-				}
-			} else {
-				return $files->execute($file);
-			}
-		}
-		return $files->execute($file);
 	}
 }

@@ -329,15 +329,7 @@ abstract class Record implements \ArrayAccess,
 	 */
 	public function getAttachmentInfo ($name) {
 		if ($file = $this->getAttachment($name)) {
-			$info = Tuple::create();
-			if ($file instanceof Assignable) {
-				$info->setParameters($file->assign());
-			}
-			$info['path'] = $file->getPath();
-			$info['size'] = $file->getSize();
-			$info['type'] = $file->getType();
-			$info['filename'] = $this->getAttachmentFileName($name);
-			return $info;
+			return $file->assign();
 		}
 	}
 
@@ -605,7 +597,9 @@ abstract class Record implements \ArrayAccess,
 		if (!$this->url) {
 			if (StringUtils::isBlank($this['url'])) {
 				$this->url = URL::create(null, 'carrot');
-				$this->url['module'] = 'User' . StringUtils::pascalize($this->getTable()->getName());
+				$this->url['module'] = 'User' . StringUtils::pascalize(
+					$this->getTable()->getName()
+				);
 				$this->url['action'] = 'Detail';
 				$this->url['record'] = $this;
 			} else {
