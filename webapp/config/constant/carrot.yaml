@@ -117,8 +117,6 @@ memcache:
   render:
     host: /tmp/memcached_render.sock
     port: 0
-momory:
-  limit: 1G
 module:
   cache_parameters: yes
   prefixes:
