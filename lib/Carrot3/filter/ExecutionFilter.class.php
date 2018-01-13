@@ -31,6 +31,8 @@ class ExecutionFilter extends Filter {
 	}
 
 	private function doAction () {
+		ini_set('memory_limit', $this->action->getMemoryLimit());
+		set_time_limit($this->action->getTimeLimit());
 		if ($this->action->isExecutable()) {
 			if ($file = $this->action->getValidationFile()) {
 				ConfigManager::getInstance()->compile($file);
@@ -39,8 +41,6 @@ class ExecutionFilter extends Filter {
 			if (!ValidateManager::getInstance()->execute() || !$this->action->validate()) {
 				return $this->action->handleError();
 			}
-			ini_set('memory_limit', $this->action->getMemoryLimit());
-			set_time_limit($this->action->getTimeLimit());
 			return $this->action->execute();
 		} else {
 			return $this->action->getDefaultView();

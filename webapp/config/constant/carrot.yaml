@@ -20,8 +20,10 @@ app:
     ja: unknown
     en: unknown
   ver: unknown
-  memory_limit: 128M
+  memory_limit: 256M
   time_limit: 120
+  memory_limit_max: 1G
+  time_limit_max: 0
   http_cache:
     mode: private
     seconds: 60
@@ -115,6 +117,8 @@ memcache:
   render:
     host: /tmp/memcached_render.sock
     port: 0
+momory:
+  limit: 1G
 module:
   cache_parameters: yes
   prefixes:

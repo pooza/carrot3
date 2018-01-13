@@ -78,6 +78,7 @@ foreach ([$_SERVER['SERVER_NAME'], 'application', 'carrot'] as $key) {
 }
 
 date_default_timezone_set(BS_DATE_TIMEZONE);
+ini_set('memory_limit', '256M');
 ini_set('realpath_cache_size', '256K');
 ini_set('log_errors', 1);
 ini_set('error_log', 'syslog');
