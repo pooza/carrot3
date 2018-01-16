@@ -500,8 +500,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 */
 	static public function getDatabases () {
 		$databases = Tuple::create();
-		$constants = new ConstantHandler;
-		foreach ($constants->getParameters() as $key => $value) {
+		foreach (new ConstantHandler as $key => $value) {
 			$pattern = '^' . ConstantHandler::PREFIX . '_PDO_([[:upper:]]+)_DSN$';
 			if (mb_ereg($pattern, $key, $matches)) {
 				$name = StringUtils::toLower($matches[1]);
