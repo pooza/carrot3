@@ -182,7 +182,7 @@ class Controller {
 	public function getAttribute ($name, Date $date = null) {
 		if (!$date && !is_object($name)) {
 			$env = Tuple::create();
-			$env->setParameters($_ENV);
+			$env->setParameters(filter_input_array(INPUT_ENV));
 			$env->setParameters($_SERVER);
 			$keys = Tuple::create([
 				$name,

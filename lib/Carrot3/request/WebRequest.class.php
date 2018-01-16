@@ -31,11 +31,11 @@ class WebRequest extends Request {
 		switch ($this->getMethod()) {
 			case 'GET':
 			case 'HEAD':
-				$this->setParameters($_GET);
+				$this->setParameters(filter_input_array(INPUT_GET));
 				break;
 			default:
-				$this->setParameters($_GET);
-				$this->setParameters($_POST);
+				$this->setParameters(filter_input_array(INPUT_GET));
+				$this->setParameters(filter_input_array(INPUT_POST));
 				foreach ($_FILES as $key => $info) {
 					if (!StringUtils::isBlank($info['name'])) {
 						$info['is_file'] = true;
@@ -119,19 +119,7 @@ class WebRequest extends Request {
 	public function getHeaders () {
 		if (!$this->headers) {
 			$this->headers = Tuple::create();
-			if (extension_loaded('http')) {
-				$headers = http_get_request_headers();
-			} else if (StringUtils::isContain('apache', PHP_SAPI)) {
-				$headers = apache_request_headers();
-			} else {
-				$headers = [];
-				foreach ($_SERVER as $key => $value) {
-					if (mb_ereg('HTTP_(.*)', $key, $matches)) {
-						$headers[str_replace('_', '-', $matches[1])] = $value;
-					}
-				}
-			}
-			foreach ($headers as $key => $value) {
+			foreach (apache_request_headers() as $key => $value) {
 				$this->setHeader($key, $value);
 			}
 		}

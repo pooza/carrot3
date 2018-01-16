@@ -23,7 +23,7 @@ class User extends ParameterHolder {
 	 */
 	protected function __construct () {
 		$this->attributes = Tuple::create();
-		$this->attributes->setParameters($_COOKIE);
+		$this->attributes->setParameters(filter_input_array(INPUT_COOKIE));
 		$this->attributes->setParameters($this->getSession()->read('attributes'));
 
 		$this->credentials = Tuple::create();
@@ -79,10 +79,7 @@ class User extends ParameterHolder {
 	 */
 	public function getAttribute ($name, $flags = 0) {
 		if ($flags & self::COOKIE) {
-			if (isset($_COOKIE[$name])) {
-				return $_COOKIE[$name];
-			}
-			return null;
+			return filter_input(INPUT_COOKIE, $name);
 		}
 		return $this->attributes[$name];
 	}
