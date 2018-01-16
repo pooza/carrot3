@@ -77,8 +77,11 @@ foreach ([$_SERVER['SERVER_NAME'], 'application', 'carrot'] as $key) {
 	ConfigManager::getInstance()->compile('constant/' . $key);
 }
 
+if (PHP_SAPI != 'cli') {
+	set_time_limit(BS_APP_TIME_LIMIT);
+}
 date_default_timezone_set(BS_DATE_TIMEZONE);
-ini_set('memory_limit', '256M');
+ini_set('memory_limit', BS_APP_MEMORY_LIMIT);
 ini_set('realpath_cache_size', '256K');
 ini_set('log_errors', 1);
 ini_set('error_log', 'syslog');
@@ -91,7 +94,6 @@ if (BS_DEBUG) {
 	ini_set('display_errors', 1);
 	Controller::getInstance()->dispatch();
 } else {
-	error_reporting(error_reporting() & ~E_DEPRECATED);
 	ini_set('display_errors', 0);
 	try {
 		Controller::getInstance()->dispatch();
