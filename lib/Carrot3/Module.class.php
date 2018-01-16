@@ -286,15 +286,13 @@ class Module implements HTTPRedirector, Assignable {
 			$this->configFiles = Tuple::create();
 		}
 		if (!$this->configFiles[$name]) {
-			$finder = new FileFinder;
+			$finder = new FileFinder('ConfigFile');
 			$finder->clearDirectories();
 			$finder->registerDirectory($this->getDirectory());
 			if ($dir = $this->getDirectory('config')) {
 				$finder->registerDirectory($dir);
 			}
 			$finder->registerSuffix('yaml');
-			$finder->registerSuffix('ini');
-			$finder->setOutputClass($this->loader->getClass('ConfigFile'));
 			$this->configFiles[$name] = $finder->execute($name);
 		}
 		return $this->configFiles[$name];
