@@ -29,6 +29,8 @@ class MediaFileFinder extends FileFinder {
 					return new MovieFile($file->getPath());
 				case 'audio':
 					return new MusicFile($file->getPath());
+				default:
+					return $file;
 			}
 		}
 	}
