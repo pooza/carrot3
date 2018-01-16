@@ -14,7 +14,6 @@ namespace Carrot3;
  */
 abstract class MediaFile extends File implements Assignable {
 	protected $output;
-	protected $types;
 
 	/**
 	 * @access public
@@ -23,10 +22,9 @@ abstract class MediaFile extends File implements Assignable {
 	public function __construct ($path) {
 		$this->setPath($path);
 		$this->attributes = Tuple::create();
-		if ($serialized = $this->getSerialized()) {
-			$this->attributes->setParameters($serialized);
+		if ($this->getSerialized()) {
+			$this->attributes->setParameters($this->getSerialized());
 		} else if ($this->isExists()) {
-			$this->analyze();
 			$this->serialize();
 		}
 	}
@@ -78,19 +76,6 @@ abstract class MediaFile extends File implements Assignable {
 			$this->analyze();
 		}
 		return $this->attributes['type'];
-	}
-
-	/**
-	 * ファイルの内容から、メディアタイプを返す
-	 *
-	 * @access public
-	 * @return string メディアタイプ
-	 */
-	public function analyzeType () {
-		if (($type = parent::analyzeType()) == MIMEType::DEFAULT_TYPE) {
-			$type = parent::getType();
-		}
-		return MIMEType::getInstance()->resolveType($type);
 	}
 
 	/**

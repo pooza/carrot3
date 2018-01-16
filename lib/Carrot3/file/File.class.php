@@ -127,6 +127,9 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 		} else {
 			$type = rtrim(exec('file -b --mime-type ' . $this->getPath()));
 		}
+		if ($type == MIMEType::DEFAULT_TYPE) {
+			$type = MIMEType::getType($this->getSuffix());
+		}
 		return MIMEType::getInstance()->resolveType($type);
 	}
 
