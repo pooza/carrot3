@@ -122,14 +122,4 @@ class FileFinder {
 		$this->suffixes->clear();
 		$this->suffixes[] = null;
 	}
-
-	/**
-	 * 出力クラスを返す
-	 *
-	 * @access public
-	 * @return string 出力クラス
-	 */
-	public function getOutputClass () {
-		return $this->class;
-	}
 }
