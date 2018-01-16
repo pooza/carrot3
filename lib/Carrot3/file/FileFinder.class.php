@@ -16,7 +16,7 @@ class FileFinder {
 	private $directories;
 	private $suffixes;
 	private $pattern;
-	private $outputClass;
+	private $class;
 
 	/**
 	 * @access public
@@ -24,12 +24,11 @@ class FileFinder {
 	 */
 	public function __construct ($class = 'File') {
 		$this->directories = Tuple::create();
-		$this->suffixes = Tuple::create();
-		$this->suffixes[] = null;
+		$this->suffixes = Tuple::create([null]);
 		foreach ($this->controller->getSearchDirectories() as $dir) {
 			$this->registerDirectory($dir);
 		}
-		$this->setOutputClass($class);
+		$this->class = $this->loader->getClass($class);
 	}
 
 	/**
@@ -56,12 +55,11 @@ class FileFinder {
 		}
 
 		if (Utils::isPathAbsolute($file)) {
-			$class = $this->loader->getClass($this->getOutputClass());
-			return new $class($file);
+			return new $this->class($file);
 		}
 		foreach ($this->directories as $dir) {
 			foreach ($this->suffixes as $suffix) {
-				if ($found = $dir->getEntry($file . $suffix, $this->getOutputClass())) {
+				if ($found = $dir->getEntry($file . $suffix, $this->class)) {
 					return $found;
 				}
 			}
@@ -132,18 +130,6 @@ class FileFinder {
 	 * @return string 出力クラス
 	 */
 	public function getOutputClass () {
-		return $this->outputClass;
-	}
-
-	/**
-	 * 出力クラスを設定
-	 *
-	 * @access public
-	 * @param string $class 出力クラス
-	 */
-	public function setOutputClass ($class) {
-		if (!StringUtils::isBlank($class)) {
-			$this->outputClass = $this->loader->getClass($class);
-		}
+		return $this->class;
 	}
 }
