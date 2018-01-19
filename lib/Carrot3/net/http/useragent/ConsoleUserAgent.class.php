@@ -28,7 +28,6 @@ class ConsoleUserAgent extends UserAgent {
 		$view->setAttribute('errors', $this->request->getErrors());
 		$view->setAttribute('params', $this->request->getParameters());
 		$view->setAttribute('credentials', $this->user->getCredentials());
-		$view->setAttribute('is_debug', BS_DEBUG);
 		return true;
 	}
 

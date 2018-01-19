@@ -18,7 +18,7 @@ class EdgeUserAgent extends WebKitUserAgent {
 	 * Edgeか？
 	 *
 	 * @access public
-	 * @return boolean Google ChromeならTrue
+	 * @return boolean EdgeならTrue
 	 */
 	public function isEdge () {
 		return true;

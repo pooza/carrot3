@@ -23,8 +23,6 @@ class DocomoUserAgent extends MobileUserAgent {
 			$name = self::DEFAULT_NAME;
 		}
 		parent::__construct($name);
-		$this['is_foma'] = $this->isFOMA();
-		$this['version'] = $this->getVersion();
 	}
 
 	/**
@@ -38,16 +36,6 @@ class DocomoUserAgent extends MobileUserAgent {
 	}
 
 	/**
-	 * FOMA端末か？
-	 *
-	 * @access public
-	 * @return boolean FOMA端末ならばTrue
-	 */
-	public function isFOMA () {
-		return !mb_ereg('DoCoMo/1\\.0', $this->getName());
-	}
-
-	/**
 	 * 規定の画像形式を返す
 	 *
 	 * @access public
@@ -58,41 +46,15 @@ class DocomoUserAgent extends MobileUserAgent {
 	}
 
 	/**
-	 * バージョンを返す
-	 *
-	 * iモードブラウザのバージョン
-	 *
-	 * @access public
-	 * @return string バージョン
-	 */
-	public function getVersion () {
-		if (!$this['version']) {
-			if (mb_ereg('[/(]c([[:digit:]]+)[;/]', $this->getName(), $matches)) {
-				if ($matches[1] < 500) {
-					$this['version'] = 1;
-				} else {
-					$this['version'] = 2;
-				}
-			}
-		}
-		return $this['version'];
-	}
-
-	/**
 	 * 画面情報を返す
 	 *
 	 * @access public
 	 * @return Tuple 画面情報
 	 */
 	public function getDisplayInfo () {
-		$info = Tuple::create();
-		if (1 < $this->getVersion()) {
-			$info['width'] = BS_IMAGE_MOBILE_SIZE_VGA_WIDTH;
-			$info['height'] = BS_IMAGE_MOBILE_SIZE_VGA_HEIGHT;
-		} else {
-			$info['width'] = BS_IMAGE_MOBILE_SIZE_QVGA_WIDTH;
-			$info['height'] = BS_IMAGE_MOBILE_SIZE_QVGA_HEIGHT;
-		}
-		return $info;
+		return Tuple::create([
+			'width' => BS_IMAGE_MOBILE_SIZE_QVGA_WIDTH,
+			'height' => BS_IMAGE_MOBILE_SIZE_QVGA_HEIGHT,
+		]);
 	}
 }

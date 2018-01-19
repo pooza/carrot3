@@ -14,7 +14,6 @@ namespace Carrot3;
  */
 abstract class UserAgent extends ParameterHolder {
 	use BasicObject;
-	protected $bugs;
 	protected $supports;
 	protected $type;
 	protected $digest;
@@ -26,7 +25,6 @@ abstract class UserAgent extends ParameterHolder {
 	 * @param string $name ユーザーエージェント名
 	 */
 	protected function __construct ($name = null) {
-		$this->bugs = Tuple::create();
 		$this->supports = Tuple::create();
 		$this['name'] = $name;
 		$this['type'] = $this->getType();
@@ -112,9 +110,9 @@ abstract class UserAgent extends ParameterHolder {
 	 */
 	public function initializeView (SmartyView $view) {
 		$view->getRenderer()->setUserAgent($this);
-		$view->getRenderer()->addModifier('sanitize');
-		$view->getRenderer()->addOutputFilter('trim');
-		$view->getRenderer()->addOutputFilter('strip_comment');
+		$view->addModifier('sanitize');
+		$view->addOutputFilter('trim');
+		$view->addOutputFilter('strip_comment');
 		$view->setAttributes($this->request->getAttributes());
 		$view->setAttribute('module', $view->getModule());
 		$view->setAttribute('action', $view->getAction());
@@ -125,7 +123,6 @@ abstract class UserAgent extends ParameterHolder {
 		$view->setAttribute('client_host', $this->request->getHost());
 		$view->setAttribute('server_host', $this->controller->getHost());
 		$view->setAttribute('is_ssl', $this->request->isSSL());
-		$view->setAttribute('is_debug', BS_DEBUG);
 		$view->setAttribute('session', [
 			'name' => $this->request->getSession()->getName(),
 			'id' => $this->request->getSession()->getID(),
@@ -351,28 +348,14 @@ abstract class UserAgent extends ParameterHolder {
 	 * @return mixed アサインすべき値
 	 */
 	public function assign () {
-		$values = $this->getParameters();
+		$values = Tuple::create($this);
 		$values['supports'] = $this->supports;
 		return $values;
 	}
 
 	static private function getTypes () {
-		return Tuple::create([
-			'Tasman',
-			'Trident',
-			'Gecko',
-			'Android',
-			'iOS',
-			'Edge',
-			'Blink',
-			'WebKit',
-			'Presto',
-			'LegacyMozilla',
-			'Docomo',
-			'Au',
-			'SoftBank',
-			'Console',
-			'Default',
-		]);
+		return Tuple::create(
+			ConfigManager::getInstance()->compile('useragent')['classes']
+		);
 	}
 }

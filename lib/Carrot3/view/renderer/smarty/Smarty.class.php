@@ -40,6 +40,7 @@ class Smarty extends \Smarty implements TextRenderer {
 		$this->registerDirectory(FileUtils::getDirectory('templates'));
 		$this->setEncoding('utf-8');
 		$this->setUserAgent($this->request->getUserAgent());
+		$this->setAttribute('is_debug', BS_DEBUG);
 	}
 
 	/**

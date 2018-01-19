@@ -13,8 +13,6 @@ namespace Carrot3;
  * @abstract
  */
 abstract class MobileUserAgent extends UserAgent {
-	private $carrier;
-	const DEFAULT_NAME = 'DoCoMo/2.0 (c500;)';
 
 	/**
 	 * ビューを初期化
@@ -54,6 +52,17 @@ abstract class MobileUserAgent extends UserAgent {
 	}
 
 	/**
+	 * 再生可能か？
+	 *
+	 * @access public
+	 * @param MediaFile $file
+	 * @return boolean 再生できるならTrue
+	 */
+	public function isPlayable (MediaFile $file) {
+		return false;
+	}
+
+	/**
 	 * キャリア名を返す
 	 *
 	 * @access public
@@ -83,19 +92,6 @@ abstract class MobileUserAgent extends UserAgent {
 	 */
 	public function getDefaultEncoding () {
 		return 'sjis-win';
-	}
-
-	/**
-	 * 画面情報を返す
-	 *
-	 * @access public
-	 * @return Tuple 画面情報
-	 */
-	public function getDisplayInfo () {
-		return Tuple::create([
-			'width' => BS_IMAGE_MOBILE_SIZE_QVGA_WIDTH,
-			'height' => BS_IMAGE_MOBILE_SIZE_QVGA_HEIGHT,
-		]);
 	}
 
 	/**

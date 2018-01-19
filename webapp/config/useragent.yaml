@@ -1,0 +1,21 @@
+# ユーザーエージェント設定ファイル
+#
+# @package jp.co.b-shock.carrot3
+# @author 小石達也 <tkoishi@b-shock.co.jp>
+
+classes:
+  - Tasman
+  - Trident
+  - Gecko
+  - Android
+  - iOS
+  - Edge
+  - Blink
+  - WebKit
+  - Presto
+  - LegacyMozilla
+  - Docomo
+  - Au
+  - SoftBank
+  - Console
+  - Default

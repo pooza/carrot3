@@ -23,17 +23,6 @@ class SoftBankUserAgent extends MobileUserAgent {
 			$name = self::DEFAULT_NAME;
 		}
 		parent::__construct($name);
-		$this['is_3gc'] = $this->is3GC();
-	}
-
-	/**
-	 * 3GC端末か？
-	 *
-	 * @access public
-	 * @return boolean 3GC端末ならばTrue
-	 */
-	public function is3GC () {
-		return !mb_ereg('^J-PHONE', $this->getName());
 	}
 
 	/**
@@ -53,15 +42,14 @@ class SoftBankUserAgent extends MobileUserAgent {
 	 * @return Tuple 画面情報
 	 */
 	public function getDisplayInfo () {
-		if (StringUtils::isBlank($info = $this->controller->getAttribute('X-JPHONE-DISPLAY'))) {
-			return parent::getDisplayInfo();
+		if ($info = $this->controller->getAttribute('X-JPHONE-DISPLAY')) {
+			$info = StringUtils::explode('*', $info);
+			return Tuple::create([
+				'width' => (int)$info[0],
+				'height' => (int)$info[1],
+			]);
 		}
-		$info = StringUtils::explode('*', $info);
-
-		return Tuple::create([
-			'width' => (int)$info[0],
-			'height' => (int)$info[1],
-		]);
+		return parent::getDisplayInfo();
 	}
 
 	/**
