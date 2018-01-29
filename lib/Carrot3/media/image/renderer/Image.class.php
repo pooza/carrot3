@@ -238,6 +238,8 @@ class Image implements ImageRenderer {
 					imagegif($this->getGDHandle());
 					break;
 				case 'image/png':
+					imagealphablending($this->getGDHandle(), false);
+					imagesavealpha($this->getGDHandle(), true);
 					imagepng($this->getGDHandle());
 					break;
 			}
