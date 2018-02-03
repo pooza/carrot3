@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.0.56
+  ver: 3.0.57
 
 admin:
   email:
@@ -224,6 +224,9 @@ service:
   slack:
     webhook:
       url: /services/T818MGY3S/B8A93KZL2/L5StOlVmm3Apqd0NED9zQUWJ
+  discord:
+    webhook:
+      url: /api/webhooks/409190036010041348/5k0hiDHv7yvqhV5JXH6pJdkmS8TvXcnck-ytM6a8ETp11fYjwA_OrVkh1DbKd5DcPszl
 session:
   storage: Memcache
 smtp:

@@ -46,7 +46,7 @@ class Exception extends \Exception {
 		$message[] =$this->controller->getHost()->getName();
 		$message[] = $this->getName($this);
 		$message[] = $this->getMessage();
-		(new SlackWebhookService)->say($message);
+		(new DiscordWebhookService)->say($message);
 	}
 
 	/**
