@@ -65,14 +65,6 @@ class ImageElement extends HTMLElement {
 	 */
 	public function setAttribute ($name, $value) {
 		switch ($name) {
-			case 'width':
-			case 'height':
-			case 'border':
-			case 'align':
-			case 'class':
-			case 'style':
-			case 'copyright':
-				return parent::setAttribute($name, $value);
 			case 'alt':
 				return $this->setAlt($value);
 			case 'href':
@@ -80,5 +72,6 @@ class ImageElement extends HTMLElement {
 			case 'src':
 				return $this->setURL($value);
 		}
+		return parent::setAttribute($name, $value);
 	}
 }
