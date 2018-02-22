@@ -35,6 +35,8 @@
   suffixes: ['.gif']
 - type: application/x-gzip
   suffixes: ['.gz', '.tgz']
+- type: image/x-heif
+  suffixes: ['.heic']
 - type: text/html
   suffixes: ['.html', '.htm']
 - type: image/vnd.microsoft.icon

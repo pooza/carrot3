@@ -28,7 +28,9 @@ class MIMEType extends ParameterHolder {
 			if ($entry['suffixes']) {
 				foreach ($entry['suffixes'] as $suffix) {
 					$this['.' . ltrim($suffix, '.')] = $entry['type'];
-					if (!$this->suffixes->hasParameter($entry['type'])) {
+					if ($this->suffixes->hasParameter($entry['type'])) {
+						$this->suffixes[] = '.' . ltrim($suffix, '.');
+					} else {
 						$this->suffixes[$entry['type']] = '.' . ltrim($suffix, '.');
 					}
 				}
