@@ -7,9 +7,11 @@ namespace Carrot3;
  */
 class DiscordWebhookServiceTest extends Test {
 	public function execute () {
-		$message = new StringFormat('%s %s test');
-		$message[] = BS_CARROT_NAME;
-		$message[] = BS_CARROT_VER;
+		$message = new JSONRenderer;
+		$message->setContents([
+			'name' => BS_CARROT_NAME,
+			'versioon' => BS_CARROT_VER,
+		]);
 		$response = (new DiscordWebhookService)->say($message);
 		$this->assert('say', $response instanceof HTTPResponse);
 	}

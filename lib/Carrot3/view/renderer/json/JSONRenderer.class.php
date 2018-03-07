@@ -48,7 +48,10 @@ class JSONRenderer implements Renderer {
 		if (is_array($contents) || ($contents instanceof ParameterHolder)) {
 			$contents = Tuple::create($contents);
 			$this->result = $contents->decode();
-			$contents = $this->getSerializer()->encode($this->result);
+			$contents = $this->getSerializer()->encode(
+				$this->result,
+				JSON_PRETTY_PRINT
+			);
 		}
 		$this->contents = $contents;
 	}

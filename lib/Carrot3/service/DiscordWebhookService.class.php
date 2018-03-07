@@ -31,15 +31,14 @@ class DiscordWebhookService extends CurlHTTP {
 	 * 話す
 	 *
 	 * @access public
-	 * @param string $message
+	 * @param JSONRenderer $message
 	 * @return HTTPResponse レスポンス
 	 */
-	public function say ($message) {
-		if ($message instanceof StringFormat) {
-			$message = $message->getContents();
-		}
+	public function say (JSONRenderer $message) {
 		$renderer = new JSONRenderer;
-		$renderer->setContents(['content' => $message]);
+		$renderer->setContents([
+			'content' => $message->getContents(JSON_PRETTY_PRINT),
+		]);
 		return $this->sendPOST(BS_SERVICE_DISCORD_WEBHOOK_URL, $renderer);
 	}
 

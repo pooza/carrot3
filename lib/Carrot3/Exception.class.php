@@ -42,11 +42,13 @@ class Exception extends \Exception {
 	 * @return string 名前
 	 */
 	public function alert () {
-		$message = new StringFormat("Service: %s\nPriority: %s\n%s");
-		$message[] =$this->controller->getHost()->getName();
-		$message[] = $this->getName($this);
-		$message[] = $this->getMessage();
-		(new DiscordWebhookService)->say($message);
+		$json = new JSONRenderer;
+		$json->setContents([
+			'service' => $this->controller->getHost()->getName(),
+			'class' => $this->getName($this),
+			'message' => $this->getMessage(),
+		]);
+		(new DiscordWebhookService)->say($json);
 	}
 
 	/**

@@ -17,4 +17,4 @@ echo json_encode([
   'algo' => $info['algoName'],
   'cost' => $info['options']['cost'],
   'verify' => (password_verify($source, $hash) ? 'OK' : 'NG'),
-], JSON_PRETTY_PRINT) . "\n";
+], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n";

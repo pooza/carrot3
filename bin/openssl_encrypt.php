@@ -40,4 +40,4 @@ echo json_encode([
   'encrypted' => $encrypted,
   'method' => BS_CRYPT_METHOD,
   'verify' => (($source === $decrypted) ? 'OK' : 'NG'),
-], JSON_PRETTY_PRINT) . "\n";
+], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n";
