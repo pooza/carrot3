@@ -28,15 +28,19 @@ class JSONSerializer implements Serializer {
 	 *
 	 * @access public
 	 * @param mixed $value 対象
+	 * @param integer $flags フラグのビット列
 	 * @return string シリアライズされた文字列
 	 */
-	public function encode ($value) {
+	public function encode ($value, $flags = 0) {
 		$value = StringUtils::convertEncoding($value, 'utf-8');
 		if (is_array($value) || ($value instanceof ParameterHolder)) {
 			$value = Tuple::create($value);
 			$value = $value->decode();
 		}
-		return json_encode($value);
+		return json_encode(
+			$value,
+			JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | $flags
+		);
 	}
 
 	/**
