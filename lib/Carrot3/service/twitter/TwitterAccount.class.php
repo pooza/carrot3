@@ -40,12 +40,12 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * つぶやく
 	 *
 	 * @access public
-	 * @param string $message メッセージ
+	 * @param mixed $message メッセージ
 	 * @return JSONRenderer 結果文書
 	 */
 	public function tweet ($message) {
-		if ($message instanceof StringFormat) {
-			$message = $message->getContents();
+		if ($message instanceof MessageContainer) {
+			$message = $message->getMessage();
 		}
 		$query = new WWWFormRenderer;
 		$query['status'] = $message;

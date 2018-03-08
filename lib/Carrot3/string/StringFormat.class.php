@@ -13,7 +13,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class StringFormat extends Tuple {
+class StringFormat extends Tuple implements MessageContainer {
 
 	/**
 	 * @access public
@@ -35,6 +35,16 @@ class StringFormat extends Tuple {
 		} catch (\Exception $e) {
 			return $this->join(', ');
 		}
+	}
+
+	/**
+	 * メッセージ文字列を返す
+	 *
+	 * @access public
+	 * @return string メッセージ文字列
+	 */
+	public function getMessage () {
+		return $this->getContents();
 	}
 
 	/**

@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class JSONRenderer implements Renderer {
+class JSONRenderer implements Renderer, MessageContainer {
 	protected $serializer;
 	protected $contents;
 	protected $result;
@@ -36,6 +36,16 @@ class JSONRenderer implements Renderer {
 	 */
 	public function getContents () {
 		return $this->contents;
+	}
+
+	/**
+	 * メッセージ文字列を返す
+	 *
+	 * @access public
+	 * @return string メッセージ文字列
+	 */
+	public function getMessage () {
+		return $this->getContents();
 	}
 
 	/**

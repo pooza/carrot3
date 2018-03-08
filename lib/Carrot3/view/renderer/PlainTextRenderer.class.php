@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class PlainTextRenderer implements TextRenderer, \IteratorAggregate {
+class PlainTextRenderer implements TextRenderer, MessageContainer, \IteratorAggregate {
 	private $encoding = 'UTF-8';
 	private $lineSeparator = "\n";
 	private $convertKanaFlag = 'KV';
@@ -41,6 +41,16 @@ class PlainTextRenderer implements TextRenderer, \IteratorAggregate {
 		$contents = StringUtils::convertLineSeparator($contents, $this->lineSeparator);
 		$contents = StringUtils::convertEncoding($contents, $this->getEncoding());
 		return $contents;
+	}
+
+	/**
+	 * メッセージ文字列を返す
+	 *
+	 * @access public
+	 * @return string メッセージ文字列
+	 */
+	public function getMessage () {
+		return $this->getContents();
 	}
 
 	/**

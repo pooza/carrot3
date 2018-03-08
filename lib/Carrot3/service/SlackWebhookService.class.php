@@ -31,14 +31,12 @@ class SlackWebhookService extends CurlHTTP {
 	 * 話す
 	 *
 	 * @access public
-	 * @param JSONRenderer $message
+	 * @param MessageContainer $message
 	 * @return HTTPResponse レスポンス
 	 */
-	public function say (JSONRenderer $message) {
+	public function say (MessageContainer $message) {
 		$renderer = new JSONRenderer;
-		$renderer->setContents([
-			'text' => $message->getContents(JSON_PRETTY_PRINT),
-		]);
+		$renderer->setContents(['text' => $message->getMessage()]);
 		return $this->sendPOST(BS_SERVICE_SLACK_WEBHOOK_URL, $renderer);
 	}
 
