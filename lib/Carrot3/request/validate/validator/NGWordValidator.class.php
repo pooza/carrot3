@@ -32,12 +32,7 @@ class NGWordValidator extends Validator {
 	 * @return boolean 妥当な値ならばTrue
 	 */
 	public function execute ($value) {
-		$words = Tuple::create();
-		foreach (['carrot', 'application'] as $name) {
-			$config = ConfigManager::getInstance()->compile('ng_word/' . $name);
-			$words->merge($config['words']);
-		}
-		foreach ($words as $word) {
+		foreach (ConfigCompiler::parseFiles('ng_word') as $word) {
 			if (StringUtils::isContain($word, $value)) {
 				$this->error = $this['word_error'];
 				break;

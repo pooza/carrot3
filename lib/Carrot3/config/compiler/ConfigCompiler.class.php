@@ -137,4 +137,20 @@ abstract class ConfigCompiler extends ParameterHolder {
 		$value = str_replace('##PERCENT##', '%', $value);
 		return $value;
 	}
+
+	/**
+	 * 設定ファイルをパース
+	 *
+	 * @access public
+	 * @param string $name フォルダ名
+	 * @return Tuple
+	 * @static
+	 */
+	static public function parseFiles ($name) {
+		$manager = ConfigManager::getInstance();
+		$values = Tuple::create();
+		$values->setParameters($manager->compile($name . '/carrot'));
+		$values->setParameters($manager->compile($name . '/application'));
+		return $values;
+	}
 }

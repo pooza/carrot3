@@ -40,14 +40,10 @@ class ValidatorConfigCompiler extends ConfigCompiler {
 	}
 
 	private function parse (ConfigFile $file) {
-		$configure = ConfigManager::getInstance();
-		$this->validators = Tuple::create();
-		$this->validators->setParameters($configure->compile('validator/carrot'));
-		$this->validators->setParameters($configure->compile('validator/application'));
-
+		$this->validators = ConfigCompiler::parseFiles('validator');
 		$server = $this->controller->getHost();
 		if ($config = ConfigManager::getConfigFile('validator/' . $server->getName())) {
-			$this->validators->setParameters($configure->compile($config));
+			$this->validators->setParameters($manager->compile($config));
 		}
 
 		$config = Tuple::create($file->getResult());

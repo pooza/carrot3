@@ -83,6 +83,21 @@ class ValidateManager implements \IteratorAggregate {
 	}
 
 	/**
+	 * バリデータを生成して返す
+	 *
+	 * @access public
+	 * @param string $name バリデータ名
+	 * @return Validator バリデータ
+	 */
+	public function createValidator ($name) {
+		if ($entry = ConfigCompiler::parseFiles('validator')[$name]) {
+			$entry = Tuple::create($entry);
+			$class = $this->loader->getClass($entry['class']);
+			return new $class($entry['params']);
+		}
+	}
+
+	/**
 	 * @access public
 	 * @return Iterator イテレータ
 	 */
