@@ -126,7 +126,7 @@ class XMLElement implements \IteratorAggregate {
 	 * 本文を設定
 	 *
 	 * @access public
-	 * @param string $body 本文
+	 * @param mied $body 本文
 	 */
 	public function setBody ($body = null) {
 		if (Numeric::isZero($body)) {
@@ -134,8 +134,8 @@ class XMLElement implements \IteratorAggregate {
 		} else if (StringUtils::isBlank($body)) {
 			$this->body = null;
 		} else {
-			if ($body instanceof StringFormat) {
-				$body = $body->getContents();
+			if ($body instanceof MessageContainer) {
+				$body = $body->getMessage();
 			}
 			$body = trim($body);
 			$body = StringUtils::convertEncoding($body, 'utf-8');

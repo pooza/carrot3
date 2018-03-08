@@ -17,11 +17,11 @@ class ScriptElement extends HTMLElement {
 	 * 本文を設定
 	 *
 	 * @access public
-	 * @param string $body 本文
+	 * @param mixed $body 本文
 	 */
 	public function setBody ($body = null) {
-		if ($body instanceof StringFormat) {
-			$body = $body->getContents();
+		if ($body instanceof MessageContainer) {
+			$body = $body->getMessage();
 		}
 
 		require_once BS_LIB_DIR . '/jsmin.php';

@@ -84,8 +84,8 @@ class TestManager implements \IteratorAggregate {
 	 * @param mixed $message メッセージ
 	 */
 	public function put ($message) {
-		if ($message instanceof StringFormat) {
-			$message = $message->getContents();
+		if ($message instanceof MessageContainer) {
+			$message = $message->getMessage();
 		}
 		print $message . "\n";
 	}

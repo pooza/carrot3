@@ -70,11 +70,11 @@ abstract class ConfigCompiler extends ParameterHolder {
 	 * phpステートメントの末尾に1行追加
 	 *
 	 * @access public
-	 * @param string $line phpステートメント
+	 * @param mixed $line phpステートメント
 	 */
 	protected function putLine ($line) {
-		if ($line instanceof StringFormat) {
-			$line = $line->getContents();
+		if ($line instanceof MessageContainer) {
+			$line = $line->getMessage();
 		}
 		$this->body[] = $line;
 	}

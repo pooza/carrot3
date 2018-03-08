@@ -55,8 +55,8 @@ class LogManager implements \IteratorAggregate {
 	 * @param string $priority 優先順位
 	 */
 	public function put ($message, $priority = Logger::DEFAULT_PRIORITY) {
-		if ($message instanceof StringFormat) {
-			$message = $message->getContents();
+		if ($message instanceof MessageContainer) {
+			$message = $message->getMessage();
 		} else if ($message instanceof Exception) {
 			$priority = $message->getName();
 			$message = $message->getMessage();

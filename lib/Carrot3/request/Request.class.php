@@ -182,8 +182,8 @@ abstract class Request extends HTTPRequest {
 	 * @param mixed $value 値
 	 */
 	public function setError ($name, $value) {
-		if ($value instanceof StringFormat) {
-			$value = $value->getContents();
+		if ($value instanceof MessageContainer) {
+			$value = $value->getMessage();
 		}
 		$this->getErrors()->setParameter($name, $value);
 	}

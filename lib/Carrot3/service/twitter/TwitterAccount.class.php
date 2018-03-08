@@ -59,13 +59,13 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * ダイレクトメッセージを送る
 	 *
 	 * @access public
-	 * @param string $message メッセージ
+	 * @param mixed $message メッセージ
 	 * @param TwitterAccount $account 宛先アカウント
 	 * @return JSONRenderer 結果文書
 	 */
 	public function sendDirectMessage ($message, TwitterAccount $account) {
-		if ($message instanceof StringFormat) {
-			$message = $message->getContents();
+		if ($message instanceof MessageContainer) {
+			$message = $message->getMessage();
 		}
 		$query = new WWWFormRenderer;
 		$query['screen_name'] = $account->getName();
