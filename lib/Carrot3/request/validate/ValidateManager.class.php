@@ -49,11 +49,18 @@ class ValidateManager implements \IteratorAggregate {
 	 *
 	 * @access public
 	 * @param string $name フィールド名
-	 * @param Validator $validator バリデータ
+	 * @param mixed $validator バリデータ、又はバリデータ名
 	 */
-	public function register ($name, Validator $validator) {
+	public function register ($name, $validator) {
 		if (!$this->fields[$name]) {
 			$this->fields[$name] = Tuple::create();
+		}
+		if (!($validator instanceof Validator)) {
+			if (!$validator = $this->createValidator($validator)) {
+				$message= new StringFormat('バリデータ "%s" が見つかりません。');
+				$message[] = $name;
+				throw new ValidateException($message);
+			}
 		}
 		$this->fields[$name][$validator->getName()] = $validator;
 	}
