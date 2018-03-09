@@ -65,6 +65,9 @@ class ImageElement extends HTMLElement {
 	 */
 	public function setAttribute ($name, $value) {
 		switch ($name) {
+			case 'type':
+			case 'pixel_size':
+				return;
 			case 'alt':
 				return $this->setAlt($value);
 			case 'href':
