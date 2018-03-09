@@ -12,6 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class StyleSet extends DocumentSet {
+	private $selectors;
 
 	/**
 	 * 書類のクラス名を返す
@@ -31,6 +32,19 @@ class StyleSet extends DocumentSet {
 	 */
 	protected function getDirectoryName () {
 		return 'css';
+	}
+
+	/**
+	 * パースしてセレクタの配列を返す
+	 *
+	 * @access public
+	 * @return CCSParser
+	 */
+	public function getSelectors () {
+		if (!$this->selectors) {
+			$this->selectors = new CSSSParser($this->getContents());
+		}
+		return $this->selectors;
 	}
 
 	/**
