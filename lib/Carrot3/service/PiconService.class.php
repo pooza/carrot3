@@ -82,6 +82,21 @@ class PiconService extends CurlHTTP {
 	}
 
 	/**
+	 * サービスの情報を返す
+	 *
+	 * @access public
+	 * @return JSONRenderer 結果文書
+	 */
+	public function getInfo () {
+		$response = $this->sendGET('/about');
+		$json = new JSONRenderer;
+		$json->setContents(
+			json_decode($response->getRenderer()->getContents(), true)
+		);
+		return $json;
+	}
+
+	/**
 	 * @access public
 	 * @return string 基本情報
 	 */
