@@ -325,10 +325,10 @@ abstract class Record implements \ArrayAccess,
 	 *
 	 * @access public
 	 * @param string $name 名前
-	 * @return string[] 添付ファイルの情報
+	 * @return Tuple 添付ファイルの情報
 	 */
 	public function getAttachmentInfo ($name) {
-		if ($file = $this->getAttachment($name)) {
+		if (($file = $this->getAttachment($name)) && ($file instanceof Assibnable)) {
 			return $file->assign();
 		}
 	}
@@ -628,7 +628,7 @@ abstract class Record implements \ArrayAccess,
 	public function digest () {
 		if (!$this->digest) {
 			$this->digest = Crypt::digest([
-				__CLASS__,
+				Utils::getClass($this),
 				$this->getID(),
 				$this->getUpdateDate()->getTimestamp(),
 			]);
@@ -656,9 +656,9 @@ abstract class Record implements \ArrayAccess,
 	 */
 	public function getSerialized () {
 		if ($date = $this->getUpdateDate()) {
-			return $this->controller->getAttribute($this, $date);
+			return (new SerializeHandler)->getAttribute($this, $date);
 		} else {
-			return $this->controller->getAttribute($this);
+			return (new SerializeHandler)->getAttribute($this);
 		}
 	}
 
@@ -695,12 +695,13 @@ abstract class Record implements \ArrayAccess,
 	 * @return Tuple アサインすべき値
 	 */
 	public function assign () {
+		$values = null;
 		if ($this->isSerializable()) {
-			if (StringUtils::isBlank($this->getSerialized())) {
+			if (StringUtils::isBlank($values = $this->getSerialized())) {
 				$this->serialize();
 			}
-			$values = $this->getSerialized();
-		} else {
+		}
+		if (StringUtils::isBlank($values)) {
 			$values = $this->getSerializableValues();
 		}
 		$values['is_visible'] = $this->isVisible();

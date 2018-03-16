@@ -1,4 +1,5 @@
 .DS_Store
 Thumbs.db
 ._*
-/www/.well-known
+/www/*
+!/www/carrotlib/
