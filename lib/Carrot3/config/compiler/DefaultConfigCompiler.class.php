@@ -20,7 +20,7 @@ class DefaultConfigCompiler extends ConfigCompiler {
 		}
 
 		$this->clearBody();
-		$line = sprintf('return %s;', self::quote($serials->getAttribute($file)));
+		$line = sprintf('return %s;', self::quote($serials[$file]));
 		$this->putLine($line);
 		return $this->getBody();
 	}

@@ -658,7 +658,7 @@ abstract class Record implements \ArrayAccess,
 		if ($date = $this->getUpdateDate()) {
 			return (new SerializeHandler)->getAttribute($this, $date);
 		} else {
-			return (new SerializeHandler)->getAttribute($this);
+			return (new SerializeHandler)[$this];
 		}
 	}
 

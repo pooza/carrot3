@@ -295,7 +295,7 @@ class Pictogram implements Assignable, ImageContainer {
 	static public function getPictogramImageInfos () {
 		$key = __CLASS__ . '.' . __FUNCTION__;
 		$serials = new SerializeHandler;
-		if (!$serials->getAttribute($key)) {
+		if (!$serials[$key]) {
 			$urls = Tuple::create();
 			foreach (self::getPictograms() as $pictogram) {
 				foreach ($pictogram->getNames() as $name) {
@@ -304,8 +304,8 @@ class Pictogram implements Assignable, ImageContainer {
 					$urls[$name]['image'] = $pictogram->getImageInfo('image');
 				}
 			}
-			$serials->setAttribute($key, $urls);
+			$serials[$key] = $urls;
 		}
-		return $serials->getAttribute($key);
+		return $serials[$key];
 	}
 }

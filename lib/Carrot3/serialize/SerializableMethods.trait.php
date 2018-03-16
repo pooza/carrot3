@@ -20,7 +20,7 @@ trait SerializableMethods {
 	 * @return mixed シリアライズ時の値
 	 */
 	public function getSerialized () {
-		return (new SerializeHandler)->getAttribute($this);
+		return (new SerializeHandler)[$this];
 	}
 
 	/**

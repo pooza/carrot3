@@ -38,14 +38,14 @@ class GoogleMapsGeocodingService extends CurlHTTP {
 	public function getGeocode ($address) {
 		$key = Crypt::digest([Utils::getClass($this), $address]);
 		$serials = new SerializeHandler;
-		if (!$geocode = $serials->getAttribute($key)) {
+		if (!$geocode = $serials[$key]) {
 			$pattern = '^lat=([.[:digit:]]+),lng=([.[:digit:]]+)+$';
 			if (mb_ereg($pattern, $address, $matches)) {
 				$geocode = ['lat' => $matches[1], 'lng' => $matches[2]];
 			} else {
 				$geocode = $this->query($address);
 			}
-			$serials->setAttribute($key, $geocode);
+			$serials[$key] = $geocode;
 		}
 		return new Geocode($geocode);
 	}

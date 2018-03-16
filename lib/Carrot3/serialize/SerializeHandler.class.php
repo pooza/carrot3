@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class SerializeHandler {
+class SerializeHandler implements \ArrayAccess {
 	use BasicObject;
 	private $serializer;
 	private $storage;
@@ -103,6 +103,41 @@ class SerializeHandler {
 	 */
 	public function removeAttribute ($name) {
 		$this->storage->removeAttribute($this->createKey($name));
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 * @return boolean 要素が存在すればTrue
+	 */
+	public function offsetExists ($key) {
+		return ($this->getAttribute($key) !== null);
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 * @return mixed 要素
+	 */
+	public function offsetGet ($key) {
+		return $this->getAttribute($key);
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 * @param mixed $value 要素
+	 */
+	public function offsetSet ($key, $value) {
+		$this->setAttribute($key, $value);
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 */
+	public function offsetUnset ($key) {
+		$this->removeAttribute($key);
 	}
 
 	/**

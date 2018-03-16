@@ -156,8 +156,7 @@ class TwitterService extends CurlHTTP {
 
 			$json = new JSONRenderer;
 			$json->setContents($response->getRenderer()->getContents());
-			$value = $json->getResult()['access_token'];
-			(new SerializeHandler)->setAttribute($key, $value);
+			(new SerializeHandler)->setAttribute($key, $json->getResult()['access_token']);
 		}
 		return $value;
 	}
@@ -295,8 +294,7 @@ class TwitterService extends CurlHTTP {
 			$response = $this->sendGET($url->getFullPath());
 			$json = new JSONRenderer;
 			$json->setContents($response->getRenderer()->getContents());
-			$profile = $json->getResult();
-			(new SerializeHandler)->setAttribute($key, $profile);
+			(new SerializeHandler)->setAttribute($key, $json->getResult());
 		}
 		return $profile;
 	}

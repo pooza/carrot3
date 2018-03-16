@@ -356,11 +356,11 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 			}
 			$key = Crypt::digest([Utils::getClass($this), $this->getContents()]);
 			$serials = new SerializeHandler;
-			if ($url = $serials->getAttribute($key)) {
+			if ($url = $serials[$key]) {
 				$this->shortURL = URL::create($url);
 			} else {
 				$this->shortURL = $service->getShortURL($this);
-				$serials->setAttribute($key, $this->shortURL->getContents());
+				$serials[$key] = $this->shortURL->getContents();
 			}
 		}
 		return $this->shortURL;

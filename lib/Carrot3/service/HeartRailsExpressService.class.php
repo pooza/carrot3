@@ -55,7 +55,7 @@ class HeartRailsExpressService extends CurlHTTP {
 			} catch (\Exception $e) {
 			}
 		}
-		return $serials->getAttribute($key);
+		return $serials[$key];
 	}
 
 	private function queryStations (Geocode $geocode) {
