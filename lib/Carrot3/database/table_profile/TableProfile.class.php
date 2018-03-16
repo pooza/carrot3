@@ -132,7 +132,7 @@ abstract class TableProfile implements Assignable, Serializable {
 	 * @access public
 	 */
 	public function serialize () {
-		$this->controller->setAttribute($this, [
+		(new SerializeHandler)->setAttribute($this, [
 			'fields' => $this->getFields(),
 			'constraints' => $this->getConstraints(),
 		]);

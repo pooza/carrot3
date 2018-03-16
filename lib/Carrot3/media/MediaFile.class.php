@@ -170,7 +170,7 @@ abstract class MediaFile extends File implements Assignable {
 		if (!$this->attributes->count()) {
 			$this->analyze();
 		}
-		$this->controller->setAttribute($this, $this->attributes);
+		(new SerializeHandler)->setAttribute($this, $this->attributes);
 	}
 
 	/**

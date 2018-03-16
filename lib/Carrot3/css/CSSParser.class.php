@@ -33,13 +33,14 @@ class CSSParser extends ParameterHolder {
 		$this->clear();
 		$contents = StringUtils::stripHTMLComment($this->contents);
 		$contents = mb_ereg_replace('\\s+', ' ', $contents, 'm');
- 		$pattern = '([-[:alnum:].#:,>@\n ]+?)\\s*{(.*?)}';
+		$pattern = '([-[:alnum:].#:,>@ ]+?)\\s*{(.*?)}';
 		foreach (StringUtils::eregMatchAll($pattern, $contents) as $matches) {
-			$this[$matches[1]] = Tuple::create();
-			foreach (StringUtils::explode(';', $matches[2]) as $prop) {
+			$key = trim($matches[1]);
+			$this[$key] = Tuple::create();
+			foreach (StringUtils::explode(';', trim($matches[2])) as $prop) {
 				$prop = StringUtils::explode(':', $prop);
 				if (!StringUtils::isBlank($value = trim($prop[1]))) {
-					$this[$matches[1]][trim($prop[0])] = $value;
+					$this[$key][trim($prop[0])] = $value;
 				}
 			}
 		}

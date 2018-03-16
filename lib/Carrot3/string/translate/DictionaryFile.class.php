@@ -63,7 +63,7 @@ class DictionaryFile extends CSVFile implements Dictionary {
 	 * @access public
 	 */
 	public function serialize () {
-		$this->controller->setAttribute(
+		(new SerializeHandler)->setAttribute(
 			$this,
 			(clone $this->getRenderer()->getRecords())->flatten()
 		);

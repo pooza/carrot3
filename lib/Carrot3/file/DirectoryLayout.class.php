@@ -62,7 +62,7 @@ class DirectoryLayout extends ParameterHolder {
 	public function getParameter ($name) {
 		if (!$this->hasParameter($name) && ($info = $this->getEntry($name))) {
 			if (!!$info['constant']) {
-				$dir = new Directory($this->controller->getAttribute($name . '_DIR'));
+				$dir = new Directory((new ConstantHandler)[$name . '_DIR']);
 			} else if (!!$info['platform']) {
 				$dir = $this->controller->getPlatform()->getDirectory($name);
 			} else if (!StringUtils::isBlank($info['name'])) {

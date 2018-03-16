@@ -18,13 +18,7 @@ function p ($var) {
 	if (!headers_sent()) {
 		header('Content-Type: text/html; charset=utf-8');
 	}
-	if (extension_loaded('xdebug')) {
-		var_dump($var);
-	} else {
-		print("<div align=\"left\"><pre>\n");
-		print_r($var);
-		print("</pre></div>\n");
-	}
+	var_dump($var);
 }
 
 /**

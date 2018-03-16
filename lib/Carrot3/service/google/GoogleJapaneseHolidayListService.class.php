@@ -181,7 +181,7 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 					$holidays[$date['day']] = $entry['summary'];
 				}
 			}
-			$this->controller->setAttribute($this, $holidays);
+			(new SerializeHandler)->setAttribute($this, $holidays);
 		} catch (\Exception $e) {
 		}
 	}
@@ -194,7 +194,7 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 	 */
 	public function getSerialized () {
 		$date = Date::create()->setParameter('month', '-1');
-		return $this->controller->getAttribute($this, $date);
+		return (new SerializeHandler)->getAttribute($this, $date);
 	}
 
 	/**

@@ -355,11 +355,12 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 				throw new HTTPException('URL短縮サービスが取得できません。');
 			}
 			$key = Crypt::digest([Utils::getClass($this), $this->getContents()]);
-			if ($url = $this->controller->getAttribute($key)) {
+			$serials = new SerializeHandler;
+			if ($url = $serials->getAttribute($key)) {
 				$this->shortURL = URL::create($url);
 			} else {
 				$this->shortURL = $service->getShortURL($this);
-				$this->controller->setAttribute($key, $this->shortURL->getContents());
+				$serials->setAttribute($key, $this->shortURL->getContents());
 			}
 		}
 		return $this->shortURL;

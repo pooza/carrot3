@@ -14,12 +14,13 @@ namespace Carrot3;
 class DefaultConfigCompiler extends ConfigCompiler {
 	public function execute (ConfigFile $file) {
 		// $file->serialize()が使用できないケースがある為、直接シリアライズ
-		if ($this->controller->getAttribute($file, $file->getUpdateDate()) === null) {
-			$this->controller->setAttribute($file, $this->getContents($file->getResult()));
+		$serials = new SerializeHandler;
+		if ($serials->getAttribute($file, $file->getUpdateDate()) === null) {
+			$serials->setAttribute($file, $this->getContents($file->getResult()));
 		}
 
 		$this->clearBody();
-		$line = sprintf('return %s;', self::quote($this->controller->getAttribute($file)));
+		$line = sprintf('return %s;', self::quote($serials->getAttribute($file)));
 		$this->putLine($line);
 		return $this->getBody();
 	}

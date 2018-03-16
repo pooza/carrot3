@@ -50,7 +50,7 @@ class JavaScriptFile extends File {
 	 */
 	public function serialize () {
 		require_once BS_LIB_DIR . '/jsmin.php';
-		$this->controller->setAttribute($this, \JSMin::minify($this->getContents()));
+		(new SerializeHandler)->setAttribute($this, \JSMin::minify($this->getContents()));
 	}
 
 	/**

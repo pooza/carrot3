@@ -51,7 +51,7 @@ class CSSFile extends File {
 	public function serialize () {
 		require_once BS_LIB_DIR . '/Minify/CSS/Compressor.php';
 		$contents = \Minify_CSS_Compressor::process($this->getContents());
-		$this->controller->setAttribute($this, $contents);
+		(new SerializeHandler)->setAttribute($this, $contents);
 	}
 
 	/**

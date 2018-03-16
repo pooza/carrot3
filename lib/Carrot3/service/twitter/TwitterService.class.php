@@ -142,7 +142,7 @@ class TwitterService extends CurlHTTP {
 		])->join(':');
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
-		if (!$value = $this->getSerializeHandler()->getAttribute($key, $date)) {
+		if (!$value = (new SerializeHandler)->getAttribute($key, $date)) {
 			$request = new HTTPRequest;
 			$request->setMethod('POST');
 			$request->setURL($this->createRequestURL('/oauth2/token'));
@@ -157,7 +157,7 @@ class TwitterService extends CurlHTTP {
 			$json = new JSONRenderer;
 			$json->setContents($response->getRenderer()->getContents());
 			$value = $json->getResult()['access_token'];
-			$this->getSerializeHandler()->setAttribute($key, $value);
+			(new SerializeHandler)->setAttribute($key, $value);
 		}
 		return $value;
 	}
@@ -215,7 +215,7 @@ class TwitterService extends CurlHTTP {
 		$key = Tuple::create([$account, $count, __CLASS__, __FUNCTION__])->join(':');
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
-		if (!$timeline = $this->getSerializeHandler()->getAttribute($key, $date)) {
+		if (!$timeline = (new SerializeHandler)->getAttribute($key, $date)) {
 			$timeline = Tuple::create();
 			$url = $this->createRequestURL('/1.1/statuses/user_timeline.json');
 			$url->setParameter('screen_name', $account);
@@ -234,7 +234,7 @@ class TwitterService extends CurlHTTP {
 					'profile_image_url' => $entry['user']['profile_image_url_https'],
 				]);
 			}
-			$this->getSerializeHandler()->setAttribute($key, $timeline);
+			(new SerializeHandler)->setAttribute($key, $timeline);
 		}
 		return $timeline;
 	}
@@ -251,7 +251,7 @@ class TwitterService extends CurlHTTP {
 		$key = Tuple::create([$keyword, $count, __CLASS__, __FUNCTION__])->join(':');
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
-		if (!$timeline = $this->getSerializeHandler()->getAttribute($key, $date)) {
+		if (!$timeline = (new SerializeHandler)->getAttribute($key, $date)) {
 			$timeline = Tuple::create();
 			$url = $this->createRequestURL('/1.1/search/tweets.json');
 			$url->setParameter('q', $keyword);
@@ -273,7 +273,7 @@ class TwitterService extends CurlHTTP {
 					'profile_image_url' => $entry['user']['profile_image_url_https'],
 				]);
 			}
-			$this->getSerializeHandler()->setAttribute($key, $timeline);
+			(new SerializeHandler)->setAttribute($key, $timeline);
 		}
 		return $timeline;
 	}
@@ -289,14 +289,14 @@ class TwitterService extends CurlHTTP {
 		$key = Tuple::create([$account, __CLASS__, __FUNCTION__])->join(':');
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
-		if (!$profile = $this->getSerializeHandler()->getAttribute($key, $date)) {
+		if (!$profile = (new SerializeHandler)->getAttribute($key, $date)) {
 			$url = $this->createRequestURL('/1.1/users/show.json');
 			$url->setParameter('screen_name', $account);
 			$response = $this->sendGET($url->getFullPath());
 			$json = new JSONRenderer;
 			$json->setContents($response->getRenderer()->getContents());
 			$profile = $json->getResult();
-			$this->getSerializeHandler()->setAttribute($key, $profile);
+			(new SerializeHandler)->setAttribute($key, $profile);
 		}
 		return $profile;
 	}
@@ -346,13 +346,6 @@ class TwitterService extends CurlHTTP {
 		$this->setAttribute('post', true);
 		$this->setAttribute('postfields', $request->getRenderer()->getContents());
 		return $this->send($request);
-	}
-
-	protected function getSerializeHandler () {
-		if (!$this->serializeHandler) {
-			$this->serializeHandler = new SerializeHandler;
-		}
-		return $this->serializeHandler;
 	}
 
 	/**

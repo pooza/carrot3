@@ -645,7 +645,7 @@ abstract class Record implements \ArrayAccess,
 		if (!$this->isSerializable()) {
 			throw new DatabaseException($this . 'はシリアライズできません。');
 		}
-		$this->controller->setAttribute($this, $this->getSerializableValues());
+		(new SerializeHandler)->setAttribute($this, $this->getSerializableValues());
 	}
 
 	/**

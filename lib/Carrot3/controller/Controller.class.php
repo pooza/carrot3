@@ -103,19 +103,6 @@ class Controller {
 	}
 
 	/**
-	 * SerializeHandlerを返す
-	 *
-	 * @access public
-	 * @return SerializeHandler
-	 */
-	public function getSerializeHandler () {
-		if (!$this->serializeHandler) {
-			$this->serializeHandler = new SerializeHandler;
-		}
-		return $this->serializeHandler;
-	}
-
-	/**
 	 * モジュールを返す
 	 *
 	 * @access public
@@ -166,8 +153,8 @@ class Controller {
 		if (StringUtils::isBlank($name)) {
 			return $this->getActionStack()->getIterator()->getLast();
 		}
-		if ($module = $this->getModule($this->getAttribute('module_' . $name . '_module'))) {
-			return $module->getAction($this->getAttribute('module_' . $name . '_action'));
+		if ($module = $this->getModule((new ConstantHandler)['MODULE_' . $name . '_MODULE'])) {
+			return $module->getAction((new ConstantHandler)['MODULE_' . $name . '_ACTION']);
 		}
 	}
 
@@ -176,62 +163,23 @@ class Controller {
 	 *
 	 * @access public
 	 * @param string $name 属性の名前
-	 * @param Date $date 比較する日付 - この日付より古い属性値は破棄
-	 * @return mixed 属性値
 	 */
-	public function getAttribute ($name, Date $date = null) {
-		if (!$date && !is_object($name)) {
-			$env = Tuple::create();
-			$env->setParameters(filter_input_array(INPUT_ENV));
-			$env->setParameters($_SERVER);
-			$keys = Tuple::create([
-				$name,
-				'HTTP_' . $name,
-				'HTTP_' . str_replace('-', '_', $name),
-			]);
-			$keys->uniquize();
-			foreach ($keys as $key) {
-				if (!StringUtils::isBlank($value = $env[$key])) {
-					return $value;
-				}
-			}
-
-			if (!StringUtils::isBlank($value = (new ConstantHandler)[$name])) {
+	public function getAttribute ($name) {
+		$env = Tuple::create();
+		$env->setParameters(filter_input_array(INPUT_ENV));
+		$env->setParameters($_SERVER);
+		$keys = Tuple::create([
+			$name,
+			'HTTP_' . $name,
+			'HTTP_' . str_replace('-', '_', $name),
+		]);
+		$keys->uniquize();
+		foreach ($keys as $key) {
+			if (!StringUtils::isBlank($value = $env[$key])) {
 				return $value;
 			}
 		}
-		return $this->getSerializeHandler()->getAttribute($name, $date);
-	}
-
-	/**
-	 * 属性を設定
-	 *
-	 * @access public
-	 * @param string $name 属性の名前
-	 * @param mixed $value 値
-	 */
-	public function setAttribute ($name, $value) {
-		$this->getSerializeHandler()->setAttribute($name, $value);
-	}
-
-	/**
-	 * 属性を削除
-	 *
-	 * @access public
-	 * @param string $name 属性の名前
-	 */
-	public function removeAttribute ($name) {
-		$this->getSerializeHandler()->removeAttribute($name);
-	}
-
-	/**
-	 * 全ての属性を返す
-	 *
-	 * @access public
-	 * @return mixed[] 全ての属性
-	 */
-	public function getAttributes () {
-		return $this->getSerializeHandler()->getAttributes();
+		return (new ConstantHandler)[$name];
 	}
 
 	/**
@@ -282,7 +230,7 @@ class Controller {
 	public function getName ($lang = 'ja') {
 		return sprintf(
 			'%s %s (Powered by %s %s)',
-			$this->getAttribute('app_name_' . $lang),
+			(new ConstantHandler)['APP_NAME_' . $lang],
 			BS_APP_VER,
 			BS_CARROT_NAME,
 			BS_CARROT_VER

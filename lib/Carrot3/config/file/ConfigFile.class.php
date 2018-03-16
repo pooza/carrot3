@@ -116,7 +116,7 @@ class ConfigFile extends File {
 	 * @access public
 	 */
 	public function serialize () {
-		$this->controller->setAttribute($this, $this->getResult());
+		(new SerializeHandler)->setAttribute($this, $this->getResult());
 	}
 
 	/**

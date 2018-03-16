@@ -20,7 +20,7 @@ trait SerializableMethods {
 	 * @return mixed シリアライズ時の値
 	 */
 	public function getSerialized () {
-		return Controller::getInstance()->getAttribute($this);
+		return (new SerializeHandler)->getAttribute($this);
 	}
 
 	/**
@@ -29,6 +29,6 @@ trait SerializableMethods {
 	 * @access public
 	 */
 	public function removeSerialized () {
-		Controller::getInstance()->removeAttribute($this);
+		(new SerializeHandler)->removeAttribute($this);
 	}
 }

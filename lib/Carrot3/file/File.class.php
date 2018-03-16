@@ -517,7 +517,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 */
 	public function getSerialized () {
 		if ($this->isExists()) {
-			return $this->controller->getAttribute($this, $this->getUpdateDate());
+			return (new SerializeHandler)->getAttribute($this, $this->getUpdateDate());
 		}
 	}
 

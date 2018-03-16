@@ -44,9 +44,10 @@ class HeartRailsExpressService extends CurlHTTP {
 			$geocode['lng'],
 		]);
 		$date = Date::create()->setParameter('day', '-7');
-		if (($flags & self::FORCE) || !$this->controller->getAttribute($key, $date)) {
+		$serials = new SerializeHandler;
+		if (($flags & self::FORCE) || !$serials->getAttribute($key, $date)) {
 			try {
-				$this->controller->setAttribute($key, $this->queryStations($geocode));
+				$serials->setAttribute($key, $this->queryStations($geocode));
 				$message = new StringFormat('%s,%sの最寄り駅を取得しました。');
 				$message[] = $geocode['lat'];
 				$message[] = $geocode['lng'];
@@ -54,7 +55,7 @@ class HeartRailsExpressService extends CurlHTTP {
 			} catch (\Exception $e) {
 			}
 		}
-		return $this->controller->getAttribute($key);
+		return $serials->getAttribute($key);
 	}
 
 	private function queryStations (Geocode $geocode) {

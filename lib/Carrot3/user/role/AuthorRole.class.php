@@ -60,7 +60,7 @@ class AuthorRole implements Role {
 	 */
 	public function getName ($language = 'ja') {
 		if (StringUtils::isBlank($name = BS_AUTHOR_NAME)) {
-			$name = $this->controller->getAttribute('app_name_' . $language);
+			$name = (new ConstantHandler)['APP_NAME_' . $language];
 		}
 		return $name;
 	}

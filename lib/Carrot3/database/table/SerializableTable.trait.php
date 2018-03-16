@@ -78,6 +78,6 @@ trait SerializableTable {
 	 * @access public
 	 */
 	public function serialize () {
-		Controller::getInstance()->setAttribute($this, parent::getResult());
+		(new SerializeHandler)->setAttribute($this, parent::getResult());
 	}
 }

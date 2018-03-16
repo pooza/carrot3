@@ -59,7 +59,7 @@ class AdministratorRole implements Role {
 	 * @return string 名前
 	 */
 	public function getName ($language = 'ja') {
-		return $this->controller->getAttribute('app_name_' . $language) . ' 管理者';
+		return (new ConstantHandler)['APP_NAME_' . $language] . ' 管理者';
 	}
 
 	/**
