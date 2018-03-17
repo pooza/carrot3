@@ -64,7 +64,7 @@ class ConsumptionTaxHandler {
 	 * @access public
 	 * @param float $price 税別金額
 	 * @param Date $date 対象日、指定がない場合は現在
-	 * @return integer 四捨五入された数値
+	 * @return int 四捨五入された数値
 	 */
 	public function includeTax ($price, Date $date = null) {
 		return Numeric::round($price * (1 + $this->getRate($date)));
@@ -76,7 +76,7 @@ class ConsumptionTaxHandler {
 	 * @access public
 	 * @param float $price 税込金額
 	 * @param Date $date 対象日、指定がない場合は現在
-	 * @return integer 四捨五入された数値
+	 * @return int 四捨五入された数値
 	 */
 	public function excludeTax ($price, Date $date = null) {
 		return Numeric::round($price / (1 + $this->getRate($date)));

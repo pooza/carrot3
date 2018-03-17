@@ -103,12 +103,12 @@ class MIMEUtils {
 	 *
 	 * @access public
 	 * @param string $str 対象文字列
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::WITH_SPLIT
 	 * @return string エンコードされた文字列
 	 * @static
 	 */
-	static public function encodeBase64 ($str, $flags = 0) {
+	static public function encodeBase64 ($str, int $flags = 0) {
 		$str = base64_encode($str);
 		if ($flags & self::WITH_SPLIT) {
 			$str = chunk_split($str);

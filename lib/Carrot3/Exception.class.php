@@ -16,7 +16,7 @@ class Exception extends \Exception {
 	/**
 	 * @access public
 	 * @param mixed $message メッセージ
-	 * @param integer $code コード
+	 * @param int $code コード
 	 * @param Exception $prev 直前の例外。例外の連結に使用。
 	 */
 	public function __construct ($message = null, $code = 0, Exception $prev = null) {

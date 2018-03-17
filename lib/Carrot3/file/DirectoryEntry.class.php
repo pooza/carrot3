@@ -25,7 +25,7 @@ abstract class DirectoryEntry {
 	 * ユニークなファイルIDを返す
 	 *
 	 * @access public
-	 * @return integer ID
+	 * @return int ID
 	 */
 	public function getID () {
 		if (!$this->id) {
@@ -339,10 +339,10 @@ abstract class DirectoryEntry {
 	 * ファイルモード（パーミッション）を設定
 	 *
 	 * @access public
-	 * @param integer $mode ファイルモード
-	 * @param integer $flags フラグのビット列
+	 * @param int $mode ファイルモード
+	 * @param int $flags フラグのビット列
 	 */
-	public function setMode ($mode, $flags = 0) {
+	public function setMode (int $mode, int $flags = 0) {
 		if (!chmod($this->getPath(), $mode)) {
 			throw new FileException($this . 'のファイルモードを変更できません。');
 		}

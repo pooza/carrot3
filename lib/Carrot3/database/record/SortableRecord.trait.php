@@ -144,9 +144,9 @@ trait SortableRecord {
 	 * $this->update()を使用すると非常に重くなるので、SQLを直接実行する。
 	 *
 	 * @access protected
-	 * @param integer $rank 順位
+	 * @param int $rank 順位
 	 */
-	protected function setRank ($rank) {
+	protected function setRank (int $rank) {
 		$record = $this;
 		$values = [$record->getTable()->getRankField() => $rank];
 		while (true) {

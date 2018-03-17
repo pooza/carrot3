@@ -173,7 +173,7 @@ abstract class MediaConvertor {
 	 *
 	 * @access public
 	 * @param string $num 対象数値
-	 * @return integer 偶数化した数値
+	 * @return int 偶数化した数値
 	 * @static
 	 */
 	static public function evenize ($num) {

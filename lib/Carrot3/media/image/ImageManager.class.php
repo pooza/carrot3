@@ -80,7 +80,7 @@ class ImageManager {
 	 * 規定の最大幅を返す
 	 *
 	 * @access public
-	 * @return integer 規定の最大幅
+	 * @return int 規定の最大幅
 	 */
 	public function getDefaultWidth () {
 		return $this->getUserAgent()->getDisplayInfo()['width'];
@@ -90,7 +90,7 @@ class ImageManager {
 	 * 規定フラグを返す
 	 *
 	 * @access public
-	 * @return integer フラグのビット列
+	 * @return int フラグのビット列
 	 */
 	public function getFlags () {
 		return $this->flags;
@@ -146,14 +146,14 @@ class ImageManager {
 	 * @access public
 	 * @param ImageContainer $record 対象レコード
 	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセル数
-	 * @param integer $flags フラグのビット列
+	 * @param int $pixel ピクセル数
+	 * @param int $flags フラグのビット列
 	 *   self::WIDTH_FIXED 幅固定
 	 *   self::HEIGHT_FIXED 高さ固定
 	 *   self::WITHOUT_SQUARE 正方形に整形しない
 	 * @return URL URL
 	 */
-	public function createURL (ImageContainer $record, $size, $pixel = null, $flags = 0) {
+	public function createURL (ImageContainer $record, $size, int $pixel = 0, int $flags = 0) {
 		if (!$file = $this->getFile($record, $size, $pixel, $flags)) {
 			return null;
 		}
@@ -183,15 +183,15 @@ class ImageManager {
 	 * @access public
 	 * @param ImageContainer $record 対象レコード
 	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセル数
-	 * @param integer $flags フラグのビット列
+	 * @param int $pixel ピクセル数
+	 * @param int $flags フラグのビット列
 	 *   self::WITHOUT_BWORSER_CACHE クエリー末尾に乱数を加え、ブラウザキャッシュを無効にする
 	 *   self::WIDTH_FIXED 幅固定
 	 *   self::HEIGHT_FIXED 高さ固定
 	 *   self::WITHOUT_SQUARE 正方形に整形しない
 	 * @return Tuple 画像の情報
 	 */
-	public function getInfo (ImageContainer $record, $size, $pixel = null, $flags = 0) {
+	public function getInfo (ImageContainer $record, $size, int $pixel = 0, int $flags = 0) {
 		$flags |= $this->flags;
 		if (!$file = $this->getFile($record, $size, $pixel, $flags)) {
 			return;
@@ -216,7 +216,7 @@ class ImageManager {
 		return $info;
 	}
 
-	protected function getFile (ImageContainer $record, $size, $pixel, $flags = 0) {
+	protected function getFile (ImageContainer $record, $size, $pixel, int $flags = 0) {
 		if (!$source = $record->getImageFile($size)) {
 			return null;
 		}
@@ -235,7 +235,7 @@ class ImageManager {
 		return $file;
 	}
 
-	protected function createFileName (ImageFile $file, $pixel, $flags = 0) {
+	protected function createFileName (ImageFile $file, $pixel, int $flags = 0) {
 		return Crypt::digest([
 			$file->getID(),
 			$pixel,
@@ -243,7 +243,7 @@ class ImageManager {
 		]);
 	}
 
-	protected function convert (ImageContainer $record, $pixel, $contents, $flags = 0) {
+	protected function convert (ImageContainer $record, $pixel, $contents, int $flags = 0) {
 		$params = ImageManager::getRendererEntries()['default'];
 		$class = $this->loader->getClass($params['class']);
 		$image = new $class($params);

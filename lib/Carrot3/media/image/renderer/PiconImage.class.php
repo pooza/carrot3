@@ -48,7 +48,7 @@ class PiconImage extends Image {
 	 * 幅を返す
 	 *
 	 * @access public
-	 * @return integer 幅
+	 * @return int 幅
 	 */
 	public function getWidth () {
 		return getimagesizefromstring($this->getContents())[0];
@@ -58,7 +58,7 @@ class PiconImage extends Image {
 	 * 高さを返す
 	 *
 	 * @access public
-	 * @return integer 高さ
+	 * @return int 高さ
 	 */
 	public function getHeight () {
 		return getimagesizefromstring($this->getContents())[1];
@@ -78,10 +78,10 @@ class PiconImage extends Image {
 	 * サイズ変更
 	 *
 	 * @access public
-	 * @param integer $width 幅
-	 * @param integer $height 高さ
+	 * @param int $width 幅
+	 * @param int $height 高さ
 	 */
-	public function resize ($width, $height) {
+	public function resize (int $width, int $height) {
 		$this->getService()->resize($this, $width, $height);
 	}
 
@@ -89,9 +89,9 @@ class PiconImage extends Image {
 	 * 幅変更
 	 *
 	 * @access public
-	 * @param integer $width 幅
+	 * @param int $width 幅
 	 */
-	public function resizeWidth ($width) {
+	public function resizeWidth (int $width) {
 		if ($this->getWidth() < $width) {
 			return;
 		}

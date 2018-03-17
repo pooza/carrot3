@@ -23,7 +23,7 @@ class Host implements Assignable, ImageContainer {
 	 * @param string $address ホスト名又はIPv4アドレス
 	 */
 	public function __construct ($address) {
-		// アドレスが列挙されていたり、ポート番号が付記されていたら、取り除く。
+		// アドレスが列挙されていたり、ポートが付記されていたら、取り除く。
 		$address = mb_split('[:,]', $address)[0];
 
 		if (StringUtils::isBlank($address)) {
@@ -127,11 +127,11 @@ class Host implements Assignable, ImageContainer {
 	 *
 	 * @access public
 	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセルサイズ
-	 * @param integer $flags フラグのビット列
+	 * @param int $pixel ピクセル数
+	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, $pixel = null, $flags = 0) {
+	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
 		if ($file = $this->getImageFile($size)) {
 			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
 			$info['alt'] = $this->getID();
@@ -168,7 +168,7 @@ class Host implements Assignable, ImageContainer {
 	 * ファイルならinode、DBレコードなら主キー。
 	 *
 	 * @access public
-	 * @return integer ID
+	 * @return int ID
 	 */
 	public function getID () {
 		$this->getName();

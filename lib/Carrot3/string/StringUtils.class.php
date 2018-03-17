@@ -193,12 +193,12 @@ class StringUtils {
 	 *
 	 * @access public
 	 * @param mixed $value 変換対象の文字列又は配列
-	 * @param integer $length 長さ
+	 * @param int $length 長さ
 	 * @param string $suffix サフィックス
 	 * @return mixed 変換後
 	 * @static
 	 */
-	static public function truncate ($value, $length, $suffix = '…') {
+	static public function truncate ($value, int $length, $suffix = '…') {
 		if (is_array($value) || ($value instanceof ParameterHolder)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::truncate($item, $length, $suffix);
@@ -399,7 +399,7 @@ class StringUtils {
 	 *
 	 * @access public
 	 * @param string $str 対象文字列
-	 * @return integer 半角単位での幅
+	 * @return int 半角単位での幅
 	 * @static
 	 */
 	static public function getWidth ($str) {
@@ -411,12 +411,12 @@ class StringUtils {
 	 *
 	 * @access public
 	 * @param string $str 対象文字列
-	 * @param integer $witdh 半角単位での行幅
+	 * @param int $witdh 半角単位での行幅
 	 * @param bool $flowed 行末にスペースを追加するならTrue（RFC3676）
 	 * @return string 変換後の文字列
 	 * @static
 	 */
-	static public function split ($str, $width = 74, bool $flowed = false) {
+	static public function split ($str, int $width = 74, bool $flowed = false) {
 		$body = Tuple::create();
 		foreach (StringUtils::explode("\n", $str) as $paragraph) {
 			if (StringUtils::isBlank($paragraph)) {
@@ -440,12 +440,12 @@ class StringUtils {
 	 *
 	 * @access public
 	 * @param string $str 対象文字列
-	 * @param integer $witdh 半角単位での行幅
+	 * @param int $witdh 半角単位での行幅
 	 * @param string $prefix 行頭記号
 	 * @return string 変換後の文字列
 	 * @static
 	 */
-	static public function cite ($str, $width = 74, $prefix = '> ') {
+	static public function cite ($str, int $width = 74, $prefix = '> ') {
 		$str = self::split($str, $width - self::getWidth($prefix));
 		$lines = explode("\n", $str);
 		foreach ($lines as &$line) {

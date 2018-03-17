@@ -64,7 +64,7 @@ class CommandLine {
 	 *
 	 * @access public
 	 * @param string $value 値
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::WITH_QUOTE クォートする
 	 */
 	public function push ($value, $flags = self::WITH_QUOTE) {
@@ -81,7 +81,7 @@ class CommandLine {
 	 *
 	 * @access public
 	 * @param string $value 値
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::WITH_QUOTE クォートする
 	 * @final
 	 */
@@ -103,9 +103,9 @@ class CommandLine {
 	 * 実行後の待機秒数を設定
 	 *
 	 * @access public
-	 * @param integer $seconds 秒数
+	 * @param int $seconds 秒数
 	 */
-	public function setSleepSeconds ($seconds) {
+	public function setSleepSeconds (int $seconds) {
 		$this->sleepSeconds = $seconds;
 	}
 
@@ -243,7 +243,7 @@ class CommandLine {
 	 * 実行後の戻り値を返す
 	 *
 	 * @access public
-	 * @return integer 戻り値
+	 * @return int 戻り値
 	 */
 	public function getReturnCode () {
 		if (!$this->isExecuted()) {

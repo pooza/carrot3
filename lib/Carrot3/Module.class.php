@@ -234,7 +234,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * カレントレコードIDを返す
 	 *
 	 * @access public
-	 * @return integer カレントレコードID
+	 * @return int カレントレコードID
 	 */
 	public function getRecordID () {
 		return $this->user->getAttribute($this->createKey('record'));
@@ -244,7 +244,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * カレントレコードIDを設定
 	 *
 	 * @access public
-	 * @param integer $id カレントレコードID、又はレコード
+	 * @param mixed $id カレントレコードID、又はレコード
 	 */
 	public function setRecordID ($id) {
 		if ($id instanceof Record) {

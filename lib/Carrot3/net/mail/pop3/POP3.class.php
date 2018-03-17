@@ -96,10 +96,10 @@ class POP3 extends Socket {
 	 * サーバに残っているメールを返す
 	 *
 	 * @access public
-	 * @param integer $id メールの番号
+	 * @param int $id メールの番号
 	 * @return POP3Mail メール
 	 */
-	public function getMail ($id) {
+	public function getMail (int $id) {
 		return $this->getMails()[$id];
 	}
 
@@ -141,10 +141,10 @@ class POP3 extends Socket {
 	}
 
 	/**
-	 * 規定のポート番号を返す
+	 * 規定のポートを返す
 	 *
 	 * @access public
-	 * @return integer port
+	 * @return int port
 	 */
 	public function getDefaultPort () {
 		return NetworkService::getPort('pop3');

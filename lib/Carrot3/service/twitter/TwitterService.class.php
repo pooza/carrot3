@@ -24,9 +24,9 @@ class TwitterService extends CurlHTTP {
 	/**
 	 * @access public
 	 * @param Host $host ホスト
-	 * @param integer $port ポート
+	 * @param int $port ポート
 	 */
-	public function __construct (Host $host = null, $port = null) {
+	public function __construct (Host $host = null, int $port = null) {
 		if (!$host) {
 			$host = new Host(self::DEFAULT_HOST);
 			$port = NetworkService::getPort('https');
@@ -207,10 +207,10 @@ class TwitterService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param string $account アカウント
-	 * @param integer $count ツイート数
+	 * @param int $count ツイート数
 	 * @return Tuple タイムライン
 	 */
-	public function getTimeline ($account, $count = 10) {
+	public function getTimeline ($account, int $count = 10) {
 		$key = Tuple::create([$account, $count, __CLASS__, __FUNCTION__])->join(':');
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
@@ -243,10 +243,10 @@ class TwitterService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param string $keyword キーワード
-	 * @param integer $count ツイート数
+	 * @param int $count ツイート数
 	 * @return Tuple ツイート
 	 */
-	public function searchTweets ($keyword, $count = 10) {
+	public function searchTweets ($keyword, int $count = 10) {
 		$key = Tuple::create([$keyword, $count, __CLASS__, __FUNCTION__])->join(':');
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;

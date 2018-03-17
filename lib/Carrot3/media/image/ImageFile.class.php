@@ -174,11 +174,11 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 *
 	 * @access public
 	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセルサイズ
-	 * @param integer $flags フラグのビット列
+	 * @param int $pixel ピクセル数
+	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, $pixel = null, $flags = 0) {
+	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
 		return (new ImageManager)->getInfo($this, $size, $pixel, $flags);
 	}
 

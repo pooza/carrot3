@@ -93,10 +93,10 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * タイムラインを返す
 	 *
 	 * @access public
-	 * @param integer $count ツイート数
+	 * @param int $count ツイート数
 	 * @return Tuple タイムライン
 	 */
-	public function getTimeline ($count = 10) {
+	public function getTimeline (int $count = 10) {
 		return $this->service->getTimeline($this->name, $count);
 	}
 
@@ -147,11 +147,11 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 *
 	 * @access public
 	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセルサイズ
-	 * @param integer $flags フラグのビット列
+	 * @param int $pixel ピクセル数
+	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, $pixel = null, $flags = 0) {
+	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
 		if ($file = $this->getImageFile()) {
 			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
 			$info['alt'] = $this->getLabel();
@@ -203,7 +203,7 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * アカウントIDを返す
 	 *
 	 * @access public
-	 * @return integer ID
+	 * @return int ID
 	 */
 	public function getID () {
 		return (int)$this->getProfile()['id'];

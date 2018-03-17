@@ -149,10 +149,10 @@ class HTTP extends Socket {
 	}
 
 	/**
-	 * 規定のポート番号を返す
+	 * 規定のポートを返す
 	 *
 	 * @access public
-	 * @return integer port
+	 * @return int port
 	 */
 	public function getDefaultPort () {
 		return NetworkService::getPort('http');
@@ -173,11 +173,11 @@ class HTTP extends Socket {
 	 * ステータスを返す
 	 *
 	 * @access public
-	 * @param integer $code ステータスコード
+	 * @param int $code ステータスコード
 	 * @return string ステータス文字列
 	 * @static
 	 */
-	static public function getStatus ($code) {
+	static public function getStatus (int $code) {
 		if ($status = self::getAllStatus()[$code]) {
 			return $code . ' ' . $status['status'];
 		}

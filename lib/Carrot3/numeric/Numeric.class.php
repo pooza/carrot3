@@ -24,7 +24,7 @@ class Numeric {
 	 *
 	 * @access public
 	 * @param float $num 処理対象の数値
-	 * @return integer 四捨五入された数値
+	 * @return int 四捨五入された数値
 	 * @static
 	 */
 	static public function round ($num) {
@@ -36,11 +36,11 @@ class Numeric {
 	 *
 	 * @access public
 	 * @param float $num 処理対象の数値
-	 * @param integer $digits 処理対象が小数であったときの有効桁数、既定値は2。
+	 * @param int $digits 処理対象が小数であったときの有効桁数、既定値は2。
 	 * @return string カンマ区切りされた数値
 	 * @static
 	 */
-	static public function format ($num, $digits = 2) {
+	static public function format ($num, int $digits = 2) {
 		if (StringUtils::isBlank($num)) {
 			return null;
 		} else if (self::isZero($num)) {
@@ -102,7 +102,7 @@ class Numeric {
 	 * 数字で分けた配列を返す
 	 *
 	 * @access public
-	 * @param integer $num 処理対象の数値
+	 * @param int $num 処理対象の数値
 	 * @return Tuple 数字の配列
 	 * @static
 	 */
@@ -120,7 +120,7 @@ class Numeric {
 	 * @access public
 	 * @param float $from 乱数の範囲（最小値）
 	 * @param float $to 乱数の範囲（最大値）
-	 * @return integer 乱数
+	 * @return int 乱数
 	 * @static
 	 */
 	static public function getRandom ($from = 1000000, $to = 9999999) {

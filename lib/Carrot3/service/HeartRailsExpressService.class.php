@@ -18,9 +18,9 @@ class HeartRailsExpressService extends CurlHTTP {
 	/**
 	 * @access public
 	 * @param Host $host ホスト
-	 * @param integer $port ポート
+	 * @param int $port ポート
 	 */
-	public function __construct (Host $host = null, $port = null) {
+	public function __construct (Host $host = null, int $port = null) {
 		if (!$host) {
 			$host = new Host(self::DEFAULT_HOST);
 		}
@@ -32,11 +32,11 @@ class HeartRailsExpressService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param Geocode $geocode ジオコード
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::FORCE 新規取得を強制
 	 * @return Tuple 最寄り駅の配列
 	 */
-	public function getStations (Geocode $geocode, $flags = 0) {
+	public function getStations (Geocode $geocode, int $flags = 0) {
 		$key = BSCrypt::digest([
 			Utils::getClass($this),
 			__FUNCTION__,

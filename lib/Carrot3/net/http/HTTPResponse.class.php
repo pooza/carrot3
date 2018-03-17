@@ -55,7 +55,7 @@ class HTTPResponse extends MIMEDocument {
 	 * ステータスコードを返す
 	 *
 	 * @access public
-	 * @return integer ステータスコード
+	 * @return int ステータスコード
 	 */
 	public function getStatus () {
 		if ($header = $this->getHeader('status')) {
@@ -69,9 +69,9 @@ class HTTPResponse extends MIMEDocument {
 	 * ステータスコードを設定
 	 *
 	 * @access public
-	 * @param integer $code ステータスコード
+	 * @param int $code ステータスコード
 	 */
-	public function setStatus ($code) {
+	public function setStatus (int $code) {
 		$this->status = $code;
 		$this->setHeader('status', $code);
 	}

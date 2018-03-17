@@ -24,9 +24,9 @@ class WebRequest extends Request {
 	 * メソッドを設定
 	 *
 	 * @access public
-	 * @param integer $method メソッド
+	 * @param int $method メソッド
 	 */
-	public function setMethod ($method) {
+	public function setMethod (int $method) {
 		parent::setMethod($method);
 		switch ($this->getMethod()) {
 			case 'GET':

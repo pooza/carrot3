@@ -30,14 +30,14 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 *
 	 * @access public
 	 * @param mixed $file ファイル、又はそのパス。nullの場合は、一時ファイルを使用。
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::OVERWRITE
 	 *   self::CREATE
 	 *   self::EXCL
 	 *   self::CHECKCONS
 	 * @return mixed 正常終了時はtrue、それ以外はエラーコード。
 	 */
-	public function open ($path = null, $flags = 0) {
+	public function open ($path = null, int $flags = 0) {
 		if ($this->opened) {
 			throw new FileException($this->getFile() . 'が開かれています。');
 		}
@@ -86,10 +86,10 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 * @access public
 	 * @param DirectoryEntry $entry エントリー
 	 * @param string $prefix エントリー名のプレフィックス
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   Directory::WITHOUT_DOTTED ドットファイルを除く
 	 */
-	public function register (DirectoryEntry $entry, $prefix = null, $flags = 0) {
+	public function register (DirectoryEntry $entry, $prefix = null, int $flags = 0) {
 		if (($flags & Directory::WITHOUT_DOTTED) && $entry->isDotted()) {
 			return;
 		}
@@ -160,7 +160,7 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize () {
 		return strlen($this->getContents());

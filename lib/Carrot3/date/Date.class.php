@@ -26,7 +26,7 @@ class Date extends ParameterHolder implements Assignable {
 	/**
 	 * @access private
 	 * @param string $date 日付文字列
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::TIMESTAMP タイムスタンプ形式
 	 */
 	private function __construct ($date, $flags) {
@@ -55,11 +55,11 @@ class Date extends ParameterHolder implements Assignable {
 	 *
 	 * @param string $date 日付文字列
 	 * @return Date インスタンス
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::TIMESTAMP タイムスタンプ形式
 	 * @static
 	 */
-	static public function create ($date = null, $flags = 0) {
+	static public function create ($date = null, int $flags = 0) {
 		if ($date instanceof Date) {
 			return $date;
 		}
@@ -77,7 +77,7 @@ class Date extends ParameterHolder implements Assignable {
 	 *
 	 * @access public
 	 * @param string $name 属性の名前
-	 * @param integer $value 属性の値、(+|-)で始まる文字列も可。
+	 * @param mixed $value 属性の値、(+|-)で始まる文字列も可。
 	 * @return Date 適用後の自分自身
 	 */
 	public function setParameter ($name, $value) {
@@ -106,7 +106,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * UNIXタイムスタンプを返す
 	 *
 	 * @access public
-	 * @return integer UNIXタイムスタンプ
+	 * @return int UNIXタイムスタンプ
 	 */
 	public function getTimestamp () {
 		if (StringUtils::isBlank($this['timestamp'])) {
@@ -122,10 +122,10 @@ class Date extends ParameterHolder implements Assignable {
 	 * UNIXタイムスタンプを設定
 	 *
 	 * @access public
-	 * @param integer $timestamp UNIXタイムスタンプ
+	 * @param int $timestamp UNIXタイムスタンプ
 	 * @return Date 適用後の自分自身
 	 */
-	public function setTimestamp ($timestamp) {
+	public function setTimestamp (int $timestamp) {
 		$info = getdate($timestamp);
 		$this->params['year'] = $info['year'];
 		$this->params['month'] = $info['mon'];
@@ -208,7 +208,7 @@ class Date extends ParameterHolder implements Assignable {
 	 *
 	 * @access public
 	 * @param Date $now 比較対象の日付
-	 * @return integer 年数
+	 * @return int 年数
 	 */
 	public function getAge (Date $now = null) {
 		if (!$now) {
@@ -238,10 +238,10 @@ class Date extends ParameterHolder implements Assignable {
 	 * 週末日付を返す
 	 *
 	 * @access public
-	 * @param integer $weekday 曜日
+	 * @param int $weekday 曜日
 	 * @return Date 週末日付
 	 */
-	public function getLastDateOfWeek ($weekday = self::SUN) {
+	public function getLastDateOfWeek (int $weekday = self::SUN) {
 		if (($weekday < self::MON) || (self::SUN < $weekday)) {
 			throw new DateException('曜日が正しくありません。');
 		}
@@ -298,7 +298,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * 曜日を返す
 	 *
 	 * @access public
-	 * @return integer 曜日
+	 * @return int 曜日
 	 */
 	public function getWeekday () {
 		if (StringUtils::isBlank($this['weekday'])) {
@@ -343,7 +343,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * 和暦年を返す
 	 *
 	 * @access public
-	 * @return integer 和暦年
+	 * @return int 和暦年
 	 */
 	public function getJapaneseYear () {
 		if (StringUtils::isBlank($this['japanese_year'])) {

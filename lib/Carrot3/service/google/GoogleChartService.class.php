@@ -17,9 +17,9 @@ class GoogleChartService extends CurlHTTP {
 	/**
 	 * @access public
 	 * @param Host $host ホスト
-	 * @param integer $port ポート
+	 * @param int $port ポート
 	 */
-	public function __construct (Host $host = null, $port = null) {
+	public function __construct (Host $host = null, int $port = null) {
 		if (!$host) {
 			$host = new Host(self::DEFAULT_HOST);
 		}
@@ -49,12 +49,12 @@ class GoogleChartService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param string $type 種類
-	 * @param integer $witdh 幅
-	 * @param integer $height 高さ
+	 * @param int $witdh 幅
+	 * @param int $height 高さ
 	 * @param ParameterHolder $params パラメータ配列
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile ($type, $width, $height, ParameterHolder $params) {
+	public function getImageFile ($type, int $width, int $height, ParameterHolder $params) {
 		$key = $this->createKey($type, $width, $height, $params);
 		$dir = FileUtils::getDirectory('chart');
 		if (!$file = $dir->getEntry($key, 'ImageFile')) {

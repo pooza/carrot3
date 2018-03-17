@@ -111,11 +111,11 @@ abstract class Record implements \ArrayAccess,
 	 *
 	 * @access public
 	 * @param mixed $values 更新する値
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   Database::WITHOUT_LOGGING ログを残さない
 	 *   Database::WITHOUT_SERIALIZE シリアライズしない
 	 */
-	public function update ($values, $flags = 0) {
+	public function update ($values, int $flags = 0) {
 		if (!$this->isUpdatable()) {
 			throw new DatabaseException($this . 'を更新することはできません。');
 		}
@@ -168,7 +168,7 @@ abstract class Record implements \ArrayAccess,
 	 * 削除
 	 *
 	 * @access public
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   Database::WITHOUT_LOGGING ログを残さない
 	 */
 	public function delete ($flags = null) {
@@ -269,7 +269,7 @@ abstract class Record implements \ArrayAccess,
 	 * IDを返す
 	 *
 	 * @access public
-	 * @return integer ID
+	 * @return int ID
 	 */
 	public function getID () {
 		return $this[$this->getTable()->getKeyField()];
@@ -462,11 +462,11 @@ abstract class Record implements \ArrayAccess,
 	 *
 	 * @access public
 	 * @param string $size サイズ名
-	 * @param integer $pixel ピクセルサイズ
-	 * @param integer $flags フラグのビット列
+	 * @param int $pixel ピクセル数
+	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, $pixel = null, $flags = 0) {
+	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
 		return (new ImageManager)->getInfo($this, $size, $pixel, $flags);
 	}
 

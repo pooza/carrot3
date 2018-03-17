@@ -73,11 +73,11 @@ class User extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param string $name 属性名
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::COOKIE cookieのみ
 	 * @return mixed 属性値
 	 */
-	public function getAttribute ($name, $flags = 0) {
+	public function getAttribute ($name, int $flags = 0) {
 		if ($flags & self::COOKIE) {
 			return filter_input(INPUT_COOKIE, $name);
 		}

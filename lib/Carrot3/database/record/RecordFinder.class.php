@@ -28,10 +28,10 @@ class RecordFinder extends ParameterHolder {
 	 * 検索実行
 	 *
 	 * @access public
-	 * @param integer $id ID
+	 * @param int $id ID
 	 * @return Record レコード
 	 */
-	public function execute ($id = null) {
+	public function execute (int $id = null) {
 		if (($record = $this->getRecord($id)) && ($record instanceof Record)) {
 			return $record;
 		}

@@ -25,12 +25,12 @@ class Socket {
 	/**
 	 * @access public
 	 * @param mixed $host ホスト
-	 * @param integer $port ポート
+	 * @param int $port ポート
 	 * @param string $protocol プロトコル
 	 *   NetworkService::TCP
 	 *   NetworkService::UDP
 	 */
-	public function __construct ($host, $port = null, $protocol = NetworkService::TCP) {
+	public function __construct ($host, int $port = null, $protocol = NetworkService::TCP) {
 		if (!($host instanceof Host)) {
 			$host = new Host($host);
 		}
@@ -116,7 +116,7 @@ class Socket {
 	 * ストリームから1行読み込む
 	 *
 	 * @access public
-	 * @param integer $length 一度に読み込む最大のサイズ
+	 * @param int $length 一度に読み込む最大のサイズ
 	 * @return string 読み込んだ内容
 	 */
 	public function getLine ($length = self::LINE_BUFFER) {
@@ -179,10 +179,10 @@ class Socket {
 	}
 
 	/**
-	 * ポート番号を返す
+	 * ポートを返す
 	 *
 	 * @access public
-	 * @return integer port
+	 * @return int port
 	 */
 	public function getPort () {
 		return $this->port;
@@ -199,10 +199,10 @@ class Socket {
 	}
 
 	/**
-	 * 規定のポート番号を返す
+	 * 規定のポートを返す
 	 *
 	 * @access public
-	 * @return integer port
+	 * @return int port
 	 */
 	public function getDefaultPort () {
 		return null;

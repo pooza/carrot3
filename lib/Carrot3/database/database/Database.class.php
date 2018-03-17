@@ -28,12 +28,12 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 *
 	 * @access public
 	 * @param string $name データベース名
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::RECONNECT 再接続（取扱注意。基本、使っちゃダメ。）
 	 * @return Database インスタンス
 	 * @static
 	 */
-	static public function getInstance ($name = 'default', $flags = 0) {
+	static public function getInstance ($name = 'default', int $flags = 0) {
 		if (!self::$instances) {
 			self::$instances = Tuple::create();
 		}
@@ -137,7 +137,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * クエリーを実行
 	 *
 	 * @access public
-	 * @return integer 影響した行数
+	 * @return int 影響した行数
 	 * @param string $query クエリー文字列
 	 */
 	public function exec ($query) {
@@ -276,10 +276,10 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @param string $table テーブル名
 	 * @param Tuple $schema スキーマ
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   SQL::TEMPORARY テンポラリテーブル
 	 */
-	public function createTable ($table, Tuple $schema, $flags = 0) {
+	public function createTable ($table, Tuple $schema, int $flags = 0) {
 		$this->exec(SQL::getCreateTableQuery($table, $schema, $flags));
 		$this->tables = null;
 	}

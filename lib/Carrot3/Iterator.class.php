@@ -136,7 +136,7 @@ class Iterator implements \Iterator, \Countable {
 	 * 現在のカーソル位置を返す
 	 *
 	 * @access public
-	 * @return integer カーソル位置
+	 * @return int カーソル位置
 	 */
 	public function key () {
 		if ($this->valid()) {
@@ -156,7 +156,7 @@ class Iterator implements \Iterator, \Countable {
 
 	/**
 	 * @access public
-	 * @return integer 要素数
+	 * @return int 要素数
 	 */
 	public function count () {
 		return count($this->keys);

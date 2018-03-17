@@ -50,10 +50,10 @@ class HeaderCSVData extends CSVData {
 	 * 見出しをひとつ返す
 	 *
 	 * @access public
-	 * @param integer $index 序数
+	 * @param int $index 序数
 	 * @return string 見出し
 	 */
-	public function getFieldName ($index) {
+	public function getFieldName (int $index) {
 		return $this->fields[$index];
 	}
 

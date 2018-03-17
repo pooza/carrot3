@@ -40,11 +40,11 @@ class SmartyMail extends Mail {
 	 *
 	 * @access public
 	 * @param Renderer $renderer レンダラー
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   MIMEUtils::WITHOUT_HEADER ヘッダを修正しない
 	 *   MIMEUtils::WITH_HEADER ヘッダも修正
 	 */
-	public function setRenderer (Renderer $renderer, $flags = MIMEUtils::WITH_HEADER) {
+	public function setRenderer (Renderer $renderer, int $flags = MIMEUtils::WITH_HEADER) {
 		if (!($renderer instanceof Smarty)) {
 			throw new MailException('レンダラー形式が正しくありません。');
 		}

@@ -173,7 +173,7 @@ class MIMEHeader extends ParameterHolder {
 	 * ヘッダを整形して返す
 	 *
 	 * @access public
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::WITHOUT_CRLF 改行を含まない
 	 * @return ヘッダ行
 	 */

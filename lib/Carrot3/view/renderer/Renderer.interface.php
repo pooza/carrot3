@@ -24,7 +24,7 @@ interface Renderer {
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize ();
 

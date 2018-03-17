@@ -28,7 +28,7 @@ class SerializeEntry extends Record {
 	 *
 	 * @access public
 	 * @param mixed $values 更新する値
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   Database::WITHOUT_LOGGING ログを残さない
 	 */
 	public function update ($values, $flags = Database::WITHOUT_LOGGING) {

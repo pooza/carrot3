@@ -20,12 +20,12 @@ class CurlHTTP extends HTTP {
 	/**
 	 * @access public
 	 * @param mixed $host ホスト
-	 * @param integer $port ポート
+	 * @param int $port ポート
 	 * @param string $protocol プロトコル
 	 *   NetworkService::TCP
 	 *   NetworkService::UDP
 	 */
-	public function __construct ($host, $port = null, $protocol = NetworkService::TCP) {
+	public function __construct ($host, int $port = null, $protocol = NetworkService::TCP) {
 		parent::__construct($host, $port, $protocol);
 		if ($port == NetworkService::getPort('https')) {
 			$this->setSSL(true);

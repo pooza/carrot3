@@ -93,7 +93,7 @@ class ExcelExporter implements Exporter, Renderer {
 	 * 現在の行番号を返す
 	 *
 	 * @access public
-	 * @return integer Excelでの行番号
+	 * @return int Excelでの行番号
 	 */
 	public function getRowNumber () {
 		return $this->row;
@@ -113,7 +113,7 @@ class ExcelExporter implements Exporter, Renderer {
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize () {
 		$this->save();

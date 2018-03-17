@@ -69,7 +69,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * 拡張子による抽出を行い、かつ拡張子を削除する。
 	 *
 	 * @access public
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::WITHOUT_DOTTED ドットファイルを除く
 	 * @return Tuple 抽出されたエントリー名
 	 */
@@ -309,7 +309,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * ZIPアーカイブを返す
 	 *
 	 * @access public
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::WITHOUT_DOTTED ドットファイルを除く
 	 * @return ZipArchive ZIPアーカイブ
 	 */
@@ -332,11 +332,11 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * ファイルモード（パーミッション）を設定
 	 *
 	 * @access public
-	 * @param integer $mode ファイルモード
-	 * @param integer $flags フラグのビット列
+	 * @param int $mode ファイルモード
+	 * @param int $flags フラグのビット列
 	 *   self::WITH_RECURSIVE 再帰的に
 	 */
-	public function setMode ($mode, $flags = 0) {
+	public function setMode (int $mode, int $flags = 0) {
 		parent::setMode($mode);
 		if ($flags & self::WITH_RECURSIVE) {
 			foreach ($this as $entry) {

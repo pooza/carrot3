@@ -42,11 +42,11 @@ trait SortableTable {
 	 *
 	 * @access public
 	 * @param mixed $values 値
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   Database::WITHOUT_LOGGING ログを残さない
 	 * @return string レコードの主キー
 	 */
-	public function createRecord ($values, $flags = 0) {
+	public function createRecord ($values, int $flags = 0) {
 		$values[$this->getRankField()] = $this->getNextRank();
 		return parent::createRecord($values, $flags);
 	}
@@ -55,7 +55,7 @@ trait SortableTable {
 	 * 次の順位を返す
 	 *
 	 * @access public
-	 * @return integer 順位
+	 * @return int 順位
 	 */
 	public function getNextRank () {
 		$sql = SQL::getSelectQuery(

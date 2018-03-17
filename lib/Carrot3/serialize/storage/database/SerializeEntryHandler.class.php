@@ -28,7 +28,7 @@ class SerializeEntryHandler extends TableHandler {
 	 *
 	 * @access public
 	 * @param mixed $values 値
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   Database::WITHOUT_LOGGING ログを残さない
 	 * @return string レコードの主キー
 	 */

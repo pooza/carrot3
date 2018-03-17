@@ -43,10 +43,10 @@ class CSVExporter implements Exporter, TextRenderer {
 	 *
 	 * @access public
 	 * @param Tuple $record レコード
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::WITHOUT_LF フィールド値に改行を含まない
 	 */
-	public function addRecord (Tuple $record, $flags = 0) {
+	public function addRecord (Tuple $record, int $flags = 0) {
 		$values = Tuple::create();
 		foreach ($record as $key => $value) {
 			$value = StringUtils::convertEncoding($value, $this->getEncoding(), 'utf-8');
@@ -103,7 +103,7 @@ class CSVExporter implements Exporter, TextRenderer {
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize () {
 		return $this->getFile()->getSize();

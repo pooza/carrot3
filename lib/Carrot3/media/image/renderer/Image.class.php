@@ -147,7 +147,7 @@ class Image implements ImageRenderer {
 	 * 幅を返す
 	 *
 	 * @access public
-	 * @return integer 幅
+	 * @return int 幅
 	 */
 	public function getWidth () {
 		return imagesx($this->getGDHandle());
@@ -157,7 +157,7 @@ class Image implements ImageRenderer {
 	 * 高さを返す
 	 *
 	 * @access public
-	 * @return integer 高さ
+	 * @return int 高さ
 	 */
 	public function getHeight () {
 		return imagesy($this->getGDHandle());
@@ -183,7 +183,7 @@ class Image implements ImageRenderer {
 	 *
 	 * @access protected
 	 * @param Color $color 色
-	 * @return integer 色ID
+	 * @return int 色ID
 	 */
 	protected function getColorID (Color $color) {
 		return imagecolorallocatealpha(
@@ -199,11 +199,11 @@ class Image implements ImageRenderer {
 	 * 座標を生成して返す
 	 *
 	 * @access public
-	 * @param integer $x X座標
-	 * @param integer $y Y座標
+	 * @param int $x X座標
+	 * @param int $y Y座標
 	 * @return Coordinate 座標
 	 */
-	public function createCoordinate ($x, $y) {
+	public function createCoordinate (int $x, int $y) {
 		return new Coordinate($this, $x, $y);
 	}
 
@@ -253,7 +253,7 @@ class Image implements ImageRenderer {
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize () {
 		return strlen($this->getContents());
@@ -263,10 +263,10 @@ class Image implements ImageRenderer {
 	 * サイズ変更
 	 *
 	 * @access public
-	 * @param integer $width 幅
-	 * @param integer $height 高さ
+	 * @param int $width 幅
+	 * @param int $height 高さ
 	 */
-	public function resize ($width, $height) {
+	public function resize (int $width, int $height) {
 		$dest = new Image;
 		$dest->setImage(imagecreatetruecolor(
 			Numeric::round($width),
@@ -299,9 +299,9 @@ class Image implements ImageRenderer {
 	 * 幅変更
 	 *
 	 * @access public
-	 * @param integer $width 幅
+	 * @param int $width 幅
 	 */
-	public function resizeWidth ($width) {
+	public function resizeWidth (int $width) {
 		if ($this->getWidth() < $width) {
 			return;
 		}
@@ -313,9 +313,9 @@ class Image implements ImageRenderer {
 	 * 高さ変更
 	 *
 	 * @access public
-	 * @param integer $height 高さ
+	 * @param int $height 高さ
 	 */
-	public function resizeHeight ($height) {
+	public function resizeHeight (int $height) {
 		if ($this->getHeight() < $height) {
 			return;
 		}
@@ -327,9 +327,9 @@ class Image implements ImageRenderer {
 	 * 長辺を変更
 	 *
 	 * @access public
-	 * @param integer $pixel 長辺
+	 * @param int $pixel 長辺のピクセル数
 	 */
-	public function resizeSquare ($pixel) {
+	public function resizeSquare (int $pixel) {
 		if (($this->getWidth() < $pixel) && ($this->getHeight() < $pixel)) {
 			return;
 		}

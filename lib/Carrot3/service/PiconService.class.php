@@ -18,9 +18,9 @@ class PiconService extends CurlHTTP {
 	/**
 	 * @access public
 	 * @param Host $host ホスト
-	 * @param integer $port ポート
+	 * @param int $port ポート
 	 */
-	public function __construct (Host $host = null, $port = null) {
+	public function __construct (Host $host = null, int $port = null) {
 		if (!$host) {
 			$host = new Host(self::DEFAULT_HOST);
 		}
@@ -35,10 +35,10 @@ class PiconService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param ImageContainer $image 対象画像
-	 * @param integer $width 幅
-	 * @param integer $height 高さ
+	 * @param int $width 幅
+	 * @param int $height 高さ
 	 */
-	public function resize (ImageRenderer $image, $width, $height) {
+	public function resize (ImageRenderer $image, int $width, int $height) {
 		$params = new WWWFormRenderer;
 		$params['width'] = $width;
 		$params['height'] = $height;
@@ -52,10 +52,10 @@ class PiconService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param ImageContainer $image 対象画像
-	 * @param integer $width 幅
+	 * @param int $width 幅
 	 * @param string $method リサイズ関数
 	 */
-	public function resizeWidth (ImageRenderer $image, $width, $method = 'thumbnail') {
+	public function resizeWidth (ImageRenderer $image, int $width, $method = 'thumbnail') {
 		$params = new WWWFormRenderer;
 		$params['width'] = $width;
 		$params['method'] = $method;

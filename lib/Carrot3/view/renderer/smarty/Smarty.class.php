@@ -126,7 +126,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize () {
 		return strlen($this->getContents());
@@ -437,7 +437,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 *
 	 * @access public
 	 * @param string $error_msg エラーメッセージ
-	 * @param integer $error_type
+	 * @param int $error_type
 	 */
 	public function trigger_error ($error_msg, $error_type = null) {
 		throw new ViewException($error_msg);

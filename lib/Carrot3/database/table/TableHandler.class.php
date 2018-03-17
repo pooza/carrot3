@@ -232,7 +232,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * ページ番号を返す
 	 *
 	 * @access public
-	 * @return integer ページ番号
+	 * @return int ページ番号
 	 */
 	public function getPageNumber () {
 		return $this->page;
@@ -242,9 +242,9 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * ページ番号を設定
 	 *
 	 * @access public
-	 * @param integer $page ページ番号
+	 * @param int $page ページ番号
 	 */
-	public function setPageNumber ($page = null) {
+	public function setPageNumber (int $page = null) {
 		if (!$page) {
 			//何もしない
 		} else if ($this->getLastPageNumber() < $page) {
@@ -260,7 +260,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * ページサイズを返す
 	 *
 	 * @access public
-	 * @return integer ページサイズ
+	 * @return int ページサイズ
 	 */
 	public function getPageSize () {
 		return $this->pagesize;
@@ -270,9 +270,9 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * ページ番号を設定
 	 *
 	 * @access public
-	 * @param integer $pagesize ページサイズ
+	 * @param int $pagesize ページサイズ
 	 */
-	public function setPageSize ($pagesize) {
+	public function setPageSize (int $pagesize) {
 		if (1 < $pagesize) {
 			$this->pagesize = $pagesize;
 			$this->setExecuted(false);
@@ -283,10 +283,10 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * 上位のレコードを返す
 	 *
 	 * @access public
-	 * @param integer $limit 件数
+	 * @param int $limit 件数
 	 * @return TableHandler 上位のレコード
 	 */
-	public function getRecent ($limit) {
+	public function getRecent (int $limit) {
 		$table = clone $this;
 		$table->setPageNumber(1);
 		$table->setPageSize($limit);
@@ -365,11 +365,11 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 *
 	 * @access public
 	 * @param mixed $values 値
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   Database::WITH_LOGGING ログを残さない
 	 * @return string レコードの主キー
 	 */
-	public function createRecord ($values, $flags = 0) {
+	public function createRecord ($values, int $flags = 0) {
 		if (!$this->isInsertable()) {
 			throw new DatabaseException($this . 'へのレコード挿入はできません。');
 		}
@@ -398,12 +398,12 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 *
 	 * @access public
 	 * @param mixed[] $values 値
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   Database::WITH_LOGGING ログを残さない
 	 * @return string レコードの主キー
 	 * @final
 	 */
-	final public function insertRecord ($values, $flags = 0) {
+	final public function insertRecord ($values, int $flags = 0) {
 		return $this->createRecord($values, $flags);
 	}
 
@@ -605,7 +605,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 
 	/**
 	 * @access public
-	 * @return integer レコード数
+	 * @return int レコード数
 	 */
 	public function count () {
 		if (!$this->getPageNumber()) {
@@ -620,7 +620,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * ページングしていても、全てのレコード数を返す。
 	 *
 	 * @access public
-	 * @return integer 全てのレコード数
+	 * @return int 全てのレコード数
 	 */
 	public function countAll () {
 		$sql = SQL::getSelectQuery(
@@ -666,7 +666,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * ページ数を返す
 	 *
 	 * @access public
-	 * @return integer ページ数
+	 * @return int ページ数
 	 */
 	public function getLastPageNumber () {
 		if (!$this->lastpage) {

@@ -315,7 +315,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * タイムアウト時間を返す
 	 *
 	 * @access public
-	 * @return integer タイムアウト時間(秒)、制限しない場合は0
+	 * @return int タイムアウト時間(秒)、制限しない場合は0
 	 */
 	public function getTimeLimit () {
 		return BS_APP_TIME_LIMIT;
@@ -327,7 +327,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * Module::getRecordID()のエイリアス。
 	 *
 	 * @access public
-	 * @return integer カレントレコードID
+	 * @return int カレントレコードID
 	 * @final
 	 */
 	final public function getRecordID () {
@@ -340,7 +340,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * Module::setRecordID()のエイリアス。
 	 *
 	 * @access public
-	 * @param integer $id カレントレコードID、又はレコード
+	 * @param mixed $id カレントレコードID、又はレコード
 	 * @final
 	 */
 	final public function setRecordID ($id) {

@@ -34,7 +34,7 @@ class SessionHandler {
 	 * セッションIDを返す
 	 *
 	 * @access public
-	 * @return integer セッションID
+	 * @return int セッションID
 	 */
 	public function getID () {
 		return session_id();
@@ -44,7 +44,7 @@ class SessionHandler {
 	 * セッション名を返す
 	 *
 	 * @access public
-	 * @return integer セッション名
+	 * @return int セッション名
 	 */
 	public function getName () {
 		return session_name();

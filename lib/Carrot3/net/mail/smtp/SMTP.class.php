@@ -19,12 +19,12 @@ class SMTP extends Socket {
 	/**
 	 * @access public
 	 * @param mixed $host ホスト
-	 * @param integer $port ポート
+	 * @param int $port ポート
 	 * @param string $protocol プロトコル
 	 *   NetworkService::TCP
 	 *   NetworkService::UDP
 	 */
-	public function __construct ($host = null, $port = null, $protocol = NetworkService::TCP) {
+	public function __construct ($host = null, int $port = null, $protocol = NetworkService::TCP) {
 		if (StringUtils::isBlank($host)) {
 			$host = new Host(BS_SMTP_HOST);
 		}
@@ -92,7 +92,7 @@ class SMTP extends Socket {
 	 * 送信
 	 *
 	 * @access public
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::TEST テスト送信
 	 * @return string 送信完了時は最終のレスポンス
 	 */
@@ -128,7 +128,7 @@ class SMTP extends Socket {
 	 * 受信者を返す
 	 *
 	 * @access protected
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::TEST テスト送信
 	 * @return Tuple 受信者の配列
 	 */
@@ -169,7 +169,7 @@ class SMTP extends Socket {
 	 * X-Priorityヘッダを設定
 	 *
 	 * @access public
-	 * @param integer $priority X-Priorityヘッダ
+	 * @param int $priority 重要度
 	 */
 	public function setPriority ($priority) {
 		$this->getMail()->setHeader('X-Priority', $priority);
@@ -230,7 +230,7 @@ class SMTP extends Socket {
 	 *
 	 * @access public
 	 * @param string $command コマンド
-	 * @return integer 結果コード
+	 * @return int 結果コード
 	 */
 	public function execute ($command) {
 		$this->putLine($command);
@@ -257,10 +257,10 @@ class SMTP extends Socket {
 	}
 
 	/**
-	 * 規定のポート番号を返す
+	 * 規定のポートを返す
 	 *
 	 * @access public
-	 * @return integer port
+	 * @return int port
 	 */
 	public function getDefaultPort () {
 		return NetworkService::getPort('smtp');

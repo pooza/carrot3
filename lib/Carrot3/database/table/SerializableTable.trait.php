@@ -42,7 +42,7 @@ trait SerializableTable {
 	 *
 	 * @access public
 	 * @param string $name 名前
-	 * @return integer ID
+	 * @return int ID
 	 */
 	public function getID ($name) {
 		foreach ($this as $record) {

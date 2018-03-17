@@ -113,7 +113,7 @@ class MIMEType extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param string $suffix サフィックス、又はファイル名
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   MIMEUtils::IGNORE_INVALID_TYPE タイプが不正ならapplication/octet-streamを返す
 	 * @return string メディアタイプ
 	 * @static

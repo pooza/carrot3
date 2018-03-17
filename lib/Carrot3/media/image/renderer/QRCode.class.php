@@ -62,7 +62,7 @@ class QRCode implements ImageRenderer {
 	 * 幅を返す
 	 *
 	 * @access public
-	 * @return integer 幅
+	 * @return int 幅
 	 */
 	public function getWidth () {
 		return imagesx($this->getGDHandle());
@@ -72,7 +72,7 @@ class QRCode implements ImageRenderer {
 	 * 高さを返す
 	 *
 	 * @access public
-	 * @return integer 高さ
+	 * @return int 高さ
 	 */
 	public function getHeight () {
 		return imagesy($this->getGDHandle());
@@ -95,7 +95,7 @@ class QRCode implements ImageRenderer {
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize () {
 		return strlen($this->getContents());

@@ -279,7 +279,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * 画像マネージャを生成して返す
 	 *
 	 * @access public
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 * @return ImageManager 画像マネージャ
 	 */
 	public function createImageManager ($flags = null) {

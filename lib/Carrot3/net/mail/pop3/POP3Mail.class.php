@@ -34,7 +34,7 @@ class POP3Mail extends MIMEDocument {
 	 * IDを返す
 	 *
 	 * @access public
-	 * @return integer ID
+	 * @return int ID
 	 */
 	public function getID () {
 		return $this->id;
@@ -96,7 +96,7 @@ class POP3Mail extends MIMEDocument {
 	 * メールのサイズをPOPセッションから取得して返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getMailSize () {
 		return $this->size;

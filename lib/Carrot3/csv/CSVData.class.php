@@ -176,7 +176,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize () {
 		return strlen($this->getContents());
@@ -257,7 +257,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 
 	/**
 	 * @access public
-	 * @return integer レコード数
+	 * @return int レコード数
 	 */
 	public function count () {
 		return $this->records->count();

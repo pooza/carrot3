@@ -65,10 +65,10 @@ class RecordValidator extends Validator {
 	 * レコードが存在するか
 	 *
 	 * @access protected
-	 * @param integer $id レコードのID
+	 * @param int $id レコードのID
 	 * @return bool 存在するならばTrue
 	 */
-	protected function isExists ($id) {
+	protected function isExists (int $id) {
 		if ($recordFound = $this->getRecord($id)) {
 			if ($this['update']) {
 				if ($recordModule = $this->controller->getModule()->getRecord()) {
@@ -87,10 +87,10 @@ class RecordValidator extends Validator {
 	 * 妥当な値か
 	 *
 	 * @access protected
-	 * @param integer $id レコードのID
+	 * @param int $id レコードのID
 	 * @return bool 妥当な値ならばTrue
 	 */
-	protected function validateValues ($id) {
+	protected function validateValues (int $id) {
 		$record = $this->getRecord($id);
 		foreach ($this['valid_values'] as $field => $value) {
 			$values = Tuple::create($value);
@@ -123,10 +123,10 @@ class RecordValidator extends Validator {
 	 * 対象レコードを取得
 	 *
 	 * @access protected
-	 * @param integer $id レコードのID
+	 * @param int $id レコードのID
 	 * @return Record 対象レコード
 	 */
-	protected function getRecord ($id) {
+	protected function getRecord (int $id) {
 		try {
 			$values = [$this['field'] => $id];
 			foreach (Tuple::create($this['criteria']) as $field => $value) {

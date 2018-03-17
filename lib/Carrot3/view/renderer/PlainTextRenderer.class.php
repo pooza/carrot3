@@ -67,7 +67,7 @@ class PlainTextRenderer implements TextRenderer, MessageContainer, \IteratorAggr
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize () {
 		return strlen($this->getContents());
@@ -150,9 +150,9 @@ class PlainTextRenderer implements TextRenderer, MessageContainer, \IteratorAggr
 	 * オプションが設定されているか？
 	 *
 	 * @access public
-	 * @param integer $option オプション
+	 * @param int $option オプション
 	 */
-	public function getOption ($option) {
+	public function getOption (int $option) {
 		return ($this->option & $option);
 	}
 
@@ -160,10 +160,10 @@ class PlainTextRenderer implements TextRenderer, MessageContainer, \IteratorAggr
 	 * オプションを設定
 	 *
 	 * @access public
-	 * @param integer $option オプションの和
+	 * @param int $option オプションの和
 	 *    self::TAIL_LF 末尾に改行を追加
 	 */
-	public function setOptions ($option) {
+	public function setOptions (int $option) {
 		$this->option |= $option;
 	}
 
@@ -180,9 +180,9 @@ class PlainTextRenderer implements TextRenderer, MessageContainer, \IteratorAggr
 	 * 行幅を設定
 	 *
 	 * @access public
-	 * @param integer $width 行幅
+	 * @param int $width 行幅
 	 */
-	public function setWidth ($width) {
+	public function setWidth (int $width) {
 		$this->width = $width;
 	}
 

@@ -28,10 +28,10 @@ class JSONSerializer implements Serializer {
 	 *
 	 * @access public
 	 * @param mixed $value 対象
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 * @return string シリアライズされた文字列
 	 */
-	public function encode ($value, $flags = 0) {
+	public function encode ($value, int $flags = 0) {
 		$value = StringUtils::convertEncoding($value, 'utf-8');
 		if (is_array($value) || ($value instanceof ParameterHolder)) {
 			$value = Tuple::create($value);

@@ -83,7 +83,7 @@ class Geocode extends ParameterHolder {
 	 * 最寄り駅を返す
 	 *
 	 * @access public
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   HeartRailsExpressService::FORCE_QUERY 新規取得を強制
 	 * @return Tuple 最寄り駅
 	 */

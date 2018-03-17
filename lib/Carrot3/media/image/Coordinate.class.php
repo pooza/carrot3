@@ -19,10 +19,10 @@ class Coordinate {
 	/**
 	 * @access public
 	 * @param Image $image 画像レンダラー
-	 * @param integer $x X座標
-	 * @param integer $y Y座標
+	 * @param int $x X座標
+	 * @param int $y Y座標
 	 */
-	public function __construct (Image $image, $x, $y) {
+	public function __construct (Image $image, int $x, int $y) {
 		$this->image = $image;
 		$this->x = $x;
 		$this->y = $y;
@@ -33,7 +33,7 @@ class Coordinate {
 	 * X座標を返す
 	 *
 	 * @access public
-	 * @return integer X座標
+	 * @return int X座標
 	 */
 	public function getX () {
 		return $this->x;
@@ -43,7 +43,7 @@ class Coordinate {
 	 * Y座標を返す
 	 *
 	 * @access public
-	 * @return integer Y座標
+	 * @return int Y座標
 	 */
 	public function getY () {
 		return $this->y;
@@ -65,11 +65,11 @@ class Coordinate {
 	 * 移動
 	 *
 	 * @access public
-	 * @param integer $x X座標
-	 * @param integer $y Y座標
+	 * @param int $x X座標
+	 * @param int $y Y座標
 	 * @return Coordinate 移動後の自分自身
 	 */
-	public function move ($x, $y) {
+	public function move (int $x, int $y) {
 		$this->x += $x;
 		$this->y += $y;
 		$this->validate();
@@ -81,10 +81,10 @@ class Coordinate {
 	 *
 	 * @access public
 	 * @param Coordinate $origin 中心
-	 * @param integer $angle 角度
+	 * @param int $angle 角度
 	 * @return Coordinate 移動後の自分自身
 	 */
-	public function rotate (Coordinate $origin, $angle) {
+	public function rotate (Coordinate $origin, int $angle) {
 		$x = $this->getX() - $origin->getX();
 		$y = $this->getY() - $origin->getY();
 		$sin = sin(deg2rad($angle));

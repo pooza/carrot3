@@ -73,7 +73,7 @@ class YAMLConfigParser extends \Spyc implements ConfigParser {
 	 * 出力内容のサイズを返す
 	 *
 	 * @access public
-	 * @return integer サイズ
+	 * @return int サイズ
 	 */
 	public function getSize () {
 		return strlen($this->getContents());

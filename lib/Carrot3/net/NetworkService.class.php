@@ -16,12 +16,12 @@ class NetworkService {
 	const UDP = 'udp';
 
 	/**
-	 * 規定のポート番号を返す
+	 * 規定のポートを返す
 	 *
 	 * @access public
 	 * @param string $service サービスの名前
 	 * @param string $protocol プロトコルの名前
-	 * @return integer 規定のポート番号
+	 * @return int 規定のポート
 	 * @static
 	 */
 	static public function getPort ($service, $protocol = self::TCP) {
@@ -32,12 +32,12 @@ class NetworkService {
 	 * 規定のサービス名を返す
 	 *
 	 * @access public
-	 * @param integer $port ポート番号
+	 * @param int $port ポート
 	 * @param string $protocol プロトコルの名前
 	 * @return string サービス名
 	 * @static
 	 */
-	static public function getService ($port, $protocol = self::TCP) {
+	static public function getService (int $port, $protocol = self::TCP) {
 		return getservbyport($port, $protocol);
 	}
 }

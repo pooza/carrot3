@@ -131,7 +131,7 @@ class CarrotURL extends HTTPURL {
 	 * レコードのIDを返す
 	 *
 	 * @access public
-	 * @return integer レコードのID
+	 * @return int レコードのID
 	 */
 	public function getRecordID () {
 		return $this->id;

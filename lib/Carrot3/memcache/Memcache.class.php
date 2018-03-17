@@ -33,10 +33,10 @@ class Memcache implements \ArrayAccess {
 	 *
 	 * @access public
 	 * @param mixed $host 接続先ホスト、又はUNIXソケット名
-	 * @param integer $port ポート番号、UNIXソケットの場合は0
+	 * @param int $port ポート、UNIXソケットの場合は0
 	 * @return 接続の成否
 	 */
-	public function connect ($host, $port) {
+	public function connect ($host, int $port) {
 		return $this->pconnect($host, $port);
 	}
 
@@ -45,14 +45,14 @@ class Memcache implements \ArrayAccess {
 	 *
 	 * @access public
 	 * @param mixed $host 接続先ホスト、又はUNIXソケット名
-	 * @param integer $port ポート番号、UNIXソケットの場合は0
+	 * @param int $port ポート、UNIXソケットの場合は0
 	 * @return 接続の成否
 	 */
-	public function pconnect ($host, $port) {
+	public function pconnect ($host, int $port) {
 		if (Numeric::isZero($port)) {
 			$this->attributes['socket'] = $host;
 			$this->attributes['connection_type'] = MemcacheManager::CONNECT_UNIX;
-			$key = $host . ':11211'; //ポート番号は何故か0にならない。PECL::memcachedのバグ。
+			$key = $host . ':11211'; //ポートは何故か0にならない。PECL::memcachedのバグ。
 		} else {
 			$this->attributes['connection_type'] = MemcacheManager::CONNECT_INET;
 			if ($host instanceof Host) {
@@ -131,11 +131,11 @@ class Memcache implements \ArrayAccess {
 	 * @access public
 	 * @param string $name エントリー名
 	 * @param string $value エントリーの値
-	 * @param integer $flag PECL::memcacheとの互換性の為の引数。未使用。
-	 * @param integer $expire 項目の有効期限。秒数又はタイムスタンプ。
+	 * @param int $flag PECL::memcacheとの互換性の為の引数。未使用。
+	 * @param int $expire 項目の有効期限。秒数又はタイムスタンプ。
 	 * @return bool 処理の成否
 	 */
-	public function set ($name, $value, $flag = null, $expire = 0) {
+	public function set ($name, $value, int $flag = null, int $expire = 0) {
 		if ($value instanceof ParameterHolder) {
 			$value = Tuple::create($value)->decode();
 		} else if (is_object($value)) {

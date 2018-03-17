@@ -43,7 +43,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * ユニークなファイルIDを返す
 	 *
 	 * @access public
-	 * @return integer ID
+	 * @return int ID
 	 */
 	public function getID () {
 		if (!$this->id) {
@@ -279,10 +279,10 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * ストリームから1行読み込む
 	 *
 	 * @access public
-	 * @param integer $length 一度に読み込む最大のサイズ
+	 * @param int $length 一度に読み込む最大のサイズ
 	 * @return string 読み込んだ内容
 	 */
-	public function getLine ($length = 4096) {
+	public function getLine (int $length = 4096) {
 		if ($this->isOpened()) {
 			if ($this->mode[0] != 'r') {
 				throw new FileException($this . 'はrモードで開かれていません。');
@@ -381,7 +381,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * ファイルサイズを返す
 	 *
 	 * @access public
-	 * @return integer ファイルサイズ
+	 * @return int ファイルサイズ
 	 */
 	public function getSize () {
 		if ($this->isExists()) {

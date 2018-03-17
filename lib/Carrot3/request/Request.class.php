@@ -276,9 +276,9 @@ abstract class Request extends HTTPRequest {
 	 *
 	 * @access public
 	 * @param Renderer $renderer レンダラー
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 */
-	public function setRenderer (Renderer $renderer, $flags = 0) {
+	public function setRenderer (Renderer $renderer, int $flags = 0) {
 		throw new HTTPException(Utils::getClass($this) . 'はレンダラーを設定できません。');
 	}
 

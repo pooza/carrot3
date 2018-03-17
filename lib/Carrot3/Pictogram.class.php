@@ -24,7 +24,7 @@ class Pictogram implements Assignable, ImageContainer {
 
 	/**
 	 * @access private
-	 * @name integer $id 絵文字コード
+	 * @name int $id 絵文字コード
 	 */
 	private function __construct ($id) {
 		$this->id = $id;
@@ -159,11 +159,11 @@ class Pictogram implements Assignable, ImageContainer {
 	 *
 	 * @access public
 	 * @param string $size ダミー
-	 * @param integer $pixel ダミー
-	 * @param integer $flags ダミー
+	 * @param int $pixel ダミー
+	 * @param int $flags ダミー
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, $pixel = null, $flags = 0) {
+	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
 		if (!$this->imageinfo) {
 			$this->imageinfo = Tuple::create();
 			$image = $this->getImageFile('image')->getRenderer();
@@ -244,7 +244,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 *
 	 * @access public
 	 * @param mixed $name 絵文字名、又は絵文字コード
-	 * @return integer 絵文字コード
+	 * @return int 絵文字コード
 	 * @static
 	 */
 	static public function getPictogramCode ($name) {

@@ -136,7 +136,7 @@ class ImagickImage extends Image {
 	 * 幅を返す
 	 *
 	 * @access public
-	 * @return integer 幅
+	 * @return int 幅
 	 */
 	public function getWidth () {
 		return $this->getImagick()->getImageWidth();
@@ -146,7 +146,7 @@ class ImagickImage extends Image {
 	 * 高さを返す
 	 *
 	 * @access public
-	 * @return integer 高さ
+	 * @return int 高さ
 	 */
 	public function getHeight () {
 		return $this->getImagick()->getImageHeight();
@@ -196,10 +196,10 @@ class ImagickImage extends Image {
 	 * サイズ変更
 	 *
 	 * @access public
-	 * @param integer $width 幅
-	 * @param integer $height 高さ
+	 * @param int $width 幅
+	 * @param int $height 高さ
 	 */
-	public function resize ($width, $height) {
+	public function resize (int $width, int $height) {
 		$dest = new ImagickImage;
 		$dest->setImagick(new \Imagick);
 		$dest->getImagick()->newImage(

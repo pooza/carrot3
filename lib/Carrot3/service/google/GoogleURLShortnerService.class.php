@@ -17,9 +17,9 @@ class GoogleURLShortnerService extends CurlHTTP implements URLShorter {
 	/**
 	 * @access public
 	 * @param Host $host ホスト
-	 * @param integer $port ポート
+	 * @param int $port ポート
 	 */
-	public function __construct (Host $host = null, $port = null) {
+	public function __construct (Host $host = null, int $port = null) {
 		if (!$host) {
 			$host = new Host(self::DEFAULT_HOST);
 			$port = NetworkService::getPort('https');

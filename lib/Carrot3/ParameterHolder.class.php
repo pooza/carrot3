@@ -125,7 +125,7 @@ abstract class ParameterHolder
 
 	/**
 	 * @access public
-	 * @return integer 要素数
+	 * @return int 要素数
 	 */
 	public function count () {
 		return count($this->getParameters());

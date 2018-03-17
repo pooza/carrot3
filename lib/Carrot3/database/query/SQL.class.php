@@ -29,12 +29,12 @@ class SQL {
 	 * @param mixed $criteria 抽出条件
 	 * @param mixed $order ソート順
 	 * @param string $group グループ化
-	 * @param integer $page ページ
-	 * @param integer $pagesize ページサイズ
+	 * @param int $page ページ
+	 * @param int $pagesize ページサイズ
 	 * @return string クエリー文字列
 	 * @static
 	 */
-	static public function getSelectQuery ($fields, $tables, $criteria = null, $order = null, $group = null, $page = null, $pagesize = null) {
+	static public function getSelectQuery ($fields, $tables, $criteria = null, $order = null, $group = null, int $page = null, int $pagesize = null) {
 		$query = Tuple::create();
 		$query[] = 'SELECT';
 		$query[] = self::getFieldsString($fields);
@@ -139,11 +139,11 @@ class SQL {
 	 * @access public
 	 * @param string $table テーブル名
 	 * @param string[] $fields フィールド定義等
-	 * @param integer $flags フラグのビット列
+	 * @param int $flags フラグのビット列
 	 *   self::TEMPORARY テンポラリテーブル
 	 * @static
 	 */
-	static public function getCreateTableQuery ($table, $fields, $flags = 0) {
+	static public function getCreateTableQuery ($table, $fields, int $flags = 0) {
 		$fields = Tuple::create($fields);
 		foreach ($fields as $key => $field) {
 			if (is_numeric($key)) {

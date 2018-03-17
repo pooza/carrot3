@@ -18,7 +18,7 @@ abstract class PaginateTableAction extends TableAction {
 	 * ページ番号を返す
 	 *
 	 * @access protected
-	 * @return integer ページ番号
+	 * @return int ページ番号
 	 */
 	protected function getPageNumber () {
 		if (!$this->page) {
@@ -35,7 +35,7 @@ abstract class PaginateTableAction extends TableAction {
 	 * ページサイズを返す
 	 *
 	 * @access public
-	 * @return integer ページサイズ
+	 * @return int ページサイズ
 	 */
 	protected function getPageSize () {
 		return 50;

@@ -306,7 +306,7 @@ class SmartyCompiler extends \Smarty_Compiler {
 	 *
 	 * @access public
 	 * @param string $error_msg エラーメッセージ
-	 * @param integer $error_type
+	 * @param int $error_type
 	 */
 	public function trigger_error ($error_msg, $error_type = null) {
 		throw new ViewException($error_msg);
