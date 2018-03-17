@@ -89,7 +89,7 @@ class User extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param string $name 属性名
-	 * @return boolean 属性値が存在すればTrue
+	 * @return bool 属性値が存在すればTrue
 	 */
 	public function hasAttribute ($name) {
 		return $this->attributes->hasParameter($name);
@@ -188,7 +188,7 @@ class User extends ParameterHolder {
 	 * @access public
 	 * @param UserIdentifier $id ユーザーIDを含んだオブジェクト
 	 * @param string $password パスワード
-	 * @return boolean 成功ならTrue
+	 * @return bool 成功ならTrue
 	 */
 	public function login (UserIdentifier $identifier = null, $password = null) {
 		if ($identifier && $identifier->auth($password)) {
@@ -269,7 +269,7 @@ class User extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param string $name クレデンシャル名
-	 * @return boolean 持っていればTrue
+	 * @return bool 持っていればTrue
 	 */
 	public function hasCredential ($name) {
 		return StringUtils::isBlank($name) || $this->credentials[$name];
@@ -279,7 +279,7 @@ class User extends ParameterHolder {
 	 * 管理者権限を持っているか？
 	 *
 	 * @access public
-	 * @return boolean 持っていればTrue
+	 * @return bool 持っていればTrue
 	 */
 	public function isAdministrator () {
 		return $this->hasCredential(AdministratorRole::CREDENTIAL);
@@ -289,7 +289,7 @@ class User extends ParameterHolder {
 	 * 発行者権限を持っているか？
 	 *
 	 * @access public
-	 * @return boolean 持っていればTrue
+	 * @return bool 持っていればTrue
 	 */
 	public function isAuthor () {
 		return $this->hasCredential(AuthorRole::CREDENTIAL);
@@ -299,7 +299,7 @@ class User extends ParameterHolder {
 	 * ゲストユーザーか？
 	 *
 	 * @access public
-	 * @return boolean ゲストユーザーならばTrue
+	 * @return bool ゲストユーザーならばTrue
 	 */
 	public function isGuest () {
 		foreach ($this->getCredentials() as $credential) {

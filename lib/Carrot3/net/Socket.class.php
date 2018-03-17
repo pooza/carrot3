@@ -152,7 +152,7 @@ class Socket {
 	 * 開かれているか？
 	 *
 	 * @access public
-	 * @return boolean 開かれていたらtrue
+	 * @return bool 開かれていたらtrue
 	 */
 	public function isOpened () {
 		return is_resource($this->client);
@@ -162,7 +162,7 @@ class Socket {
 	 * ポインタがEOFに達しているか？
 	 *
 	 * @access public
-	 * @return boolean EOFに達していたらtrue
+	 * @return bool EOFに達していたらtrue
 	 */
 	public function isEof () {
 		return feof($this->client);

@@ -242,7 +242,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * クエリーログを使用するか？
 	 *
 	 * @access protected
-	 * @return boolean クエリーログを使用するならTrue
+	 * @return bool クエリーログを使用するならTrue
 	 */
 	protected function isLoggable () {
 		return !!$this->getAttribute('loggable');
@@ -252,7 +252,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * 旧式か
 	 *
 	 * @access public
-	 * @return boolean 旧式ならTrue
+	 * @return bool 旧式ならTrue
 	 */
 	public function isLegacy () {
 		return false;
@@ -386,7 +386,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	/**
 	 * @access public
 	 * @param string $key 添え字
-	 * @return boolean 要素が存在すればTrue
+	 * @return bool 要素が存在すればTrue
 	 */
 	public function offsetExists ($key) {
 		return $this->dsn->hasParameter($key);
@@ -422,7 +422,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * 外部キーが有効か？
 	 *
 	 * @access public
-	 * @return boolean 有効ならTrue
+	 * @return bool 有効ならTrue
 	 */
 	public function hasForeignKey () {
 		return true;
@@ -432,7 +432,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * リストア可能？
 	 *
 	 * @access public
-	 * @return boolean 可能ならTrue
+	 * @return bool 可能ならTrue
 	 */
 	public function isRestoreable () {
 		return false;
@@ -469,10 +469,10 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @param string $name 関数名
 	 * @param string $value 値
-	 * @param boolean $quotes クォートする
+	 * @param bool $quotes クォートする
 	 * @return string 関数の記述
 	 */
-	public function getFunction ($name, $value, $quotes = false) {
+	public function getFunction ($name, $value, bool $quotes = false) {
 		$func = new StringFormat('%s(%s)');
 		$func[] = $name;
 		if (!!$quotes) {

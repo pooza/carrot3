@@ -49,7 +49,7 @@ class MessageIdMIMEHeader extends MIMEHeader {
 	 * 改行などの整形を行うか？
 	 *
 	 * @access protected
-	 * @return boolean 整形を行うならTrue
+	 * @return bool 整形を行うならTrue
 	 */
 	protected function isFormattable () {
 		return false;

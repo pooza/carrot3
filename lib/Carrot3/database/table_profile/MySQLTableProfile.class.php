@@ -117,7 +117,7 @@ class MySQLTableProfile extends TableProfile {
 	 * 最適化可能か？
 	 *
 	 * @access public
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isOptimizable () {
 		return ($this->getStorageEngine() != 'InnoDB');

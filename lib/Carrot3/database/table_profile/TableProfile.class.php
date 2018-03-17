@@ -66,7 +66,7 @@ abstract class TableProfile implements Assignable, Serializable {
 	 * テーブルは存在するか？
 	 *
 	 * @access public
-	 * @return boolean 存在するならTrue
+	 * @return bool 存在するならTrue
 	 */
 	public function isExists () {
 		return $this->getDatabase()->getTableNames()->isContain($this->getName());

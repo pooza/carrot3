@@ -19,7 +19,7 @@ class EmptyView extends View {
 	 * 初期化
 	 *
 	 * @access public
-	 * @return boolean 初期化が成功すればTrue
+	 * @return bool 初期化が成功すればTrue
 	 */
 	public function initialize () {
 		return true;

@@ -29,7 +29,7 @@ class DictionaryDirectory extends Directory {
 	 * サブディレクトリを持つか？
 	 *
 	 * @access public
-	 * @return boolean サブディレクトリを持つならTrue
+	 * @return bool サブディレクトリを持つならTrue
 	 */
 	public function hasSubDirectory () {
 		return false;

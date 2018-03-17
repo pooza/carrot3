@@ -25,7 +25,7 @@ abstract class TableAction extends Action {
 	 * Falseを返すと、例外が発生。
 	 *
 	 * @access public
-	 * @return boolean 正常終了ならTrue
+	 * @return bool 正常終了ならTrue
 	 */
 	public function initialize () {
 		parent::initialize();
@@ -123,7 +123,7 @@ abstract class TableAction extends Action {
 	 * リストを表示するか
 	 *
 	 * @access protected
-	 * @return boolean 表示して良いならTrue
+	 * @return bool 表示して良いならTrue
 	 */
 	protected function isShowable () {
 		return !$this->request->hasErrors();

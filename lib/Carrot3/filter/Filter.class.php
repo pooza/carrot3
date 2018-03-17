@@ -49,7 +49,7 @@ abstract class Filter extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param mixed[] $params パラメータ
-	 * @return boolean 初期化が成功すればTrue
+	 * @return bool 初期化が成功すればTrue
 	 */
 	public function initialize ($params = []) {
 		$this->setParameters($params);
@@ -70,7 +70,7 @@ abstract class Filter extends ParameterHolder {
 	 * 実行
 	 *
 	 * @access public
-	 * @return boolean 終了ならばTrue
+	 * @return bool 終了ならばTrue
 	 */
 	abstract public function execute ();
 
@@ -78,7 +78,7 @@ abstract class Filter extends ParameterHolder {
 	 * 実行できるか
 	 *
 	 * @access public
-	 * @return boolean 実行できるならTrue
+	 * @return bool 実行できるならTrue
 	 */
 	public function isExecutable () {
 		return (!$this->isExecuted() || $this->isRepeatable()) && !$this->isExcludedAction();
@@ -88,7 +88,7 @@ abstract class Filter extends ParameterHolder {
 	 * 二度目も実行するか
 	 *
 	 * @access public
-	 * @return boolean 二度目も実行するならTrue
+	 * @return bool 二度目も実行するならTrue
 	 */
 	public function isRepeatable () {
 		return false;
@@ -98,9 +98,9 @@ abstract class Filter extends ParameterHolder {
 	 * 実行済みフラグを設定
 	 *
 	 * @access public
-	 * @param boolean $flag 実行されたならTrue
+	 * @param bool $flag 実行されたならTrue
 	 */
-	public function setExecuted ($flag = true) {
+	public function setExecuted (bool $flag = true) {
 		self::$executed[$this->getName()] = $flag;
 	}
 
@@ -108,7 +108,7 @@ abstract class Filter extends ParameterHolder {
 	 * 実行されたか？
 	 *
 	 * @access public
-	 * @return boolean 実行されたならTrue
+	 * @return bool 実行されたならTrue
 	 */
 	public function isExecuted () {
 		return !!self::$executed[$this->getName()];
@@ -118,7 +118,7 @@ abstract class Filter extends ParameterHolder {
 	 * 除外されたアクションか？
 	 *
 	 * @access public
-	 * @return boolean 除外されたアクションならTrue
+	 * @return bool 除外されたアクションならTrue
 	 */
 	public function isExcludedAction () {
 		return Tuple::create($this['excluded_actions'])->isContain($this->action->getName());

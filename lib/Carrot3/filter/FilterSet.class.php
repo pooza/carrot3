@@ -69,9 +69,9 @@ class FilterSet extends Tuple {
 	 * @access public
 	 * @param string $name 名前
 	 * @param mixed $filter 要素（フィルタ）
-	 * @param boolean $position 先頭ならTrue
+	 * @param bool $position 先頭ならTrue
 	 */
-	public function setParameter ($name, $filter, $position = self::POSITION_BOTTOM) {
+	public function setParameter ($name, $filter, bool $position = self::POSITION_BOTTOM) {
 		if (($filter instanceof Filter) == false) {
 			throw new FilterException('フィルターセットに加えられません。');
 		}

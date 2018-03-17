@@ -19,7 +19,7 @@ abstract class MobileUserAgent extends UserAgent {
 	 *
 	 * @access public
 	 * @param SmartyView 対象ビュー
-	 * @return boolean 成功時にTrue
+	 * @return bool 成功時にTrue
 	 */
 	public function initializeView (SmartyView $view) {
 		parent::initializeView($view);
@@ -35,7 +35,7 @@ abstract class MobileUserAgent extends UserAgent {
 	 * ケータイ環境か？
 	 *
 	 * @access public
-	 * @return boolean ケータイ環境ならTrue
+	 * @return bool ケータイ環境ならTrue
 	 */
 	public function isMobile () {
 		return true;
@@ -45,7 +45,7 @@ abstract class MobileUserAgent extends UserAgent {
 	 * 旧機種か？
 	 *
 	 * @access public
-	 * @return boolean 旧機種ならばTrue
+	 * @return bool 旧機種ならばTrue
 	 */
 	public function isLegacy () {
 		return true;
@@ -56,7 +56,7 @@ abstract class MobileUserAgent extends UserAgent {
 	 *
 	 * @access public
 	 * @param MediaFile $file
-	 * @return boolean 再生できるならTrue
+	 * @return bool 再生できるならTrue
 	 */
 	public function isPlayable (MediaFile $file) {
 		return false;

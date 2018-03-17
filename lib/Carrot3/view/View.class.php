@@ -55,7 +55,7 @@ class View extends HTTPResponse {
 	 * 初期化
 	 *
 	 * @access public
-	 * @return boolean 初期化が成功すればTrue
+	 * @return bool 初期化が成功すればTrue
 	 */
 	public function initialize () {
 		if ($filename = $this->request->getAttribute('filename')) {
@@ -166,7 +166,7 @@ class View extends HTTPResponse {
 	 * HTTPキャッシュ有効か
 	 *
 	 * @access public
-	 * @return boolean 有効ならTrue
+	 * @return bool 有効ならTrue
 	 */
 	public function isCacheable () {
 		return false;
@@ -176,9 +176,9 @@ class View extends HTTPResponse {
 	 * キャッシュ制御を設定
 	 *
 	 * @access public
-	 * @param boolean $mode キャッシュONならTrue
+	 * @param bool $mode キャッシュONならTrue
 	 */
-	public function setCacheControl ($mode) {
+	public function setCacheControl (bool $mode) {
 		$expires = Date::create();
 		if (!!$mode) {
 			$value = new StringFormat('%s, max-age=%d');

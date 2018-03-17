@@ -64,7 +64,7 @@ class POP3 extends Socket {
 	 * @access public
 	 * @param string $user ユーザー名
 	 * @param string $password パスワード
-	 * @return boolean 認証の成否
+	 * @return bool 認証の成否
 	 */
 	public function auth ($user, $password) {
 		return ($this->execute('USER ' . $user) && $this->execute('PASS ' . $password));
@@ -108,7 +108,7 @@ class POP3 extends Socket {
 	 *
 	 * @access public
 	 * @param string $command コマンド
-	 * @return boolean 成功ならばTrue
+	 * @return bool 成功ならばTrue
 	 */
 	public function execute ($command) {
 		$this->putLine($command);
@@ -126,7 +126,7 @@ class POP3 extends Socket {
 	 * 直前のコマンドは実行に成功したか？
 	 *
 	 * @access public
-	 * @return boolean 成功ならばTrue
+	 * @return bool 成功ならばTrue
 	 */
 	public function isSuccess () {
 		return mb_ereg('^\\+OK', $this->getLine());

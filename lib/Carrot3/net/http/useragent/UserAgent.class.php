@@ -82,7 +82,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * レガシー環境/旧機種か？
 	 *
 	 * @access public
-	 * @return boolean レガシーならばTrue
+	 * @return bool レガシーならばTrue
 	 */
 	public function isLegacy () {
 		return false;
@@ -94,7 +94,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * isLecagyのエイリアス
 	 *
 	 * @access public
-	 * @return boolean レガシーならばTrue
+	 * @return bool レガシーならばTrue
 	 * @final
 	 */
 	final public function isDenied () {
@@ -106,7 +106,7 @@ abstract class UserAgent extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param SmartyView 対象ビュー
-	 * @return boolean 成功時にTrue
+	 * @return bool 成功時にTrue
 	 */
 	public function initializeView (SmartyView $view) {
 		$view->getRenderer()->setUserAgent($this);
@@ -179,7 +179,7 @@ abstract class UserAgent extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param string $name サポート名
-	 * @return boolean サポートがあるならTrue
+	 * @return bool サポートがあるならTrue
 	 */
 	public function hasSupport ($name) {
 		return !!$this->supports[$name];
@@ -190,7 +190,7 @@ abstract class UserAgent extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param MediaFile $file
-	 * @return boolean 再生できるならTrue
+	 * @return bool 再生できるならTrue
 	 */
 	public function isPlayable (MediaFile $file) {
 		$types = Tuple::create([
@@ -206,7 +206,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * ケータイ環境か？
 	 *
 	 * @access public
-	 * @return boolean ケータイ環境ならTrue
+	 * @return bool ケータイ環境ならTrue
 	 */
 	public function isMobile () {
 		return false;
@@ -216,7 +216,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * スマートフォンか？
 	 *
 	 * @access public
-	 * @return boolean スマートフォンならTrue
+	 * @return bool スマートフォンならTrue
 	 */
 	public function isSmartPhone () {
 		return false;
@@ -226,7 +226,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * タブレット型か？
 	 *
 	 * @access public
-	 * @return boolean タブレット型ならTrue
+	 * @return bool タブレット型ならTrue
 	 */
 	public function isTablet () {
 		return false;

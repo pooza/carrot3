@@ -18,7 +18,7 @@ class BlinkUserAgent extends WebKitUserAgent {
 	 * Google Chromeか？
 	 *
 	 * @access public
-	 * @return boolean Google ChromeならTrue
+	 * @return bool Google ChromeならTrue
 	 */
 	public function isChrome () {
 		return true;

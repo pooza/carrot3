@@ -34,7 +34,7 @@ class StringValidator extends Validator {
 	 *
 	 * @access public
 	 * @param mixed $value バリデート対象
-	 * @return boolean 妥当な値ならばTrue
+	 * @return bool 妥当な値ならばTrue
 	 */
 	public function execute ($value) {
 		if (is_array($value) || ($value instanceof ParameterHolder)) {

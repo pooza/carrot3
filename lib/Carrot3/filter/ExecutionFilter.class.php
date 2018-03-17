@@ -63,7 +63,7 @@ class ExecutionFilter extends Filter {
 	 * 二度目も実行するか
 	 *
 	 * @access public
-	 * @return boolean 二度目も実行するならTrue
+	 * @return bool 二度目も実行するならTrue
 	 */
 	public function isRepeatable () {
 		return true;

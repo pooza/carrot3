@@ -18,7 +18,7 @@ class BccMIMEHeader extends AddressesMIMEHeader {
 	 * 可視か？
 	 *
 	 * @access public
-	 * @return boolean 可視ならばTrue
+	 * @return bool 可視ならばTrue
 	 */
 	public function isVisible () {
 		return false;

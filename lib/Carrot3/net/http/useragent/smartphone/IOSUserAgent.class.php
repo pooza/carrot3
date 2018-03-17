@@ -27,7 +27,7 @@ class IOSUserAgent extends WebKitUserAgent {
 	 * スマートフォンか？
 	 *
 	 * @access public
-	 * @return boolean スマートフォンならTrue
+	 * @return bool スマートフォンならTrue
 	 */
 	public function isSmartPhone () {
 		return !$this->isTablet();
@@ -37,7 +37,7 @@ class IOSUserAgent extends WebKitUserAgent {
 	 * タブレット型か？
 	 *
 	 * @access public
-	 * @return boolean タブレット型ならTrue
+	 * @return bool タブレット型ならTrue
 	 */
 	public function isTablet () {
 		return StringUtils::isContain('iPad', $this->getName());

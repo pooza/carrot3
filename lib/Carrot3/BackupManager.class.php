@@ -163,7 +163,7 @@ class BackupManager {
 	 * リストア可能な環境か？
 	 *
 	 * @access public
-	 * @return boolean リストアに対応した環境ならTrue
+	 * @return bool リストアに対応した環境ならTrue
 	 */
 	public function isRestoreable () {
 		foreach ($this->config['databases'] as $name) {

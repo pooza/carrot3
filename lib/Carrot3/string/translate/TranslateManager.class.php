@@ -42,9 +42,9 @@ class TranslateManager implements \IteratorAggregate {
 	 *
 	 * @access public
 	 * @param Dictionary 辞書
-	 * @param boolean $priority 優先順位 (Tuple::POSITION_TOP|Tuple::POSITION_BOTTOM)
+	 * @param bool $priority 優先順位 (Tuple::POSITION_TOP|Tuple::POSITION_BOTTOM)
 	 */
-	public function register (Dictionary $dictionary, $priority = Tuple::POSITION_BOTTOM) {
+	public function register (Dictionary $dictionary, bool $priority = Tuple::POSITION_BOTTOM) {
 		$name = StringUtils::toLower($dictionary->getDictionaryName());
 		$this->dictionaries->setParameter($name, $dictionary, $priority);
 	}
@@ -54,9 +54,9 @@ class TranslateManager implements \IteratorAggregate {
 	 *
 	 * @access public
 	 * @param string $name 辞書の名前
-	 * @param boolean $priority 優先順位 (Tuple::POSITION_TOP|Tuple::POSITION_BOTTOM)
+	 * @param bool $priority 優先順位 (Tuple::POSITION_TOP|Tuple::POSITION_BOTTOM)
 	 */
-	public function setDictionaryPriority ($name, $priority) {
+	public function setDictionaryPriority ($name, bool $priority) {
 		$name = StringUtils::toLower($name);
 		if (!$dictionary = $this->dictionaries[$name]) {
 			$message = new StringFormat('辞書 "%s" は登録されていません。');

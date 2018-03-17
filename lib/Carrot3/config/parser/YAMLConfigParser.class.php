@@ -103,7 +103,7 @@ class YAMLConfigParser extends \Spyc implements ConfigParser {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		return !!$this->getResult();

@@ -92,7 +92,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * バイナリファイルか？
 	 *
 	 * @access public
-	 * @return boolean バイナリファイルならTrue
+	 * @return bool バイナリファイルならTrue
 	 */
 	public function isBinary () {
 		return $this->binary;
@@ -102,9 +102,9 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * バイナリファイルかどうかのフラグを設定
 	 *
 	 * @access public
-	 * @param boolean $flag バイナリファイルならTrue
+	 * @param bool $flag バイナリファイルならTrue
 	 */
-	public function setBinary ($flag) {
+	public function setBinary (bool $flag) {
 		return $this->binary = !!$flag;
 	}
 
@@ -335,7 +335,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * ウィルスなどに感染しているか？
 	 *
 	 * @access public
-	 * @return boolean 感染していたらtrue
+	 * @return bool 感染していたらtrue
 	 */
 	public function isInfected () {
 		$command = new CommandLine('bin/' . BS_CLAMAV_COMMAND);
@@ -358,7 +358,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * 開かれているか？
 	 *
 	 * @access public
-	 * @return boolean 開かれていたらtrue
+	 * @return bool 開かれていたらtrue
 	 */
 	public function isOpened () {
 		return is_resource($this->handle);
@@ -368,7 +368,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * ポインタがEOFに達しているか？
 	 *
 	 * @access public
-	 * @return boolean EOFに達していたらtrue
+	 * @return bool EOFに達していたらtrue
 	 */
 	public function isEof () {
 		if (!$this->isReadable()) {
@@ -404,7 +404,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * アップロードされたファイルか？
 	 *
 	 * @access public
-	 * @return boolean アップロードされたファイルならTrue
+	 * @return bool アップロードされたファイルならTrue
 	 */
 	public function isUploaded () {
 		return is_uploaded_file($this->getPath());
@@ -434,7 +434,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	/**
 	 * @access public
 	 * @param string $key 添え字
-	 * @return boolean 要素が存在すればTrue
+	 * @return bool 要素が存在すればTrue
 	 */
 	public function offsetExists ($key) {
 		return $this->attributes->hasParameter($key);
@@ -470,7 +470,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		if (!$this->isReadable()) {

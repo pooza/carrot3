@@ -49,7 +49,7 @@ class XMLDocument extends XMLElement implements TextRenderer {
 	 * ダーティモードか？
 	 *
 	 * @access public
-	 * @return boolean ダーティモードならTrue
+	 * @return bool ダーティモードならTrue
 	 */
 	public function isDirty () {
 		return $this->dirty;
@@ -61,9 +61,9 @@ class XMLDocument extends XMLElement implements TextRenderer {
 	 * libxml2がエラーを起こすXML文書を無理やり処理する。
 	 *
 	 * @access public
-	 * @param boolean $mode ダーティモード
+	 * @param bool $mode ダーティモード
 	 */
-	public function setDirty ($mode) {
+	public function setDirty (bool $mode) {
 		$this->dirty = $mode;
 		$this->attributes->clear();
 		$this->elements->clear();
@@ -93,7 +93,7 @@ class XMLDocument extends XMLElement implements TextRenderer {
 	 * 妥当な要素か？
 	 *
 	 * @access public
-	 * @return boolean 妥当な要素ならTrue
+	 * @return bool 妥当な要素ならTrue
 	 */
 	public function validate () {
 		if (!parent::getContents()) {

@@ -183,7 +183,7 @@ class CurlHTTP extends HTTP {
 	 * SSLモードか？
 	 *
 	 * @access public
-	 * @return boolean SSLモードならTrue
+	 * @return bool SSLモードならTrue
 	 */
 	public function isSSL () {
 		return $this->ssl;
@@ -193,9 +193,9 @@ class CurlHTTP extends HTTP {
 	 * SSLモードを設定
 	 *
 	 * @access public
-	 * @param boolean $mode SSLモード
+	 * @param bool $mode SSLモード
 	 */
-	public function setSSL ($mode) {
+	public function setSSL (bool $mode) {
 		$this->ssl = !!$mode;
 		$this->name = null;
 	}

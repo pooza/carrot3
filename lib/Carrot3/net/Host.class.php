@@ -101,7 +101,7 @@ class Host implements Assignable, ImageContainer {
 	 *
 	 * @access public
 	 * @param Host $host 対象ホスト
-	 * @return boolean 異なるホストならTrue
+	 * @return bool 異なるホストならTrue
 	 */
 	public function isForeign (Host $host = null) {
 		if (!$host) {

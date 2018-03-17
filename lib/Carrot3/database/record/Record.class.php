@@ -149,7 +149,7 @@ abstract class Record implements \ArrayAccess,
 	 * 更新可能か？
 	 *
 	 * @access protected
-	 * @return boolean 更新可能ならTrue
+	 * @return bool 更新可能ならTrue
 	 */
 	protected function isUpdatable () {
 		return false;
@@ -207,7 +207,7 @@ abstract class Record implements \ArrayAccess,
 	 * 削除可能か？
 	 *
 	 * @access protected
-	 * @return boolean 削除可能ならTrue
+	 * @return bool 削除可能ならTrue
 	 */
 	protected function isDeletable () {
 		return false;
@@ -217,7 +217,7 @@ abstract class Record implements \ArrayAccess,
 	 * 表示して良いか？
 	 *
 	 * @access public
-	 * @return boolean 表示して良いならTrue
+	 * @return bool 表示して良いならTrue
 	 */
 	public function isVisible () {
 		return ($this['status'] == 'show');
@@ -555,7 +555,7 @@ abstract class Record implements \ArrayAccess,
 	/**
 	 * @access public
 	 * @param string $key 添え字
-	 * @return boolean 要素が存在すればTrue
+	 * @return bool 要素が存在すればTrue
 	 */
 	public function offsetExists ($key) {
 		return $this->attributes->hasParameter($key);
@@ -613,7 +613,7 @@ abstract class Record implements \ArrayAccess,
 	 * シリアライズするか？
 	 *
 	 * @access public
-	 * @return boolean シリアライズするならTrue
+	 * @return bool シリアライズするならTrue
 	 */
 	public function isSerializable () {
 		return SerializeHandler::getClasses()->isContain(Utils::getShortClass($this));

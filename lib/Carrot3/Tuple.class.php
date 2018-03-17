@@ -51,9 +51,9 @@ class Tuple extends ParameterHolder {
 	 * @access public
 	 * @param string $name 名前
 	 * @param mixed $value 要素
-	 * @param boolean $position 先頭ならTrue
+	 * @param bool $position 先頭ならTrue
 	 */
-	public function setParameter ($name, $value, $position = self::POSITION_BOTTOM) {
+	public function setParameter ($name, $value, bool $position = self::POSITION_BOTTOM) {
 		if (StringUtils::isBlank($name)) {
 			if ($position == self::POSITION_TOP) {
 				$this->unshift($value);
@@ -147,7 +147,7 @@ class Tuple extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param mixed $values 値、又は値の配列
-	 * @return boolean 値が含まれていればTrue
+	 * @return bool 値が含まれていればTrue
 	 */
 	public function isContain ($values) {
 		foreach (Tuple::create($values) as $value) {

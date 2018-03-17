@@ -71,7 +71,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * HEAD又は未定義メソッドの場合、GETとしてふるまう。
 	 *
 	 * @access public
-	 * @return boolean executeメソッドを実行可能ならTrue
+	 * @return bool executeメソッドを実行可能ならTrue
 	 */
 	public function isExecutable () {
 		if (StringUtils::isBlank($method = $this->request->getMethod()) || ($method == 'HEAD')) {
@@ -86,7 +86,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * RenderManagerでレンダリング結果をキャッシュできるか。
 	 *
 	 * @access public
-	 * @return boolean キャッシュできるならTrue
+	 * @return bool キャッシュできるならTrue
 	 */
 	public function isCacheable () {
 		return false;
@@ -98,7 +98,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * RenderManagerでレンダリング結果がキャッシュされているか。
 	 *
 	 * @access public
-	 * @return boolean キャッシュされているならTrue
+	 * @return bool キャッシュされているならTrue
 	 */
 	public function isCached () {
 		return $this->isCacheable() && RenderManager::getInstance()->hasCache($this);
@@ -127,7 +127,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * Falseを返すと、例外が発生。
 	 *
 	 * @access public
-	 * @return boolean 正常終了ならTrue
+	 * @return bool 正常終了ならTrue
 	 */
 	public function initialize () {
 		if ($errors = $this->user->getAttribute('errors')) {
@@ -180,7 +180,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * registerValidatorsで実現できないか、まずは検討すべき。
 	 *
 	 * @access public
-	 * @return boolean 妥当な入力ならTrue
+	 * @return bool 妥当な入力ならTrue
 	 */
 	public function validate () {
 		return !$this->request->hasErrors();

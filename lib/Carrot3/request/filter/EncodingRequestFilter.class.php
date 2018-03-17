@@ -32,7 +32,7 @@ class EncodingRequestFilter extends RequestFilter {
 	 * 配列を対象とするか
 	 *
 	 * @access protected
-	 * @return boolean 配列を対象とするならTrue
+	 * @return bool 配列を対象とするならTrue
 	 * @abstract
 	 */
 	protected function hasListSupport () {

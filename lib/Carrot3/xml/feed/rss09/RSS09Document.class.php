@@ -51,7 +51,7 @@ class RSS09Document extends XMLDocument implements FeedDocument {
 	 * 妥当な文書か？
 	 *
 	 * @access public
-	 * @return boolean 妥当な文書ならTrue
+	 * @return bool 妥当な文書ならTrue
 	 */
 	public function validate () {
 		return (parent::validate()

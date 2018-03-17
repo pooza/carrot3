@@ -96,7 +96,7 @@ class Calendar extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param string $name パラメータ名
-	 * @return boolean 存在すればTrue
+	 * @return bool 存在すればTrue
 	 */
 	public function hasParameter ($name) {
 		if ($name instanceof Date) {

@@ -209,7 +209,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 * マルチパートか？
 	 *
 	 * @access public
-	 * @return boolean マルチパートならばTrue
+	 * @return bool マルチパートならばTrue
 	 */
 	public function isMultiPart () {
 		if (!!$this->getParts()->count()) {
@@ -485,7 +485,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		return true;

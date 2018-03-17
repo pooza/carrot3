@@ -158,7 +158,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * 日付の妥当性をチェック
 	 *
 	 * @access public
-	 * @return boolean 妥当な日付ならtrue
+	 * @return bool 妥当な日付ならtrue
 	 */
 	public function validate () {
 		return (checkdate($this['month'], $this['day'], $this['year'])
@@ -176,7 +176,7 @@ class Date extends ParameterHolder implements Assignable {
 	 *
 	 * @access public
 	 * @param mixed $date 比較対象の日付またはその配列
-	 * @return boolean 過去日付ならtrue
+	 * @return bool 過去日付ならtrue
 	 */
 	public function isPast ($date = null) {
 		if (StringUtils::isBlank($date)) {
@@ -194,7 +194,7 @@ class Date extends ParameterHolder implements Assignable {
 	 *
 	 * @access public
 	 * @param Date $now 比較対象の日付
-	 * @return boolean 今日の日付ならtrue
+	 * @return bool 今日の日付ならtrue
 	 */
 	public function isToday (Date $now = null) {
 		if (!$now) {
@@ -257,7 +257,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * うるう年か？
 	 *
 	 * @access public
-	 * @return boolean うるう年ならtrue
+	 * @return bool うるう年ならtrue
 	 */
 	public function isLeapYear () {
 		return ($this->format('L') == 1);
@@ -288,7 +288,7 @@ class Date extends ParameterHolder implements Assignable {
 	 *
 	 * @access public
 	 * @param string $country 国名
-	 * @return boolean 日曜日か祭日ならTrue
+	 * @return bool 日曜日か祭日ならTrue
 	 */
 	public function isHoliday ($country = 'ja') {
 		return (($this->getWeekday() == self::SUN) || !!$this->getHolidayName($country));

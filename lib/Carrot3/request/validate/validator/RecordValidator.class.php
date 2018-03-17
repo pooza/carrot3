@@ -38,7 +38,7 @@ class RecordValidator extends Validator {
 	 *
 	 * @access public
 	 * @param mixed $value バリデート対象（レコードのID、又はその配列）
-	 * @return boolean 妥当な値ならばTrue
+	 * @return bool 妥当な値ならばTrue
 	 */
 	public function execute ($value) {
 		$ids = Tuple::create($value);
@@ -66,7 +66,7 @@ class RecordValidator extends Validator {
 	 *
 	 * @access protected
 	 * @param integer $id レコードのID
-	 * @return boolean 存在するならばTrue
+	 * @return bool 存在するならばTrue
 	 */
 	protected function isExists ($id) {
 		if ($recordFound = $this->getRecord($id)) {
@@ -88,7 +88,7 @@ class RecordValidator extends Validator {
 	 *
 	 * @access protected
 	 * @param integer $id レコードのID
-	 * @return boolean 妥当な値ならばTrue
+	 * @return bool 妥当な値ならばTrue
 	 */
 	protected function validateValues ($id) {
 		$record = $this->getRecord($id);
@@ -109,7 +109,7 @@ class RecordValidator extends Validator {
 	 *
 	 * @access protected
 	 * @param string $function メソッド名
-	 * @return boolean メソッドの戻り値
+	 * @return bool メソッドの戻り値
 	 */
 	protected function executeModuleFunction ($function) {
 		$value = $this->controller->getModule()->$function();

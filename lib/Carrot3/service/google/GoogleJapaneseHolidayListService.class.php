@@ -102,7 +102,7 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 	/**
 	 * @access public
 	 * @param string $key 添え字
-	 * @return boolean 要素が存在すればTrue
+	 * @return bool 要素が存在すればTrue
 	 */
 	public function offsetExists ($key) {
 		return $this->getHolidays()->hasParameter($key);

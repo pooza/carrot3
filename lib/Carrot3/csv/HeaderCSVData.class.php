@@ -17,7 +17,7 @@ class HeaderCSVData extends CSVData {
 
 	/**
 	 * @access public
-	 * @param string $contents 
+	 * @param string $contents
 	 */
 	public function __construct ($contents = null) {
 		$this->fields = Tuple::create();
@@ -72,7 +72,7 @@ class HeaderCSVData extends CSVData {
 	 * 行IDを持つか
 	 *
 	 * @access public
-	 * @return boolean 行IDを持つならTrue 
+	 * @return bool 行IDを持つならTrue
 	 */
 	public function hasRowID () {
 		return $this->hasRowID;
@@ -82,9 +82,9 @@ class HeaderCSVData extends CSVData {
 	 * 行IDを持つかを設定
 	 *
 	 * @access public
-	 * @param boolean $flag 行IDを持つならTrue 
+	 * @param bool $flag 行IDを持つならTrue
 	 */
-	public function setHasRowID ($flag) {
+	public function setHasRowID (bool $flag) {
 		$this->hasRowID = $flag;
 	}
 
@@ -92,7 +92,7 @@ class HeaderCSVData extends CSVData {
 	 * 行をセットして、レコード配列を生成
 	 *
 	 * @access public
-	 * @param Tuple $lines 
+	 * @param Tuple $lines
 	 */
 	public function setLines (Tuple $lines) {
 		$this->setFieldNames(StringUtils::explode($this->getFieldSeparator(), $lines->shift()));
@@ -103,7 +103,7 @@ class HeaderCSVData extends CSVData {
 	 * レコードを追加
 	 *
 	 * @access public
-	 * @param Tuple $record 
+	 * @param Tuple $record
 	 */
 	public function addRecord (Tuple $record) {
 		if (StringUtils::isBlank($record[$this->getFieldName(0)])) {
@@ -139,7 +139,7 @@ class HeaderCSVData extends CSVData {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		if (!$this->getHeader()) {

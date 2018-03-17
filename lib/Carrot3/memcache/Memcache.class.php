@@ -133,7 +133,7 @@ class Memcache implements \ArrayAccess {
 	 * @param string $value エントリーの値
 	 * @param integer $flag PECL::memcacheとの互換性の為の引数。未使用。
 	 * @param integer $expire 項目の有効期限。秒数又はタイムスタンプ。
-	 * @return boolean 処理の成否
+	 * @return bool 処理の成否
 	 */
 	public function set ($name, $value, $flag = null, $expire = 0) {
 		if ($value instanceof ParameterHolder) {
@@ -149,7 +149,7 @@ class Memcache implements \ArrayAccess {
 	 *
 	 * @access public
 	 * @param string $name エントリー名
-	 * @return boolean 処理の成否
+	 * @return bool 処理の成否
 	 */
 	public function delete ($name) {
 		return $this->memcached->delete($this->createKey($name));
@@ -173,7 +173,7 @@ class Memcache implements \ArrayAccess {
 	/**
 	 * @access public
 	 * @param string $key 添え字
-	 * @return boolean 要素が存在すればTrue
+	 * @return bool 要素が存在すればTrue
 	 */
 	public function offsetExists ($key) {
 		return ($this->get($key) !== false);

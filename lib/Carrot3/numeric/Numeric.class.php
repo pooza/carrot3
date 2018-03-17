@@ -73,7 +73,7 @@ class Numeric {
 	 *
 	 * @access public
 	 * @param float $num 処理対象の数値
-	 * @return boolean ゼロならTrue
+	 * @return bool ゼロならTrue
 	 * @static
 	 */
 	static public function isZero ($num) {

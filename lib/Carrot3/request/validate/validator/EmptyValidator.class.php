@@ -29,7 +29,7 @@ class EmptyValidator extends Validator {
 	 *
 	 * @access public
 	 * @param mixed $value バリデート対象
-	 * @return boolean 妥当な値ならばTrue
+	 * @return bool 妥当な値ならばTrue
 	 */
 	public function execute ($value) {
 		if (self::isEmpty($value)) {
@@ -43,7 +43,7 @@ class EmptyValidator extends Validator {
 	 * フィールド値は空欄か？
 	 *
 	 * @access public
-	 * @return boolean フィールド値が空欄ならばTrue
+	 * @return bool フィールド値が空欄ならばTrue
 	 * @static
 	 */
 	static public function isEmpty ($value) {

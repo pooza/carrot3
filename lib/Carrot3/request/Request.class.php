@@ -106,7 +106,7 @@ abstract class Request extends HTTPRequest {
 	 *
 	 * @access public
 	 * @param string $name 属性名
-	 * @return boolean 存在すればTrue
+	 * @return bool 存在すればTrue
 	 */
 	public function hasAttribute ($name) {
 		return $this->getAttributes()->hasParameter($name);
@@ -117,7 +117,7 @@ abstract class Request extends HTTPRequest {
 	 *
 	 * @access public
 	 * @param string $name エラー名
-	 * @return boolean 存在すればTrue
+	 * @return bool 存在すればTrue
 	 */
 	public function hasError ($name) {
 		return $this->getErrors()->hasParameter($name);
@@ -127,7 +127,7 @@ abstract class Request extends HTTPRequest {
 	 * ひとつ以上のエラーが存在するか？
 	 *
 	 * @access public
-	 * @return boolean 存在すればTrue
+	 * @return bool 存在すればTrue
 	 */
 	public function hasErrors () {
 		return !!$this->getErrors()->count();
@@ -286,7 +286,7 @@ abstract class Request extends HTTPRequest {
 	 * ケータイ環境か？
 	 *
 	 * @access public
-	 * @return boolean ケータイ環境ならTrue
+	 * @return bool ケータイ環境ならTrue
 	 */
 	public function isMobile () {
 		return false;
@@ -296,7 +296,7 @@ abstract class Request extends HTTPRequest {
 	 * スマートフォン環境か？
 	 *
 	 * @access public
-	 * @return boolean スマートフォン環境ならTrue
+	 * @return bool スマートフォン環境ならTrue
 	 */
 	public function isSmartPhone () {
 		return false;
@@ -306,7 +306,7 @@ abstract class Request extends HTTPRequest {
 	 * SSL環境か？
 	 *
 	 * @access public
-	 * @return boolean SSL環境ならTrue
+	 * @return bool SSL環境ならTrue
 	 */
 	public function isSSL () {
 		return false;

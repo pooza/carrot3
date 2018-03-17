@@ -203,7 +203,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 * 妥当なURLか？
 	 *
 	 * @access public
-	 * @return boolean 妥当ならtrue
+	 * @return bool 妥当ならtrue
 	 */
 	public function validate () {
 		return !StringUtils::isBlank($this->getContents());
@@ -212,7 +212,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	/**
 	 * @access public
 	 * @param string $key 添え字
-	 * @return boolean 要素が存在すればTrue
+	 * @return bool 要素が存在すればTrue
 	 */
 	public function offsetExists ($key) {
 		return $this->attributes->hasParameter($key);

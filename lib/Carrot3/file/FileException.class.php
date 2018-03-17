@@ -17,7 +17,7 @@ class FileException extends Exception {
 	 * アラートを送るか
 	 *
 	 * @access public
-	 * @return boolean アラートを送るならTrue
+	 * @return bool アラートを送るならTrue
 	 */
 	public function isAlertable () {
 		return true;

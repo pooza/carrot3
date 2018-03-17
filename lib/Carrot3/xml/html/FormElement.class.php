@@ -87,7 +87,7 @@ class FormElement extends HTMLElement {
 	 * ファイル添付が可能か？
 	 *
 	 * @access public
-	 * @return boolean 可能ならTrue
+	 * @return bool 可能ならTrue
 	 */
 	public function isAttachable () {
 		return $this->getAttribute('enctype') == self::ATTACHABLE_TYPE;
@@ -97,9 +97,9 @@ class FormElement extends HTMLElement {
 	 * ファイル添付が可能かを設定
 	 *
 	 * @access public
-	 * @param boolean $flag ファイル添付が可能ならTrue
+	 * @param bool $flag ファイル添付が可能ならTrue
 	 */
-	public function setAttachable ($flag) {
+	public function setAttachable (bool $flag) {
 		if ($flag) {
 			$this->setAttribute('enctype', self::ATTACHABLE_TYPE);
 		} else {

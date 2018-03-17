@@ -20,7 +20,7 @@ abstract class RecordAction extends Action {
 	 * Falseを返すと、例外が発生。
 	 *
 	 * @access public
-	 * @return boolean 正常終了ならTrue
+	 * @return bool 正常終了ならTrue
 	 */
 	public function initialize () {
 		if ($id = $this->request['id']) {
@@ -120,7 +120,7 @@ abstract class RecordAction extends Action {
 	 * レコードを登録する為のアクションか？
 	 *
 	 * @access protected
-	 * @return boolean レコードを登録する為のアクションならTrue
+	 * @return bool レコードを登録する為のアクションならTrue
 	 */
 	protected function isCreateAction () {
 		return mb_ereg('^Create', $this->getName());
@@ -147,7 +147,7 @@ abstract class RecordAction extends Action {
 	 * レコードが存在するか、最低限チェックする。
 	 *
 	 * @access public
-	 * @return boolean 妥当な入力ならTrue
+	 * @return bool 妥当な入力ならTrue
 	 */
 	public function validate () {
 		if (!$this->isCreateAction() && !$this->getRecord()) {

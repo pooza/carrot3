@@ -29,7 +29,7 @@ class PublisherService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param HTTPRedirector $url 対象URL
-	 * @return boolean 成功ならTrue
+	 * @return bool 成功ならTrue
 	 */
 	public function publish (HTTPRedirector $url) {
 		if (!$this->url) {

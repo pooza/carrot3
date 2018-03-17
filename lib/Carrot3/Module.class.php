@@ -389,7 +389,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * 管理者向けモジュールか？
 	 *
 	 * @access public
-	 * @return boolean 管理者向けモジュールならTrue
+	 * @return bool 管理者向けモジュールならTrue
 	 */
 	public function isAdminModule () {
 		return $this->getPrefix() == 'Admin';

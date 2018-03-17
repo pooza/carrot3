@@ -134,7 +134,7 @@ class HTTP extends Socket {
 	 * SSLはサポートしない。必要ならば、CurlHTTPを使用すること。
 	 *
 	 * @access public
-	 * @return boolean SSLモードならTrue
+	 * @return bool SSLモードならTrue
 	 */
 	public function isSSL () {
 		return false;

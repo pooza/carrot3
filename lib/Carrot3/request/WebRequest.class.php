@@ -149,7 +149,7 @@ class WebRequest extends Request {
 	 * ケータイ環境か？
 	 *
 	 * @access public
-	 * @return boolean ケータイ環境ならTrue
+	 * @return bool ケータイ環境ならTrue
 	 */
 	public function isMobile () {
 		return $this->getUserAgent()->isMobile();
@@ -159,7 +159,7 @@ class WebRequest extends Request {
 	 * スマートフォン環境か？
 	 *
 	 * @access public
-	 * @return boolean スマートフォン環境ならTrue
+	 * @return bool スマートフォン環境ならTrue
 	 */
 	public function isSmartPhone () {
 		return $this->getUserAgent()->isSmartPhone();
@@ -169,7 +169,7 @@ class WebRequest extends Request {
 	 * SSL環境か？
 	 *
 	 * @access public
-	 * @return boolean SSL環境ならTrue
+	 * @return bool SSL環境ならTrue
 	 */
 	public function isSSL () {
 		return !!$this->controller->getAttribute('HTTPS');
@@ -193,7 +193,7 @@ class WebRequest extends Request {
 	 * Submitされたか？
 	 *
 	 * @access public
-	 * @return boolean SubmitされたならTrue
+	 * @return bool SubmitされたならTrue
 	 */
 	public function isSubmitted () {
 		return !StringUtils::isBlank($this[FormElement::SUBMITTED_FIELD]);

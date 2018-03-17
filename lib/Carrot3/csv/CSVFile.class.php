@@ -33,7 +33,7 @@ class CSVFile extends File {
 	 * バイナリファイルか？
 	 *
 	 * @access public
-	 * @return boolean バイナリファイルならTrue
+	 * @return bool バイナリファイルならTrue
 	 */
 	public function isBinary () {
 		return false;

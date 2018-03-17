@@ -33,7 +33,7 @@ abstract class MediaFile extends File implements Assignable {
 	 * バイナリファイルか？
 	 *
 	 * @access public
-	 * @return boolean バイナリファイルならTrue
+	 * @return bool バイナリファイルならTrue
 	 */
 	public function isBinary () {
 		return true;
@@ -139,7 +139,7 @@ abstract class MediaFile extends File implements Assignable {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		if (!$this->attributes->count()) {

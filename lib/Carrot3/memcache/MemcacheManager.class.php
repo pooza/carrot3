@@ -29,7 +29,7 @@ class MemcacheManager {
 	 * 有効か？
 	 *
 	 * @access public
-	 * @return boolean 有効ならTrue
+	 * @return bool 有効ならTrue
 	 */
 	public function isEnabled () {
 		return !!extension_loaded('memcached');

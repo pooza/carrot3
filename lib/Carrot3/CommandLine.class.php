@@ -113,7 +113,7 @@ class CommandLine {
 	 * 実行されたか？
 	 *
 	 * @access public
-	 * @return boolean 実行されたならTrue
+	 * @return bool 実行されたならTrue
 	 */
 	public function isExecuted () {
 		return !!$this->result;
@@ -123,7 +123,7 @@ class CommandLine {
 	 * バックグラウンド実行か？
 	 *
 	 * @access public
-	 * @return boolean バックグラウンド実行ならTrue
+	 * @return bool バックグラウンド実行ならTrue
 	 */
 	public function isBackground () {
 		return $this->background;
@@ -133,9 +133,9 @@ class CommandLine {
 	 * バックグラウンド実行を設定
 	 *
 	 * @access public
-	 * @param boolean $mode バックグラウンド実行ならTrue
+	 * @param bool $mode バックグラウンド実行ならTrue
 	 */
-	public function setBackground ($mode = true) {
+	public function setBackground (bool $mode = true) {
 		$this->background = $mode;
 	}
 
@@ -143,7 +143,7 @@ class CommandLine {
 	 * stderrはリダイレクト可能か？
 	 *
 	 * @access public
-	 * @return boolean バックグラウンド実行ならTrue
+	 * @return bool バックグラウンド実行ならTrue
 	 */
 	public function isStderrRedirectable () {
 		return $this->stderrRedirectable;
@@ -153,9 +153,9 @@ class CommandLine {
 	 * stderrをリダイレクト可能に設定
 	 *
 	 * @access public
-	 * @param boolean $mode リダイレクト可能ならTrue
+	 * @param bool $mode リダイレクト可能ならTrue
 	 */
-	public function setStderrRedirectable ($mode = true) {
+	public function setStderrRedirectable (bool $mode = true) {
 		$this->stderrRedirectable = $mode;
 	}
 
@@ -163,7 +163,7 @@ class CommandLine {
 	 * コマンドは存在するか？
 	 *
 	 * @access public
-	 * @return boolean 存在するならTrue
+	 * @return bool 存在するならTrue
 	 */
 	public function isExists () {
 		if ($this->directory) {
@@ -256,7 +256,7 @@ class CommandLine {
 	 * 実行後の戻り値は、エラーを含んでいたか？
 	 *
 	 * @access public
-	 * @return boolean エラーを含んでいたらTrue
+	 * @return bool エラーを含んでいたらTrue
 	 */
 	public function hasError () {
 		return !!$this->getReturnCode();

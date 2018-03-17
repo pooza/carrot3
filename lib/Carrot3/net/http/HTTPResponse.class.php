@@ -100,7 +100,7 @@ class HTTPResponse extends MIMEDocument {
 	 * HTML文書か？
 	 *
 	 * @access public
-	 * @return boolean HTML文書ならTrue
+	 * @return bool HTML文書ならTrue
 	 */
 	public function isHTML () {
 		return ($header = $this->getHeader('Content-Type')) && $header->isHTML();
@@ -110,7 +110,7 @@ class HTTPResponse extends MIMEDocument {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		return ($this->getStatus() < 400);

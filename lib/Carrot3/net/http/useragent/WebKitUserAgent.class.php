@@ -32,7 +32,7 @@ class WebKitUserAgent extends UserAgent {
 	 * Google Chromeか？
 	 *
 	 * @access public
-	 * @return boolean Google ChromeならTrue
+	 * @return bool Google ChromeならTrue
 	 */
 	public function isChrome () {
 		return StringUtils::isContain('Chrome', $this->getName()) && !$this->isEdge();
@@ -42,7 +42,7 @@ class WebKitUserAgent extends UserAgent {
 	 * Edgeか？
 	 *
 	 * @access public
-	 * @return boolean Google ChromeならTrue
+	 * @return bool Google ChromeならTrue
 	 */
 	public function isEdge () {
 		return StringUtils::isContain('Edge', $this->getName());
@@ -52,7 +52,7 @@ class WebKitUserAgent extends UserAgent {
 	 * Safariか？
 	 *
 	 * @access public
-	 * @return boolean SafariならTrue
+	 * @return bool SafariならTrue
 	 */
 	public function isSafari () {
 		return StringUtils::isContain('Macintosh', $this->getName()) && !$this->isChrome();
@@ -92,7 +92,7 @@ class WebKitUserAgent extends UserAgent {
 	 * レガシー環境/旧機種か？
 	 *
 	 * @access public
-	 * @return boolean レガシーならばTrue
+	 * @return bool レガシーならばTrue
 	 */
 	public function isLegacy () {
 		return version_compare($this->getVersion(), '100.0', '<'); // Safari 1.1未満

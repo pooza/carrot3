@@ -37,7 +37,7 @@ class InputElement extends HTMLElement {
 	 * 空要素か？
 	 *
 	 * @access public
-	 * @return boolean 空要素ならTrue
+	 * @return bool 空要素ならTrue
 	 */
 	public function isEmptyElement () {
 		return true;

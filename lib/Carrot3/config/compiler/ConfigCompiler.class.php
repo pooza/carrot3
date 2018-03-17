@@ -28,7 +28,7 @@ abstract class ConfigCompiler extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param string[] $params パラメータ
-	 * @return boolean 成功ならばTrue
+	 * @return bool 成功ならばTrue
 	 * @static
 	 */
 	public function initialize ($params = []) {

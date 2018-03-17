@@ -143,7 +143,7 @@ class HTTPRequest extends MIMEDocument {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		return $this->getMethod() && $this->getURL();
@@ -181,7 +181,7 @@ class HTTPRequest extends MIMEDocument {
 	 *
 	 * @access public
 	 * @param string $method メソッド名
-	 * @return boolean サポートしているならTrue
+	 * @return bool サポートしているならTrue
 	 * @static
 	 */
 	static public function isValidMethod ($method) {

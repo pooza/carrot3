@@ -20,7 +20,7 @@ class TasmanUserAgent extends UserAgent {
 	 * レガシー環境/旧機種か？
 	 *
 	 * @access public
-	 * @return boolean レガシーならばTrue
+	 * @return bool レガシーならばTrue
 	 */
 	public function isLegacy () {
 		return true;

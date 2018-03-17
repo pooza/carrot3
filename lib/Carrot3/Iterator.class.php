@@ -82,7 +82,7 @@ class Iterator implements \Iterator, \Countable {
 	 * カーソルは最初か？
 	 *
 	 * @access public
-	 * @return boolean 最初ならTrue
+	 * @return bool 最初ならTrue
 	 */
 	public function isFirst () {
 		return ($this->cursor == 0);
@@ -92,7 +92,7 @@ class Iterator implements \Iterator, \Countable {
 	 * カーソルは最後か？
 	 *
 	 * @access public
-	 * @return boolean 最後ならTrue
+	 * @return bool 最後ならTrue
 	 */
 	public function isLast () {
 		return ($this->cursor == (count($this->values) - 1));
@@ -148,7 +148,7 @@ class Iterator implements \Iterator, \Countable {
 	 * 現在のカーソル位置に正しいエントリーが存在するか？
 	 *
 	 * @access public
-	 * @return boolean 正しいエントリーが存在するならTrue
+	 * @return bool 正しいエントリーが存在するならTrue
 	 */
 	public function valid () {
 		return isset($this->keys[$this->cursor]);

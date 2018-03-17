@@ -43,7 +43,7 @@ class RSS10Document extends RSS09Document {
 	 * 妥当な文書か？
 	 *
 	 * @access public
-	 * @return boolean 妥当な文書ならTrue
+	 * @return bool 妥当な文書ならTrue
 	 */
 	public function validate () {
 		return (XMLDocument::validate()

@@ -56,7 +56,7 @@ trait SortableRecord {
 	 * 更新可能か？
 	 *
 	 * @access protected
-	 * @return boolean 更新可能ならTrue
+	 * @return bool 更新可能ならTrue
 	 */
 	protected function isUpdatable () {
 		return true;
@@ -66,7 +66,7 @@ trait SortableRecord {
 	 * 削除可能か？
 	 *
 	 * @access protected
-	 * @return boolean 削除可能ならTrue
+	 * @return bool 削除可能ならTrue
 	 */
 	protected function isDeletable () {
 		return true;

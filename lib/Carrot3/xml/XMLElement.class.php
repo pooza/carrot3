@@ -173,7 +173,7 @@ class XMLElement implements \IteratorAggregate {
 	 * 空要素か？
 	 *
 	 * @access public
-	 * @return boolean 空要素ならTrue
+	 * @return bool 空要素ならTrue
 	 */
 	public function isEmptyElement () {
 		return $this->empty;
@@ -183,9 +183,9 @@ class XMLElement implements \IteratorAggregate {
 	 * 空要素かを設定
 	 *
 	 * @access public
-	 * @param boolean $flag 空要素ならTrue
+	 * @param bool $flag 空要素ならTrue
 	 */
-	public function setEmptyElement ($flag) {
+	public function setEmptyElement (bool $flag) {
 		$this->empty = $flag;
 	}
 
@@ -358,7 +358,7 @@ class XMLElement implements \IteratorAggregate {
 	 * RAWモードを返す
 	 *
 	 * @access public
-	 * @return boolean RAWモード
+	 * @return bool RAWモード
 	 */
 	public function isRawMode () {
 		return $this->raw;
@@ -370,9 +370,9 @@ class XMLElement implements \IteratorAggregate {
 	 * RAWモード時は、本文のHTMLエスケープを行わない
 	 *
 	 * @access public
-	 * @param boolean $mode RAWモード
+	 * @param bool $mode RAWモード
 	 */
-	public function setRawMode ($mode) {
+	public function setRawMode (bool $mode) {
 		$this->raw = !!$mode;
 		$this->body = null;
 		$this->contents = null;

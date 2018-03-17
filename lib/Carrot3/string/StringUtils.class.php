@@ -412,11 +412,11 @@ class StringUtils {
 	 * @access public
 	 * @param string $str 対象文字列
 	 * @param integer $witdh 半角単位での行幅
-	 * @param boolean $flowed 行末にスペースを追加するならTrue（RFC3676）
+	 * @param bool $flowed 行末にスペースを追加するならTrue（RFC3676）
 	 * @return string 変換後の文字列
 	 * @static
 	 */
-	static public function split ($str, $width = 74, $flowed = false) {
+	static public function split ($str, $width = 74, bool $flowed = false) {
 		$body = Tuple::create();
 		foreach (StringUtils::explode("\n", $str) as $paragraph) {
 			if (StringUtils::isBlank($paragraph)) {
@@ -459,7 +459,7 @@ class StringUtils {
 	 *
 	 * @access public
 	 * @param string $str 処理対象の文字列
-	 * @return boolean 空白ならTrue
+	 * @return bool 空白ならTrue
 	 * @static
 	 */
 	static public function isBlank ($str) {
@@ -472,11 +472,11 @@ class StringUtils {
 	 * @access public
 	 * @param string $pattern パターン
 	 * @param string $subject 処理対象の文字列
-	 * @param boolean $ignore 大文字小文字を無視するか
-	 * @return boolean 含むならTrue
+	 * @param bool $ignore 大文字小文字を無視するか
+	 * @return bool 含むならTrue
 	 * @static
 	 */
-	static public function isContain ($pattern, $subject, $ignore = false) {
+	static public function isContain ($pattern, $subject, bool $ignore = false) {
 		if ($ignore) {
 			$function = 'stripos';
 		} else {

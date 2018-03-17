@@ -69,7 +69,7 @@ class ReceivedMIMEHeader extends MIMEHeader {
 	 * 複数行を許容するか？
 	 *
 	 * @access public
-	 * @return boolean 許容ならばTrue
+	 * @return bool 許容ならばTrue
 	 */
 	public function isMultiple () {
 		return true;
@@ -79,7 +79,7 @@ class ReceivedMIMEHeader extends MIMEHeader {
 	 * 可視か？
 	 *
 	 * @access public
-	 * @return boolean 可視ならばTrue
+	 * @return bool 可視ならばTrue
 	 */
 	public function isVisible () {
 		return false;

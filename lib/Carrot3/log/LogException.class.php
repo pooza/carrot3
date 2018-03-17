@@ -17,7 +17,7 @@ class LogException extends Exception {
 	 * ログを書き込むか
 	 *
 	 * @access public
-	 * @return boolean ログを書き込むならTrue
+	 * @return bool ログを書き込むならTrue
 	 */
 	public function isLoggable () {
 		return false;

@@ -18,7 +18,7 @@ class ConsoleUserAgent extends UserAgent {
 	 *
 	 * @access public
 	 * @param SmartyView 対象ビュー
-	 * @return boolean 成功時にTrue
+	 * @return bool 成功時にTrue
 	 */
 	public function initializeView (SmartyView $view) {
 		$view->getRenderer()->setUserAgent($this);

@@ -56,7 +56,7 @@ abstract class Validator extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param mixed[] $params パラメータ
-	 * @return boolean 初期化が成功すればTrue
+	 * @return bool 初期化が成功すればTrue
 	 */
 	public function initialize ($params = []) {
 		$this->setParameters($params);
@@ -68,7 +68,7 @@ abstract class Validator extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param mixed $value バリデート対象
-	 * @return boolean 妥当な値ならばTrue
+	 * @return bool 妥当な値ならばTrue
 	 * @abstract
 	 */
 	abstract public function execute ($value);

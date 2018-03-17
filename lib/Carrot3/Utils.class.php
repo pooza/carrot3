@@ -23,7 +23,7 @@ class Utils {
 	 *
 	 * @access public
 	 * @param string $path パス
-	 * @return boolean 絶対パスならTrue
+	 * @return bool 絶対パスならTrue
 	 * @static
 	 */
 	static public function isPathAbsolute ($path) {

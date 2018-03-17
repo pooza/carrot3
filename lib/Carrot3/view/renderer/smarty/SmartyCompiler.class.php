@@ -21,7 +21,7 @@ class SmartyCompiler extends \Smarty_Compiler {
 	 *
 	 * @access public
 	 * @param Smarty $smarty 生成元Smartyオブジェクト
-	 * @return boolean 成功したらTrue
+	 * @return bool 成功したらTrue
 	 */
 	public function initialize (Smarty $smarty) {
 		$this->template_dir = $smarty->template_dir;

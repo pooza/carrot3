@@ -42,9 +42,9 @@ class AnchorElement extends HTMLElement {
 	 * リンク先ターゲットを _blank にする
 	 *
 	 * @access public
-	 * @param boolean $flag _blankにするならTrue
+	 * @param bool $flag _blankにするならTrue
 	 */
-	public function setTargetBlank ($flag) {
+	public function setTargetBlank (bool $flag) {
 		if (!!$flag) {
 			$this->setAttribute('target', '_blank');
 		}

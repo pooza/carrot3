@@ -95,7 +95,7 @@ class FileUtils {
 	 *
 	 * @access public
 	 * @param string $name ファイル名、またはパス
-	 * @return boolean ドットから始まるならTrue
+	 * @return bool ドットから始まるならTrue
 	 * @static
 	 */
 	static public function isDottedName ($name) {

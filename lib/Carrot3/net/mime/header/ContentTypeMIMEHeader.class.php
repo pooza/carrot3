@@ -49,7 +49,7 @@ class ContentTypeMIMEHeader extends MIMEHeader {
 	 * HTML文書か？
 	 *
 	 * @access public
-	 * @return boolean HTML文書ならTrue
+	 * @return bool HTML文書ならTrue
 	 */
 	public function isHTML () {
 		return StringUtils::isContain('html', $this['sub_type']);

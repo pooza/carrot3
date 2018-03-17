@@ -29,7 +29,7 @@ class AndroidUserAgent extends BlinkUserAgent {
 	 * スマートフォンか？
 	 *
 	 * @access public
-	 * @return boolean スマートフォンならTrue
+	 * @return bool スマートフォンならTrue
 	 * @link http://googlewebmastercentral-ja.blogspot.com/2011/05/android.html
 	 */
 	public function isSmartPhone () {
@@ -40,7 +40,7 @@ class AndroidUserAgent extends BlinkUserAgent {
 	 * タブレット型か？
 	 *
 	 * @access public
-	 * @return boolean タブレット型ならTrue
+	 * @return bool タブレット型ならTrue
 	 */
 	public function isTablet () {
 		return !$this->isSmartPhone();

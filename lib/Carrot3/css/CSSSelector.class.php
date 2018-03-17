@@ -27,9 +27,9 @@ class CSSSelector extends Tuple {
 	 * @access public
 	 * @param string $name 名前
 	 * @param mixed $value 要素
-	 * @param boolean $position 先頭ならTrue
+	 * @param bool $position 先頭ならTrue
 	 */
-	public function setParameter ($name, $value, $position = self::POSITION_BOTTOM) {
+	public function setParameter ($name, $value, bool $position = self::POSITION_BOTTOM) {
 		if ($value instanceof Color) {
 			$value = $value->getContents();
 		} else if (is_numeric($value)) {

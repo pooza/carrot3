@@ -226,7 +226,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		if (!$this->getTemplate()) {
@@ -391,7 +391,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @param string $source ソース文字列
 	 * @param string $compiled コンパイル済み文字列
 	 * @param string $path コンパイル済みテンプレートへのパス
-	 * @return boolean 成功ならTrue
+	 * @return bool 成功ならTrue
 	 */
 	public function _compile_source ($resource, &$source, &$compiled, $path = null) {
 		$compiler = $this->getCompiler();

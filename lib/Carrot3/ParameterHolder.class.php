@@ -74,7 +74,7 @@ abstract class ParameterHolder
 	 *
 	 * @access public
 	 * @param string $name パラメータ名
-	 * @return boolean 存在すればTrue
+	 * @return bool 存在すればTrue
 	 */
 	public function hasParameter ($name) {
 		return array_key_exists((string)$name, $this->params);
@@ -134,7 +134,7 @@ abstract class ParameterHolder
 	/**
 	 * @access public
 	 * @param string $key 添え字
-	 * @return boolean 要素が存在すればTrue
+	 * @return bool 要素が存在すればTrue
 	 */
 	public function offsetExists ($key) {
 		return $this->hasParameter($key);

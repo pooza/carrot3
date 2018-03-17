@@ -70,7 +70,7 @@ class VCardRenderer extends ParameterHolder implements Renderer {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		return true;

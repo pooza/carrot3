@@ -69,7 +69,7 @@ class RootRole implements Role {
 	 *
 	 * @access public
 	 * @param string $password パスワード
-	 * @return boolean 正しいユーザーならTrue
+	 * @return bool 正しいユーザーならTrue
 	 */
 	public function auth ($password = null) {
 		return false;

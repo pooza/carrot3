@@ -57,7 +57,7 @@ class TestManager implements \IteratorAggregate {
 	 *
 	 * @access public
 	 * @param string $name テスト名
-	 * @return boolean 成功ならTrue
+	 * @return bool 成功ならTrue
 	 */
 	public function execute ($name = null) {
 		foreach ($this as $test) {

@@ -297,7 +297,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * テーブルは存在するか？
 	 *
 	 * @access public
-	 * @return boolean 存在するならTrue
+	 * @return bool 存在するならTrue
 	 */
 	public function isExists () {
 		return $this->getDatabase()->getTableNames()->isContain($this->getName());
@@ -436,7 +436,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * レコード追加可能か？
 	 *
 	 * @access protected
-	 * @return boolean レコード追加可能ならTrue
+	 * @return bool レコード追加可能ならTrue
 	 */
 	protected function isInsertable () {
 		return false;
@@ -446,7 +446,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * サロゲートキーを持つテーブルか？
 	 *
 	 * @access protected
-	 * @return boolean サロゲートキーを持つならTrue
+	 * @return bool サロゲートキーを持つならTrue
 	 */
 	protected function hasSurrogateKey () {
 		return $this->isInsertable();
@@ -472,7 +472,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * レコードの全消去が可能か？
 	 *
 	 * @access protected
-	 * @return boolean レコード追加可能ならTrue
+	 * @return bool レコード追加可能ならTrue
 	 */
 	protected function isClearable () {
 		return false;
@@ -482,7 +482,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * クエリーは実行されたか？
 	 *
 	 * @access protected
-	 * @return boolean 実行されたならTrue
+	 * @return bool 実行されたならTrue
 	 */
 	protected function isExecuted () {
 		return $this->executed;
@@ -492,9 +492,9 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * クエリー実行フラグを設定
 	 *
 	 * @access protected
-	 * @param boolean $executed クエリー実行フラグ
+	 * @param bool $executed クエリー実行フラグ
 	 */
-	protected function setExecuted ($executed) {
+	protected function setExecuted (bool $executed) {
 		if (!$this->executed = $executed) {
 			$this->queryString = null;
 			$this->result = [];
@@ -561,7 +561,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	/**
 	 * テンポラリテーブルか？
 	 *
-	 * @return boolean テンポラリテーブルならTrue
+	 * @return bool テンポラリテーブルならTrue
 	 */
 	protected function isTemporary () {
 		return false;
@@ -683,7 +683,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * 最終ページか？
 	 *
 	 * @access public
-	 * @return boolean 最終ページならTrue
+	 * @return bool 最終ページならTrue
 	 */
 	public function isLastPage () {
 		return $this->getPageNumber() == $this->getLastPageNumber();

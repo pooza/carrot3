@@ -65,7 +65,7 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 * @access public
 	 * @param mixed $path 展開先パス、又はディレクトリ
 	 * @param mixed $entries 対象エントリー名、又はその配列。
-	 * @return boolean 正常終了時はtrue。
+	 * @return bool 正常終了時はtrue。
 	 */
 	public function extractTo ($path, $entries = null) {
 		if ($path instanceof Directory) {
@@ -180,7 +180,7 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		return true;

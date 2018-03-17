@@ -89,10 +89,10 @@ class SQLiteDatabase extends Database {
 	 * @access public
 	 * @param string $name 関数名
 	 * @param string $value 値
-	 * @param boolean $quotes クォートする
+	 * @param bool $quotes クォートする
 	 * @return string 関数の記述
 	 */
-	public function getFunction ($name, $value, $quotes = false) {
+	public function getFunction ($name, $value, bool $quotes = false) {
 		switch ($name) {
 			case 'year':
 				$func = new StringFormat('strftime(\'%%Y\', %s)');
@@ -116,7 +116,7 @@ class SQLiteDatabase extends Database {
 	 * 外部キーが有効か？
 	 *
 	 * @access public
-	 * @return boolean 有効ならTrue
+	 * @return bool 有効ならTrue
 	 */
 	public function hasForeignKey () {
 		return false;
@@ -126,7 +126,7 @@ class SQLiteDatabase extends Database {
 	 * リストア可能？
 	 *
 	 * @access public
-	 * @return boolean 可能ならTrue
+	 * @return bool 可能ならTrue
 	 */
 	public function isRestoreable () {
 		return true;

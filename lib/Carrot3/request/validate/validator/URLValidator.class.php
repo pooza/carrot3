@@ -39,7 +39,7 @@ class URLValidator extends Validator {
 	 *
 	 * @access public
 	 * @param mixed $value バリデート対象
-	 * @return boolean 妥当な値ならばTrue
+	 * @return bool 妥当な値ならばTrue
 	 */
 	public function execute ($value) {
 		try {

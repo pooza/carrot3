@@ -61,7 +61,7 @@ class Crypt {
 	 * @access public
 	 * @param string $password 正規文字列
 	 * @param string $challenge 認証対象
-	 * @return boolean 一致するならTrue
+	 * @return bool 一致するならTrue
 	 */
 	public function auth ($password, $challenge) {
 		return password_verify($challenge, $password);

@@ -46,7 +46,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * 動画トラックを持つか？
 	 *
 	 * @access public
-	 * @return boolean 動画トラックを持つならTrue
+	 * @return bool 動画トラックを持つならTrue
 	 */
 	public function hasMovieTrack () {
 		if (!$this->attributes->count()) {
@@ -141,7 +141,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * 出力可能か？
 	 *
 	 * @access public
-	 * @return boolean 出力可能ならTrue
+	 * @return bool 出力可能ならTrue
 	 */
 	public function validate () {
 		if (!parent::validate()) {

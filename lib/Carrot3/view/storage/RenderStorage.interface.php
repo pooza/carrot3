@@ -43,7 +43,7 @@ interface RenderStorage {
 	 *
 	 * @access public
 	 * @param Action $action アクション
-	 * @return boolean キャッシュを持っていたらTrue
+	 * @return bool キャッシュを持っていたらTrue
 	 */
 	public function hasCache (Action $action);
 
