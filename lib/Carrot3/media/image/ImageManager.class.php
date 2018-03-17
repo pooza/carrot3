@@ -20,14 +20,12 @@ class ImageManager {
 	protected $directory;
 	static protected $renderers;
 	const WIDTH_FIXED = 2;
-	const HEIGHT_FIXED = 4;
-	const WITHOUT_SQUARE = 8;
 
 	/**
 	 * @access public
 	 * @param mixed $flags フラグのビット列、又は配列
 	 */
-	public function __construct ($flags = null) {
+	public function __construct (int $flags = 0) {
 		$this->directory = FileUtils::getDirectory('image_cache');
 		$this->setFlags($flags);
 		$this->setUserAgent($this->request->getUserAgent());
@@ -149,8 +147,6 @@ class ImageManager {
 	 * @param int $pixel ピクセル数
 	 * @param int $flags フラグのビット列
 	 *   self::WIDTH_FIXED 幅固定
-	 *   self::HEIGHT_FIXED 高さ固定
-	 *   self::WITHOUT_SQUARE 正方形に整形しない
 	 * @return URL URL
 	 */
 	public function createURL (ImageContainer $record, $size, ?int $pixel = null, int $flags = 0) {
@@ -185,10 +181,7 @@ class ImageManager {
 	 * @param string $size サイズ名
 	 * @param int $pixel ピクセル数
 	 * @param int $flags フラグのビット列
-	 *   self::WITHOUT_BWORSER_CACHE クエリー末尾に乱数を加え、ブラウザキャッシュを無効にする
 	 *   self::WIDTH_FIXED 幅固定
-	 *   self::HEIGHT_FIXED 高さ固定
-	 *   self::WITHOUT_SQUARE 正方形に整形しない
 	 * @return Tuple 画像の情報
 	 */
 	public function getInfo (ImageContainer $record, $size, ?int $pixel = null, int $flags = 0) {
@@ -253,16 +246,8 @@ class ImageManager {
 		$image->setType($this->getType());
 
 		if ($pixel) {
-			if ($flags & self::WITHOUT_SQUARE) {
-				if ($image->getAspect() < 1) {
-					$image->resizeHeight($pixel);
-				} else {
-					$image->resizeWidth($pixel);
-				}
-			} else if ($flags & self::WIDTH_FIXED) {
+			if ($flags & self::WIDTH_FIXED) {
 				$image->resizeWidth($pixel);
-			} else if ($flags & self::HEIGHT_FIXED) {
-				$image->resizeHeight($pixel);
 			} else {
 				$image->resizeSquare($pixel);
 			}

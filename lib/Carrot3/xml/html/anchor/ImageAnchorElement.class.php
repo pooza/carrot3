@@ -23,8 +23,6 @@ abstract class ImageAnchorElement extends AnchorElement {
 	 * @param int $pixel ピクセル数
 	 * @param int $flags フラグのビット列
 	 *   self::WIDTH_FIXED 幅固定
-	 *   self::HEIGHT_FIXED 高さ固定
-	 *   self::WITHOUT_SQUARE 正方形に整形しない
 	 * @return URL URL
 	 */
 	public function setImage (ImageContainer $record, $size, ?int $pixel = null, int $flags = 0) {

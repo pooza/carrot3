@@ -282,7 +282,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @param int $flags フラグのビット列
 	 * @return ImageManager 画像マネージャ
 	 */
-	public function createImageManager ($flags = null) {
+	public function createImageManager (int $flags = 0) {
 		$images = new ImageManager($flags);
 		$images->setUserAgent($this);
 		return $images;

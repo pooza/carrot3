@@ -171,7 +171,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param int $flags フラグのビット列
 	 *   Database::WITHOUT_LOGGING ログを残さない
 	 */
-	public function delete ($flags = null) {
+	public function delete (int $flags = 0) {
 		if (!$this->isDeletable()) {
 			throw new DatabaseException($this . 'を削除することはできません。');
 		}

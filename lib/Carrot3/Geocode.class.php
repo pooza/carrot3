@@ -87,7 +87,7 @@ class Geocode extends ParameterHolder {
 	 *   HeartRailsExpressService::FORCE_QUERY 新規取得を強制
 	 * @return Tuple 最寄り駅
 	 */
-	public function getStations ($flags = null) {
+	public function getStations (int $flags = 0) {
 		if (!$this->stations) {
 			$this->stations = Tuple::create();
 			try {

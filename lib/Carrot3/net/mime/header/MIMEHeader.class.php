@@ -177,7 +177,7 @@ class MIMEHeader extends ParameterHolder {
 	 *   self::WITHOUT_CRLF 改行を含まない
 	 * @return ヘッダ行
 	 */
-	public function format ($flags = null) {
+	public function format (int $flags = 0) {
 		if (!$this->isVisible()) {
 			return null;
 		}

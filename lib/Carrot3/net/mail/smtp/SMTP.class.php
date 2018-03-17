@@ -96,7 +96,7 @@ class SMTP extends Socket {
 	 *   self::TEST テスト送信
 	 * @return string 送信完了時は最終のレスポンス
 	 */
-	public function send ($flags = null) {
+	public function send (int $flags = 0) {
 		try {
 			$this->getMail()->clearMessageID();
 			$this->execute('MAIL FROM:' . $this->getFrom()->getContents());
@@ -132,7 +132,7 @@ class SMTP extends Socket {
 	 *   self::TEST テスト送信
 	 * @return Tuple 受信者の配列
 	 */
-	protected function getRecipients ($flags = null) {
+	protected function getRecipients (int $flags = 0) {
 		if (BS_DEBUG || ($flags & self::TEST)) {
 			$recipients = Tuple::create();
 			$recipients[] = AdministratorRole::getInstance()->getMailAddress();

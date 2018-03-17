@@ -73,7 +73,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 *   self::WITHOUT_DOTTED ドットファイルを除く
 	 * @return Tuple 抽出されたエントリー名
 	 */
-	public function getEntryNames ($flags = null) {
+	public function getEntryNames (int $flags = 0) {
 		$names = Tuple::create();
 		foreach ($this->getAllEntryNames() as $name) {
 			if (($flags & self::WITHOUT_DOTTED) && FileUtils::isDottedName($name)) {
