@@ -153,7 +153,7 @@ class ImageManager {
 	 *   self::WITHOUT_SQUARE 正方形に整形しない
 	 * @return URL URL
 	 */
-	public function createURL (ImageContainer $record, $size, int $pixel = 0, int $flags = 0) {
+	public function createURL (ImageContainer $record, $size, ?int $pixel = null, int $flags = 0) {
 		if (!$file = $this->getFile($record, $size, $pixel, $flags)) {
 			return null;
 		}
@@ -191,7 +191,7 @@ class ImageManager {
 	 *   self::WITHOUT_SQUARE 正方形に整形しない
 	 * @return Tuple 画像の情報
 	 */
-	public function getInfo (ImageContainer $record, $size, int $pixel = 0, int $flags = 0) {
+	public function getInfo (ImageContainer $record, $size, ?int $pixel = null, int $flags = 0) {
 		$flags |= $this->flags;
 		if (!$file = $this->getFile($record, $size, $pixel, $flags)) {
 			return;

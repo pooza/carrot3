@@ -56,7 +56,7 @@ trait SerializableTable {
 	 * 結果を返す
 	 *
 	 * @access public
-	 * @return string[] 結果の配列
+	 * @return array 結果の配列
 	 */
 	public function getResult () {
 		return $this->getSerialized();

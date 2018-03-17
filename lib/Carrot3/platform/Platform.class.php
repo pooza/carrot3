@@ -16,10 +16,10 @@ abstract class Platform extends ParameterHolder {
 
 	/**
 	 * @access protected
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @param string $uname uname文字列
 	 */
-	protected function __construct ($params) {
+	protected function __construct (iterable $params) {
 		$this->setParameters($params);
 	}
 

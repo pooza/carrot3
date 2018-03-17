@@ -27,7 +27,7 @@ abstract class ImageAnchorElement extends AnchorElement {
 	 *   self::WITHOUT_SQUARE 正方形に整形しない
 	 * @return URL URL
 	 */
-	public function setImage (ImageContainer $record, $size, int $pixel = 0, int $flags = 0) {
+	public function setImage (ImageContainer $record, $size, ?int $pixel = null, int $flags = 0) {
 		$images = $this->getUserAgent()->createImageManager($flags);
 		$this->setURL($images->createURL($record, $size, $pixel));
 	}

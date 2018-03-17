@@ -17,7 +17,7 @@ class StringFormat extends Tuple implements MessageContainer {
 
 	/**
 	 * @access public
-	 * @param mixed[] $params 要素の配列
+	 * @param mixed $params 要素の配列
 	 */
 	public function __construct ($params = []) {
 		parent::__construct($params);

@@ -17,7 +17,7 @@ class Criteria extends Tuple {
 
 	/**
 	 * @access public
-	 * @param mixed[] $params 要素の配列
+	 * @param mixed $params 要素の配列
 	 */
 	public function __construct ($params = []) {
 		parent::__construct($params);
@@ -122,7 +122,7 @@ class Criteria extends Tuple {
 	 * @return mixed クォートされた値
 	 */
 	public function quote ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			$ids = Tuple::create();
 			foreach (Tuple::create($value) as $item) {
 				$ids[] = $this->getDatabase()->quote($item);

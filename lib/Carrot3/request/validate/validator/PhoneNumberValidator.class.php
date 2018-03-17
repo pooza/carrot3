@@ -20,9 +20,9 @@ class PhoneNumberValidator extends RegexValidator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		if (!isset($params['loose'])) {
 			$params['loose'] = false;
 		}

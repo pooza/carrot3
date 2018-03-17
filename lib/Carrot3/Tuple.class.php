@@ -20,7 +20,7 @@ class Tuple extends ParameterHolder {
 
 	/**
 	 * @access protected
-	 * @param mixed[] $params 要素の配列
+	 * @param mixed $params 要素の配列
 	 */
 	protected function __construct ($params = []) {
 		$this->setParameters($params);
@@ -182,7 +182,7 @@ class Tuple extends ParameterHolder {
 	}
 	static private function getFlatContents ($prefix, $arg, $glue) {
 		$contents = [];
-		if (is_array($arg) || ($arg instanceof ParameterHolder)) {
+		if (is_iterable($arg)) {
 			foreach ($arg as $key => $value) {
 				if (!StringUtils::isBlank($prefix)) {
 					$key = $prefix . $glue . $key;
@@ -266,7 +266,7 @@ class Tuple extends ParameterHolder {
 	 * PHP配列に戻す
 	 *
 	 * @access public
-	 * @return mixed[] PHP配列
+	 * @return mixed PHP配列
 	 */
 	public function decode () {
 		$values = $this->getParameters();
@@ -299,7 +299,7 @@ class Tuple extends ParameterHolder {
 	 * @static
 	 */
 	static protected function encode ($src) {
-		if (is_array($src) || ($src instanceof ParameterHolder)) {
+		if (is_iterable($src)) {
 			$dest = new Tuple;
 			foreach ($src as $key => $value) {
 				if (is_array($value)) {

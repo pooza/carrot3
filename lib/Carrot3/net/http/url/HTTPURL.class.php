@@ -86,7 +86,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		if (is_string($contents) || StringUtils::isBlank($contents)) {
 			$contents = parse_url($contents);
 		}
-		if (is_array($contents) || ($contents instanceof ParameterHolder)) {
+		if (is_iterable($contents)) {
 			$contents = Tuple::create($contents);
 		}
 		if (StringUtils::isBlank($contents['scheme'])) {
@@ -253,7 +253,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
+	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
 		if ($file = $this->getImageFile($size)) {
 			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
 			$info['alt'] = $this->getID();

@@ -50,7 +50,7 @@ class CarrotURL extends HTTPURL {
 			if (is_string($contents)) {
 				throw new Exception('CarrotURLは文字列から生成できません。');
 			}
-			if (is_array($contents) || ($contents instanceof ParameterHolder)) {
+			if (is_iterable($contents)) {
 				$contents = Tuple::create($contents);
 			}
 			if (StringUtils::isBlank($contents['module'])) {

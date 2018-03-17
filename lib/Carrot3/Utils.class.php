@@ -50,7 +50,7 @@ class Utils {
 	 * @access public
 	 * @param object $object オブジェクト
 	 * @param string $method 関数名
-	 * @param mixed[] $values 引数
+	 * @param mixed $values 引数
 	 * @return mixed メソッドの返値
 	 * @static
 	 */
@@ -117,7 +117,7 @@ class Utils {
 	 *
 	 * @access public
 	 * @param string $class 完全修飾クラス名、又はオブジェクト
-	 * @return string[] クラス階層
+	 * @return array クラス階層
 	 * @static
 	 */
 	static public function getParentClasses ($class) {

@@ -126,7 +126,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * 全てのレコードを返す
 	 *
 	 * @access public
-	 * @return string[][] 全てのレコード
+	 * @return array 全てのレコード
 	 */
 	public function getRecords () {
 		if (!$this->records->count() && $this->contents) {

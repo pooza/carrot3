@@ -17,9 +17,9 @@ class ChoiceValidator extends Validator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['class'] = null;
 		$this['function'] = 'getStatusOptions';
 		$this['choices'] = null;
@@ -49,7 +49,7 @@ class ChoiceValidator extends Validator {
 	protected function getChoices () {
 		$choices = Tuple::create();
 		if ($config = $this['choices']) {
-			if (is_array($config) || ($config instanceof ParameterHolder)) {
+			if (is_iterable($config)) {
 				$choices->setParameters($config);
 			} else {
 				$choices = StringUtils::explode(',', $config);

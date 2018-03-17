@@ -15,7 +15,7 @@ class FieldSet extends Tuple {
 
 	/**
 	 * @access public
-	 * @param mixed[] $params 要素の配列
+	 * @param mixed $params 要素の配列
 	 */
 	public function __construct ($params = []) {
 		parent::__construct($params);
@@ -37,7 +37,7 @@ class FieldSet extends Tuple {
 	 * パラメータをまとめて設定
 	 *
 	 * @access public
-	 * @param mixed[] $params パラメータの配列
+	 * @param mixed $params パラメータの配列
 	 */
 	public function setParameters ($params) {
 		if (is_string($params)) {

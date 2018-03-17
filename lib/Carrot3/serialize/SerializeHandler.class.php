@@ -89,7 +89,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @param mixed $value 値
 	 */
 	public function setAttribute ($name, $value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			$value = Tuple::create($value)->decode();
 		}
 		$this->storage->setAttribute($this->createKey($name), $value);

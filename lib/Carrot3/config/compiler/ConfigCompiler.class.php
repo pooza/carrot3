@@ -17,9 +17,9 @@ abstract class ConfigCompiler extends ParameterHolder {
 
 	/**
 	 * @access public
-	 * @param string[] $params パラメータ
+	 * @param iterable $params パラメータ
 	 */
-	public function __construct ($params = []) {
+	public function __construct (iterable $params = []) {
 		$this->initialize($params);
 	}
 
@@ -27,11 +27,11 @@ abstract class ConfigCompiler extends ParameterHolder {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ
+	 * @param iterable $params パラメータ
 	 * @return bool 成功ならばTrue
 	 * @static
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this->setParameters($params);
 	}
 
@@ -88,7 +88,7 @@ abstract class ConfigCompiler extends ParameterHolder {
 	 * @static
 	 */
 	static public function quote ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			$body = Tuple::create();
 			foreach ($value as $key => $item) {
 				$body[] = sprintf('%s => %s', self::quote($key), self::quote($item));

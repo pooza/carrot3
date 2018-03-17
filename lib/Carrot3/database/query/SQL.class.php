@@ -24,8 +24,8 @@ class SQL {
 	 * SELECTクエリー文字列を返す
 	 *
 	 * @access public
-	 * @param string[] $fields フィールド
-	 * @param string[] $tables テーブル名の配列
+	 * @param mixed $fields フィールド
+	 * @param mixed $tables テーブル名の配列
 	 * @param mixed $criteria 抽出条件
 	 * @param mixed $order ソート順
 	 * @param string $group グループ化
@@ -138,7 +138,7 @@ class SQL {
 	 *
 	 * @access public
 	 * @param string $table テーブル名
-	 * @param string[] $fields フィールド定義等
+	 * @param iterable $fields フィールド定義等
 	 * @param int $flags フラグのビット列
 	 *   self::TEMPORARY テンポラリテーブル
 	 * @static

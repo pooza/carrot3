@@ -17,9 +17,10 @@ abstract class DataSourceName extends ParameterHolder {
 
 	/**
 	 * @access public
-	 * @param mixed[] $params 要素の配列
+	 * @param string $contents DSN値
+	 * @param string $name DSN名
 	 */
-	public function __construct ($contents, $name = 'default') {
+	public function __construct (string $contents, string $name = 'default') {
 		$this['connection_name'] = $name;
 		$this['dbms'] = $this->getDBMS();
 		$this['dsn'] = $contents;

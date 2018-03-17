@@ -95,7 +95,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 */
 	public function setContents ($contents) {
 		$this->attributes->clear();
-		if (!is_array($contents) && !($contents instanceof ParameterHolder)) {
+		if (!is_iterable($contents)) {
 			if (!mb_ereg(self::PATTERN, $contents)) {
 				return false;
 			}
@@ -193,7 +193,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 * 属性を全て返す
 	 *
 	 * @access public
-	 * @return string[] 属性
+	 * @return array 属性
 	 */
 	public function getAttributes () {
 		return $this->attributes;
@@ -271,7 +271,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 * @static
 	 */
 	static public function encode ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::encode($item);
 			}
@@ -290,7 +290,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 * @static
 	 */
 	static public function decode ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::decode($item);
 			}

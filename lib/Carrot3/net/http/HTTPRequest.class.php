@@ -43,7 +43,7 @@ class HTTPRequest extends MIMEDocument {
 	 * @access public
 	 * @param string $method メソッド
 	 */
-	public function setMethod ($method) {
+	public function setMethod (string $method) {
 		$this->method = StringUtils::toUpper($method);
 		if (!self::isValidMethod($this->method)) {
 			throw new HTTPException($this->method . 'は正しくないメソッドです。');

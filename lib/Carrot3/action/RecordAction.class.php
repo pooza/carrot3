@@ -100,7 +100,7 @@ abstract class RecordAction extends Action {
 	 * 更新レコードのフィールド値を配列で返す
 	 *
 	 * @access protected
-	 * @return mixed[] フィールド値の連想配列
+	 * @return Tuple フィールド値の連想配列
 	 */
 	protected function getRecordValues () {
 		return $this->getRecord()->getAttributes();

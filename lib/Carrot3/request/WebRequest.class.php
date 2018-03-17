@@ -24,9 +24,9 @@ class WebRequest extends Request {
 	 * メソッドを設定
 	 *
 	 * @access public
-	 * @param int $method メソッド
+	 * @param string $method メソッド
 	 */
-	public function setMethod (int $method) {
+	public function setMethod (string $method) {
 		parent::setMethod($method);
 		switch ($this->getMethod()) {
 			case 'GET':
@@ -114,7 +114,7 @@ class WebRequest extends Request {
 	 * ヘッダ一式を返す
 	 *
 	 * @access public
-	 * @return string[] ヘッダ一式
+	 * @return array ヘッダ一式
 	 */
 	public function getHeaders () {
 		if (!$this->headers) {

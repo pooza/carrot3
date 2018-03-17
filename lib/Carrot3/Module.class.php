@@ -249,7 +249,7 @@ class Module implements HTTPRedirector, Assignable {
 	public function setRecordID ($id) {
 		if ($id instanceof Record) {
 			$id = $id->getID();
-		} else if (is_array($id) || ($id instanceof ParameterHolder)) {
+		} else if (is_iterable($id)) {
 			$id = Tuple::create($id);
 			$id = $id[$this->getTable()->getKeyField()];
 		} else if (!is_numeric($id)) {

@@ -103,7 +103,7 @@ abstract class TableAction extends Action {
 	 * 検索条件を返す
 	 *
 	 * @access protected
-	 * @return string[] 検索条件
+	 * @return array 検索条件
 	 */
 	protected function getCriteria () {
 		return [];
@@ -113,7 +113,7 @@ abstract class TableAction extends Action {
 	 * ソート順を返す
 	 *
 	 * @access protected
-	 * @return string[] ソート順
+	 * @return array ソート順
 	 */
 	protected function getOrder () {
 		return [];

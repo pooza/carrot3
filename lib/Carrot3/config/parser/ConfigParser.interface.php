@@ -25,7 +25,7 @@ interface ConfigParser extends TextRenderer {
 	 * 変換後の設定内容を返す
 	 *
 	 * @access public
-	 * @return mixed[] 設定内容
+	 * @return Tuple 設定内容
 	 */
 	public function getResult ();
 }

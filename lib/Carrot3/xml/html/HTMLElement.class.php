@@ -158,7 +158,7 @@ class HTMLElement extends XMLElement {
 	 * @param mixed $classes クラス名、又はその配列
 	 */
 	public function registerStyleClass ($classes) {
-		if (!is_array($classes) && !($classes instanceof ParameterHolder)) {
+		if (!is_iterable($classes)) {
 			$classes = mb_split('(,| +)', $classes);
 		}
 		foreach ($classes as $class) {

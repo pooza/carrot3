@@ -49,7 +49,7 @@ abstract class AddressesMIMEHeader extends MIMEHeader {
 		$addresses = $this->getEntity();
 		if ($contents instanceof MailAddress) {
 			$addresses[] = $contents;
-		} else if (is_array($contents) || ($contents instanceof ParameterHolder)) {
+		} else if (is_iterable($contents)) {
 			foreach ($contents as $address) {
 				if ($address instanceof MailAddress) {
 					$addresses[] = $address;

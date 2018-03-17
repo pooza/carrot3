@@ -30,7 +30,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function convertEncoding ($value, $encodingTo = null, $encodingFrom = null) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::convertEncoding($item, $encodingTo, $encodingFrom);
 			}
@@ -69,7 +69,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function sanitize ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::sanitize($item);
 			}
@@ -88,7 +88,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function unsanitize ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::unsanitize($item);
 			}
@@ -108,7 +108,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function convertKana ($value, $format = 'KVa') {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::convertKana($item, $format);
 			}
@@ -131,7 +131,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function convertAlphabet ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::convertAlphabet($item, $format);
 			}
@@ -153,7 +153,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function convertLineSeparator ($value, $separator = "\n") {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::convertLineSeparator($item, $separator);
 			}
@@ -174,7 +174,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function convertToNumericReference ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::convertToNumericReference($item, $separator);
 			}
@@ -199,7 +199,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function truncate ($value, int $length, $suffix = '…') {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::truncate($item, $length, $suffix);
 			}
@@ -219,7 +219,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function capitalize ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::capitalize($item);
 			}
@@ -238,7 +238,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function camelize ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::camelize($item);
 			}
@@ -258,7 +258,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function pascalize ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::pascalize($item);
 			}
@@ -279,7 +279,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function underscorize ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::underscorize($item);
 			}
@@ -303,7 +303,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function hyphenize ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::hyphenize($item);
 			}
@@ -329,7 +329,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function increment ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::underscorize($item);
 			}
@@ -352,7 +352,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function toUpper ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::toUpper($item);
 			}
@@ -371,7 +371,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function toLower ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::toLower($item);
 			}
@@ -494,7 +494,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function stripTags ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::stripTags($item);
 			}
@@ -514,7 +514,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function stripHTMLComment ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::stripTags($item);
 			}
@@ -533,7 +533,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function stripControlCharacters ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::stripControlCharacters($item);
 			}
@@ -552,7 +552,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function dequote ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::dequote($item);
 			}
@@ -571,7 +571,7 @@ class StringUtils {
 	 * @static
 	 */
 	static public function trim ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::trim($item);
 			}

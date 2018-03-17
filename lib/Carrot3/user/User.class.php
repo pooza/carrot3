@@ -154,9 +154,9 @@ class User extends ParameterHolder {
 	 * 属性値をまとめて設定
 	 *
 	 * @access public
-	 * @param mixed[] $attributes 属性値
+	 * @param iterable $attributes 属性値
 	 */
-	public function setAttributes ($attributes) {
+	public function setAttributes (iterable $attributes) {
 		foreach ($attributes as $key => $value) {
 			$this->setAttribute($key, $value);
 		}

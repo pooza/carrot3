@@ -55,7 +55,7 @@ class JSONRenderer implements Renderer, MessageContainer {
 	 * @access public
 	 */
 	public function setContents ($contents) {
-		if (is_array($contents) || ($contents instanceof ParameterHolder)) {
+		if (is_iterable($contents)) {
 			$contents = Tuple::create($contents);
 			$this->result = $contents->decode();
 			$contents = $this->getSerializer()->encode(

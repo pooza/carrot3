@@ -45,7 +45,7 @@ class View extends HTTPResponse {
 	/**
 	 * @access public
 	 * @param string $method メソッド名
-	 * @param mixed[] $values 引数
+	 * @param mixed $values 引数
 	 */
 	public function __call ($method, $values) {
 		return Utils::executeMethod($this->renderer, $method, $values);

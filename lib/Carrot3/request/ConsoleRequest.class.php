@@ -70,7 +70,7 @@ class ConsoleRequest extends Request {
 	 * ヘッダ一式を返す
 	 *
 	 * @access public
-	 * @return string[] ヘッダ一式
+	 * @return array ヘッダ一式
 	 */
 	public function getHeaders () {
 		return null;

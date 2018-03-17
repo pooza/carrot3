@@ -83,9 +83,9 @@ class XMLElement implements \IteratorAggregate {
 	 * 属性をまとめて設定
 	 *
 	 * @access public
-	 * @param string[] $values 属性の配列
+	 * @param iterable $values 属性の配列
 	 */
-	public function setAttributes ($values) {
+	public function setAttributes (iterable $values) {
 		foreach ($values as $key => $value) {
 			$this->setAttribute($key, $value);
 		}

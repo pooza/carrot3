@@ -33,7 +33,7 @@ class JSONSerializer implements Serializer {
 	 */
 	public function encode ($value, int $flags = 0) {
 		$value = StringUtils::convertEncoding($value, 'utf-8');
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			$value = Tuple::create($value);
 			$value = $value->decode();
 		}

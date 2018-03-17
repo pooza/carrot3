@@ -17,9 +17,9 @@ class NumberValidator extends Validator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['max'] = null;
 		$this['max_error'] = '値が大きすぎます。';
 		$this['min'] = null;

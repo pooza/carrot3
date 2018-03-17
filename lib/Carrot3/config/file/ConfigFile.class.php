@@ -56,7 +56,7 @@ class ConfigFile extends File {
 	 * 設定内容を返す
 	 *
 	 * @access public
-	 * @return string[][] 設定ファイルの内容
+	 * @return array 設定ファイルの内容
 	 */
 	public function getResult () {
 		if (!$this->config) {

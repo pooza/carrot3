@@ -163,7 +163,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @param int $flags ダミー
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
+	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
 		if (!$this->imageinfo) {
 			$this->imageinfo = Tuple::create();
 			$image = $this->getImageFile('image')->getRenderer();

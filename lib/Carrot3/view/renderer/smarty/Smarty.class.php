@@ -136,7 +136,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * ヘッダ一式を返す
 	 *
 	 * @access public
-	 * @return string[] ヘッダ一式
+	 * @return array ヘッダ一式
 	 */
 	public function getHeaders () {
 		if (!$this->headers) {
@@ -287,7 +287,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * 全ての属性を返す
 	 *
 	 * @access public
-	 * @return mixed[] 全ての属性
+	 * @return array 全ての属性
 	 */
 	public function getAttributes () {
 		return $this->get_template_vars();
@@ -312,9 +312,9 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * 属性をまとめて設定
 	 *
 	 * @access public
-	 * @param mixed[] $attribures 属性値
+	 * @param iterable $attribures 属性値
 	 */
-	public function setAttributes ($attributes) {
+	public function setAttributes (iterable $attributes) {
 		foreach ($attributes as $key => $value) {
 			$this->setAttribute($key, $value);
 		}
@@ -418,7 +418,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * includeタグの拡張
 	 *
 	 * @access public
-	 * @param mixed[] $params パラメータ一式
+	 * @param mixed $params パラメータ一式
 	 */
 	public function _smarty_include ($params) {
 		$template =& $params['smarty_include_tpl_file'];

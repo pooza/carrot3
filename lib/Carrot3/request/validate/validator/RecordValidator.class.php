@@ -18,9 +18,9 @@ class RecordValidator extends Validator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['table'] = null;
 		$this['class'] = null;
 		$this['field'] = 'id';

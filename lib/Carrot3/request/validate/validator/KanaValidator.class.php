@@ -18,9 +18,9 @@ class KanaValidator extends RegexValidator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['match'] = true;
 		$this['match_error'] = '使用出来ない文字が含まれています。';
 		$this['pattern'] = self::PATTERN;

@@ -17,9 +17,9 @@ class EmptyValidator extends Validator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['required_msg'] = '空欄です。';
 		return parent::initialize($params);
 	}
@@ -47,7 +47,7 @@ class EmptyValidator extends Validator {
 	 * @static
 	 */
 	static public function isEmpty ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			$value = Tuple::create($value);
 			if ($value['is_file']) {
 				return StringUtils::isBlank($value['name']);

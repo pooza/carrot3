@@ -57,7 +57,7 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 	 * 全てのパラメータを返す
 	 *
 	 * @access public
-	 * @return mixed[] 全てのパラメータ
+	 * @return Tuple 全てのパラメータ
 	 */
 	public function getParameters () {
 		if (StringUtils::isBlank($this->prefix)) {

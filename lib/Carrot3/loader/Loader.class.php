@@ -50,7 +50,7 @@ class Loader {
 	 * クラス名を全て返す
 	 *
 	 * @access public
-	 * @return string[] クラス名
+	 * @return array クラス名
 	 */
 	public function getClasses () {
 		if (!$this->classes) {
@@ -69,7 +69,7 @@ class Loader {
 	 * 名前空間を全て返す
 	 *
 	 * @access public
-	 * @return string[] 名前空間名
+	 * @return array 名前空間名
 	 */
 	public function getNamespaces () {
 		if (!$this->namespaces) {

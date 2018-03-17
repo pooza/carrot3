@@ -43,7 +43,7 @@ class FormElement extends HTMLElement {
 	 * @access public
 	 * @param string $method メソッド
 	 */
-	public function setMethod ($method) {
+	public function setMethod (string $method) {
 		$this->setAttribute('method', StringUtils::toLower($method));
 		if (!HTTPRequest::isValidMethod($this->getMethod())) {
 			throw new HTTPException($this->getMethod() . 'は正しくないメソッドです。');

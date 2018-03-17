@@ -17,9 +17,9 @@ class NGWordValidator extends Validator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['word_error'] = '不適切な言葉が含まれています。';
 		return parent::initialize($params);
 	}

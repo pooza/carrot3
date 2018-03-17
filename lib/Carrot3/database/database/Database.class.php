@@ -213,7 +213,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @return string クォート後の文字列
 	 */
 	public function quote ($value, $type = self::PARAM_STR) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			$values = $value;
 			foreach ($values as $key => $value) {
 				$values[$key] = self::quote($value, $type);

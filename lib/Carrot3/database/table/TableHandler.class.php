@@ -327,11 +327,11 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * レコードを返す
 	 *
 	 * @access public
-	 * @param mixed[] $key 検索条件
+	 * @param mixed $key 検索条件
 	 * @return Record レコード
 	 */
 	public function getRecord ($key) {
-		if (is_array($key) || ($key instanceof ParameterHolder)) {
+		if (is_iterable($key)) {
 			$key = Tuple::create($key);
 		} else {
 			$key = Tuple::create([$this->getKeyField() => $key]);
@@ -397,7 +397,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * createRecordのエイリアス
 	 *
 	 * @access public
-	 * @param mixed[] $values 値
+	 * @param mixed $values 値
 	 * @param int $flags フラグのビット列
 	 *   Database::WITH_LOGGING ログを残さない
 	 * @return string レコードの主キー
@@ -581,7 +581,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * 結果を返す
 	 *
 	 * @access public
-	 * @return string[] 結果の配列
+	 * @return array 結果の配列
 	 */
 	public function getResult () {
 		if (!$this->isExecuted()) {
@@ -594,7 +594,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * クエリーを送信して結果を返す
 	 *
 	 * @access public
-	 * @return string[] 結果の配列
+	 * @return array 結果の配列
 	 */
 	public function query () {
 		$this->queryString = null;
@@ -694,7 +694,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 *
 	 * @access public
 	 * @param string $language 言語
-	 * @return string[] ラベルの配列
+	 * @return array ラベルの配列
 	 */
 	public function getLabels ($language = 'ja') {
 		$labels = [];
@@ -709,7 +709,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 *
 	 * @access public
 	 * @param string $language 言語
-	 * @return string[] フィールド名の配列
+	 * @return array フィールド名の配列
 	 */
 	public function getFieldNames ($language = 'ja') {
 		if (!$this->fieldNames) {
@@ -919,7 +919,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * 全ステータスを返す
 	 *
 	 * @access public
-	 * @param mixed[] $values 値
+	 * @param mixed $values 値
 	 * @static
 	 */
 	static public function getStatusOptions () {

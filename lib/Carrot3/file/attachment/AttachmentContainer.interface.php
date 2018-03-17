@@ -18,7 +18,7 @@ interface AttachmentContainer {
 	 *
 	 * @access public
 	 * @param string $name 名前
-	 * @return string[] 添付ファイルの情報
+	 * @return array 添付ファイルの情報
 	 */
 	public function getAttachmentInfo ($name);
 

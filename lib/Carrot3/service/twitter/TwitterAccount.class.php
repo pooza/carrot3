@@ -151,7 +151,7 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
+	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
 		if ($file = $this->getImageFile()) {
 			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
 			$info['alt'] = $this->getLabel();

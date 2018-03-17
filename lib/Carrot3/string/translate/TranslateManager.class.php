@@ -167,11 +167,11 @@ class TranslateManager implements \IteratorAggregate {
 	 * ハッシュを返す
 	 *
 	 * @access public
-	 * @param string[] $words 見出し語の配列
+	 * @param iterable $words 見出し語の配列
 	 * @param string $language 言語
 	 * @return Tuple ハッシュ
 	 */
-	public function getHash ($words, $language = 'ja') {
+	public function getHash (iterable $words, $language = 'ja') {
 		$hash = Tuple::create();
 		foreach ($words as $word) {
 			$hash[$word] = $this->execute($word, $language);

@@ -14,10 +14,10 @@ namespace Carrot3;
 class MySQLDataSourceName extends DataSourceName {
 
 	/**
-	 * @access public
-	 * @param mixed[] $params 要素の配列
+	 * @param string $contents DSN値
+	 * @param string $name DSN名
 	 */
-	public function __construct ($contents, $name = 'default') {
+	public function __construct (string $contents, string $name = 'default') {
 		parent::__construct($contents, $name);
 		mb_ereg('^mysql:host=([^;]+);dbname=([^;]+);charset=([^;]+)$', $contents, $matches);
 		$this['host'] = new Host($matches[1]);

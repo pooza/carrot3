@@ -16,7 +16,7 @@ class ImageValidator extends Validator {
 		if (StringUtils::isBlank($types = $this['types'])) {
 			return Image::getTypes();
 		} else {
-			if (is_array($types) || ($types instanceof ParameterHolder)) {
+			if (is_iterable($types)) {
 				$types = Tuple::create($types);
 			} else {
 				$types = StringUtils::explode(',', $types);
@@ -38,9 +38,9 @@ class ImageValidator extends Validator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['types'] = 'jpg,gif,png';
 		$this['types_error'] = '画像形式が正しくありません。';
 		$this['min_height'] = null;

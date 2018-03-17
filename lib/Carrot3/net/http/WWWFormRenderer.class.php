@@ -33,10 +33,10 @@ class WWWFormRenderer extends ParameterHolder implements Renderer {
 	 * パラメータをまとめて設定
 	 *
 	 * @access public
-	 * @param mixed[] $params パラメータの配列、又はクエリー文字列
+	 * @param mixed $params パラメータの配列、又はクエリー文字列
 	 */
 	public function setParameters ($params) {
-		if (!is_array($params) && !($params instanceof ParameterHolder)) {
+		if (!is_iterable($params)) {
 			parse_str($params, $parsed);
 			$params = Tuple::create($parsed);
 		}

@@ -17,10 +17,10 @@ class PictogramConfigCompiler extends DefaultConfigCompiler {
 	 * 設定配列をシリアライズできる内容に修正
 	 *
 	 * @access protected
-	 * @param mixed[] $config 対象
-	 * @return mixed[] 変換後
+	 * @param iterable $config 対象
+	 * @return iterable 変換後
 	 */
-	protected function getContents ($config) {
+	protected function getContents (iterable $config) {
 		$pictograms = [];
 		foreach (Tuple::create($config) as $entry) {
 			foreach ($entry['names'] as $name) {

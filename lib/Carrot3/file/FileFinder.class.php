@@ -41,7 +41,7 @@ class FileFinder {
 	public function execute ($file) {
 		if ($file instanceof File) {
 			return $this->execute($file->getPath());
-		} else if (is_array($file) || ($file instanceof ParameterHolder)) {
+		} else if (is_iterable($file)) {
 			$params = Tuple::create($file);
 			if (StringUtils::isBlank($params['src'])) {
 				if ($record = (new RecordFinder($params))->execute()) {

@@ -15,7 +15,7 @@ class FileValidator extends Validator {
 	const ATTACHABLE = 'ATTACHABLE';
 
 	private function getAllowedSuffixes () {
-		if (is_array($this['suffixes']) || ($this['suffixes'] instanceof ParameterHolder)) {
+		if (is_iterable($this['suffixes'])) {
 			$suffixes = Tuple::create($this['suffixes']);
 		} else if (StringUtils::toUpper($this['suffixes']) == self::ATTACHABLE) {
 			$suffixes = MIMEType::getInstance()->getSuffixes();
@@ -31,9 +31,9 @@ class FileValidator extends Validator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['size'] = 2;
 		$this['size_error'] = 'ファイルサイズが大きすぎます。';
 		$this['invalid_error'] = '正しいファイルではありません。';

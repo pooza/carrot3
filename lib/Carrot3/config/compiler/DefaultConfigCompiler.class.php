@@ -29,10 +29,10 @@ class DefaultConfigCompiler extends ConfigCompiler {
 	 * 設定配列をシリアライズできる内容に修正
 	 *
 	 * @access protected
-	 * @param mixed[] $config 対象
-	 * @return mixed[] 変換後
+	 * @param iterable $config 対象
+	 * @return Tuple 変換後
 	 */
-	protected function getContents ($config) {
+	protected function getContents (iterable $config) {
 		return $config;
 	}
 }

@@ -95,7 +95,7 @@ class SessionHandler {
 	 * @param mixed $value 値
 	 */
 	public function write ($key, $value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			$value = Tuple::create($value)->decode();
 		}
 		$_SESSION[$key] = $value;

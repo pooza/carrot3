@@ -18,7 +18,7 @@ class StringValidator extends Validator {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param string[] $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
 	public function initialize ($params = []) {
 		$this['max'] = self::MAX_SIZE;
@@ -37,7 +37,7 @@ class StringValidator extends Validator {
 	 * @return bool 妥当な値ならばTrue
 	 */
 	public function execute ($value) {
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			$value = Tuple::create($value);
 			$value->trim();
 			foreach ($value as $entry) {

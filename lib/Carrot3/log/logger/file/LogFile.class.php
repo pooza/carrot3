@@ -28,10 +28,11 @@ class LogFile extends File {
 	 * ログの内容を返す
 	 *
 	 * @access public
-	 * @return string[][] ログの内容
+	 * @return Tuple ログの内容
 	 */
 	public function getEntries () {
 		if (!$this->entries) {
+			$this->entries = Tuple::create();
 			foreach ($this->getLines() as $line) {
 				if (!mb_ereg('([0-9]{1,3}\.){3}[0-9]{1,3}', $line, $matches)) {
 					continue;

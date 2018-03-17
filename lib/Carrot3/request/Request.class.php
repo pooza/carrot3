@@ -92,7 +92,7 @@ abstract class Request extends HTTPRequest {
 	 * エラーを全て返す
 	 *
 	 * @access public
-	 * @return mixed[] エラー
+	 * @return Tuple エラー
 	 */
 	public function getErrors () {
 		if (!$this->errors) {
@@ -168,7 +168,7 @@ abstract class Request extends HTTPRequest {
 	 * 属性をまとめて設定
 	 *
 	 * @access public
-	 * @param mixed[] $attributes 属性
+	 * @param mixed $attributes 属性
 	 */
 	public function setAttributes ($attributes) {
 		$this->getAttributes()->setParameters($attributes);
@@ -192,7 +192,7 @@ abstract class Request extends HTTPRequest {
 	 * エラーをまとめて設定
 	 *
 	 * @access public
-	 * @param mixed[] $errors エラー
+	 * @param mixed $errors エラー
 	 */
 	public function setErrors ($errors) {
 		$this->getErrors()->setParameters($errors);

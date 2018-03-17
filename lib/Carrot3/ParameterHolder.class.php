@@ -44,7 +44,7 @@ abstract class ParameterHolder
 	 * 全てのパラメータを返す
 	 *
 	 * @access public
-	 * @return mixed[] 全てのパラメータ
+	 * @return array 全てのパラメータ
 	 */
 	public function getParameters () {
 		return $this->params;
@@ -54,7 +54,7 @@ abstract class ParameterHolder
 	 * パラメータをまとめて設定
 	 *
 	 * @access public
-	 * @param mixed[] $params パラメータの配列
+	 * @param mixed $params パラメータの配列
 	 */
 	public function setParameters ($params) {
 		if ($params instanceof ParameterHolder) {

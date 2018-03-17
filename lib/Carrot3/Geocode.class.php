@@ -15,7 +15,7 @@ class Geocode extends ParameterHolder {
 
 	/**
 	 * @access public
-	 * @param mixed[] $params 要素の配列
+	 * @param mixed $params 要素の配列
 	 */
 	public function __construct ($params = []) {
 		$this->setParameters($params);

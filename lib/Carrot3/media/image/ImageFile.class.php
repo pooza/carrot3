@@ -37,7 +37,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	/**
 	 * @access public
 	 * @param string $method メソッド名
-	 * @param mixed[] $values 引数
+	 * @param mixed $values 引数
 	 */
 	public function __call ($method, $values) {
 		return Utils::executeMethod($this->getRenderer(), $method, $values);
@@ -178,7 +178,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
+	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
 		return (new ImageManager)->getInfo($this, $size, $pixel, $flags);
 	}
 

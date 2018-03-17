@@ -85,7 +85,7 @@ class Crypt {
 			$message[] = $method;
 			throw new CryptException($message);
 		}
-		if (is_array($value) || ($value instanceof ParameterHolder)) {
+		if (is_iterable($value)) {
 			$value = Tuple::create($value)->join("\n", "\t");
 		}
 		return hash($method, $value . BS_CRYPT_DIGEST_SALT);

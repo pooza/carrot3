@@ -27,9 +27,9 @@ abstract class Record implements \ArrayAccess,
 	/**
 	 * @access public
 	 * @param TableHandler $table テーブルハンドラ
-	 * @param string[] $attributes 属性の連想配列
+	 * @param iterable $attributes 属性の連想配列
 	 */
-	public function __construct (TableHandler $table, $attributes = null) {
+	public function __construct (TableHandler $table, iterable $attributes = null) {
 		$this->table = $table;
 		$this->attributes = Tuple::create();
 		$this->records = Tuple::create();
@@ -41,7 +41,7 @@ abstract class Record implements \ArrayAccess,
 	/**
 	 * @access public
 	 * @param string $method メソッド名
-	 * @param mixed[] $values 引数
+	 * @param mixed $values 引数
 	 */
 	public function __call ($method, $values) {
 		if (mb_ereg('^get([[:upper:]][[:alnum:]]+)$', $method, $matches)) {
@@ -62,10 +62,10 @@ abstract class Record implements \ArrayAccess,
 	 * 属性値を初期化
 	 *
 	 * @access public
-	 * @param string[] $attributes 属性の連想配列
+	 * @param iterable $attributes 属性の連想配列
 	 * @return Record 自分自身
 	 */
-	public function initialize ($attributes) {
+	public function initialize (iterable $attributes) {
 		$this->attributes->clear();
 		$this->attributes->setParameters($attributes);
 		return $this;
@@ -466,7 +466,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, int $pixel = 0, int $flags = 0) {
+	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
 		return (new ImageManager)->getInfo($this, $size, $pixel, $flags);
 	}
 

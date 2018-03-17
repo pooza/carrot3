@@ -15,9 +15,9 @@ class CSSSelector extends Tuple {
 
 	/**
 	 * @access public
-	 * @param mixed[] $params 要素の配列
+	 * @param iterable $params 要素の配列
 	 */
-	public function __construct ($params = []) {
+	public function __construct (iterable $params = []) {
 		parent::__construct($params);
 	}
 
