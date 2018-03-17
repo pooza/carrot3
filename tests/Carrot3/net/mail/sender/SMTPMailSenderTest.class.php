@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class SMTPMailSenderTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $sender = new SMTPMailSender);
+		$sender = new SMTPMailSender;
 		if (StringUtils::isBlank(BS_SMTP_HOST)) {
 			$this->assert('initialize', !$sender->initialize());
 		} else {

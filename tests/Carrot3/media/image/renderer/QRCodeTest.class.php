@@ -7,11 +7,11 @@ namespace Carrot3;
  */
 class QRCodeTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $renderer = new QRCode);
+		$renderer = new QRCode;
 		$renderer->setData('aaa');
 		$this->assert('getContents', !!$renderer->getContents());
 
-		$this->assert('__construct', $renderer = new QRCode);
+		$renderer = new QRCode;
 		$renderer->setData('http://www.google.com/');
 		$this->assert('getContents', !!$renderer->getContents());
 	}

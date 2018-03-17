@@ -8,7 +8,7 @@ namespace Carrot3;
 class GoogleHubServiceTest extends Test {
 	public function execute () {
 		$url = URL::create('https://www.b-shock.co.jp/');
-		$this->assert('__construct', $service = new GoogleHubService);
+		$service = new GoogleHubService;
 		$this->assert('publish', $service->publish($url));
 	}
 }

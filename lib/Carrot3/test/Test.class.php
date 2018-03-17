@@ -61,7 +61,7 @@ abstract class Test {
 	 *
 	 * @access public
 	 * @param string $name テスト名
-	 * @param boolean マッチするならTrue
+	 * @param bool マッチするならTrue
 	 */
 	public function isMatched ($name) {
 		return StringUtils::isContain(
@@ -83,9 +83,9 @@ abstract class Test {
 	 *
 	 * @access public
 	 * @param string $name アサーションの名前
-	 * @param boolean $assertion アサーションの内容
+	 * @param bool $assertion アサーションの内容
 	 */
-	public function assert ($name, $assertion) {
+	public function assert ($name, bool $assertion) {
 		try {
 			if (!$assertion) {
 				return $this->setError($name);

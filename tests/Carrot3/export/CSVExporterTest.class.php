@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class CSVExporterTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $exporter = new CSVExporter);
+		$exporter = new CSVExporter;
 		$exporter->addRecord(Tuple::create([
 			'name' => 'pooza',
 			'point' => 100,

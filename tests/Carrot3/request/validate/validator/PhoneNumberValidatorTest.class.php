@@ -7,12 +7,12 @@ namespace Carrot3;
  */
 class PhoneNumberValidatorTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $validator = new PhoneNumberValidator);
+		$validator = new PhoneNumberValidator;
 		$this->assert('execute', $validator->execute('00-0000-0000'));
 		$this->assert('execute', !$validator->execute('00-0000-00000'));
 		$this->assert('execute', !$validator->execute('00000000000'));
 
-		$this->assert('__construct', $validator = new PhoneNumberValidator);
+		$validator = new PhoneNumberValidator;
 		$validator->initialize([
 			'loose' => true,
 		]);
@@ -22,7 +22,7 @@ class PhoneNumberValidatorTest extends Test {
 		$this->request['tel1'] = '00';
 		$this->request['tel2'] = '0000';
 		$this->request['tel3'] = '0000';
-		$this->assert('__construct', $validator = new PhoneNumberValidator);
+		$validator = new PhoneNumberValidator;
 		$validator->initialize([
 			'fields' => ['tel1', 'tel2', 'tel3'],
 		]);

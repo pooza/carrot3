@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class OpenSSLCryptorTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $cryptor = new OpenSSLCryptor);
+		$cryptor = new OpenSSLCryptor;
 		$data = Utils::getUniqueID();
 		$this->assert('encrypt', $encrypted = $cryptor->encrypt($data));
 		$this->assert('decrypt', $decrypted = $cryptor->decrypt($encrypted));

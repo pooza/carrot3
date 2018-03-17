@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class KanaValidatorTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $validator = new KanaValidator);
+		$validator = new KanaValidator;
 		$this->assert('execute', $validator->execute('アイウエオ'));
 		$this->assert('execute', $validator->execute('あいうえお'));
 		$this->assert('execute', !$validator->execute('english'));

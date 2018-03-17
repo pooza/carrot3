@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class SendmailMailSenderTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $sender = new SendmailMailSender);
+		$sender = new SendmailMailSender;
 		$this->assert('initialize', $sender->initialize());
 
 		$mail = new SmartyMail;

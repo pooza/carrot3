@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class MailAddressValidatorTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $validator = new MailAddressValidator);
+		$validator = new MailAddressValidator;
 		$this->assert('execute', $validator->execute('pooza@b-shock.org'));
 		$this->assert('execute', !$validator->execute('pooza.@b-shock.org'));
 	}

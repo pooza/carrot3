@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class HTTPURLTest extends Test {
 	public function execute () {
-		$this->assert('getInstance', $url = URL::create('http://www.b-shock.co.jp/'));
+		$url = URL::create('http://www.b-shock.co.jp/');
 		$this->assert('getImageFile', $url->getImageFile('favicon') instanceof ImageFile);
 		$this->assert('getImageFile', $url->getImageFile('qr') instanceof ImageFile);
 		$this->assert('getImageInfo', $url->getImageInfo('favicon') instanceof Tuple);

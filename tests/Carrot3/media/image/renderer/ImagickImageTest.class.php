@@ -8,7 +8,7 @@ namespace Carrot3;
 class ImagickImageTest extends Test {
 	public function execute () {
 		if (extension_loaded('imagick')) {
-			$this->assert('__construct', $image = new ImagickImage);
+			$image = new ImagickImage;
 			$this->assert('getGDHandle', is_resource($image->getGDHandle()));
 			$this->assert('resize', !$image->resize(16, 16));
 			$this->assert('getWidth', $image->getWidth() == 16);

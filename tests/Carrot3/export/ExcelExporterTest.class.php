@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class ExcelExporterTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $exporter = new ExcelExporter);
+		$exporter = new ExcelExporter;
 		$exporter->addRecord(Tuple::create([
 			'name' => 'pooza',
 			'point' => 100,

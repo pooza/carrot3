@@ -7,7 +7,7 @@ namespace Carrot3;
  */
 class HTTPTest extends Test {
 	public function execute () {
-		$this->assert('__construct', $http = new HTTP('www.b-shock.co.jp'));
+		$http = new HTTP('www.b-shock.co.jp');
 		try {
 			$response = $http->sendGET('/');
 		} catch (HTTPException $e) {
