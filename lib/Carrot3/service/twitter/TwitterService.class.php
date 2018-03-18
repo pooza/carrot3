@@ -210,7 +210,7 @@ class TwitterService extends CurlHTTP {
 	 * @return Tuple タイムライン
 	 */
 	public function getTimeline ($account, int $count = 10) {
-		$key = Tuple::create([$account, $count, __CLASS__, __FUNCTION__])->join(':');
+		$key = Crypt::digest([$account, $count, __CLASS__, __FUNCTION__]);
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$timeline = (new SerializeHandler)->getAttribute($key, $date)) {
@@ -246,7 +246,7 @@ class TwitterService extends CurlHTTP {
 	 * @return Tuple ツイート
 	 */
 	public function searchTweets ($keyword, int $count = 10) {
-		$key = Tuple::create([$keyword, $count, __CLASS__, __FUNCTION__])->join(':');
+		$key = Crypt::digest([$keyword, $count, __CLASS__, __FUNCTION__]);
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$timeline = (new SerializeHandler)->getAttribute($key, $date)) {
@@ -284,7 +284,7 @@ class TwitterService extends CurlHTTP {
 	 * @return Tuple プロフィール
 	 */
 	public function getProfile ($account) {
-		$key = Tuple::create([$account, __CLASS__, __FUNCTION__])->join(':');
+		$key = Crypt::digest([$account, __CLASS__, __FUNCTION__]);
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$profile = (new SerializeHandler)->getAttribute($key, $date)) {

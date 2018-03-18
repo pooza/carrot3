@@ -293,7 +293,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @static
 	 */
 	static public function getPictogramImageInfos () {
-		$key = __CLASS__ . '.' . __FUNCTION__;
+		$key = Crypt::digest([__CLASS__, __FUNCTION__]);
 		$serials = new SerializeHandler;
 		if (!$serials[$key]) {
 			$urls = Tuple::create();
