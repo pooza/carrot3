@@ -72,7 +72,7 @@ class FormElement extends HTMLElement {
 	public function setAction ($action) {
 		if ($action instanceof HTTPRedirector) {
 			$this->setAttribute('action', $action->getURL()->getContents());
-		} else if ($action instanceof ParameterHolder) {
+		} else if (is_iterable($action)) {
 			if (StringUtils::isBlank($action['path'])) {
 				$this->setAction(URL::create($action, 'carrot'));
 			} else {

@@ -15,9 +15,9 @@ class Geocode extends ParameterHolder {
 
 	/**
 	 * @access public
-	 * @param mixed $params 要素の配列
+	 * @param iterable $params 要素の配列
 	 */
-	public function __construct ($params = []) {
+	public function __construct (iterable $params = []) {
 		$this->setParameters($params);
 	}
 
@@ -50,10 +50,10 @@ class Geocode extends ParameterHolder {
 	 * script要素を返す
 	 *
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return DivisionElement
 	 */
-	public function createElement (ParameterHolder $params) {
+	public function createElement (iterable $params) {
 		$params = Tuple::create($params);
 		$container = new DivisionElement;
 		$container->setStyle('text-align', $params['align']);

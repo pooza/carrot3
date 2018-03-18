@@ -37,10 +37,10 @@ class CurlHTTP extends HTTP {
 	 *
 	 * @access public
 	 * @param string $path パス
-	 * @param ParameterHolder $params パラメータの配列
+	 * @param iterable $params パラメータの配列
 	 * @return HTTPResponse レスポンス
 	 */
-	public function sendHEAD ($path = '/', ParameterHolder $params = null) {
+	public function sendHEAD ($path = '/', iterable $params = null) {
 		$this->setAttribute('nobody', true);
 		return parent::sendHEAD($path, $params);
 	}
@@ -50,10 +50,10 @@ class CurlHTTP extends HTTP {
 	 *
 	 * @access public
 	 * @param string $path パス
-	 * @param ParameterHolder $params パラメータの配列
+	 * @param iterable $params パラメータの配列
 	 * @return HTTPResponse レスポンス
 	 */
-	public function sendGET ($path = '/', ParameterHolder $params = null) {
+	public function sendGET ($path = '/', iterable $params = null) {
 		$this->setAttribute('httpget', true);
 		return parent::sendGET($path, $params);
 	}

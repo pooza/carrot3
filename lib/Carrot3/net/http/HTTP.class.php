@@ -18,10 +18,10 @@ class HTTP extends Socket {
 	 *
 	 * @access public
 	 * @param string $path パス
-	 * @param ParameterHolder $params パラメータの配列
+	 * @param iterable $params パラメータの配列
 	 * @return HTTPResponse レスポンス
 	 */
-	public function sendHEAD ($path = '/', ParameterHolder $params = null) {
+	public function sendHEAD ($path = '/', iterable $params = null) {
 		$request = $this->createRequest();
 		$request->setMethod('HEAD');
 		$request->setURL($this->createRequestURL($path));
@@ -36,10 +36,10 @@ class HTTP extends Socket {
 	 *
 	 * @access public
 	 * @param string $path パス
-	 * @param ParameterHolder $params パラメータの配列
+	 * @param iterable $params パラメータの配列
 	 * @return HTTPResponse レスポンス
 	 */
-	public function sendGET ($path = '/', ParameterHolder $params = null) {
+	public function sendGET ($path = '/', iterable $params = null) {
 		$request = $this->createRequest();
 		$request->setMethod('GET');
 		$request->setURL($this->createRequestURL($path));

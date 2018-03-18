@@ -20,7 +20,7 @@ class RecordFinder extends ParameterHolder {
 	 * @access public
 	 * @param ParameterHolder $params 要素の配列
 	 */
-	public function __construct (ParameterHolder $params) {
+	public function __construct (iterable $params) {
 		$this->setParameters($params);
 	}
 

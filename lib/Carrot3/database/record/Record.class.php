@@ -300,9 +300,9 @@ abstract class Record implements \ArrayAccess,
 	 *
 	 * @access public
 	 * @param string $template テンプレート名
-	 * @param ParameterHolder $params アサインするパラメータ
+	 * @param iterable $params アサインするパラメータ
 	 */
-	public function sendMail ($template, ParameterHolder $params = null) {
+	public function sendMail ($template, iterable $params = null) {
 		try {
 			$mail = new SmartyMail;
 			$mail->getRenderer()->setTemplate(

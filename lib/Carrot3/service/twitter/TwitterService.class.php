@@ -167,7 +167,7 @@ class TwitterService extends CurlHTTP {
 		])->join('&');
 	}
 
-	protected function createSignatureData (HTTPRedirector $url, WWWFormRenderer $params) {
+	protected function createSignatureData (HTTPRedirector $url, iterable $params) {
 		return Tuple::create([
 			'POST',
 			URL::encode($url->getContents()),
@@ -179,7 +179,7 @@ class TwitterService extends CurlHTTP {
 		])->join('&');
 	}
 
-	protected function createOAuth ($path, ParameterHolder $params) {
+	protected function createOAuth ($path, iterable $params) {
 		$url = $this->createRequestURL($path);
 		$params = Tuple::create($params);
 		$params['oauth_token'] = $this->getAccessToken();
@@ -303,10 +303,10 @@ class TwitterService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param string $path パス
-	 * @param ParameterHolder $params パラメータの配列
+	 * @param iterable $params パラメータの配列
 	 * @return HTTPResponse レスポンス
 	 */
-	public function sendGET ($path = '/', ParameterHolder $params = null) {
+	public function sendGET ($path = '/', iterable $params = null) {
 		$this->setAttribute('httpget', true);
 		$request = $this->createRequest();
 		$request->setHeader('Authorization', 'Bearer ' . $this->getBearerToken());

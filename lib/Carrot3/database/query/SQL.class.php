@@ -65,7 +65,7 @@ class SQL {
 		}
 		if (is_array($values)) {
 			$values = Tuple::create($values);
-		} else if ($values instanceof ParameterHolder) {
+		} else if (is_iterable($values)) {
 			$values = Tuple::create($values->getParameters());
 		}
 		$values = $db->quote($values);
@@ -100,10 +100,8 @@ class SQL {
 			$table = $table->getName();
 		}
 
-		if (is_array($values)) {
+		if (is_iterable($values)) {
 			$values = Tuple::create($values);
-		} else if ($values instanceof ParameterHolder) {
-			$values = Tuple::create($values->getParameters());
 		}
 
 		$fields = Tuple::create();

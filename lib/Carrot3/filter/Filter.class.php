@@ -48,10 +48,10 @@ abstract class Filter extends ParameterHolder {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param mixed $params パラメータ
+	 * @param iterable $params パラメータ
 	 * @return bool 初期化が成功すればTrue
 	 */
-	public function initialize ($params = []) {
+	public function initialize (iterable $params = []) {
 		$this->setParameters($params);
 		return true;
 	}

@@ -82,22 +82,22 @@ abstract class MediaFile extends File implements Assignable {
 	 * 表示用のHTML要素を返す
 	 *
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @param UserAgent $useragent 対象ブラウザ
 	 * @return DivisionElement 要素
 	 * @abstract
 	 */
-	abstract public function createElement (ParameterHolder $params, UserAgent $useragent = null);
+	abstract public function createElement (iterable $params, UserAgent $useragent = null);
 
 	/**
 	 * 幅でリサイズ
 	 *
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @param UserAgent $useragent 対象ブラウザ
 	 * @return ParameterHolder リサイズ後のパラメータ配列
 	 */
-	public function resizeByWidth (ParameterHolder $params, UserAgent $useragent = null) {
+	public function resizeByWidth (iterable $params, UserAgent $useragent = null) {
 		if (!$params[__FUNCTION__]) {
 			if (!$useragent) {
 				$useragent = $this->request->getUserAgent();
@@ -123,10 +123,10 @@ abstract class MediaFile extends File implements Assignable {
 	 * メディアURLを返す
 	 *
 	 * @access protected
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return URL メディアURL
 	 */
-	protected function createURL (ParameterHolder $params) {
+	protected function createURL (iterable $params) {
 		$url = URL::create($params['href_prefix']);
 		$url['path'] .= $this->getName() . $params['href_suffix'];
 		if ($this->user->isAdministrator()) {

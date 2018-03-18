@@ -29,10 +29,10 @@ class SiteMapXMLDocument extends XMLDocument {
 	 *
 	 * @access public
 	 * @param HTTPRedirector $url 対象URL
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return XMLElement 追加されたurl要素
 	 */
-	public function register (HTTPRedirector $url, ParameterHolder $params = null) {
+	public function register (HTTPRedirector $url, iterable $params = null) {
 		$element = $this->addElement(new XMLElement('url'));
 		$element->createElement('loc', $url->getURL()->getContents());
 		if ($params) {

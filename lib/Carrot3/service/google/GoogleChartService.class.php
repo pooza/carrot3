@@ -35,7 +35,7 @@ class GoogleChartService extends CurlHTTP {
 	 * @param string $encoding エンコーディング、APIにchl値として渡す。
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getQRCodeImageFile ($data, int $pixel = 0, $encoding = 'sjis-win') {
+	public function getQRCodeImageFile ($data, int $pixel = 0, string $encoding = 'sjis-win') {
 		if (!$pixel) {
 			$pixel = BS_IMAGE_QRCODE_SIZE;
 		}
@@ -53,10 +53,10 @@ class GoogleChartService extends CurlHTTP {
 	 * @param string $type 種類
 	 * @param int $witdh 幅
 	 * @param int $height 高さ
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile ($type, int $width, int $height, ParameterHolder $params) {
+	public function getImageFile ($type, int $width, int $height, iterable $params) {
 		$key = $this->createKey($type, $width, $height, $params);
 		$dir = FileUtils::getDirectory('chart');
 		if (!$file = $dir->getEntry($key, 'ImageFile')) {
@@ -82,7 +82,7 @@ class GoogleChartService extends CurlHTTP {
 		return $file;
 	}
 
-	private function createKey ($type, $width, $height, ParameterHolder $params) {
+	private function createKey ($type, $width, $height, iterable $params) {
 		$values = Tuple::create();
 		$values['type'] = $type;
 		$values['width'] = $width;

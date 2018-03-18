@@ -17,9 +17,9 @@ class ImagickImage extends Image {
 
 	/**
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function __construct (ParameterHolder $params = null) {
+	public function __construct (?iterable $params = null) {
 		if (!extension_loaded('imagick')) {
 			throw new ImageException('imagickモジュールがロードされていません。');
 		}

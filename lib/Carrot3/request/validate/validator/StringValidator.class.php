@@ -20,7 +20,7 @@ class StringValidator extends Validator {
 	 * @access public
 	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['max'] = self::MAX_SIZE;
 		$this['max_error'] = '長すぎます。';
 		$this['min'] = null;

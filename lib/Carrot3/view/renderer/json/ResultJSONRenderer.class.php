@@ -50,7 +50,7 @@ class ResultJSONRenderer extends JSONRenderer {
 	 * @access public
 	 */
 	public function setContents ($contents) {
-		if (!($contents instanceof ParameterHolder)) {
+		if (!is_iterable($contents)) {
 			throw new Exception(Utils::getClass($this) . 'は、配列でない結果文書を返せません。');
 		}
 		$this->result = Tuple::create($contents);

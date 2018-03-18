@@ -29,7 +29,7 @@ class StringUtils {
 	 * @return mixed 変換後
 	 * @static
 	 */
-	static public function convertEncoding ($value, $encodingTo = null, $encodingFrom = null) {
+	static public function convertEncoding ($value, string $encodingTo = null, string $encodingFrom = null) {
 		if (is_iterable($value)) {
 			foreach ($value as $key => $item) {
 				$value[$key] = self::convertEncoding($item, $encodingTo, $encodingFrom);

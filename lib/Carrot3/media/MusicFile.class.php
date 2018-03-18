@@ -31,11 +31,11 @@ class MusicFile extends MediaFile {
 	 * 表示用のHTML要素を返す
 	 *
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @param UserAgent $useragent 対象ブラウザ
 	 * @return DivisionElement 要素
 	 */
-	public function createElement (ParameterHolder $params, UserAgent $useragent = null) {
+	public function createElement (iterable $params, UserAgent $useragent = null) {
 		return $this->createAudioElement($params);
 	}
 
@@ -43,10 +43,10 @@ class MusicFile extends MediaFile {
 	 * audio要素を返す
 	 *
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return AudioElement 要素
 	 */
-	public function createAudioElement (ParameterHolder $params) {
+	public function createAudioElement (iterable $params) {
 		$element = new AudioElement;
 		$element->registerSource($this->createURL($params));
 		return $element;

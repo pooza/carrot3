@@ -25,9 +25,9 @@ class Image implements ImageRenderer {
 
 	/**
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 */
-	public function __construct (ParameterHolder $params = null) {
+	public function __construct (?iterable $params = null) {
 		if ($params) {
 			if ($params['file'] && ($params['file'] instanceof \Carrot3\ImageFile)) {
 				$this->setImage($params['file']->getContents());

@@ -186,10 +186,10 @@ class Module implements HTTPRedirector, Assignable {
 	 * 検索条件キャッシュを設定
 	 *
 	 * @access public
-	 * @param Tuple $params 検索条件キャッシュ
+	 * @param iterable $params 検索条件キャッシュ
 	 */
-	public function cacheParameters (Tuple $params) {
-		$this->params = clone $params;
+	public function cacheParameters (iterable $params) {
+		$this->params = Tuple::create($params);
 		$this->params->removeParameter(Module::ACCESSOR);
 		$this->params->removeParameter(Action::ACCESSOR);
 		$this->user->setAttribute($this->createKey('parameters'), $this->params);

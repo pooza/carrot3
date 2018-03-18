@@ -45,10 +45,10 @@ class GoogleMapsService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param string $address 住所等
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return DivisionElement
 	 */
-	public function createElement ($address, ParameterHolder $params = null) {
+	public function createElement ($address, iterable $params = null) {
 		$params = Tuple::create($params);
 		$params['address'] = $address;
 		if (!$params['zoom']) {
@@ -103,10 +103,10 @@ class GoogleMapsService extends CurlHTTP {
 	 *
 	 * @access protected
 	 * @param Geocode $geocode ジオコード
-	 * @param Tuple $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return DivisionElement
 	 */
-	protected function createImageElement (Geocode $geocode, Tuple $params) {
+	protected function createImageElement (Geocode $geocode, iterable $params) {
 		$address = $params['address'];
 		$params->removeParameter('address');
 		$file = $this->getImageFile($geocode, $params);
@@ -129,7 +129,7 @@ class GoogleMapsService extends CurlHTTP {
 		return $container;
 	}
 
-	private function createPageURL ($address, Tuple $params) {
+	private function createPageURL ($address, iterable $params) {
 		$url = URL::create();
 		$url['host'] = self::DEFAULT_HOST;
 		if ($geocode = $this->getGeocode($address)) {
@@ -146,10 +146,10 @@ class GoogleMapsService extends CurlHTTP {
 	 *
 	 * @access protected
 	 * @param Geocode $geocode ジオコード
-	 * @param Tuple $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return ImageFile 画像ファイル
 	 */
-	protected function getImageFile (Geocode $geocode, Tuple $params) {
+	protected function getImageFile (Geocode $geocode, iterable $params) {
 		$dir = FileUtils::getDirectory('maps');
 		$name = Crypt::digest([
 			$geocode->format(),
@@ -171,11 +171,11 @@ class GoogleMapsService extends CurlHTTP {
 	 *
 	 * @access protected
 	 * @param Geocode $geocode ジオコード
-	 * @param Tuple $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return HTTPURL クエリーURL
 	 * @link http://code.google.com/intl/ja/apis/maps/documentation/staticmaps/
 	 */
-	protected function getImageURL (Geocode $geocode, Tuple $params) {
+	protected function getImageURL (Geocode $geocode, iterable $params) {
 		$info = $this->useragent->getDisplayInfo();
 		$size = new StringFormat('%dx%d');
 		$size[] = $info['width'];

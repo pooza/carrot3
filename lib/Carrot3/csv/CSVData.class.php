@@ -208,7 +208,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * @access public
 	 * @param string $encoding PHPのエンコード名
 	 */
-	public function setEncoding ($encoding) {
+	public function setEncoding (string $encoding) {
 		if (StringUtils::isBlank(mb_preferred_mime_name($encoding))) {
 			throw new ViewException('利用できないエンコード名です。');
 		}

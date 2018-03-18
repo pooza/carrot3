@@ -45,10 +45,8 @@ abstract class URL implements \ArrayAccess, Assignable {
 			return new $class;
 		} else if (is_string($contents)) {
 			$params = Tuple::create(parse_url($contents));
-		} else if (is_array($contents)) {
+		} else if (is_iterable($contents)) {
 			$params = Tuple::create($contents);
-		} else if ($contents instanceof ParameterHolder) {
-			$params = Tuple::create($contents->getParameters());
 		} else {
 			return null;
 		}

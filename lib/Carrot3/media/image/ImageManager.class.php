@@ -278,10 +278,10 @@ class ImageManager {
 	 * 画像情報から、HTMLのimg要素を返す
 	 *
 	 * @access public
-	 * @param Tuple $info getInfoで取得した画像情報
+	 * @param iterable $info getInfoで取得した画像情報
 	 * @return XMLElement img要素
 	 */
-	public function createElement (Tuple $info) {
+	public function createElement (iterable $info) {
 		$element = new ImageElement(null, $this->getUserAgent());
 		$element->setAttributes($info);
 		return $element;
@@ -291,10 +291,10 @@ class ImageManager {
 	 * パラメータ配列から画像コンテナを返す
 	 *
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return ImageContainer 画像コンテナ
 	 */
-	public function search (ParameterHolder $params) {
+	public function search (iterable $params) {
 		$params = Tuple::create($params);
 		if (!StringUtils::isBlank($params['src'])) {
 			return (new MediaFileFinder)->execute($params);

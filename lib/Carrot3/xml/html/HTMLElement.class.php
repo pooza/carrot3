@@ -142,7 +142,7 @@ class HTMLElement extends XMLElement {
 	 * @param mixed $styles スタイル
 	 */
 	public function setStyles ($styles) {
-		if ($styles instanceof ParameterHolder) {
+		if (is_iterable($styles)) {
 			$this->styles = new CSSSelector($styles);
 		} else {
 			$this->styles->clear();

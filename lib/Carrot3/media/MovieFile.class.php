@@ -73,11 +73,11 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * 表示用のHTML要素を返す
 	 *
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @param UserAgent $useragent 対象ブラウザ
 	 * @return DivisionElement 要素
 	 */
-	public function createElement (ParameterHolder $params, UserAgent $useragent = null) {
+	public function createElement (iterable $params, UserAgent $useragent = null) {
 		switch ($params['mode']) {
 			case 'lity':
 				return $this->createLityElement($params);
@@ -90,10 +90,10 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * Lityへのリンク要素を返す
 	 *
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return DivisionElement 要素
 	 */
-	public function createLityElement (ParameterHolder $params) {
+	public function createLityElement (iterable $params) {
 		$params = Tuple::create($params);
 		if (!$params['width_movie']) {
 			$params['width_movie'] = $params['width'];
@@ -125,10 +125,10 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * video要素を返す
 	 *
 	 * @access public
-	 * @param ParameterHolder $params パラメータ配列
+	 * @param iterable $params パラメータ配列
 	 * @return VideoElement 要素
 	 */
-	public function createVideoElement (ParameterHolder $params) {
+	public function createVideoElement (iterable $params) {
 		$this->resizeByWidth($params, $useragent);
 		$element = new VideoElement;
 		$element->registerSource($this->createURL($params));
