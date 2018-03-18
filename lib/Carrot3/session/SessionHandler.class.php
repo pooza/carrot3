@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class SessionHandler {
+class SessionHandler implements \ArrayAccess {
 	use BasicObject;
 	private $storage;
 	protected $directory;
@@ -111,6 +111,41 @@ class SessionHandler {
 		if (isset($_SESSION[$key])) {
 			unset($_SESSION[$key]);
 		}
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 * @return bool 要素が存在すればTrue
+	 */
+	public function offsetExists ($key) {
+		return ($this[$key] !== null);
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 * @return mixed 要素
+	 */
+	public function offsetGet ($key) {
+		return $this->read($key);
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 * @param mixed 要素
+	 */
+	public function offsetSet ($key, $value) {
+		$this->write($key, $value);
+	}
+
+	/**
+	 * @access public
+	 * @param string $key 添え字
+	 */
+	public function offsetUnset ($key) {
+		$this->remove($key);
 	}
 
 	/**

@@ -24,20 +24,20 @@ class User extends ParameterHolder {
 	protected function __construct () {
 		$this->attributes = Tuple::create();
 		$this->attributes->setParameters(filter_input_array(INPUT_COOKIE));
-		$this->attributes->setParameters($this->getSession()->read('attributes'));
+		$this->attributes->setParameters($this->getSession()['attributes']);
 
 		$this->credentials = Tuple::create();
-		$this->credentials->setParameters($this->getSession()->read('credentials'));
+		$this->credentials->setParameters($this->getSession()['credentials']);
 
-		$this->id = $this->getSession()->read(__CLASS__);
+		$this->id = $this->getSession()[__CLASS__];
 	}
 
 	/**
 	 * @access public
 	 */
 	public function __destruct () {
-		$this->getSession()->write('attributes', $this->attributes);
-		$this->getSession()->write('credentials', $this->credentials);
+		$this->getSession()['attributes'] = $this->attributes;
+		$this->getSession()['credentials'] = $this->credentials;
 	}
 
 	/**
@@ -206,7 +206,7 @@ class User extends ParameterHolder {
 	 */
 	public function pass (UserIdentifier $identifier) {
 		$this->id = $identifier->getID();
-		$this->getSession()->write(__CLASS__, $this->id);
+		$this->getSession()[__CLASS__] = $this->id;
 		$this->getSession()->refresh();
 		foreach ($identifier->getCredentials() as $credential) {
 			$this->allow($credential);
@@ -221,7 +221,7 @@ class User extends ParameterHolder {
 	public function logout () {
 		$this->id = null;
 		$this->revokeAll();
-		$this->getSession()->write(__CLASS__, null);
+		$this->getSession()[__CLASS__] = null;
 		$this->getSession()->refresh();
 	}
 
