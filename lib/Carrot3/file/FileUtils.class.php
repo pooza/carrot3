@@ -27,7 +27,7 @@ class FileUtils {
 	 * @return Directory ディレクトリ
 	 * @static
 	 */
-	static public function getDirectory ($name) {
+	static public function getDirectory (string $name) {
 		return DirectoryLayout::getInstance()[$name];
 	}
 
@@ -39,7 +39,7 @@ class FileUtils {
 	 * @return string パス
 	 * @static
 	 */
-	static public function getPath ($name) {
+	static public function getPath (string $name) {
 		if ($dir = self::getDirectory($name)) {
 			return $dir->getPath();
 		}
@@ -53,7 +53,7 @@ class FileUtils {
 	 * @return HTTPURL URL
 	 * @static
 	 */
-	static public function createURL ($name, $path = '') {
+	static public function createURL (string $name, $path = '') {
 		if (self::getDirectory($name)) {
 			$url = DirectoryLayout::getInstance()->createURL($name);
 			$url['path'] .= $path;
@@ -69,7 +69,7 @@ class FileUtils {
 	 * @return string 拡張子
 	 * @static
 	 */
-	static public function getSuffix ($name) {
+	static public function getSuffix (string $name) {
 		$parts = StringUtils::explode('.', $name);
 		if (1 < $parts->count()) {
 			return StringUtils::toLower('.' . $parts->getIterator()->getLast());
@@ -86,7 +86,7 @@ class FileUtils {
 	 * @return string MIMEタイプ
 	 * @static
 	 */
-	static public function getDefaultType ($name) {
+	static public function getDefaultType (string $name) {
 		return MIMEType::getType($name);
 	}
 
@@ -98,7 +98,7 @@ class FileUtils {
 	 * @return bool ドットから始まるならTrue
 	 * @static
 	 */
-	static public function isDottedName ($name) {
+	static public function isDottedName (string $name) {
 		return mb_ereg('^\\.', basename($name));
 	}
 

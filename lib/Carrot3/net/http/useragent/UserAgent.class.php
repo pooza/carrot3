@@ -24,7 +24,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access protected
 	 * @param string $name ユーザーエージェント名
 	 */
-	protected function __construct ($name = null) {
+	protected function __construct (?string $name = null) {
 		$this->supports = Tuple::create();
 		$this['name'] = $name;
 		$this['type'] = $this->getType();
@@ -51,7 +51,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @return UserAgent インスタンス
 	 * @static
 	 */
-	static public function create ($name, $type = null) {
+	static public function create (?string $name, $type = null) {
 		if (!$type) {
 			$type = self::getDefaultType($name);
 		}
@@ -67,7 +67,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @return string タイプ名
 	 * @static
 	 */
-	static public function getDefaultType ($name) {
+	static public function getDefaultType (string $name) {
 		foreach (self::getTypes() as $type) {
 			$class = Loader::getInstance()->getClass($type . 'UserAgent');
 			$instance = new $class;
@@ -170,7 +170,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access public
 	 * @param string $name ユーザーエージェント名
 	 */
-	public function setName ($name) {
+	public function setName (?string $name) {
 		$this['name'] = $name;
 	}
 
@@ -181,7 +181,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @param string $name サポート名
 	 * @return bool サポートがあるならTrue
 	 */
-	public function hasSupport ($name) {
+	public function hasSupport (string $name) {
 		return !!$this->supports[$name];
 	}
 
@@ -270,7 +270,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @param string $name ファイル名
 	 * @return string エンコード済みファイル名
 	 */
-	public function encodeFileName ($name) {
+	public function encodeFileName (string $name) {
 		$name = MIMEUtils::encode($name);
 		return addslashes($name);
 	}

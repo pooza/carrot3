@@ -56,7 +56,7 @@ abstract class DirectoryEntry {
 	 * @param string $name 新しい名前
 	 * @final
 	 */
-	final public function setName ($name) {
+	final public function setName (string $name) {
 		return $this->rename($name);
 	}
 
@@ -66,7 +66,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @param string $name 新しい名前
 	 */
-	public function rename ($name) {
+	public function rename (string $name) {
 		if (!$this->isExists()) {
 			throw new FileException($this . 'が存在しません。');
 		} else if (StringUtils::isContain('/', $name)) {
@@ -253,7 +253,7 @@ abstract class DirectoryEntry {
 	 * @param string $name リンクのファイル名。空欄の場合は、元ファイルと同じ。
 	 * @return DirectoryEntry リンク先
 	 */
-	public function createLink (Directory $dir, $name = null) {
+	public function createLink (Directory $dir, string $name = null) {
 		if (StringUtils::isBlank($name)) {
 			$name = $this->getName();
 		}

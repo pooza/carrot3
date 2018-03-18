@@ -20,7 +20,7 @@ class FormElement extends HTMLElement {
 	 * @param string $name 要素の名前
 	 * @param UserAgent $useragent 対象UserAgent
 	 */
-	public function __construct ($name = null, UserAgent $useragent = null) {
+	public function __construct (string $name = null, UserAgent $useragent = null) {
 		parent::__construct($name);
 		foreach ($this->getUserAgent()->getQuery() as $key => $value) {
 			$this->addHiddenField($key, $value);
@@ -125,7 +125,7 @@ class FormElement extends HTMLElement {
 	 * @param string $value 値
 	 * @return XMLElement 追加されたinput要素
 	 */
-	public function addHiddenField ($name, $value) {
+	public function addHiddenField (string $name, $value) {
 		$hidden = $this->createElement('input');
 		$hidden->setEmptyElement(true);
 		$hidden->setAttribute('type', 'hidden');

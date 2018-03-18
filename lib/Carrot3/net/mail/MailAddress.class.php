@@ -26,7 +26,7 @@ class MailAddress implements Assignable {
 	 * @param string $contents メールアドレス
 	 * @param string $name 名前
 	 */
-	private function __construct ($contents, $name = null) {
+	private function __construct ($contents, string $name = null) {
 		if (StringUtils::isBlank($name) && mb_ereg('^(.+) *<(.+)>$', $contents, $matches)) {
 			$name = $matches[1];
 			$contents = $matches[2];
@@ -46,7 +46,7 @@ class MailAddress implements Assignable {
 	 * @return MailAddress インスタンス
 	 * @static
 	 */
-	static public function create ($contents, $name = null) {
+	static public function create ($contents, string $name = null) {
 		$email = new self($contents, $name);
 		if (!StringUtils::isBlank($email->getContents())) {
 			return $email;

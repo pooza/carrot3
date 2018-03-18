@@ -29,7 +29,7 @@ abstract class Test {
 	 * @param string $name プロパティ名
 	 * @return mixed 各種オブジェクト
 	 */
-	public function __get ($name) {
+	public function __get (string $name) {
 		switch ($name) {
 			case 'controller':
 			case 'request':
@@ -63,7 +63,7 @@ abstract class Test {
 	 * @param string $name テスト名
 	 * @param bool マッチするならTrue
 	 */
-	public function isMatched ($name) {
+	public function isMatched (string $name) {
 		return StringUtils::isContain(
 			StringUtils::toLower($name),
 			StringUtils::toLower(Utils::getShortClass($this))
@@ -85,7 +85,7 @@ abstract class Test {
 	 * @param string $name アサーションの名前
 	 * @param bool $assertion アサーションの内容
 	 */
-	public function assert ($name, bool $assertion) {
+	public function assert (string $name, bool $assertion) {
 		try {
 			if (!$assertion) {
 				return $this->setError($name);
@@ -102,7 +102,7 @@ abstract class Test {
 	 * @param string $name アサーションの名前
 	 * @param string $message エラーメッセージ
 	 */
-	public function setError ($name, $message = null) {
+	public function setError (string $name, $message = null) {
 		$this->errors[] = $name;
 		$message = new StringFormat('  %s NG!!!');
 		$message[] = $name;

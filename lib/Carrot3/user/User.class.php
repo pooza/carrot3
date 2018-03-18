@@ -77,7 +77,7 @@ class User extends ParameterHolder {
 	 *   self::COOKIE cookieのみ
 	 * @return mixed 属性値
 	 */
-	public function getAttribute ($name, int $flags = 0) {
+	public function getAttribute (string $name, int $flags = 0) {
 		if ($flags & self::COOKIE) {
 			return filter_input(INPUT_COOKIE, $name);
 		}
@@ -91,7 +91,7 @@ class User extends ParameterHolder {
 	 * @param string $name 属性名
 	 * @return bool 属性値が存在すればTrue
 	 */
-	public function hasAttribute ($name) {
+	public function hasAttribute (string $name) {
 		return $this->attributes->hasParameter($name);
 	}
 
@@ -104,7 +104,7 @@ class User extends ParameterHolder {
 	 * @param Date $expire 期限
 	 * @param string $domain 対象ドメイン
 	 */
-	public function setAttribute ($name, $value, Date $expire = null, $domain = null) {
+	public function setAttribute (string $name, $value, Date $expire = null, $domain = null) {
 		$this->attributes[(string)$name] = $value;
 		if ($expire) {
 			if (StringUtils::isBlank($domain)) {
@@ -129,7 +129,7 @@ class User extends ParameterHolder {
 	 * @param string $name 属性名
 	 * @param string $domain Cookieの対象ドメイン
 	 */
-	public function removeAttribute ($name, $domain = null) {
+	public function removeAttribute (string $name, $domain = null) {
 		$this->attributes->removeParameter($name);
 
 		if (StringUtils::isBlank($domain)) {
@@ -271,7 +271,7 @@ class User extends ParameterHolder {
 	 * @param string $name クレデンシャル名
 	 * @return bool 持っていればTrue
 	 */
-	public function hasCredential ($name) {
+	public function hasCredential (?string $name) {
 		return StringUtils::isBlank($name) || $this->credentials[$name];
 	}
 

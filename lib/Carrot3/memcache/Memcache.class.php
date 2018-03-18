@@ -78,7 +78,7 @@ class Memcache implements \ArrayAccess {
 	 * @param string $name 属性名
 	 * @return mixed 属性値
 	 */
-	public function getAttribute ($name) {
+	public function getAttribute (string $name) {
 		return $this->attributes[$name];
 	}
 
@@ -121,7 +121,7 @@ class Memcache implements \ArrayAccess {
 	 * @param string $name キー
 	 * @return string エントリーの値
 	 */
-	public function get ($name) {
+	public function get (string $name) {
 		return $this->memcached->get($this->createKey($name));
 	}
 
@@ -135,7 +135,7 @@ class Memcache implements \ArrayAccess {
 	 * @param int $expire 項目の有効期限。秒数又はタイムスタンプ。
 	 * @return bool 処理の成否
 	 */
-	public function set ($name, $value, int $flag = null, int $expire = 0) {
+	public function set (string $name, $value, int $flag = null, int $expire = 0) {
 		if ($value instanceof ParameterHolder) {
 			$value = Tuple::create($value)->decode();
 		} else if (is_object($value)) {
@@ -151,7 +151,7 @@ class Memcache implements \ArrayAccess {
 	 * @param string $name エントリー名
 	 * @return bool 処理の成否
 	 */
-	public function delete ($name) {
+	public function delete (string $name) {
 		return $this->memcached->delete($this->createKey($name));
 	}
 
@@ -162,7 +162,7 @@ class Memcache implements \ArrayAccess {
 	 * @param string $name エントリー名
 	 * @return string memcachedでの属性名
 	 */
-	protected function createKey ($name) {
+	protected function createKey (string $name) {
 		return Crypt::digest([
 			$this->controller->getHost()->getName(),
 			Utils::getShortClass($this),

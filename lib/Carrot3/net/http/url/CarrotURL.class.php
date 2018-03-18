@@ -24,7 +24,7 @@ class CarrotURL extends HTTPURL {
 	 * @param mixed $value 値
 	 * @return CarrotURL 自分自身
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		switch ($name) {
 			case 'module':
 			case 'module_name':

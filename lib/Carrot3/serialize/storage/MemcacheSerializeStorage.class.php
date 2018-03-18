@@ -48,7 +48,7 @@ class MemcacheSerializeStorage implements SerializeStorage {
 	 * @param Date $date 比較する日付 - この日付より古い属性値は破棄
 	 * @return mixed 属性値
 	 */
-	public function getAttribute ($name, Date $date = null) {
+	public function getAttribute (string $name, Date $date = null) {
 		if ($entry = $this->getEntry($name)) {
 			if (!$date || !$entry['update_date']->isPast($date)) {
 				return $entry['contents'];
@@ -64,7 +64,7 @@ class MemcacheSerializeStorage implements SerializeStorage {
 	 * @param mixed $value 値
 	 * @return string シリアライズされた値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		$values = [
 			'update_date' => Date::create()->format('Y-m-d H:i:s'),
 			'contents' => $value,
@@ -80,7 +80,7 @@ class MemcacheSerializeStorage implements SerializeStorage {
 	 * @access public
 	 * @param string $name 属性の名前
 	 */
-	public function removeAttribute ($name) {
+	public function removeAttribute (string $name) {
 		return $this->server->delete($name);
 	}
 
@@ -101,13 +101,13 @@ class MemcacheSerializeStorage implements SerializeStorage {
 	 * @param string $name 属性の名前
 	 * @return Date 更新日
 	 */
-	public function getUpdateDate ($name) {
+	public function getUpdateDate (string $name) {
 		if ($entry = $this->getEntry($name)) {
 			return $entry['update_date'];
 		}
 	}
 
-	private function getEntry ($name) {
+	private function getEntry (string $name) {
 		if ($values = $this->server->get($name)) {
 			$values = $this->serializer->decode($values);
 			$entry = Tuple::create($values);

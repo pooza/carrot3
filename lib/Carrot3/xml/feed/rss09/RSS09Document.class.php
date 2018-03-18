@@ -18,7 +18,7 @@ class RSS09Document extends XMLDocument implements FeedDocument {
 	 * @access public
 	 * @param string $name 要素の名前
 	 */
-	public function __construct ($name = null) {
+	public function __construct (string $name = null) {
 		parent::__construct('rss');
 		$this->setAttribute('version', $this->version);
 		$this->setDate(Date::create());
@@ -145,7 +145,7 @@ class RSS09Document extends XMLDocument implements FeedDocument {
 	 * @param string $name 名前
 	 * @param MailAddress $email メールアドレス
 	 */
-	public function setAuthor ($name, MailAddress $email = null) {
+	public function setAuthor (string $name, MailAddress $email = null) {
 		if (!$element = $this->getChannel()->getElement('managingEditor')) {
 			$element = $this->getChannel()->createElement('managingEditor');
 		}

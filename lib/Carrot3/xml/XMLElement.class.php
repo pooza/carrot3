@@ -25,7 +25,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @access public
 	 * @param string $name 要素の名前
 	 */
-	public function __construct ($name = null) {
+	public function __construct (string $name = null) {
 		$this->attributes = Tuple::create();
 		$this->elements = Tuple::create();
 		if (!StringUtils::isBlank($name)) {
@@ -40,7 +40,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @param string $name 属性名
 	 * @return string 属性値
 	 */
-	public function getAttribute ($name) {
+	public function getAttribute (string $name) {
 		return $this->attributes[$name];
 	}
 
@@ -61,7 +61,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @param string $name 属性名
 	 * @param mixed $value 属性値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		$value = trim($value);
 		$value = StringUtils::convertEncoding($value, 'utf-8');
 		$this->attributes[$name] = $value;
@@ -74,7 +74,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @access public
 	 * @param string $name 属性名
 	 */
-	public function removeAttribute ($name) {
+	public function removeAttribute (string $name) {
 		$this->attributes->removeParameter($name);
 		$this->contents = null;
 	}
@@ -107,7 +107,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @access public
 	 * @param string $name 名前
 	 */
-	public function setName ($name) {
+	public function setName (string $name) {
 		$this->name = $name;
 		$this->contents = null;
 	}
@@ -151,7 +151,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @param string $name 名前
 	 * @return XMLElement 名前に一致する最初の要素
 	 */
-	public function getElement ($name) {
+	public function getElement (string $name) {
 		foreach ($this->getElements() as $child) {
 			if ($child->getName() == $name) {
 				return $child;
@@ -210,7 +210,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @param string $body 要素の本文
 	 * @return XMLElement 要素
 	 */
-	public function createElement ($name, $body = null) {
+	public function createElement (string $name, $body = null) {
 		$element = $this->addElement(new XMLElement($name));
 		$element->setBody($body);
 		return $element;
@@ -255,7 +255,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @access public
 	 * @param string $namespace ネームスペース
 	 */
-	public function setNamespace ($namespace) {
+	public function setNamespace (string $namespace) {
 		$this->setAttribute('xmlns', $namespace);
 	}
 

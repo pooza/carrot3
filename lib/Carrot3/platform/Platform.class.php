@@ -31,7 +31,7 @@ abstract class Platform extends ParameterHolder {
 	 * @return Platform インスタンス
 	 * @static
 	 */
-	static public function create ($name) {
+	static public function create (string $name) {
 		try {
 			$class = Loader::getInstance()->getClass($name . 'Platform');
 		} catch (LoaderException $e) {
@@ -90,7 +90,7 @@ abstract class Platform extends ParameterHolder {
 	 * @param string $name ディレクトリ名
 	 * @return Directory ディレクトリ
 	 */
-	public function getDirectory ($name) {
+	public function getDirectory (string $name) {
 		$constants = new ConstantHandler($name);
 		foreach ([$this->getName(), 'DEFAULT'] as $suffix) {
 			if (!StringUtils::isBlank($path = $constants['DIR_' . $suffix])) {

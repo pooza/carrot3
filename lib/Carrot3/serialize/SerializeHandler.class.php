@@ -66,7 +66,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @param Date $date 比較する日付 - この日付より古い属性値は破棄
 	 * @return mixed 属性値
 	 */
-	public function getAttribute ($name, Date $date = null) {
+	public function getAttribute (string $name, Date $date = null) {
 		return $this->storage->getAttribute($this->createKey($name), $date);
 	}
 
@@ -77,7 +77,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @param string $name 属性の名前
 	 * @return Date 更新日
 	 */
-	public function getUpdateDate ($name) {
+	public function getUpdateDate (string $name) {
 		return $this->storage->getUpdateDate($this->createKey($name));
 	}
 
@@ -88,7 +88,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @param string $name 属性の名前
 	 * @param mixed $value 値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		if (is_iterable($value)) {
 			$value = Tuple::create($value)->decode();
 		}
@@ -101,7 +101,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @access public
 	 * @param string $name 属性の名前
 	 */
-	public function removeAttribute ($name) {
+	public function removeAttribute (string $name) {
 		$this->storage->removeAttribute($this->createKey($name));
 	}
 
@@ -147,7 +147,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @param mixed $name 属性名に用いる値
 	 * @return string 属性名
 	 */
-	public function createKey ($name) {
+	public function createKey (string $name) {
 		if ($name instanceof Serializable) {
 			return $name->digest();
 		} else if (is_object($name)) {

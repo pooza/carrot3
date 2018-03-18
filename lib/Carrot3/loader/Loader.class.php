@@ -181,7 +181,7 @@ class Loader {
 		}
 	}
 
-	private function loadPath ($type, $namespace, $path) {
+	private function loadPath ($type, string $namespace, $path) {
 		$iterator = new \RecursiveDirectoryIterator($path);
 		$entries = [];
 		foreach ($iterator as $entry) {

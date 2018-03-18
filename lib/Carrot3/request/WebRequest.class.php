@@ -54,7 +54,7 @@ class WebRequest extends Request {
 	 * @param string $class クラス名
 	 * @return string 出力内容
 	 */
-	public function getUploadedFile ($name = 'file', $class = 'File') {
+	public function getUploadedFile (string $name = 'file', $class = 'File') {
 		$class = $this->loader->getClass($class);
 		return new $class($this[$name]['tmp_name']);
 	}

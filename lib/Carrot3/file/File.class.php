@@ -149,7 +149,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @param string $name 新しい名前
 	 */
-	public function rename ($name) {
+	public function rename (string $name) {
 		if ($this->isOpened()) {
 			throw new FileException($this . 'は既に開かれています。');
 		}
@@ -417,7 +417,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @param string $name 属性名
 	 * @return mixed 属性
 	 */
-	public function getAttribute ($name) {
+	public function getAttribute (string $name) {
 		return $this->attributes[$name];
 	}
 

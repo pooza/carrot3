@@ -52,7 +52,7 @@ class MIMEHeader extends ParameterHolder {
 	 * @param string $name ヘッダ名
 	 * @return MIMEHeader ヘッダ
 	 */
-	static public function create ($name) {
+	static public function create (string $name) {
 		$name = self::capitalize($name);
 		try {
 			$loader = Loader::getInstance();
@@ -65,7 +65,7 @@ class MIMEHeader extends ParameterHolder {
 		return $header;
 	}
 
-	static private function capitalize ($name) {
+	static private function capitalize (string $name) {
 		$name = StringUtils::stripControlCharacters($name);
 		$name = StringUtils::explode('-', $name);
 		$name = StringUtils::capitalize($name);
@@ -88,7 +88,7 @@ class MIMEHeader extends ParameterHolder {
 	 * @access public
 	 * @param string $name ヘッダ名
 	 */
-	public function setName ($name) {
+	public function setName (string $name) {
 		$this->name = $name;
 	}
 

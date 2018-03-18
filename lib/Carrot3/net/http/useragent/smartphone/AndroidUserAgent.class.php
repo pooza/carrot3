@@ -17,7 +17,7 @@ class AndroidUserAgent extends BlinkUserAgent {
 	 * @access protected
 	 * @param string $name ユーザーエージェント名
 	 */
-	protected function __construct ($name = null) {
+	protected function __construct (?string $name = null) {
 		parent::__construct($name);
 		$this->supports['html5_audio'] = version_compare('534.30', $this->getVersion(), '<');
 		$this->supports['html5_video'] = version_compare('534.30', $this->getVersion(), '<');

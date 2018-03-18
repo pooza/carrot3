@@ -36,7 +36,7 @@ class TestManager implements \IteratorAggregate {
 		}
 	}
 
-	private function load ($namespace, Directory $dir) {
+	private function load (string $namespace, Directory $dir) {
 		$tests = Tuple::create();
 		foreach ($dir as $entry) {
 			if (!$entry->isDotted()) {
@@ -59,7 +59,7 @@ class TestManager implements \IteratorAggregate {
 	 * @param string $name テスト名
 	 * @return bool 成功ならTrue
 	 */
-	public function execute ($name = null) {
+	public function execute (string $name = null) {
 		foreach ($this as $test) {
 			if (StringUtils::isBlank($name) || $test->isMatched($name)) {
 				$message = new StringFormat('%s:');

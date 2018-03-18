@@ -47,7 +47,7 @@ class POP3Mail extends MIMEDocument {
 	 * @param string $name 名前
 	 * @return MIMEHeader ヘッダ
 	 */
-	public function getHeader ($name) {
+	public function getHeader (string $name) {
 		if (!$this->getHeaders()->count()) {
 			$this->fetchHeaders();
 		}

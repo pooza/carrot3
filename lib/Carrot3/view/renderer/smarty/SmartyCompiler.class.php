@@ -57,7 +57,7 @@ class SmartyCompiler extends \Smarty_Compiler {
 	 * @param string $name 属性名
 	 * @return mixed 属性
 	 */
-	public function getAttribute ($name) {
+	public function getAttribute (string $name) {
 		return $this->$name;
 	}
 
@@ -68,7 +68,7 @@ class SmartyCompiler extends \Smarty_Compiler {
 	 * @param string $name 属性名
 	 * @param mixed $value 属性値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		$this->$name = $value;
 	}
 

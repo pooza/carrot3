@@ -84,7 +84,7 @@ abstract class DataSourceName extends ParameterHolder {
 	 * @param string $name 定数名
 	 * @return string 定数
 	 */
-	public function getConstant ($name) {
+	public function getConstant (string $name) {
 		if (!$this->constants) {
 			$this->constants = new ConstantHandler(
 				'PDO_' . $this['connection_name']

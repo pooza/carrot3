@@ -71,7 +71,7 @@ class FilterSet extends Tuple {
 	 * @param mixed $filter 要素（フィルタ）
 	 * @param bool $position 先頭ならTrue
 	 */
-	public function setParameter ($name, $filter, bool $position = self::POSITION_BOTTOM) {
+	public function setParameter (?string $name, $filter, bool $position = self::POSITION_BOTTOM) {
 		if (($filter instanceof Filter) == false) {
 			throw new FilterException('フィルターセットに加えられません。');
 		}

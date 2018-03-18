@@ -40,7 +40,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @return Pictogram 絵文字
 	 * @static
 	 */
-	static public function create ($name) {
+	static public function create (string $name) {
 		if (!self::$instances) {
 			self::$instances = Tuple::create();
 		}
@@ -247,7 +247,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @return int 絵文字コード
 	 * @static
 	 */
-	static public function getPictogramCode ($name) {
+	static public function getPictogramCode (string $name) {
 		$config = ConfigManager::getInstance()->compile('pictogram');
 		if (is_numeric($name) && isset($config['names'][$name])) {
 			return $name;

@@ -54,7 +54,7 @@ abstract class Request extends HTTPRequest {
 	 * @param string $name 属性名
 	 * @return mixed 属性
 	 */
-	public function getAttribute ($name) {
+	public function getAttribute (string $name) {
 		return $this->getAttributes()[$name];
 	}
 
@@ -77,7 +77,7 @@ abstract class Request extends HTTPRequest {
 	 * @access public
 	 * @param string $name オプション名
 	 */
-	public function addOption ($name) {
+	public function addOption (string $name) {
 	}
 
 	/**
@@ -108,7 +108,7 @@ abstract class Request extends HTTPRequest {
 	 * @param string $name 属性名
 	 * @return bool 存在すればTrue
 	 */
-	public function hasAttribute ($name) {
+	public function hasAttribute (string $name) {
 		return $this->getAttributes()->hasParameter($name);
 	}
 
@@ -119,7 +119,7 @@ abstract class Request extends HTTPRequest {
 	 * @param string $name エラー名
 	 * @return bool 存在すればTrue
 	 */
-	public function hasError ($name) {
+	public function hasError (string $name) {
 		return $this->getErrors()->hasParameter($name);
 	}
 
@@ -139,7 +139,7 @@ abstract class Request extends HTTPRequest {
 	 * @access public
 	 * @param string $name 属性名
 	 */
-	public function removeAttribute ($name) {
+	public function removeAttribute (string $name) {
 		$this->getAttributes()->removeParameter($name);
 	}
 
@@ -149,7 +149,7 @@ abstract class Request extends HTTPRequest {
 	 * @access public
 	 * @param string $name エラー名
 	 */
-	public function removeError ($name) {
+	public function removeError (string $name) {
 		$this->getErrors()->removeParameter($name);
 	}
 
@@ -160,7 +160,7 @@ abstract class Request extends HTTPRequest {
 	 * @param string $name 属性名
 	 * @param mixed $value 値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		$this->getAttributes()->setParameter((string)$name, $value);
 	}
 
@@ -181,7 +181,7 @@ abstract class Request extends HTTPRequest {
 	 * @param string $name エラー名
 	 * @param mixed $value 値
 	 */
-	public function setError ($name, $value) {
+	public function setError (string $name, $value) {
 		if ($value instanceof MessageContainer) {
 			$value = $value->getMessage();
 		}

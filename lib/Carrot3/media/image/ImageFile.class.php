@@ -49,7 +49,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @access public
 	 * @param string $name 新しい名前
 	 */
-	public function rename ($name) {
+	public function rename (string $name) {
 		$name .= Image::getSuffixes()[$this->getRenderer()->getType()];
 		parent::rename($name);
 	}
@@ -200,7 +200,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @param string $name 画像名
 	 * @param ImageFile $file 画像ファイル
 	 */
-	public function setImageFile ($name, ImageFile $file) {
+	public function setImageFile (string $name, ImageFile $file) {
 		$this->getRenderer()->setImage($file);
 		$this->save();
 	}

@@ -203,7 +203,7 @@ class View extends HTTPResponse {
 	 * @param string $filename ファイル名
 	 * @param string $mode モード
 	 */
-	public function setFileName ($name, $mode = MIMEUtils::ATTACHMENT) {
+	public function setFileName (string $name, $mode = MIMEUtils::ATTACHMENT) {
 		parent::setFileName($this->useragent->encodeFileName($name), $mode);
 		$this->filename = $name;
 	}

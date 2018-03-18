@@ -123,7 +123,7 @@ abstract class MediaConvertor {
 	 * @param string $name 設定値の名前
 	 * @param string $value 設定値
 	 */
-	public function setConfig ($name, $value) {
+	public function setConfig (string $name, $value) {
 		$options = self::getOptions();
 		if ($option = $options[$name]) {
 			$this->config[$option] = $value;
@@ -139,7 +139,7 @@ abstract class MediaConvertor {
 	 * @param string $name 定数名
 	 * @return string 定数値
 	 */
-	public function getConstant ($name) {
+	public function getConstant (string $name) {
 		return $this->constants[$name];
 	}
 

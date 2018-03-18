@@ -17,7 +17,7 @@ trait BasicObject {
 	 * @param string $name プロパティ名
 	 * @return mixed 各種オブジェクト
 	 */
-	public function __get ($name) {
+	public function __get (string $name) {
 		switch ($name) {
 			case 'loader':
 				return Loader::getInstance();

@@ -21,7 +21,7 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * @access public
 	 * @param mixed $name スクリーンネーム
 	 */
-	public function __construct ($name) {
+	public function __construct (string $name) {
 		$this->service = new TwitterService;
 		$this->name = $name;
 	}

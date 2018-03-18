@@ -33,7 +33,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @return Database インスタンス
 	 * @static
 	 */
-	static public function getInstance ($name = 'default', int $flags = 0) {
+	static public function getInstance (string $name = 'default', int $flags = 0) {
 		if (!self::$instances) {
 			self::$instances = Tuple::create();
 		}
@@ -168,7 +168,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @param string $name テーブルの名前
 	 * @return TableProfile テーブルのプロフィール
 	 */
-	public function getTableProfile ($name) {
+	public function getTableProfile (string $name) {
 		if (!$this->profiles) {
 			$this->profiles = Tuple::create();
 		}
@@ -472,7 +472,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @param bool $quotes クォートする
 	 * @return string 関数の記述
 	 */
-	public function getFunction ($name, $value, bool $quotes = false) {
+	public function getFunction (string $name, $value, bool $quotes = false) {
 		$func = new StringFormat('%s(%s)');
 		$func[] = $name;
 		if (!!$quotes) {

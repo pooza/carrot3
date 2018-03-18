@@ -154,7 +154,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 * @param string $name 属性の名前
 	 * @return string 属性
 	 */
-	public function getAttribute ($name) {
+	public function getAttribute (string $name) {
 		return $this->attributes[$name];
 	}
 
@@ -166,7 +166,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 * @param mixed $value 値
 	 * @return URL 自分自身
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		$this->contents = null;
 		switch ($name) {
 			case 'scheme':

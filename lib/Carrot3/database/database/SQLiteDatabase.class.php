@@ -92,7 +92,7 @@ class SQLiteDatabase extends Database {
 	 * @param bool $quotes クォートする
 	 * @return string 関数の記述
 	 */
-	public function getFunction ($name, $value, bool $quotes = false) {
+	public function getFunction (string $name, $value, bool $quotes = false) {
 		switch ($name) {
 			case 'year':
 				$func = new StringFormat('strftime(\'%%Y\', %s)');

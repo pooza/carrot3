@@ -35,7 +35,7 @@ class ConsoleRequest extends Request {
 	 * @access public
 	 * @param string $name オプション名
 	 */
-	public function addOption ($name) {
+	public function addOption (string $name) {
 		$this->options[$name] = [
 			'name' => $name,
 		];

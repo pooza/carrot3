@@ -18,7 +18,7 @@ class AuUserAgent extends MobileUserAgent {
 	 * @access protected
 	 * @param string $name ユーザーエージェント名
 	 */
-	protected function __construct ($name = null) {
+	protected function __construct (?string $name = null) {
 		if (StringUtils::isBlank($name)) {
 			$name = self::DEFAULT_NAME;
 		}

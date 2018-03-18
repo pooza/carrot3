@@ -78,7 +78,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $name 属性名
 	 * @return string 属性値
 	 */
-	public function getAttribute ($name) {
+	public function getAttribute (string $name) {
 		return $this->attributes[StringUtils::toLower($name)];
 	}
 
@@ -327,7 +327,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $name 名前
 	 * @return Tuple 添付ファイルの情報
 	 */
-	public function getAttachmentInfo ($name) {
+	public function getAttachmentInfo (string $name) {
 		if (($file = $this->getAttachment($name)) && ($file instanceof Assibnable)) {
 			return $file->assign();
 		}
@@ -340,7 +340,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $name 名前
 	 * @return File 添付ファイル
 	 */
-	public function getAttachment ($name) {
+	public function getAttachment (string $name) {
 		$finder = new MediaFileFinder;
 		$finder->clearDirectories();
 		$finder->registerDirectory($this->getTable()->getDirectory());
@@ -356,7 +356,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param File $file 添付ファイル
 	 * @param string $filename ファイル名
 	 */
-	public function setAttachment ($name, File $file, $filename = null) {
+	public function setAttachment (string $name, File $file, $filename = null) {
 		if ($file instanceof ImageFile) {
 			$this->removeImageFile($name);
 			$file->rename($this->getImageFileBaseName($name));
@@ -386,7 +386,7 @@ abstract class Record implements \ArrayAccess,
 	 * @access public
 	 * @param string $name 名前
 	 */
-	public function removeAttachment ($name) {
+	public function removeAttachment (string $name) {
 		if ($file = $this->getAttachment($name)) {
 			$file->delete();
 			$message = new StringFormat('%sの%sを削除しました。');
@@ -403,7 +403,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $name 名前
 	 * @return string 添付ファイルベース名
 	 */
-	public function getAttachmentBaseName ($name) {
+	public function getAttachmentBaseName (string $name) {
 		return sprintf('%010d_%s', $this->getID(), $name);
 	}
 
@@ -414,7 +414,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $name 名前
 	 * @return string ダウンロード時ファイル名
 	 */
-	public function getAttachmentFileName ($name) {
+	public function getAttachmentFileName (string $name) {
 		if ($file = $this->getAttachment($name)) {
 			return $this->getAttachmentBaseName($name) . $file->getSuffix();
 		}

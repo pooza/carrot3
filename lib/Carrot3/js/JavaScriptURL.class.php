@@ -34,7 +34,7 @@ class JavaScriptURL extends URL {
 	 * @param mixed $value 値
 	 * @return URL 自分自身
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		switch ($name) {
 			case 'scheme':
 			case 'path':

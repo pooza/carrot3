@@ -63,7 +63,7 @@ class ImageElement extends HTMLElement {
 	 * @param string $name 属性名
 	 * @param mixed $value 属性値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		switch ($name) {
 			case 'type':
 			case 'pixel_size':

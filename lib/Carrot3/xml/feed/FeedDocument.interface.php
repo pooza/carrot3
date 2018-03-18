@@ -76,7 +76,7 @@ interface FeedDocument {
 	 * @param string $name 名前
 	 * @param MailAddress $email メールアドレス
 	 */
-	public function setAuthor ($name, MailAddress $email = null);
+	public function setAuthor (string $name, MailAddress $email = null);
 
 	/**
 	 * 日付を返す

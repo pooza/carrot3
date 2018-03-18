@@ -48,7 +48,7 @@ class MIMEType extends ParameterHolder {
 	 * @param string $name パラメータ名
 	 * @return mixed パラメータ
 	 */
-	public function getParameter ($name) {
+	public function getParameter (string $name) {
 		return parent::getParameter('.' . ltrim(StringUtils::toLower($name), '.'));
 	}
 
@@ -59,7 +59,7 @@ class MIMEType extends ParameterHolder {
 	 * @param string $name パラメータ名
 	 * @param mixed $value 値
 	 */
-	public function setParameter ($name, $value) {
+	public function setParameter (string $name, $value) {
 		if (!StringUtils::isBlank($value)) {
 			$name = '.' . ltrim($name, '.');
 			$name = StringUtils::toLower($name);

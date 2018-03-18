@@ -129,7 +129,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * @param string $class エントリーのクラス名
 	 * @return DirectoryEntry ディレクトリかファイル
 	 */
-	public function getEntry ($name, $class = null) {
+	public function getEntry (string $name, $class = null) {
 		if (StringUtils::isBlank($class)) {
 			$class = $this->getDefaultEntryClass();
 		}
@@ -154,7 +154,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * @param string $class クラス名
 	 * @return File ファイル
 	 */
-	public function createEntry ($name, $class = null) {
+	public function createEntry (string $name, $class = null) {
 		if (StringUtils::isBlank($class)) {
 			$class = $this->getDefaultEntryClass();
 		}
@@ -273,7 +273,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * @param string $class クラス名
 	 * @return Directory 作成されたディレクトリ
 	 */
-	public function createDirectory ($name, $class = 'Carrot3\\Directory') {
+	public function createDirectory (string $name, $class = 'Carrot3\\Directory') {
 		$path = $this->getPath() . '/' . $name;
 		if (file_exists($path)) {
 			if (!is_dir($path)) {

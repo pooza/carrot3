@@ -17,7 +17,7 @@ class PrestoUserAgent extends UserAgent {
 	 * @access protected
 	 * @param string $name ユーザーエージェント名
 	 */
-	protected function __construct ($name = null) {
+	protected function __construct (?string $name = null) {
 		parent::__construct($name);
 		$this->supports['html5_video'] = true;
 		$this->supports['html5_audio'] = true;

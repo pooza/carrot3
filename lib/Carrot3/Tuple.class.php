@@ -48,7 +48,7 @@ class Tuple extends ParameterHolder {
 	 * @param mixed $value 要素
 	 * @param bool $position 先頭ならTrue
 	 */
-	public function setParameter ($name, $value, bool $position = self::POSITION_BOTTOM) {
+	public function setParameter (?string $name, $value, bool $position = self::POSITION_BOTTOM) {
 		if (StringUtils::isBlank($name)) {
 			if ($position == self::POSITION_TOP) {
 				$this->unshift($value);

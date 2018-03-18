@@ -534,7 +534,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @param string $name フィールド名
 	 * @param string $definition フィールドの定義内容
 	 */
-	protected function createField ($name, $definition) {
+	protected function createField (string $name, $definition) {
 		if (!$this->isTemporary()) {
 			throw new DatabaseException('フィールドは一時テーブルにしか追加できません。');
 		}

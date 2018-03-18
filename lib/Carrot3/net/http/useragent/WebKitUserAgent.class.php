@@ -19,7 +19,7 @@ class WebKitUserAgent extends UserAgent {
 	 * @access protected
 	 * @param string $name ユーザーエージェント名
 	 */
-	protected function __construct ($name = null) {
+	protected function __construct (?string $name = null) {
 		parent::__construct($name);
 		$this['is_chrome'] = $this->isChrome();
 		$this['is_edge'] = $this->isEdge();
@@ -65,7 +65,7 @@ class WebKitUserAgent extends UserAgent {
 	 * @param string $name ファイル名
 	 * @return string エンコード済みファイル名
 	 */
-	public function encodeFileName ($name) {
+	public function encodeFileName (string $name) {
 		if ($this->isChrome()) {
 			return rawurlencode($name);
 		} else {

@@ -106,7 +106,7 @@ class Controller {
 	 * $param string $name モジュール名
 	 * @return Module モジュール
 	 */
-	public function getModule ($name = null) {
+	public function getModule (string $name = null) {
 		if (StringUtils::isBlank($name)) {
 			if ($action = $this->getAction()) {
 				return $action->getModule();
@@ -136,7 +136,7 @@ class Controller {
 	 * $param string $name アクション名
 	 * @return Action 名前で指定されたアクション、指定なしの場合は呼ばれたアクション
 	 */
-	public function getAction ($name = null) {
+	public function getAction (string $name = null) {
 		if (StringUtils::isBlank($name)) {
 			return $this->actions->getIterator()->getLast();
 		}
@@ -152,7 +152,7 @@ class Controller {
 	 * @access public
 	 * $param string $name 属性の名前
 	 */
-	public function getAttribute ($name) {
+	public function getAttribute (string $name) {
 		$env = Tuple::create();
 		$env->setParameters(filter_input_array(INPUT_ENV));
 		$env->setParameters($_SERVER);
@@ -201,7 +201,7 @@ class Controller {
 	 * $param string $name フィールド名
 	 * @param string $value フィールド値
 	 */
-	public function setHeader ($name, $value) {
+	public function setHeader (string $name, $value) {
 		$this->headers->setParameter(
 			StringUtils::stripControlCharacters($name),
 			StringUtils::stripControlCharacters($value)

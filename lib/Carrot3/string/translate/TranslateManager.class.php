@@ -56,7 +56,7 @@ class TranslateManager implements \IteratorAggregate {
 	 * @param string $name 辞書の名前
 	 * @param bool $priority 優先順位 (Tuple::POSITION_TOP|Tuple::POSITION_BOTTOM)
 	 */
-	public function setDictionaryPriority ($name, bool $priority) {
+	public function setDictionaryPriority (string $name, bool $priority) {
 		$name = StringUtils::toLower($name);
 		if (!$dictionary = $this->dictionaries[$name]) {
 			$message = new StringFormat('辞書 "%s" は登録されていません。');
@@ -76,7 +76,7 @@ class TranslateManager implements \IteratorAggregate {
 	 * @param string $language 言語
 	 * @return string 訳語
 	 */
-	public function translate ($string, $name = null, $language = null) {
+	public function translate ($string, string $name = null, $language = null) {
 		if (StringUtils::isBlank($string)) {
 			return null;
 		}
@@ -112,7 +112,7 @@ class TranslateManager implements \IteratorAggregate {
 		]);
 	}
 
-	private function createDictionaryNames ($name) {
+	private function createDictionaryNames (string $name) {
 		$names = Tuple::create();
 		$names[] = $name;
 		$names[] = $this->loader->getClass('DictionaryFile') . '.' . $name;
@@ -133,7 +133,7 @@ class TranslateManager implements \IteratorAggregate {
 	 * @return string 訳語
 	 * @final
 	 */
-	final public function execute ($string, $name = null, $language = null) {
+	final public function execute ($string, string $name = null, $language = null) {
 		return $this->translate($string, $name, $language);
 	}
 

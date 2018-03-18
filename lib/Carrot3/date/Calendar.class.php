@@ -68,7 +68,7 @@ class Calendar extends ParameterHolder {
 	 * @param string $name パラメータ名
 	 * @return mixed パラメータ
 	 */
-	public function getParameter ($name) {
+	public function getParameter (string $name) {
 		if ($name instanceof Date) {
 			$name = $name->format('Y-m-d');
 		}
@@ -82,7 +82,7 @@ class Calendar extends ParameterHolder {
 	 * @param string $name パラメータ名
 	 * @param mixed $value 値
 	 */
-	public function setParameter ($name, $value) {
+	public function setParameter (string $name, $value) {
 		if ($name instanceof Date) {
 			$name = $name->format('Y-m-d');
 		}
@@ -98,7 +98,7 @@ class Calendar extends ParameterHolder {
 	 * @param string $name パラメータ名
 	 * @return bool 存在すればTrue
 	 */
-	public function hasParameter ($name) {
+	public function hasParameter (string $name) {
 		if ($name instanceof Date) {
 			$name = $name->format('Y-m-d');
 		}
@@ -111,7 +111,7 @@ class Calendar extends ParameterHolder {
 	 * @access public
 	 * @param string $name パラメータ名
 	 */
-	public function removeParameter ($name) {
+	public function removeParameter (string $name) {
 		throw new DateException('カレンダーから日付を削除できません。');
 	}
 }

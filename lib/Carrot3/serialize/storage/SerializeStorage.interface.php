@@ -35,7 +35,7 @@ interface SerializeStorage {
 	 * @param mixed $value 値
 	 * @return string シリアライズされた値
 	 */
-	public function setAttribute ($name, $value);
+	public function setAttribute (string $name, $value);
 
 	/**
 	 * 属性を削除
@@ -43,7 +43,7 @@ interface SerializeStorage {
 	 * @access public
 	 * @param string $name 属性の名前
 	 */
-	public function removeAttribute ($name);
+	public function removeAttribute (string $name);
 
 	/**
 	 * 属性を返す
@@ -53,7 +53,7 @@ interface SerializeStorage {
 	 * @param Date $date 比較する日付 - この日付より古い属性値は破棄
 	 * @return mixed 属性値
 	 */
-	public function getAttribute ($name, Date $date = null);
+	public function getAttribute (string $name, Date $date = null);
 
 	/**
 	 * 属性の更新日を返す
@@ -62,5 +62,5 @@ interface SerializeStorage {
 	 * @param string $name 属性の名前
 	 * @return Date 更新日
 	 */
-	public function getUpdateDate ($name);
+	public function getUpdateDate (string $name);
 }

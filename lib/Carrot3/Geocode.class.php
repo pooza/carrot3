@@ -28,7 +28,7 @@ class Geocode extends ParameterHolder {
 	 * @param string $name パラメータ名
 	 * @param mixed $value 値
 	 */
-	public function setParameter ($name, $value) {
+	public function setParameter (string $name, $value) {
 		if ($name == 'lon') {
 			$name = 'lng';
 		}

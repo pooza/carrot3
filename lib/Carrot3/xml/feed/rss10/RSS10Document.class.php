@@ -18,7 +18,7 @@ class RSS10Document extends RSS09Document {
 	 * @access public
 	 * @param string $name 要素の名前
 	 */
-	public function __construct ($name = null) {
+	public function __construct (string $name = null) {
 		parent::__construct('rdf:RDF');
 		$this->setNamespace('http://purl.org/rss/' . $this->version . '/');
 		$this->setAttribute('xmlns:rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
@@ -81,7 +81,7 @@ class RSS10Document extends RSS09Document {
 	 * @param string $name 名前
 	 * @param MailAddress $email メールアドレス
 	 */
-	public function setAuthor ($name, MailAddress $email = null) {
+	public function setAuthor (string $name, MailAddress $email = null) {
 		if (!$element = $this->getChannel()->getElement('dc:creator')) {
 			$element = $this->getChannel()->createElement('dc:creator');
 		}

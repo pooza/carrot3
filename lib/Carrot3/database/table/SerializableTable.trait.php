@@ -44,7 +44,7 @@ trait SerializableTable {
 	 * @param string $name 名前
 	 * @return int ID
 	 */
-	public function getID ($name) {
+	public function getID (string $name) {
 		foreach ($this as $record) {
 			if ($record->getAttribute('name') == $name) {
 				return $record->getID();

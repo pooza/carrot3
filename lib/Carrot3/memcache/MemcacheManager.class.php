@@ -42,7 +42,7 @@ class MemcacheManager {
 	 * @param string $name 設定名
 	 * @return string 設定値
 	 */
-	public function getConstant ($name) {
+	public function getConstant (string $name) {
 		return $this->constants[$name];
 	}
 
@@ -74,7 +74,7 @@ class MemcacheManager {
 	 * @param string $class クラス
 	 * @return Memcache サーバ
 	 */
-	public function getServer ($name = 'default', $class = null) {
+	public function getServer (string $name = 'default', $class = null) {
 		if ($this->isEnabled()) {
 			if ($class) {
 				$server = $this->loader->createObject($class . 'Memcache');

@@ -51,7 +51,7 @@ class FileSerializeStorage implements SerializeStorage {
 	 * @param mixed $value 値
 	 * @return string シリアライズされた値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		$file = $this->getDirectory()->createEntry($name);
 		$file->setContents($serialized = $this->serializer->encode($value));
 		$this->attributes[$name] = $value;
@@ -64,7 +64,7 @@ class FileSerializeStorage implements SerializeStorage {
 	 * @access public
 	 * @param string $name 属性の名前
 	 */
-	public function removeAttribute ($name) {
+	public function removeAttribute (string $name) {
 		if ($file = $this->getDirectory()->getEntry($name)) {
 			$file->delete();
 		}
@@ -79,7 +79,7 @@ class FileSerializeStorage implements SerializeStorage {
 	 * @param Date $date 比較する日付 - この日付より古い属性値は破棄
 	 * @return mixed 属性値
 	 */
-	public function getAttribute ($name, Date $date = null) {
+	public function getAttribute (string $name, Date $date = null) {
 		if (!$this->attributes->hasParameter($name)) {
 			if (($file = $this->getDirectory()->getEntry($name)) && $file->isReadable()) {
 				if (!$date || !$file->getUpdateDate()->isPast($date)) {
@@ -97,7 +97,7 @@ class FileSerializeStorage implements SerializeStorage {
 	 * @param string $name 属性の名前
 	 * @return Date 更新日
 	 */
-	public function getUpdateDate ($name) {
+	public function getUpdateDate (string $name) {
 		if ($file = $this->getDirectory()->getEntry($name)) {
 			return $file->getUpdateDate();
 		}

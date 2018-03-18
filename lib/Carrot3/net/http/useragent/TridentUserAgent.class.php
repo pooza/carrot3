@@ -18,7 +18,7 @@ class TridentUserAgent extends UserAgent {
 	 * @access protected
 	 * @param string $name ユーザーエージェント名
 	 */
-	protected function __construct ($name = null) {
+	protected function __construct (?string $name = null) {
 		parent::__construct($name);
 		$this->supports['html5_audio'] = !$this->isLegacy();
 		$this->supports['html5_video'] = !$this->isLegacy();
@@ -31,7 +31,7 @@ class TridentUserAgent extends UserAgent {
 	 * @param string $name ファイル名
 	 * @return string エンコード済みファイル名
 	 */
-	public function encodeFileName ($name) {
+	public function encodeFileName (string $name) {
 		$name = URL::encode($name);
 		$name = str_replace('+', ' ', $name);
 		return StringUtils::sanitize($name);

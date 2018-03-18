@@ -30,7 +30,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 * @param string $name 名前
 	 * @return MIMEHeader ヘッダ
 	 */
-	public function getHeader ($name) {
+	public function getHeader (string $name) {
 		$header = MIMEHeader::create($name);
 		$name = StringUtils::toLower($header->getName());
 		return $this->getHeaders()[$name];
@@ -43,7 +43,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 * @param string $name 名前
 	 * @param string $value 値
 	 */
-	public function setHeader ($name, $value) {
+	public function setHeader (string $name, $value) {
 		$header = MIMEHeader::create($name);
 		if ($header->isMultiple() && $this->getHeader($name)) {
 			$header = $this->getHeader($name);
@@ -63,7 +63,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 * @param string $name 名前
 	 * @param string $value 値
 	 */
-	public function appendHeader ($name, $value) {
+	public function appendHeader (string $name, $value) {
 		if ($header = $this->getHeader($name)) {
 			$header->appendContents($value);
 			$this->contents = null;
@@ -78,7 +78,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 * @access public
 	 * @param string $name 名前
 	 */
-	public function removeHeader ($name) {
+	public function removeHeader (string $name) {
 		if ($header = $this->getHeader($name)) {
 			$this->getHeaders()->removeParameter(StringUtils::toLower($header->getName()));
 			$this->contents = null;
@@ -182,12 +182,12 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 * @param string $filename ファイル名
 	 * @param string $mode モード
 	 */
-	public function setFileName ($filename, $mode = MIMEUtils::ATTACHMENT) {
-		if (StringUtils::isBlank($filename)) {
+	public function setFileName (string $file, $mode = MIMEUtils::ATTACHMENT) {
+		if (StringUtils::isBlank($file)) {
 			$this->removeHeader('Content-Disposition');
 		} else {
-			$this->filename = $filename;
-			$value = sprintf('%s; filename="%s"', $mode, $filename);
+			$this->filename = $file;
+			$value = sprintf('%s; filename="%s"', $mode, $file);
 			$this->setHeader('Content-Disposition', $value);
 		}
 	}
@@ -416,7 +416,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 * @param string $name ファイル名
 	 * @return MIMEDocument 追加されたパート
 	 */
-	public function addAttachment (Renderer $renderer, $name = null) {
+	public function addAttachment (Renderer $renderer, string $name = null) {
 		$part = new MIMEDocument;
 		$part->setRenderer($renderer);
 		if (!StringUtils::isBlank($name)) {

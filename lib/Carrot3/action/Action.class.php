@@ -37,7 +37,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @param string $name プロパティ名
 	 * @return mixed 各種オブジェクト
 	 */
-	public function __get ($name) {
+	public function __get (string $name) {
 		switch ($name) {
 			case 'loader':
 				return Loader::getInstance();
@@ -193,7 +193,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @param string $name 設定名
 	 * @return mixed 設定値
 	 */
-	public function getConfig ($name) {
+	public function getConfig (string $name) {
 		if (!$this->config) {
 			$this->config = Tuple::create(
 				$this->getModule()->getConfig($this->getName(), 'actions')
@@ -263,7 +263,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @param string $name ビュー名
 	 * @return View ビュー
 	 */
-	public function getView ($name) {
+	public function getView (?string $name) {
 		if (StringUtils::isBlank($name) || ($this->request->getMethod() == 'HEAD')) {
 			return new EmptyView($this, null);
 		}

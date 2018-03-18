@@ -23,7 +23,7 @@ class HTMLElement extends XMLElement {
 	 * @param string $name 要素の名前
 	 * @param UserAgent $useragent 対象UserAgent
 	 */
-	public function __construct ($name = null, UserAgent $useragent = null) {
+	public function __construct (string $name = null, UserAgent $useragent = null) {
 		if (StringUtils::isBlank($name)) {
 			$name = $this->getTag();
 		}
@@ -105,7 +105,7 @@ class HTMLElement extends XMLElement {
 	 * @param string $name スタイル名
 	 * @return string スタイル値
 	 */
-	public function getStyle ($name) {
+	public function getStyle (string $name) {
 		return $this->styles[$name];
 	}
 
@@ -116,7 +116,7 @@ class HTMLElement extends XMLElement {
 	 * @param string $name スタイル名
 	 * @param string $value スタイル値
 	 */
-	public function setStyle ($name, $value) {
+	public function setStyle (string $name, $value) {
 		if (StringUtils::isBlank($value)) {
 			$this->styles->removeParameter($name);
 		} else {
@@ -250,7 +250,7 @@ class HTMLElement extends XMLElement {
 	 * @param string $name 属性名
 	 * @param mixed $value 属性値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		switch ($name) {
 			case 'id':
 			case 'container_id':
@@ -273,7 +273,7 @@ class HTMLElement extends XMLElement {
 	 * @param string $body 要素の本文
 	 * @return XMLElement 要素
 	 */
-	public function createElement ($name, $body = null) {
+	public function createElement (string $name, $body = null) {
 		$element = $this->addElement(new HTMLElement($name, $this->getUserAgent()));
 		$element->setBody($body);
 		return $element;

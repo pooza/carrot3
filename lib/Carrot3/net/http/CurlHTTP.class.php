@@ -150,7 +150,7 @@ class CurlHTTP extends HTTP {
 	 * @param string $name 属性名
 	 * @param mixed $value 属性値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		if (!$this->getCurl()) {
 			return;
 		}

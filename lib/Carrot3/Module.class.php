@@ -32,7 +32,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @access protected
 	 * @param string $name モジュール名
 	 */
-	protected function __construct ($name) {
+	protected function __construct (string $name) {
 		$this->name = $name;
 		$this->actions = Tuple::create();
 
@@ -62,7 +62,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @param string $name モジュール名
 	 * @static
 	 */
-	static public function getInstance ($name) {
+	static public function getInstance (string $name) {
 		if (!self::$instances) {
 			self::$instances = Tuple::create();
 		}
@@ -148,7 +148,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @param string $name ディレクトリ名
 	 * @return Directory 対象ディレクトリ
 	 */
-	public function getDirectory ($name = 'module') {
+	public function getDirectory (string $name = 'module') {
 		if (!$this->directories) {
 			$this->directories = Tuple::create();
 		}
@@ -281,7 +281,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @param string $name ファイル名
 	 * @return ConfigFile 設定ファイル
 	 */
-	public function getConfigFile ($name = 'module') {
+	public function getConfigFile (string $name = 'module') {
 		if (!$this->configFiles) {
 			$this->configFiles = Tuple::create();
 		}
@@ -319,7 +319,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @param string $name 設定ファイルの名前
 	 * @return ConfigFile バリデーション設定ファイル
 	 */
-	public function getValidationFile ($name) {
+	public function getValidationFile (string $name) {
 		if ($dir = $this->getDirectory('validate')) {
 			return ConfigManager::getConfigFile($dir->getPath() . '/' . $name);
 		}
@@ -332,7 +332,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @param string $name アクション名
 	 * @return Action アクション
 	 */
-	public function getAction ($name) {
+	public function getAction (string $name) {
 		if (!$this->actions[$name]) {
 			$class = $this->loader->getClass($this->getNamespace() . '\\' . $name . 'Action');
 			$this->actions[$name] = new $class($this);

@@ -33,7 +33,7 @@ class DirectoryLayout extends ParameterHolder {
 		}
 	}
 
-	private function getEntry ($name) {
+	private function getEntry (string $name) {
 		if (!$info = $this->config[$name]) {
 			$message = new StringFormat('ディレクトリ "%s" が見つかりません。');
 			$message[] = $name;
@@ -59,7 +59,7 @@ class DirectoryLayout extends ParameterHolder {
 	 * @param string $name ディレクトリ名
 	 * @return Directory ディレクトリ
 	 */
-	public function getParameter ($name) {
+	public function getParameter (string $name) {
 		if (!$this->hasParameter($name) && ($info = $this->getEntry($name))) {
 			if (!!$info['constant']) {
 				$dir = new Directory((new ConstantHandler)[$name . '_DIR']);
@@ -92,7 +92,7 @@ class DirectoryLayout extends ParameterHolder {
 	 * @param string $name ディレクトリの名前
 	 * @return HTTPURL URL
 	 */
-	public function createURL ($name) {
+	public function createURL (string $name) {
 		if (($info = $this->getEntry($name)) && StringUtils::isBlank($info['url'])) {
 			if (StringUtils::isBlank($info['href'])) {
 				$info['url'] = $this[$name]->getURL();

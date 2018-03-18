@@ -30,7 +30,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access protected
 	 * @param string $name 書類セット名
 	 */
-	public function __construct ($name) {
+	public function __construct (string $name) {
 		$this->name = $name;
 		$this->documents = Tuple::create();
 

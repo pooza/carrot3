@@ -51,7 +51,7 @@ class ValidateManager implements \IteratorAggregate {
 	 * @param string $name フィールド名
 	 * @param mixed $validator バリデータ、又はバリデータ名
 	 */
-	public function register ($name, $validator) {
+	public function register (string $name, $validator) {
 		if (!$this->fields[$name]) {
 			$this->fields[$name] = Tuple::create();
 		}
@@ -96,7 +96,7 @@ class ValidateManager implements \IteratorAggregate {
 	 * @param string $name バリデータ名
 	 * @return Validator バリデータ
 	 */
-	public function createValidator ($name) {
+	public function createValidator (string $name) {
 		if ($entry = ConfigCompiler::parseFiles('validator')[$name]) {
 			$entry = Tuple::create($entry);
 			$class = $this->loader->getClass($entry['class']);

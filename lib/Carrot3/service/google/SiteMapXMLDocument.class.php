@@ -18,7 +18,7 @@ class SiteMapXMLDocument extends XMLDocument {
 	 * @access public
 	 * @param string $name 要素の名前
 	 */
-	public function __construct ($name = null) {
+	public function __construct (string $name = null) {
 		parent::__construct('urlset');
 		$this->setDirty(true);
 		$this->setNamespace('http://www.sitemaps.org/schemas/sitemap/0.9');

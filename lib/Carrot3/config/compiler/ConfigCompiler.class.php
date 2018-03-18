@@ -146,7 +146,7 @@ abstract class ConfigCompiler extends ParameterHolder {
 	 * @return Tuple
 	 * @static
 	 */
-	static public function parseFiles ($name) {
+	static public function parseFiles (string $name) {
 		$manager = ConfigManager::getInstance();
 		$values = Tuple::create();
 		$values->setParameters($manager->compile($name . '/carrot'));
