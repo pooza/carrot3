@@ -21,7 +21,7 @@ class WWWFormRenderer extends ParameterHolder implements Renderer {
 	 * @param string $name パラメータ名
 	 * @param mixed $value 値
 	 */
-	public function setParameter (string $name, $value) {
+	public function setParameter (?string $name, $value) {
 		if (StringUtils::isBlank($value)) {
 			$this->removeParameter($name);
 		} else {

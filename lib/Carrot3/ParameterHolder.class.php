@@ -23,7 +23,7 @@ abstract class ParameterHolder
 	 * @param string $name パラメータ名
 	 * @return mixed パラメータ
 	 */
-	public function getParameter (string $name) {
+	public function getParameter (?string $name) {
 		if ($this->hasParameter($name)) {
 			return $this->params[$name];
 		}
@@ -36,8 +36,8 @@ abstract class ParameterHolder
 	 * @param string $name パラメータ名
 	 * @param mixed $value 値
 	 */
-	public function setParameter (string $name, $value) {
-		$this->params[(string)$name] = $value;
+	public function setParameter (?string $name, $value) {
+		$this->params[$name] = $value;
 	}
 
 	/**
@@ -76,8 +76,8 @@ abstract class ParameterHolder
 	 * @param string $name パラメータ名
 	 * @return bool 存在すればTrue
 	 */
-	public function hasParameter (string $name) {
-		return array_key_exists((string)$name, $this->params);
+	public function hasParameter (?string $name) {
+		return array_key_exists($name, $this->params);
 	}
 
 	/**
@@ -88,7 +88,7 @@ abstract class ParameterHolder
 	 */
 	public function removeParameter (string $name) {
 		if ($this->hasParameter($name)) {
-			unset($this->params[(string)$name]);
+			unset($this->params[$name]);
 		}
 	}
 

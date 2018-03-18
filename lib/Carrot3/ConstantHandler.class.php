@@ -29,7 +29,7 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 	 * @param string $name パラメータ名
 	 * @return mixed パラメータ
 	 */
-	public function getParameter (string $name) {
+	public function getParameter (?string $name) {
 		foreach ($this->createKeys($name) as $name) {
 			if (defined($name)) {
 				return constant($name);
@@ -44,7 +44,7 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 	 * @param string $name パラメータ名
 	 * @param mixed $value 値
 	 */
-	public function setParameter (string $name, $value) {
+	public function setParameter (?string $name, $value) {
 		if (defined($name = StringUtils::toUpper((string)$name))) {
 			$message = new StringFormat('定数 "%s" は定義済みです。');
 			$message[] = $name;
@@ -81,7 +81,7 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 	 * @param string $name パラメータ名
 	 * @return bool 存在すればTrue
 	 */
-	public function hasParameter (string $name) {
+	public function hasParameter (?string $name) {
 		foreach ($this->createKeys($name) as $name) {
 			if (defined($name)) {
 				return true;

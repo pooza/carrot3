@@ -132,7 +132,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @param string $name パラメータの名前
 	 * @return string パラメータ
 	 */
-	public function getParameter (string $name) {
+	public function getParameter (?string $name) {
 		return $this->query[$name];
 	}
 
@@ -143,7 +143,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @param string $name パラメータの名前
 	 * @param string $value パラメータの値
 	 */
-	public function setParameter (string $name, $value) {
+	public function setParameter (?string $name, $value) {
 		if (StringUtils::isBlank($value)) {
 			return;
 		}

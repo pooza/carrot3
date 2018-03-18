@@ -59,7 +59,7 @@ class DirectoryLayout extends ParameterHolder {
 	 * @param string $name ディレクトリ名
 	 * @return Directory ディレクトリ
 	 */
-	public function getParameter (string $name) {
+	public function getParameter (?string $name) {
 		if (!$this->hasParameter($name) && ($info = $this->getEntry($name))) {
 			if (!!$info['constant']) {
 				$dir = new Directory((new ConstantHandler)[$name . '_DIR']);

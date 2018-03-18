@@ -112,7 +112,7 @@ class TranslateManager implements \IteratorAggregate {
 		]);
 	}
 
-	private function createDictionaryNames (string $name) {
+	private function createDictionaryNames (?string $name) {
 		$names = Tuple::create();
 		$names[] = $name;
 		$names[] = $this->loader->getClass('DictionaryFile') . '.' . $name;

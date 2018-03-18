@@ -80,7 +80,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * @param mixed $value 属性の値、(+|-)で始まる文字列も可。
 	 * @return Date 適用後の自分自身
 	 */
-	public function setParameter (string $name, $value) {
+	public function setParameter (?string $name, $value) {
 		$name = StringUtils::toLower((string)$name);
 		$this->params['timestamp'] = null;
 		$this->params['weekday'] = null;
