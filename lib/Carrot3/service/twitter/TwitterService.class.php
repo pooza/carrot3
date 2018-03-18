@@ -18,7 +18,6 @@ class TwitterService extends CurlHTTP {
 	protected $accessTokenSecret;
 	protected $bearerToken;
 	protected $oauth;
-	protected $serializeHandler;
 	const DEFAULT_HOST = 'api.twitter.com';
 
 	/**

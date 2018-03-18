@@ -18,8 +18,6 @@ class Controller {
 	protected $headers;
 	protected $actions;
 	protected $searchDirectories;
-	protected $serializeHandler;
-	const ACTION_REGISTER_LIMIT = 20;
 	const COMPLETED = true;
 
 	/**
@@ -62,8 +60,7 @@ class Controller {
 		}
 
 		try {
-			$module = Module::getInstance($module);
-			$action = $module->getAction($action);
+			$action = Module::getInstance($module)->getAction($action);
 		} catch (\Exception $e) {
 			$action = $this->getAction('not_found');
 		}
@@ -106,7 +103,7 @@ class Controller {
 	 * モジュールを返す
 	 *
 	 * @access public
-	 * @param string $name モジュール名
+	 * $param string $name モジュール名
 	 * @return Module モジュール
 	 */
 	public function getModule ($name = null) {
@@ -120,41 +117,32 @@ class Controller {
 	}
 
 	/**
-	 * アクションスタックを返す
-	 *
-	 * @access public
-	 * @return Tuple アクションスタック
-	 */
-	public function getActionStack () {
-		return $this->actions;
-	}
-
-	/**
 	 * アクションをアクションスタックに加える
 	 *
 	 * @access public
 	 * @param Action $action アクション
 	 */
 	public function register (Action $action) {
-		if (self::ACTION_REGISTER_LIMIT < $this->getActionStack()->count()) {
+		if (BS_CONTROLLER_ACTION_REGISTER_LIMIT < $this->actions->count()) {
 			throw new \BadFunctionCallException('フォワードが多すぎます。');
 		}
-		$this->getActionStack()->push($action);
+		$this->actions->push($action);
 	}
 
 	/**
 	 * 特別なアクションを返す
 	 *
 	 * @access public
-	 * @param string $name アクション名
+	 * $param string $name アクション名
 	 * @return Action 名前で指定されたアクション、指定なしの場合は呼ばれたアクション
 	 */
 	public function getAction ($name = null) {
 		if (StringUtils::isBlank($name)) {
-			return $this->getActionStack()->getIterator()->getLast();
+			return $this->actions->getIterator()->getLast();
 		}
-		if ($module = $this->getModule((new ConstantHandler)['MODULE_' . $name . '_MODULE'])) {
-			return $module->getAction((new ConstantHandler)['MODULE_' . $name . '_ACTION']);
+		$constants = new ConstantHandler;
+		if ($module = $this->getModule($constants['MODULE_' . $name . '_MODULE'])) {
+			return $module->getAction($constants['MODULE_' . $name . '_ACTION']);
 		}
 	}
 
@@ -162,7 +150,7 @@ class Controller {
 	 * 属性を返す
 	 *
 	 * @access public
-	 * @param string $name 属性の名前
+	 * $param string $name 属性の名前
 	 */
 	public function getAttribute ($name) {
 		$env = Tuple::create();
@@ -210,7 +198,7 @@ class Controller {
 	 * レスポンスヘッダを設定
 	 *
 	 * @access public
-	 * @param string $name フィールド名
+	 * $param string $name フィールド名
 	 * @param string $value フィールド値
 	 */
 	public function setHeader ($name, $value) {

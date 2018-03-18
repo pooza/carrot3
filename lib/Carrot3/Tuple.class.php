@@ -29,19 +29,14 @@ class Tuple extends ParameterHolder {
 	/**
 	 * 別の配列をマージ
 	 *
-	 * ハッシュではない普通の配列同士は、setParametersではマージできない。
-	 *
 	 * @access public
 	 * @param mixed $values 配列
 	 */
 	public function merge ($values) {
-		if ($values instanceof ParameterHolder) {
-			$values = $values->getParameters();
-		} else if (!is_array($values)) {
-			return;
-		}
-		foreach ($values as $value) {
-			$this->push($value);
+		if (is_iterable($values)) {
+			foreach ($values as $value) {
+				$this->push($value);
+			}
 		}
 	}
 

@@ -432,12 +432,14 @@ class Module implements HTTPRedirector, Assignable {
 				}
 			}
 		}
-		if (StringUtils::isBlank($lang)) {
-			return $this->loader->getClass($this->recordClass);
-		} else {
-			return TranslateManager::getInstance()->execute(
-				StringUtils::underscorize($this->recordClass)
-			);
+		if (!StringUtils::isBlank($this->recordClass)) {
+			if (StringUtils::isBlank($lang)) {
+				return $this->loader->getClass($this->recordClass);
+			} else {
+				return TranslateManager::getInstance()->execute(
+					StringUtils::underscorize($this->recordClass)
+				);
+			}
 		}
 	}
 

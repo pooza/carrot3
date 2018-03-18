@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.0.63
+  ver: 3.1.0
 
 admin:
   email:
@@ -44,6 +44,9 @@ clamav:
   dir:
     default: /usr/local
     ubuntu: /usr
+controller:
+  action:
+    register_limit: 20
 crypt:
   engine: open_ssl
   method: AES-256-CBC
