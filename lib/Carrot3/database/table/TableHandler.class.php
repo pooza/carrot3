@@ -272,7 +272,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access public
 	 * @param int $pagesize ページサイズ
 	 */
-	public function setPageSize (int $pagesize) {
+	public function setPageSize (?int $pagesize) {
 		if (1 < $pagesize) {
 			$this->pagesize = $pagesize;
 			$this->setExecuted(false);
