@@ -149,7 +149,7 @@ class ImageManager {
 	 *   self::WIDTH_FIXED 幅固定
 	 * @return URL URL
 	 */
-	public function createURL (ImageContainer $record, $size, ?int $pixel = null, int $flags = 0) {
+	public function createURL (ImageContainer $record, string $size, ?int $pixel = null, int $flags = 0) {
 		if (!$file = $this->getFile($record, $size, $pixel, $flags)) {
 			return null;
 		}
@@ -167,7 +167,7 @@ class ImageManager {
 	 * @param ImageContainer $record 対象レコード
 	 * @param string $size サイズ名
 	 */
-	public function removeEntry (ImageContainer $record, $size) {
+	public function removeEntry (ImageContainer $record, string $size) {
 		if ($dir = $this->getEntryDirectory($record, $size)) {
 			$dir->delete();
 		}
@@ -184,7 +184,7 @@ class ImageManager {
 	 *   self::WIDTH_FIXED 幅固定
 	 * @return Tuple 画像の情報
 	 */
-	public function getInfo (ImageContainer $record, $size, ?int $pixel = null, int $flags = 0) {
+	public function getInfo (ImageContainer $record, string $size, ?int $pixel = null, int $flags = 0) {
 		$flags |= $this->flags;
 		if (!$file = $this->getFile($record, $size, $pixel, $flags)) {
 			return;
@@ -209,7 +209,7 @@ class ImageManager {
 		return $info;
 	}
 
-	protected function getFile (ImageContainer $record, $size, $pixel, int $flags = 0) {
+	protected function getFile (ImageContainer $record, string $size, $pixel, int $flags = 0) {
 		if (!$source = $record->getImageFile($size)) {
 			return null;
 		}
@@ -257,7 +257,7 @@ class ImageManager {
 		return $image;
 	}
 
-	protected function createEntryName (ImageContainer $record, $size) {
+	protected function createEntryName (ImageContainer $record, string $size) {
 		return Crypt::digest([
 			Utils::getClass($record),
 			$record->getID(),
@@ -265,7 +265,7 @@ class ImageManager {
 		]);
 	}
 
-	protected function getEntryDirectory (ImageContainer $record, $size) {
+	protected function getEntryDirectory (ImageContainer $record, string $size) {
 		$name = $this->createEntryName($record, $size);
 		if (!$dir = $this->directory->getEntry($name)) {
 			$dir = $this->directory->createDirectory($name);

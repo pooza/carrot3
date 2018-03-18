@@ -151,7 +151,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @access public
 	 * @param string $size
 	 */
-	public function removeImageCache ($size) {
+	public function removeImageCache (string $size) {
 	}
 
 	/**
@@ -163,7 +163,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @param int $flags ダミー
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
+	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0) {
 		if (!$this->imageinfo) {
 			$this->imageinfo = Tuple::create();
 			$image = $this->getImageFile('image')->getRenderer();
@@ -199,7 +199,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile ($size) {
+	public function getImageFile (string $size) {
 		if (!$this->imagefile) {
 			$dir = FileUtils::getDirectory('pictogram');
 			$this->imagefile = $dir->getEntry($this->getImageFileBaseName($size), 'ImageFile');
@@ -214,7 +214,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @param string $size サイズ名
 	 * @return string 画像ファイルベース名
 	 */
-	public function getImageFileBaseName ($size) {
+	public function getImageFileBaseName (string $size) {
 		return $this->getID();
 	}
 

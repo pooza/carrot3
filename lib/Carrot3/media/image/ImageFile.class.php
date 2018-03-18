@@ -165,7 +165,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @access public
 	 * @param string $size
 	 */
-	public function removeImageCache ($size) {
+	public function removeImageCache (string $size) {
 		(new ImageManager)->removeEntry($this, $size);
 	}
 
@@ -178,7 +178,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
+	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0) {
 		return (new ImageManager)->getInfo($this, $size, $pixel, $flags);
 	}
 
@@ -189,7 +189,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile ($size) {
+	public function getImageFile (string $size) {
 		return $this;
 	}
 
@@ -212,7 +212,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @param string $size サイズ名
 	 * @return string 画像ファイルベース名
 	 */
-	public function getImageFileBaseName ($size) {
+	public function getImageFileBaseName (string $size) {
 		return $this->getBaseName();
 	}
 

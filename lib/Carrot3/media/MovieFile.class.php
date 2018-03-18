@@ -156,7 +156,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * @access public
 	 * @param string $size
 	 */
-	public function removeImageCache ($size) {
+	public function removeImageCache (string $size) {
 		if ($file = $this->getImageFile('image')) {
 			$file->removeImageCache($size);
 		}
@@ -171,7 +171,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
+	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0) {
 		if ($file = $this->getImageFile('image')) {
 			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
 			$info['alt'] = $this->getLabel();
@@ -186,7 +186,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile ($size) {
+	public function getImageFile (string $size) {
 		$dir = FileUtils::getDirectory('movie_file');
 		if ($file = $dir->getEntry($this->getImageFileBaseName($size), 'ImageFile')) {
 			return $file;
@@ -205,7 +205,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * @param string $size サイズ名
 	 * @return string 画像ファイルベース名
 	 */
-	public function getImageFileBaseName ($size) {
+	public function getImageFileBaseName (string $size) {
 		return $this->getID();
 	}
 

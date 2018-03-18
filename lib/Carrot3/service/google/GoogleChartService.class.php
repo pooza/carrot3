@@ -31,17 +31,19 @@ class GoogleChartService extends CurlHTTP {
 	 *
 	 * @access public
 	 * @param string $data 対象データ
+	 * @param int $pixel 幅・高さ
+	 * @param string $encoding エンコーディング、APIにchl値として渡す。
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getQRCodeImageFile ($data, $size = 0, $encoding = 'sjis-win') {
-		if (!$size) {
-			$size = BS_IMAGE_QRCODE_SIZE;
+	public function getQRCodeImageFile ($data, int $pixel = 0, $encoding = 'sjis-win') {
+		if (!$pixel) {
+			$pixel = BS_IMAGE_QRCODE_SIZE;
 		}
 		$params = Tuple::create([
 			'chl' => StringUtils::convertEncoding($data, $encoding),
 			'chld' => 'l|0',
 		]);
-		return $this->getImageFile('qr', $size, $size, $params);
+		return $this->getImageFile('qr', $pixel, $pixel, $params);
 	}
 
 	/**

@@ -453,7 +453,7 @@ abstract class Record implements \ArrayAccess,
 	 * @access public
 	 * @param string $size
 	 */
-	public function removeImageCache ($size) {
+	public function removeImageCache (string $size) {
 		(new ImageManager)->removeEntry($this, $size);
 	}
 
@@ -466,7 +466,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
+	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0) {
 		return (new ImageManager)->getInfo($this, $size, $pixel, $flags);
 	}
 
@@ -477,7 +477,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile ($size) {
+	public function getImageFile (string $size) {
 		foreach (Image::getSuffixes() as $suffix) {
 			$name = $this->getImageFileBaseName($size) . $suffix;
 			if ($file = $this->getTable()->getDirectory()->getEntry($name, 'ImageFile')) {
@@ -493,7 +493,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $size 画像名
 	 * @param ImageFile $file 画像ファイル
 	 */
-	public function setImageFile ($size, ImageFile $file) {
+	public function setImageFile (string $size, ImageFile $file) {
 		$this->setAttachment($size, $file);
 	}
 
@@ -503,7 +503,7 @@ abstract class Record implements \ArrayAccess,
 	 * @access public
 	 * @param string $size サイズ名
 	 */
-	public function removeImageFile ($size) {
+	public function removeImageFile (string $size) {
 		$this->removeImageCache($size);
 		$this->removeAttachment($size);
 	}
@@ -515,7 +515,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $size サイズ名
 	 * @return string 画像ファイルベース名
 	 */
-	public function getImageFileBaseName ($size) {
+	public function getImageFileBaseName (string $size) {
 		return sprintf('%010d_%s', $this->getID(), $size);
 	}
 

@@ -19,7 +19,7 @@ interface ImageContainer {
 	 * @access public
 	 * @param string $size
 	 */
-	public function removeImageCache ($size);
+	public function removeImageCache (string $size);
 
 	/**
 	 * 画像の情報を返す
@@ -30,7 +30,7 @@ interface ImageContainer {
 	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0);
+	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0);
 
 	/**
 	 * 画像ファイルを返す
@@ -39,7 +39,7 @@ interface ImageContainer {
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile ($size);
+	public function getImageFile (string $size);
 
 	/**
 	 * 画像ファイルベース名を返す
@@ -48,7 +48,7 @@ interface ImageContainer {
 	 * @param string $size サイズ名
 	 * @return string 画像ファイルベース名
 	 */
-	public function getImageFileBaseName ($size);
+	public function getImageFileBaseName (string $size);
 
 	/**
 	 * コンテナのIDを返す

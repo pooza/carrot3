@@ -116,7 +116,7 @@ class Host implements Assignable, ImageContainer {
 	 * @access public
 	 * @param string $size
 	 */
-	public function removeImageCache ($size) {
+	public function removeImageCache (string $size) {
 		if ($file = $this->getImageFile('image')) {
 			$file->removeImageCache($size);
 		}
@@ -131,7 +131,7 @@ class Host implements Assignable, ImageContainer {
 	 * @param int $flags フラグのビット列
 	 * @return Tuple 画像の情報
 	 */
-	public function getImageInfo ($size, ?int $pixel = null, int $flags = 0) {
+	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0) {
 		if ($file = $this->getImageFile($size)) {
 			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
 			$info['alt'] = $this->getID();
@@ -146,7 +146,7 @@ class Host implements Assignable, ImageContainer {
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile ($size) {
+	public function getImageFile (string $size) {
 		return (new GoogleFaviconsService)->getImageFile($this);
 	}
 
@@ -157,7 +157,7 @@ class Host implements Assignable, ImageContainer {
 	 * @param string $size サイズ名
 	 * @return string 画像ファイルベース名
 	 */
-	public function getImageFileBaseName ($size) {
+	public function getImageFileBaseName (string $size) {
 		return Crypt::digest($this->getID());
 	}
 

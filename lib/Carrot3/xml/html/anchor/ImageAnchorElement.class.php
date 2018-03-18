@@ -25,7 +25,7 @@ abstract class ImageAnchorElement extends AnchorElement {
 	 *   self::WIDTH_FIXED 幅固定
 	 * @return URL URL
 	 */
-	public function setImage (ImageContainer $record, $size, ?int $pixel = null, int $flags = 0) {
+	public function setImage (ImageContainer $record, string $size, ?int $pixel = null, int $flags = 0) {
 		$images = $this->getUserAgent()->createImageManager($flags);
 		$this->setURL($images->createURL($record, $size, $pixel));
 	}
