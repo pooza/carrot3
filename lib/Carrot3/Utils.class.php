@@ -79,6 +79,7 @@ class Utils {
 		try {
 			return (new \ReflectionClass($class))->getNamespaceName();
 		} catch (\Exception $e) {
+			return '';
 		}
 	}
 
@@ -94,6 +95,7 @@ class Utils {
 		try {
 			return (new \ReflectionClass($class))->getShortName();
 		} catch (\Exception $e) {
+			return '';
 		}
 	}
 
@@ -109,6 +111,7 @@ class Utils {
 		try {
 			return (new \ReflectionClass($class))->getName();
 		} catch (\Exception $e) {
+			return '';
 		}
 	}
 
@@ -121,14 +124,15 @@ class Utils {
 	 * @static
 	 */
 	static public function getParentClasses ($class) {
-		$classes = [];
 		try {
+			$classes = [];
 			$class = new \ReflectionClass($class);
 			do {
 				$classes[] = $class->getName();
 			} while ($class = $class->getParentClass());
+			return $classes;
 		} catch (\Exception $e) {
+			return [];
 		}
-		return $classes;
 	}
 }

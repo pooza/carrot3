@@ -53,13 +53,10 @@ class RecordFinder extends ParameterHolder {
 
 	private function getTable () {
 		if (!$this->table) {
-			try {
-				if (StringUtils::isBlank($class = $this['class'])) {
-					$this->table = $this->controller->getModule()->getTable();
-				} else {
-					$this->table = TableHandler::create($class);
-				}
-			} catch (\Exception $e) {
+			if (StringUtils::isBlank($class = $this['class'])) {
+				$this->table = $this->controller->getModule()->getTable();
+			} else {
+				$this->table = TableHandler::create($class);
 			}
 		}
 		return $this->table;

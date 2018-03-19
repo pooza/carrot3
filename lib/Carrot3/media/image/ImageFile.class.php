@@ -233,15 +233,15 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * ラベルを返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string ラベル
 	 */
-	public function getLabel ($language = 'ja') {
+	public function getLabel (?string $lang = 'ja') {
 		try {
 			return TranslateManager::getInstance()->execute(
 				$this->getBaseName(),
 				'user_image',
-				$language
+				$lang
 			);
 		} catch (TranslateException $e) {
 			return $this->getBaseName();

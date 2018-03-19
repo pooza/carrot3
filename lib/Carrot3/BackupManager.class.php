@@ -56,12 +56,11 @@ class BackupManager {
 			$file->rename($name->getContents());
 			$file->moveTo($dir);
 			$dir->purge();
+			LogManager::getInstance()->put('バックアップを実行しました。', $this);
+			return $file;
 		} catch (\Exception $e) {
-			return;
+			LogManager::getInstance()->put('バックアップに失敗しました。', $this);
 		}
-
-		LogManager::getInstance()->put('バックアップを実行しました。', $this);
-		return $file;
 	}
 
 	protected function createArchive () {

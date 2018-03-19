@@ -19,11 +19,7 @@ class DateValidator extends Validator {
 				$date[$key] = $this->request[$value];
 			}
 		} else {
-			try {
-				$date = Date::create($value);
-			} catch (DateException $e) {
-				return null;
-			}
+			$date = Date::create($value);
 		}
 		if ($date && $date->validate()) {
 			return $date;

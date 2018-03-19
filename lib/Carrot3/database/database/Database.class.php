@@ -335,12 +335,13 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 			$file = $dir->createEntry($name);
 			$file->setContents($this->dump());
 			$dir->purge();
+			$this->log($this . 'のダンプファイルを保存しました。');
+			return $file;
 		} catch (\Exception $e) {
-			return;
+			throw new DatabaseException($e->getMessage());
+		} catch (DatabaseException $e) {
+			$this->log($this . 'のダンプファイルが保存できませんでした。');
 		}
-
-		$this->log($this . 'のダンプファイルを保存しました。');
-		return $file;
 	}
 
 	/**

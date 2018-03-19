@@ -13,9 +13,9 @@ namespace Carrot3;
  */
 class TranslateManager implements \IteratorAggregate {
 	use BasicObject, Singleton;
-	private $language = 'ja';
+	private $lang = 'ja';
 	private $dictionaries;
-	static private $languages;
+	static private $langs;
 
 	/**
 	 * @access protected
@@ -73,20 +73,20 @@ class TranslateManager implements \IteratorAggregate {
 	 * @access public
 	 * @param string $string 単語
 	 * @param string $name 辞書の名前
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string 訳語
 	 */
-	public function translate ($string, string $name = null, $language = null) {
+	public function translate ($string, string $name = null, ?string $lang = null) {
 		if (StringUtils::isBlank($string)) {
 			return null;
 		}
-		if (StringUtils::isBlank($language)) {
-			$language = $this->getLanguage();
+		if (StringUtils::isBlank($lang)) {
+			$lang = $this->getLanguage();
 		}
 		foreach ($this->createDictionaryNames($name) as $name) {
 			if ($dictionary = $this->dictionaries[$name]) {
 				foreach ($this->getWords($string) as $word) {
-					$answer = $dictionary->translate($word, $language);
+					$answer = $dictionary->translate($word, $lang);
 					if ($answer !== null) {
 						return $answer;
 					}
@@ -129,12 +129,12 @@ class TranslateManager implements \IteratorAggregate {
 	 * @access public
 	 * @param string $string 単語
 	 * @param string $name 辞書の名前
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string 訳語
 	 * @final
 	 */
-	final public function execute ($string, string $name = null, $language = null) {
-		return $this->translate($string, $name, $language);
+	final public function execute ($string, string $name = null, ?string $lang = null) {
+		return $this->translate($string, $name, $lang);
 	}
 
 	/**
@@ -144,23 +144,23 @@ class TranslateManager implements \IteratorAggregate {
 	 * @return string 言語コード
 	 */
 	public function getLanguage () {
-		return $this->language;
+		return $this->lang;
 	}
 
 	/**
 	 * 言語コードを設定
 	 *
 	 * @access public
-	 * @param string $language 言語コード
+	 * @param string $lang 言語コード
 	 */
-	public function setLanguage ($language) {
-		$language = StringUtils::toLower($language);
-		if (!self::getLanguageNames()->isContain($language)) {
+	public function setLanguage (?string $lang) {
+		$lang = StringUtils::toLower($lang);
+		if (!self::getLanguageNames()->isContain($lang)) {
 			$message = new StringFormat('言語コード"%s"が正しくありません。');
-			$message[] = $language;
+			$message[] = $lang;
 			throw new TranslateException($message);
 		}
-		$this->language = $language;
+		$this->lang = $lang;
 	}
 
 	/**
@@ -168,13 +168,13 @@ class TranslateManager implements \IteratorAggregate {
 	 *
 	 * @access public
 	 * @param iterable $words 見出し語の配列
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return Tuple ハッシュ
 	 */
-	public function getHash (iterable $words, $language = 'ja') {
+	public function getHash (iterable $words, ?string $lang = 'ja') {
 		$hash = Tuple::create();
 		foreach ($words as $word) {
-			$hash[$word] = $this->execute($word, $language);
+			$hash[$word] = $this->execute($word, $lang);
 		}
 		return $hash;
 	}
@@ -206,11 +206,11 @@ class TranslateManager implements \IteratorAggregate {
 	 * @static
 	 */
 	static public function getLanguages () {
-		if (!self::$languages) {
-			self::$languages = self::getInstance()->getHash(
+		if (!self::$langs) {
+			self::$langs = self::getInstance()->getHash(
 				Tuple::explode(',', BS_LANGUAGES), 'en'
 			);
 		}
-		return self::$languages;
+		return self::$langs;
 	}
 }

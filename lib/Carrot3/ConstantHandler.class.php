@@ -128,11 +128,11 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 	 *
 	 * @access public
 	 * @param string $label ラベル
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string 翻訳された文字列
 	 */
-	public function translate ($label, $language) {
-		foreach ([null, '_' . $language] as $suffix) {
+	public function translate ($label, ?string $lang) {
+		foreach ([null, '_' . $lang] as $suffix) {
 			if ($this->hasParameter($label . $suffix)) {
 				if (StringUtils::isBlank($value = $this[$label . $suffix])) {
 					return '';

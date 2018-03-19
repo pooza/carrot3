@@ -302,7 +302,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $template テンプレート名
 	 * @param iterable $params アサインするパラメータ
 	 */
-	public function sendMail ($template, ?iterable $params = null) {
+	public function sendMail ($template, iterable $params = []) {
 		try {
 			$mail = new SmartyMail;
 			$mail->getRenderer()->setTemplate(
@@ -523,13 +523,13 @@ abstract class Record implements \ArrayAccess,
 	 * ラベルを返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string ラベル
 	 */
-	public function getLabel ($language = 'ja') {
+	public function getLabel (?string $lang = 'ja') {
 		foreach (['name', 'label', 'title'] as $name) {
 			foreach ([null, $this->getTable()->getName() . '_'] as $prefix) {
-				foreach ([null, '_' . $language] as $suffix) {
+				foreach ([null, '_' . $lang] as $suffix) {
 					if (!StringUtils::isBlank($label = $this[$prefix . $name . $suffix])) {
 						return $label;
 					}
@@ -544,12 +544,12 @@ abstract class Record implements \ArrayAccess,
 	 * getLabelのエイリアス
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string ラベル
 	 * @final
 	 */
-	final public function getName ($language = 'ja') {
-		return $this->getLabel($language);
+	final public function getName (?string $lang = 'ja') {
+		return $this->getLabel($lang);
 	}
 
 	/**

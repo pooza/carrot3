@@ -31,11 +31,11 @@ class AdministratorRole implements Role {
 	 * メールアドレスを返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return MailAddress メールアドレス
 	 */
-	public function getMailAddress ($language = 'ja') {
-		return MailAddress::create(BS_ADMIN_EMAIL, $this->getName($language));
+	public function getMailAddress (?string $lang = 'ja') {
+		return MailAddress::create(BS_ADMIN_EMAIL, $this->getName($lang));
 	}
 
 	/**
@@ -55,11 +55,11 @@ class AdministratorRole implements Role {
 	 * 名前を返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string 名前
 	 */
-	public function getName ($language = 'ja') {
-		return (new ConstantHandler)['APP_NAME_' . $language] . ' 管理者';
+	public function getName (?string $lang = 'ja') {
+		return (new ConstantHandler)['APP_NAME_' . $lang] . ' 管理者';
 	}
 
 	/**

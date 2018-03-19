@@ -257,6 +257,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 					return;
 				}
 			} catch (\Exception $e) {
+				// ログのみ。例外は最後にはMIMEExceptionとしてthrowされるはず。
 			}
 		}
 		throw new MIMEException('MIME文書がパースできません。');

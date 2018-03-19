@@ -69,6 +69,7 @@ class Date extends ParameterHolder implements Assignable {
 				return $date;
 			}
 		} catch (DateException $e) {
+			return null;
 		}
 	}
 

@@ -94,6 +94,7 @@ class Geocode extends ParameterHolder {
 				$service = new HeartRailsExpressService;
 				$this->stations->setParameters($service->getStations($this, $flags));
 			} catch (\Exception $e) {
+				// ログのみ
 			}
 		}
 		return $this->stations;

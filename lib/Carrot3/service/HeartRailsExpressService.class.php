@@ -37,7 +37,7 @@ class HeartRailsExpressService extends CurlHTTP {
 	 * @return Tuple 最寄り駅の配列
 	 */
 	public function getStations (Geocode $geocode, int $flags = 0) {
-		$key = BSCrypt::digest([
+		$key = Crypt::digest([
 			Utils::getClass($this),
 			__FUNCTION__,
 			$geocode['lat'],
@@ -53,9 +53,10 @@ class HeartRailsExpressService extends CurlHTTP {
 				$message[] = $geocode['lng'];
 				LogManager::getInstance()->put($message, $this);
 			} catch (\Exception $e) {
+				return null;
 			}
 		}
-		return $serials[$key];
+		return Tuple::create($serials[$key]);
 	}
 
 	private function queryStations (Geocode $geocode) {

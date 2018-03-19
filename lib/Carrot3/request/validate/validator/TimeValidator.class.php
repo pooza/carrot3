@@ -36,6 +36,7 @@ class TimeValidator extends Validator {
 				return $date->format('H:i:s');
 			}
 		} catch (DateException $e) {
+			return null;
 		}
 	}
 

@@ -175,7 +175,7 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 			$result = $json->getResult();
 
 			$holidays = Tuple::create();
-			if (isset($result['items']) && is_array($result['items'])) {
+			if (isset($result['items']) && is_iterable($result['items'])) {
 				foreach ($result['items'] as $entry) {
 					$date = Date::create($entry['start']['date']);
 					$holidays[$date['day']] = $entry['summary'];
@@ -183,6 +183,7 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 			}
 			(new SerializeHandler)->setAttribute($this, $holidays);
 		} catch (\Exception $e) {
+			// ログのみ
 		}
 	}
 

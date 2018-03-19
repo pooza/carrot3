@@ -18,17 +18,17 @@ interface Role extends UserIdentifier {
 	 * メールアドレスを返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return MailAddress メールアドレス
 	 */
-	public function getMailAddress ($language = 'ja');
+	public function getMailAddress (?string $lang = 'ja');
 
 	/**
 	 * 名前を返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string 名前
 	 */
-	public function getName ($language = 'ja');
+	public function getName (?string $lang = 'ja');
 }

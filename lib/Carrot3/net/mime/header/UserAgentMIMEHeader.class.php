@@ -48,6 +48,7 @@ class UserAgentMIMEHeader extends MIMEHeader {
 		try {
 			$this->useragent = UserAgent::create($this->contents);
 		} catch (NetException $e) {
+			// ログのみ
 		}
 	}
 }

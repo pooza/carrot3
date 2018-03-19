@@ -137,6 +137,7 @@ class RecordValidator extends Validator {
 			}
 			return $this->getTable()->getRecord($values);
 		} catch (\Exception $e) {
+			return null;
 		}
 	}
 

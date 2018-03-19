@@ -38,7 +38,7 @@ abstract class RequestFilter extends Filter {
 
 	public function execute () {
 		foreach ($this->request->getParameters() as $key => $value) {
-			if (!StringUtils::isBlank($value) && (!is_array($value) || $this->hasListSupport())) {
+			if (!StringUtils::isBlank($value) && (!is_iterable($value) || $this->hasListSupport())) {
 				$this->request[$key] = $this->convert($key, $value);
 			}
 		}

@@ -215,7 +215,7 @@ class Controller {
 	 * @param string $lang 言語
 	 * @return string アプリケーション名
 	 */
-	public function getName ($lang = 'ja') {
+	public function getName (?string $lang = 'ja') {
 		return sprintf(
 			'%s %s (Powered by %s %s)',
 			(new ConstantHandler)['APP_NAME_' . $lang],

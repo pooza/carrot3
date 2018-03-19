@@ -693,13 +693,13 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * 現在の抽出条件で抽出して、配列で返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return array ラベルの配列
 	 */
-	public function getLabels ($language = 'ja') {
+	public function getLabels (?string $lang = 'ja') {
 		$labels = [];
 		foreach ($this as $record) {
-			$labels[$record->getID()] = $record->getLabel($language);
+			$labels[$record->getID()] = $record->getLabel($lang);
 		}
 		return $labels;
 	}
@@ -708,15 +708,15 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * フィールド名の配列を返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return array フィールド名の配列
 	 */
-	public function getFieldNames ($language = 'ja') {
+	public function getFieldNames (?string $lang = 'ja') {
 		if (!$this->fieldNames) {
 			if ($result = $this->getResult()) {
 				$translator = TranslateManager::getInstance();
 				foreach ($result[0] as $key => $value) {
-					$this->fieldNames[$key] = $translator->execute($key, $language);
+					$this->fieldNames[$key] = $translator->execute($key, $lang);
 				}
 			}
 		}
@@ -803,10 +803,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @return Directory ディレクトリ
 	 */
 	public function getDirectory () {
-		try {
-			return FileUtils::getDirectory($this->getName());
-		} catch (FileException $e) {
-		}
+		return FileUtils::getDirectory($this->getName());
 	}
 
 	/**
@@ -814,12 +811,12 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 *
 	 * @access public
 	 * @param string $label ラベル
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string 翻訳された文字列
 	 */
-	public function translate ($label, $language) {
+	public function translate ($label, ?string $lang) {
 		if ($record = $this->getRecord($label)) {
-			return $record->getLabel($language);
+			return $record->getLabel($lang);
 		}
 	}
 

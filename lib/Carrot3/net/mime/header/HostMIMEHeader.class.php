@@ -51,6 +51,7 @@ class HostMIMEHeader extends MIMEHeader {
 			$this->host = new Host($parts[0]);
 			$this->port = $parts[1];
 		} catch (NetException $e) {
+			// ログのみ
 		}
 	}
 }

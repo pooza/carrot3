@@ -18,10 +18,10 @@ interface Dictionary {
 	 *
 	 * @access public
 	 * @param string $label ラベル
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string 翻訳された文字列
 	 */
-	public function translate ($label, $language);
+	public function translate ($label, ?string $lang);
 
 	/**
 	 * 辞書の名前を返す

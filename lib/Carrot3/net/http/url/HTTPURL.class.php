@@ -315,10 +315,10 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * コンテナのラベルを返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string ラベル
 	 */
-	public function getLabel ($language = 'ja') {
+	public function getLabel (?string $lang = 'ja') {
 		return $this->getID();
 	}
 

@@ -29,14 +29,14 @@ class RootRole implements Role {
 	 * メールアドレスを返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return MailAddress メールアドレス
 	 */
-	public function getMailAddress ($language = 'ja') {
+	public function getMailAddress (?string $lang = 'ja') {
 		if (!$this->email) {
 			$command = new CommandLine('hostname');
 			$hostname = $command->getResult()[0];
-			$this->email = MailAddress::create('root@' . $hostname, $this->getName($language));
+			$this->email = MailAddress::create('root@' . $hostname, $this->getName($lang));
 		}
 		return $this->email;
 	}
@@ -45,10 +45,10 @@ class RootRole implements Role {
 	 * 名前を返す
 	 *
 	 * @access public
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string 名前
 	 */
-	public function getName ($language = 'ja') {
+	public function getName (?string $lang = 'ja') {
 		return 'Charlie Root';
 	}
 

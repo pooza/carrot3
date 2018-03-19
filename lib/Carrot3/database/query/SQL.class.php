@@ -51,30 +51,25 @@ class SQL {
 	 *
 	 * @access public
 	 * @param mixed $table テーブル名又はテーブル
-	 * @param mixed $values フィールドの値
+	 * @param iterable $values フィールドの値
 	 * @param Database $db 対象データベース
 	 * @return string クエリー文字列
 	 * @static
 	 */
-	static public function getInsertQuery ($table, $values, Database $db = null) {
+	static public function getInsertQuery ($table, iterable $values, Database $db = null) {
 		if (!$db) {
 			$db = Database::getInstance();
 		}
 		if ($table instanceof TableHandler) {
 			$table = $table->getName();
 		}
-		if (is_array($values)) {
-			$values = Tuple::create($values);
-		} else if (is_iterable($values)) {
-			$values = Tuple::create($values->getParameters());
-		}
-		$values = $db->quote($values);
+		$values = Tuple::create($values);
 
 		return sprintf(
 			'INSERT INTO %s (%s) VALUES (%s)',
 			$table,
 			$values->getKeys()->join(', '),
-			$values->join(', ')
+			$db->quote($values)->join(', ')
 		);
 	}
 

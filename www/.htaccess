@@ -48,3 +48,9 @@ php_value session.cookie_lifetime 86400
 php_value session.gc_maxlifetime 86400
 php_value session.sid_length 40
 #php_flag session.cookie_secure On #常時httpsのサイトではコメントを外す
+
+# xdebug
+php_flag html_errors On
+php_value xdebug.var_display_max_children -1
+php_value xdebug.var_display_max_data -1
+php_value xdebug.var_display_max_depth -1

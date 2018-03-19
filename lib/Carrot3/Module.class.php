@@ -416,7 +416,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @param string $lang 言語 - 翻訳が必要な場合
 	 * @return string レコードクラス名
 	 */
-	public function getRecordClass ($lang = null) {
+	public function getRecordClass (?string $lang = null) {
 		if (!$this->recordClass) {
 			if (StringUtils::isBlank($name = $this->getConfig('record_class'))) {
 				$pattern = '^' . $this->getPrefix() . '([[:upper:]][[:alpha:]]+)$';

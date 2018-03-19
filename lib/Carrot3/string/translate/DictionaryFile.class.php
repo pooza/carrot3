@@ -40,11 +40,11 @@ class DictionaryFile extends CSVFile implements Dictionary {
 	 *
 	 * @access public
 	 * @param string $label ラベル
-	 * @param string $language 言語
+	 * @param string $lang 言語
 	 * @return string 翻訳された文字列
 	 */
-	public function translate ($label, $language) {
-		return $this->getWords()[$label . '_' . $language];
+	public function translate ($label, ?string $lang) {
+		return $this->getWords()[$label . '_' . $lang];
 	}
 
 	/**

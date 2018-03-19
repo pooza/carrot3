@@ -31,7 +31,7 @@ abstract class ConfigCompiler extends ParameterHolder {
 	 * @return bool 成功ならばTrue
 	 * @static
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (iterable $params = []) {
 		$this->setParameters($params);
 	}
 

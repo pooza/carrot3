@@ -280,6 +280,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 					return new $class($this, $name, $this->request->getAttribute('renderer'));
 				}
 			} catch (LoaderException $e) {
+				// LoaderExceptionは無視。
 			}
 		}
 		throw new ViewException($this . 'のビューがありません。');
