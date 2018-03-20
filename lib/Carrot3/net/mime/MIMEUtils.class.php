@@ -197,7 +197,7 @@ class MIMEUtils {
 	 * @return string 拡張子
 	 * @static
 	 */
-	static public function getFileNameSuffix ($filename) {
+	static public function getFileNameSuffix (string $filename) {
 		return '.' . StringUtils::explode('.', $filename)->pop();
 	}
 }

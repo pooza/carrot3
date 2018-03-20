@@ -14,15 +14,6 @@ namespace Carrot3;
 interface AttachmentContainer {
 
 	/**
-	 * 添付ファイルの情報を返す
-	 *
-	 * @access public
-	 * @param string $name 名前
-	 * @return array 添付ファイルの情報
-	 */
-	public function getAttachmentInfo (string $name);
-
-	/**
 	 * 添付ファイルを返す
 	 *
 	 * @access public
@@ -30,15 +21,6 @@ interface AttachmentContainer {
 	 * @return File 添付ファイル
 	 */
 	public function getAttachment (string $name);
-
-	/**
-	 * 添付ファイルベース名を返す
-	 *
-	 * @access public
-	 * @param string $name 名前
-	 * @return string 添付ファイルベース名
-	 */
-	public function getAttachmentBaseName (string $name);
 
 	/**
 	 * 添付ファイルのダウンロード時の名を返す

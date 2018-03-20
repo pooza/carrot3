@@ -179,7 +179,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 * ファイル名を設定
 	 *
 	 * @access public
-	 * @param string $filename ファイル名
+	 * @param string $file ファイル名
 	 * @param string $mode モード
 	 */
 	public function setFileName (string $file, $mode = MIMEUtils::ATTACHMENT) {

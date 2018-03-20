@@ -209,7 +209,7 @@ class Loader {
 	 * @return string クラス名
 	 * @static
 	 */
-	static public function extractClass ($filename) {
+	static public function extractClass (string $filename) {
 		if ($filename && ($filename[0] == '/')) {
 			$filename = basename($filename);
 		}

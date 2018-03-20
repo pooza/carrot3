@@ -321,19 +321,6 @@ abstract class Record implements \ArrayAccess,
 	}
 
 	/**
-	 * 添付ファイルの情報を返す
-	 *
-	 * @access public
-	 * @param string $name 名前
-	 * @return Tuple 添付ファイルの情報
-	 */
-	public function getAttachmentInfo (string $name) {
-		if (($file = $this->getAttachment($name)) && ($file instanceof Assibnable)) {
-			return $file->assign();
-		}
-	}
-
-	/**
 	 * 添付ファイルを返す
 	 *
 	 * @access public
@@ -356,7 +343,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param File $file 添付ファイル
 	 * @param string $filename ファイル名
 	 */
-	public function setAttachment (string $name, File $file, $filename = null) {
+	public function setAttachment (string $name, File $file, ?string $filename = null) {
 		if ($file instanceof ImageFile) {
 			$this->removeImageFile($name);
 			$file->rename($this->getImageFileBaseName($name));
@@ -680,9 +667,9 @@ abstract class Record implements \ArrayAccess,
 			}
 		}
 		foreach ($this->getTable()->getAttachmentNames() as $field) {
-			if (!!$this->getAttachment($field)) {
+			if ($file = $this->getAttachment($field)) {
 				$values['has_' . $field] = true;
-				$values[$field] = $this->getAttachmentInfo($field);
+				$values[$field] = $file->assign();
 			}
 		}
 		return $values;
