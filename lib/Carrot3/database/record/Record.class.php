@@ -669,7 +669,9 @@ abstract class Record implements \ArrayAccess,
 		foreach ($this->getTable()->getAttachmentNames() as $field) {
 			if ($file = $this->getAttachment($field)) {
 				$values['has_' . $field] = true;
-				$values[$field] = $file->assign();
+				if ($file instanceof Assignable) {
+					$values[$field] = $file->assign();
+				}
 			}
 		}
 		return $values;

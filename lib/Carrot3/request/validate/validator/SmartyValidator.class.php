@@ -19,7 +19,7 @@ class SmartyValidator extends Validator {
 	 * @access public
 	 * @param iterable $params パラメータ配列
 	 */
-	public function initialize ($iterable params = []) {
+	public function initialize (?iterable $params = []) {
 		$this['invalid_encoding_error'] = '正しいエンコードではありません。';
 		return parent::initialize($params);
 	}
