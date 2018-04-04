@@ -519,7 +519,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 			throw new DatabaseException($this . 'は既に存在します。');
 		}
 		if ($schema = $this->getSchema()) {
-			$flags = null;
+			$flags = 0;
 			if ($this->isTemporary()) {
 				$flags |= SQL::TEMPORARY;
 			}
