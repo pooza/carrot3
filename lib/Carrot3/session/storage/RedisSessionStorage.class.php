@@ -20,9 +20,6 @@ class RedisSessionStorage implements SessionStorage {
 	 * @return string 利用可能ならTrue
 	 */
 	public function initialize () {
-		if (!MemcacheManager::getInstance()->isEnabled()) {
-			return false;
-		}
 		$path = new StringFormat('tcp://%s:%d?database=%d');
 		$path[] = BS_REDIS_HOST;
 		$path[] = BS_REDIS_PORT;
