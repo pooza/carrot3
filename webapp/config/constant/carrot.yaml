@@ -148,7 +148,7 @@ mysql:
     ubuntu: /usr
 net:
   url:
-    shorter: google_url_shortner
+    shorter: bitly
 package:
   name:
   ver:
@@ -185,7 +185,14 @@ pw:
   dir:
     freebsd: /usr
 render:
-  storage: Memcache
+  storage: Redis
+redis:
+  host: localhost
+  port: 6379
+  databases:
+    session: 0
+    serialize: 1
+    render: 2
 ruby:
   dir:
     default: /usr/local
@@ -194,8 +201,8 @@ sendmail:
   dir:
     default: /usr
 serialize:
-  storage: Memcache
-  serializer: JSON
+  storage: Redis
+  serializer: PHP
   classes:
 service:
   bitly:
@@ -231,7 +238,7 @@ service:
     webhook:
       url: /api/webhooks/409190036010041348/5k0hiDHv7yvqhV5JXH6pJdkmS8TvXcnck-ytM6a8ETp11fYjwA_OrVkh1DbKd5DcPszl
 session:
-  storage: Memcache
+  storage: Redis
 smtp:
   host:
   timeout: 200000 #ミリ秒単位
