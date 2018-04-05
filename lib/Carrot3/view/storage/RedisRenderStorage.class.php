@@ -18,6 +18,9 @@ class RedisRenderStorage implements RenderStorage {
 	 * @access public
 	 */
 	public function __construct () {
+		if (!extension_loaded('redis')) {
+			throw new ViewException('redisモジュールがロードされていません。');
+		}
 		$this->server = new \Redis;
 		$this->server->connect(BS_REDIS_HOST, BS_REDIS_PORT);
 		$this->server->select(BS_REDIS_DATABASES_RENDER);

@@ -20,12 +20,15 @@ class RedisSessionStorage implements SessionStorage {
 	 * @return string 利用可能ならTrue
 	 */
 	public function initialize () {
-		$path = new StringFormat('tcp://%s:%d?database=%d');
-		$path[] = BS_REDIS_HOST;
-		$path[] = BS_REDIS_PORT;
-		$path[] = BS_REDIS_DATABASES_SESSION;
+		if (!extension_loaded('redis')) {
+			return false;
+		}
+		$url = URL::create(null, 'tcp');
+		$url['host'] = BS_REDIS_HOST;
+		$url['port'] = BS_REDIS_PORT;
+		$url->setParameter('database', BS_REDIS_DATABASES_SESSION);
 		ini_set('session.save_handler', 'redis');
-		ini_set('session.save_path', $path->getContents());
+		ini_set('session.save_path', $url->getContents());
 		return true;
 	}
 }

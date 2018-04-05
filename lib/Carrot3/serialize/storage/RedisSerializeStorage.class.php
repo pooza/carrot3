@@ -34,12 +34,13 @@ class RedisSerializeStorage implements SerializeStorage {
 	 * @return string 利用可能ならTrue
 	 */
 	public function initialize () {
-		if ($this->server = new \Redis) {
-			$this->server->connect(BS_REDIS_HOST, BS_REDIS_PORT);
-			$this->server->select(BS_REDIS_DATABASES_SERIALIZE);
-			return true;
+		if (!extension_loaded('redis')) {
+			return false;
 		}
-		return false;
+		$this->server = new \Redis;
+		$this->server->connect(BS_REDIS_HOST, BS_REDIS_PORT);
+		$this->server->select(BS_REDIS_DATABASES_SERIALIZE);
+		return true;
 	}
 
 	/**
