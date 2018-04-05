@@ -19,7 +19,6 @@ class MailAddress implements Assignable {
 	private $domain;
 	private $url;
 	private $mx = [];
-	const PATTERN = '^([-+._[:alnum:]]+)@(([-.[:alnum:]])+[[:alpha:]]+)$';
 
 	/**
 	 * @access private
@@ -31,9 +30,10 @@ class MailAddress implements Assignable {
 			$name = $matches[1];
 			$contents = $matches[2];
 		}
-		if (mb_ereg(self::PATTERN, $contents, $matches)) {
+		if (filter_var($contents, FILTER_VALIDATE_EMAIL)) {
 			$this->contents = $contents;
 			$this->name = $name;
+			mb_ereg('^(.+?)@(.+?)$', $contents, $matches);
 			$this->account = $matches[1];
 			$this->domain = $matches[2];
 		}
