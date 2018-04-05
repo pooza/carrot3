@@ -15,7 +15,7 @@ function smarty_function_carrot_url ($params, &$smarty) {
 	$params = C\Tuple::create($params);
 
 	if (C\StringUtils::isBlank($params['contents'])) {
-		$url = C\URL::create($params, 'carrot');
+		$url = C\URL::create(null, 'carrot');
 	} else {
 		$url = C\URL::create($params['contents']);
 	}

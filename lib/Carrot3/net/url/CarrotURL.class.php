@@ -1,7 +1,7 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage net.http.url
+ * @subpackage net.url
  */
 
 namespace Carrot3;
@@ -15,6 +15,17 @@ class CarrotURL extends HTTPURL {
 	private $module;
 	private $action;
 	private $id;
+
+
+	/**
+	 * @access protected
+	 * @param mixed $contents URL
+	 */
+	protected function __construct ($contents = null) {
+		$this->attributes = Tuple::create();
+		$this->query = new WWWFormRenderer;
+		$this->setContents($contents);
+	}
 
 	/**
 	 * 属性を設定
@@ -73,9 +84,6 @@ class CarrotURL extends HTTPURL {
 	 * @return string モジュール名
 	 */
 	public function getModuleName () {
-		if (!$this->module) {
-			$this->module = BS_MODULE_DEFAULT_MODULE;
-		}
 		return $this->module;
 	}
 
@@ -92,6 +100,7 @@ class CarrotURL extends HTTPURL {
 		} else {
 			$this->module = $module;
 		}
+		$this->action = null;
 		$this->parsePath();
 		return $this;
 	}
@@ -103,9 +112,6 @@ class CarrotURL extends HTTPURL {
 	 * @return string アクション名
 	 */
 	public function getActionName () {
-		if (!$this->action) {
-			$this->action = BS_MODULE_DEFAULT_ACTION;
-		}
 		return $this->action;
 	}
 

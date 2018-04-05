@@ -1,7 +1,7 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage net.http.url
+ * @subpackage net.url
  */
 
 namespace Carrot3;
@@ -15,27 +15,8 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	use HTTPRedirectorMethods;
 	private $fullpath;
 	private $useragent;
-	private $query;
 	private $shortURL;
 	private $dirty = false;
-
-	/**
-	 * @access protected
-	 * @param mixed $contents URL
-	 */
-	protected function __construct ($contents = null) {
-		$this->attributes = Tuple::create();
-		$this->query = new WWWFormRenderer;
-		$this->setContents($contents);
-	}
-
-	/**
-	 * @access public
-	 */
-	public function __clone () {
-		$this->attributes = clone $this->attributes;
-		$this->query = clone $this->query;
-	}
 
 	/**
 	 * 属性を設定
@@ -49,6 +30,10 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		$this->contents = null;
 		$this->fullpath = null;
 		switch ($name) {
+			case 'scheme':
+				$this->attributes['scheme'] = $value;
+				$this->attributes['port'] = NetworkService::getPort($value);
+				break;
 			case 'path':
 				try {
 					$values = Tuple::create(parse_url($value));
@@ -62,16 +47,6 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 					$this->dirty = true;
 				}
 				return $this;
-			case 'query':
-				$this->query->setContents($value);
-				return $this;
-			case 'fragment':
-				$this->attributes[$name] = $value;
-				return $this;
-		}
-		if (mb_ereg('^params?_(.*)$', $name, $matches)) {
-			$this->setParameter($matches[1], $value);
-			return $this;
 		}
 		return parent::setAttribute($name, $value);
 	}
@@ -126,17 +101,6 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	}
 
 	/**
-	 * パラメータを返す
-	 *
-	 * @access public
-	 * @param string $name パラメータの名前
-	 * @return string パラメータ
-	 */
-	public function getParameter (?string $name) {
-		return $this->query[$name];
-	}
-
-	/**
 	 * パラメータを設定
 	 *
 	 * @access public
@@ -144,12 +108,8 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @param string $value パラメータの値
 	 */
 	public function setParameter (?string $name, $value) {
-		if (StringUtils::isBlank($value)) {
-			return;
-		}
-		$this->query[(string)$name] = $value;
+		parent::setParameter($name, $value);
 		$this->fullpath = null;
-		$this->contents = null;
 	}
 
 	/**
@@ -214,8 +174,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	public function fetch ($class = 'CurlHTTP') {
 		try {
 			$class = $this->loader->getClass($class);
-			$http = new $class($this['host']);
-			$response = $http->sendGET($this->getFullPath());
+			$response = (new $class($this['host']))->sendGET($this->getFullPath());
 			return $response->getRenderer()->getContents();
 		} catch (\Exception $e) {
 			throw new HTTPException($this . 'を取得できません。');

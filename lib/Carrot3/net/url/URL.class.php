@@ -1,7 +1,7 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage net
+ * @subpackage net.url
  */
 
 namespace Carrot3;
@@ -10,20 +10,21 @@ namespace Carrot3;
  * 基底URL
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
- * @abstract
  */
-abstract class URL implements \ArrayAccess, Assignable {
+class URL implements \ArrayAccess, Assignable {
 	use BasicObject;
 	protected $attributes;
 	protected $contents;
+	protected $query;
 	const PATTERN = '^[[:alnum:]]+:(//)?[[:graph:]]+$';
 
 	/**
 	 * @access protected
 	 * @param mixed $contents URL
 	 */
-	protected function __construct ($contents) {
+	protected function __construct ($contents = null) {
 		$this->attributes = Tuple::create();
+		$this->query = new WWWFormRenderer;
 		$this->setContents($contents);
 	}
 
@@ -41,24 +42,22 @@ abstract class URL implements \ArrayAccess, Assignable {
 			throw new Exception('URLクラスが見つかりません。');
 		}
 
-		if (StringUtils::isBlank($contents)) {
-			return new $class;
-		} else if (is_string($contents)) {
-			$params = Tuple::create(parse_url($contents));
-		} else if (is_iterable($contents)) {
-			$params = Tuple::create($contents);
+		if (is_string($contents)) {
+			$contents = parse_url($contents);
+		}
+		if (is_iterable($contents)) {
+			$contents = Tuple::create($contents);
 		} else {
-			return null;
+			$contents = Tuple::create();
 		}
 
-		switch ($params['scheme']) {
+		switch ($contents['scheme']) {
 			case 'mailto':
 			case 'tel':
-				return new ContactURL($params);
 			case 'javascript':
-				return new JavaScriptURL($params);
+				return new self($contents);
 			default:
-				return new $class($params);
+				return new $class($contents);
 		}
 	}
 
@@ -67,6 +66,7 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 */
 	public function __clone () {
 		$this->attributes = clone $this->attributes;
+		$this->query = clone $this->query;
 	}
 
 	/**
@@ -112,10 +112,9 @@ abstract class URL implements \ArrayAccess, Assignable {
 	 * @return string 前半
 	 */
 	protected function getHeadString () {
-		if (StringUtils::isBlank($this['scheme']) || !$this['host']) {
+		if (StringUtils::isBlank($this['scheme'])) {
 			return null;
 		}
-
 		$head = $this['scheme'] . '://';
 
 		if (!StringUtils::isBlank($this['user'])) {
@@ -126,13 +125,40 @@ abstract class URL implements \ArrayAccess, Assignable {
 			$head .= '@';
 		}
 
-		$head .= $this['host']->getName();
-
-		if ($this['port'] != NetworkService::getPort($this['scheme'])) {
-			$head .= ':' . $this['port'];
+		if ($this['host']) {
+			$head .= $this['host']->getName();
+			if ($this['port'] != NetworkService::getPort($this['scheme'])) {
+				$head .= ':' . $this['port'];
+			}
 		}
 
 		return $head;
+	}
+
+	/**
+	 * パラメータを返す
+	 *
+	 * @access public
+	 * @param string $name パラメータの名前
+	 * @return string パラメータ
+	 */
+	public function getParameter (?string $name) {
+		return $this->query[$name];
+	}
+
+	/**
+	 * パラメータを設定
+	 *
+	 * @access public
+	 * @param string $name パラメータの名前
+	 * @param string $value パラメータの値
+	 */
+	public function setParameter (?string $name, $value) {
+		if (StringUtils::isBlank($value)) {
+			return;
+		}
+		$this->query[$name] = $value;
+		$this->contents = null;
 	}
 
 	/**
@@ -167,20 +193,16 @@ abstract class URL implements \ArrayAccess, Assignable {
 	public function setAttribute (string $name, $value) {
 		$this->contents = null;
 		switch ($name) {
-			case 'scheme':
-				$this->attributes['scheme'] = $value;
-				$this->attributes['port'] = NetworkService::getPort($value);
-				break;
 			case 'host':
 				if (!($value instanceof Host)) {
 					$value = new Host($value);
 				}
 				$this->attributes['host'] = $value;
 				break;
-			case 'path':
-			case 'port':
-			case 'user':
-			case 'pass':
+			case 'query':
+				$this->query->setContents($value);
+				break;
+			default:
 				$this->attributes[$name] = $value;
 				break;
 		}

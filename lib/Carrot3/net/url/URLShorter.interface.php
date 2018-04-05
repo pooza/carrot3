@@ -1,7 +1,7 @@
 <?php
 /**
  * @package jp.co.b-shock.carrot3
- * @subpackage net.http.url
+ * @subpackage net.url
  */
 
 namespace Carrot3;

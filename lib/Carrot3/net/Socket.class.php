@@ -61,11 +61,10 @@ class Socket {
 	 */
 	public function getName () {
 		if (!$this->name) {
-			$host = new StringFormat('%s://%s:%s');
-			$host[] = $this->getProtocol();
-			$host[] = $this->getHost()->getName();
-			$host[] = $this->getPort();
-			$this->name = $host->getContents();
+			$url = URL::create(null, $this->getProtocol());
+			$url['host'] = $this->getHost();
+			$url['port'] = $this->getPort();
+			$this->name = $url->getContents();
 		}
 		return $this->name;
 	}
