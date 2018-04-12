@@ -206,9 +206,7 @@ serialize:
   classes:
 service:
   bitly:
-    version: 2.0.1
-    login: carrotfw
-    api_key: R_dbbb70d7b5959e23289acfc3458f836f
+    token: 2f03bffd27f8dae765e0cac252a0b30c7ddb698e
   google:
     maps:
       api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg

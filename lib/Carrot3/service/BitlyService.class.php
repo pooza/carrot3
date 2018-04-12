@@ -12,7 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class BitlyService extends CurlHTTP implements URLShorter {
-	const DEFAULT_HOST = 'api.bit.ly';
+	const DEFAULT_HOST = 'api-ssl.bitly.com';
 
 	/**
 	 * @access public
@@ -22,6 +22,7 @@ class BitlyService extends CurlHTTP implements URLShorter {
 	public function __construct (Host $host = null, int $port = null) {
 		if (!$host) {
 			$host = new Host(self::DEFAULT_HOST);
+			$port = NetworkService::getPort('https');
 		}
 		parent::__construct($host, $port);
 	}
@@ -35,9 +36,7 @@ class BitlyService extends CurlHTTP implements URLShorter {
 	 */
 	public function createRequestURL ($href) {
 		$url = parent::createRequestURL($href);
-		$url->setParameter('version', BS_SERVICE_BITLY_VERSION);
-		$url->setParameter('login', BS_SERVICE_BITLY_LOGIN);
-		$url->setParameter('apiKey', BS_SERVICE_BITLY_API_KEY);
+		$url->setParameter('access_token', BS_SERVICE_BITLY_TOKEN);
 		return $url;
 	}
 
@@ -49,15 +48,13 @@ class BitlyService extends CurlHTTP implements URLShorter {
 	 * @return HTTPURL 短縮URL
 	 */
 	public function getShortURL (HTTPRedirector $url) {
-		$request = $this->createRequestURL('shorten');
+		$request = $this->createRequestURL('/v3/shorten');
 		$request->setParameter('longUrl', $url->getContents());
 		$response = $this->sendGET($request->getFullPath());
 
-		$json = new JSONSerializer;
-		$result = $json->decode($response->getRenderer()->getContents());
-		$result = Tuple::create($result['results']);
-		$result = Tuple::create($result->getIterator()->getFirst());
-		return URL::create($result['shortUrl']);
+		return URL::create(Tuple::create(
+			(new JSONSerializer)->decode($response->getRenderer()->getContents())
+		)['data']['url']);
 	}
 
 	/**
