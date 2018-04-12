@@ -59,7 +59,9 @@ class BackupManager {
 			LogManager::getInstance()->put('バックアップを実行しました。', $this);
 			return $file;
 		} catch (\Exception $e) {
-			LogManager::getInstance()->put('バックアップに失敗しました。', $this);
+			$message = new StringFormat('バックアップに失敗しました。(%s)');
+			$message[] = $e->getMessage();
+			LogManager::getInstance()->put($message, $this);
 		}
 	}
 

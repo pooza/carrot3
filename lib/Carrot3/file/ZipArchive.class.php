@@ -30,14 +30,14 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 *
 	 * @access public
 	 * @param mixed $file ファイル、又はそのパス。nullの場合は、一時ファイルを使用。
-	 * @param int $flags フラグのビット列
+	 * @param mixed $flags フラグのビット列
 	 *   self::OVERWRITE
 	 *   self::CREATE
 	 *   self::EXCL
 	 *   self::CHECKCONS
 	 * @return mixed 正常終了時はtrue、それ以外はエラーコード。
 	 */
-	public function open ($path = null, int $flags = 0) {
+	public function open ($path = null, $flags = null) {
 		if ($this->opened) {
 			throw new FileException($this->getFile() . 'が開かれています。');
 		}
