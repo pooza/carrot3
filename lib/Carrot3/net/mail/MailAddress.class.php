@@ -79,7 +79,7 @@ class MailAddress implements Assignable {
 	 * @access public
 	 * @return string ドメイン名
 	 */
-	public function getDomainName () {
+	public function getDomainName ():string {
 		return $this->domain;
 	}
 
@@ -89,7 +89,7 @@ class MailAddress implements Assignable {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():URL {
 		if (!$this->url) {
 			$this->url = URL::create('mailto:' . $this->getContents());
 		}
