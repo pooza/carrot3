@@ -135,7 +135,7 @@ class WebRequest extends Request {
 	public function getURL () {
 		if (!$this->url) {
 			$url = 'http';
-			if ($this->isSSL()) {
+			if ($this->isTLS()) {
 				$url .= 's';
 			}
 			$url .= "://" . $this->controller->getHost()->getName();
@@ -166,12 +166,12 @@ class WebRequest extends Request {
 	}
 
 	/**
-	 * SSL環境か？
+	 * TLS環境か？
 	 *
 	 * @access public
 	 * @return bool SSL環境ならTrue
 	 */
-	public function isSSL () {
+	public function isTLS () {
 		return !!$this->controller->getAttribute('HTTPS');
 	}
 

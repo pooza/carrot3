@@ -65,7 +65,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 			$contents = Tuple::create($contents);
 		}
 		if (StringUtils::isBlank($contents['scheme'])) {
-			if ($this->request->isSSL()) {
+			if ($this->request->isTLS()) {
 				$contents['scheme'] = 'https';
 			} else {
 				$contents['scheme'] = 'http';

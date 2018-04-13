@@ -303,12 +303,25 @@ abstract class Request extends HTTPRequest {
 	}
 
 	/**
-	 * SSL環境か？
+	 * TLS環境か？
 	 *
 	 * @access public
 	 * @return bool SSL環境ならTrue
 	 */
-	public function isSSL () {
+	public function isTLS () {
 		return false;
+	}
+
+	/**
+	 * TLS環境か？
+	 *
+	 * isTLSのエイリアス
+	 *
+	 * @access public
+	 * @return bool SSL環境ならTrue
+	 * @final
+	 */
+	final public function isSSL () {
+		return $this->isTLS();
 	}
 }

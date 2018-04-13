@@ -185,7 +185,7 @@ class CurlHTTP extends HTTP {
 	 * @access public
 	 * @return bool SSLモードならTrue
 	 */
-	public function isSSL () {
+	public function isTLS () {
 		return $this->ssl;
 	}
 

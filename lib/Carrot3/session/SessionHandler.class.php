@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class SessionHandler implements \ArrayAccess {
+class SessionHandler implements \ArrayAccess, Assignable {
 	use BasicObject;
 	private $storage;
 	protected $directory;
@@ -161,5 +161,18 @@ class SessionHandler implements \ArrayAccess {
 			}
 		}
 		return $this->directory;
+	}
+
+	/**
+	 * アサインすべき値を返す
+	 *
+	 * @access public
+	 * @return mixed アサインすべき値
+	 */
+	public function assign () {
+		return Tuple::create([
+			'name' => $this->getName(),
+			'id' => $this->getID(),
+		]);
 	}
 }

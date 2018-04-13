@@ -116,7 +116,7 @@ class User extends ParameterHolder {
 				$expire->getTimestamp(),
 				'/',
 				$domain,
-				$this->request->isSSL(), //セキュア属性
+				$this->request->isTLS(), //セキュア属性
 				true //httponly
 			);
 		}

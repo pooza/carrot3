@@ -122,11 +122,8 @@ abstract class UserAgent extends ParameterHolder {
 		$view->setAttribute('credentials', $this->user->getCredentials());
 		$view->setAttribute('client_host', $this->request->getHost());
 		$view->setAttribute('server_host', $this->controller->getHost());
-		$view->setAttribute('is_ssl', $this->request->isSSL());
-		$view->setAttribute('session', [
-			'name' => $this->request->getSession()->getName(),
-			'id' => $this->request->getSession()->getID(),
-		]);
+		$view->setAttribute('is_tls', $this->request->isTLS());
+		$view->setAttribute('session',$this->request->getSession());
 		return true;
 	}
 

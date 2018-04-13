@@ -76,7 +76,7 @@ class HTTP extends Socket {
 		$url = URL::create();
 		$url['host'] = $this->getHost();
 		$url['path'] = '/' . ltrim($href, '/');
-		if ($this->isSSL()) {
+		if ($this->isTLS()) {
 			$url['scheme'] = 'https';
 		} else {
 			$url['scheme'] = 'http';
@@ -136,7 +136,7 @@ class HTTP extends Socket {
 	 * @access public
 	 * @return bool SSLモードならTrue
 	 */
-	public function isSSL () {
+	public function isTLS () {
 		return false;
 	}
 
