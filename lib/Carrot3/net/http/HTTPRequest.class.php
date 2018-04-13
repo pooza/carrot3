@@ -184,7 +184,7 @@ class HTTPRequest extends MIMEDocument {
 	 * @return bool サポートしているならTrue
 	 * @static
 	 */
-	static public function isValidMethod ($method) {
+	static public function isValidMethod ($method):bool {
 		return self::getMethods()->isContain(StringUtils::toUpper($method));
 	}
 }

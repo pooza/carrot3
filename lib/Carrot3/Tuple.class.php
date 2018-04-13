@@ -144,7 +144,7 @@ class Tuple extends ParameterHolder {
 	 * @param mixed $values 値、又は値の配列
 	 * @return bool 値が含まれていればTrue
 	 */
-	public function isContain ($values) {
+	public function isContain ($values):bool {
 		foreach (Tuple::create($values) as $value) {
 			if (in_array($value, $this->getParameters())) {
 				return true;

@@ -81,7 +81,7 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 	 * @param string $name パラメータ名
 	 * @return bool 存在すればTrue
 	 */
-	public function hasParameter (?string $name) {
+	public function hasParameter (?string $name):bool {
 		foreach ($this->createKeys($name) as $name) {
 			if (defined($name)) {
 				return true;

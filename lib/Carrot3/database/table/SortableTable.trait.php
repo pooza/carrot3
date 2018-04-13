@@ -33,7 +33,7 @@ trait SortableTable {
 	 * @access protected
 	 * @return bool レコード追加可能ならTrue
 	 */
-	protected function isInsertable () {
+	protected function isInsertable ():bool {
 		return true;
 	}
 

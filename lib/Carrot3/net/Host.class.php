@@ -103,7 +103,7 @@ class Host implements Assignable, ImageContainer {
 	 * @param Host $host 対象ホスト
 	 * @return bool 異なるホストならTrue
 	 */
-	public function isForeign (Host $host = null) {
+	public function isForeign (Host $host = null):bool {
 		if (!$host) {
 			$host = $this->controller->getHost();
 		}

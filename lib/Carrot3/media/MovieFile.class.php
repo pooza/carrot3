@@ -48,7 +48,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * @access public
 	 * @return bool 動画トラックを持つならTrue
 	 */
-	public function hasMovieTrack () {
+	public function hasMovieTrack ():bool {
 		if (!$this->attributes->count()) {
 			$this->analyze();
 		}

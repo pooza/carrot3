@@ -63,7 +63,7 @@ abstract class Test {
 	 * @param string $name テスト名
 	 * @param bool マッチするならTrue
 	 */
-	public function isMatched (string $name) {
+	public function isMatched (string $name):bool {
 		return StringUtils::isContain(
 			StringUtils::toLower($name),
 			StringUtils::toLower(Utils::getShortClass($this))

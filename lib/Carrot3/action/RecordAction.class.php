@@ -122,7 +122,7 @@ abstract class RecordAction extends Action {
 	 * @access protected
 	 * @return bool レコードを登録する為のアクションならTrue
 	 */
-	protected function isCreateAction () {
+	protected function isCreateAction ():bool {
 		return mb_ereg('^Create', $this->getName());
 	}
 

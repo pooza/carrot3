@@ -359,7 +359,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * @access public
 	 * @return bool サブディレクトリを持つならTrue
 	 */
-	public function hasSubDirectory () {
+	public function hasSubDirectory ():bool {
 		return true;
 	}
 

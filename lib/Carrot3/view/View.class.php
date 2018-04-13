@@ -168,7 +168,7 @@ class View extends HTTPResponse {
 	 * @access public
 	 * @return bool 有効ならTrue
 	 */
-	public function isCacheable () {
+	public function isCacheable ():bool {
 		return false;
 	}
 

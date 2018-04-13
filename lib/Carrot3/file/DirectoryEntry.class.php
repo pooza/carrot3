@@ -217,7 +217,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return bool ドットから始まるならTrue
 	 */
-	public function isDotted () {
+	public function isDotted ():bool {
 		return FileUtils::isDottedName($this->getName());
 	}
 
@@ -227,7 +227,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return bool シンボリックリンクならTrue
 	 */
-	public function isLink () {
+	public function isLink ():bool {
 		return is_link($this->getPath());
 	}
 
@@ -311,7 +311,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return bool 存在するならtrue
 	 */
-	public function isExists () {
+	public function isExists ():bool {
 		return file_exists($this->getPath());
 	}
 
@@ -321,7 +321,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return bool 読めればtrue
 	 */
-	public function isReadable () {
+	public function isReadable ():bool {
 		return is_readable($this->getPath());
 	}
 
@@ -331,7 +331,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return bool 書き込めればtrue
 	 */
-	public function isWritable () {
+	public function isWritable ():bool {
 		return is_writable($this->getPath());
 	}
 

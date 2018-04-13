@@ -175,7 +175,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @access public
 	 * @return bool 空要素ならTrue
 	 */
-	public function isEmptyElement () {
+	public function isEmptyElement ():bool {
 		return $this->empty;
 	}
 
@@ -360,7 +360,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @access public
 	 * @return bool RAWモード
 	 */
-	public function isRawMode () {
+	public function isRawMode ():bool {
 		return $this->raw;
 	}
 

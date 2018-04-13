@@ -51,7 +51,7 @@ class XMLDocument extends XMLElement implements TextRenderer {
 	 * @access public
 	 * @return bool ダーティモードならTrue
 	 */
-	public function isDirty () {
+	public function isDirty ():bool {
 		return $this->dirty;
 	}
 

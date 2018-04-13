@@ -67,7 +67,7 @@ class Network extends Host {
 	 * @param Host $host 対象ホスト
 	 * @return bool ネットワーク内ならTrue
 	 */
-	public function isContain (Host $host) {
+	public function isContain (Host $host):bool {
 		$network = self::ip2double($this->address);
 		$broadcast = self::ip2double($this->broadcast);
 		$address = self::ip2double($host->getAddress());

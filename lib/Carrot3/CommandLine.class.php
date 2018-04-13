@@ -115,7 +115,7 @@ class CommandLine {
 	 * @access public
 	 * @return bool 実行されたならTrue
 	 */
-	public function isExecuted () {
+	public function isExecuted ():bool {
 		return !!$this->result;
 	}
 
@@ -125,7 +125,7 @@ class CommandLine {
 	 * @access public
 	 * @return bool バックグラウンド実行ならTrue
 	 */
-	public function isBackground () {
+	public function isBackground ():bool {
 		return $this->background;
 	}
 
@@ -145,7 +145,7 @@ class CommandLine {
 	 * @access public
 	 * @return bool バックグラウンド実行ならTrue
 	 */
-	public function isStderrRedirectable () {
+	public function isStderrRedirectable ():bool {
 		return $this->stderrRedirectable;
 	}
 
@@ -165,7 +165,7 @@ class CommandLine {
 	 * @access public
 	 * @return bool 存在するならTrue
 	 */
-	public function isExists () {
+	public function isExists ():bool {
 		if ($this->directory) {
 			return !!$this->directory->getEntry($this->command);
 		} else {
@@ -258,7 +258,7 @@ class CommandLine {
 	 * @access public
 	 * @return bool エラーを含んでいたらTrue
 	 */
-	public function hasError () {
+	public function hasError ():bool {
 		return !!$this->getReturnCode();
 	}
 

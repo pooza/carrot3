@@ -136,7 +136,7 @@ class HTTP extends Socket {
 	 * @access public
 	 * @return bool SSLモードならTrue
 	 */
-	public function isTLS () {
+	public function isTLS ():bool {
 		return false;
 	}
 

@@ -60,7 +60,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 		}
 	}
 
-	private function isCompleteRecord ($record) {
+	private function isCompleteRecord ($record):bool {
 		return (StringUtils::eregMatchAll('"', $record)->count() % 2) == 0;
 	}
 

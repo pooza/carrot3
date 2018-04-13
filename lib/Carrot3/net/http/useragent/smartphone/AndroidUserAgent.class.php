@@ -32,7 +32,7 @@ class AndroidUserAgent extends BlinkUserAgent {
 	 * @return bool スマートフォンならTrue
 	 * @link http://googlewebmastercentral-ja.blogspot.com/2011/05/android.html
 	 */
-	public function isSmartPhone () {
+	public function isSmartPhone ():bool {
 		return StringUtils::isContain('Mobile', $this->getName());
 	}
 
@@ -42,7 +42,7 @@ class AndroidUserAgent extends BlinkUserAgent {
 	 * @access public
 	 * @return bool タブレット型ならTrue
 	 */
-	public function isTablet () {
+	public function isTablet ():bool {
 		return !$this->isSmartPhone();
 	}
 

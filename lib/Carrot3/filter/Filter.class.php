@@ -80,7 +80,7 @@ abstract class Filter extends ParameterHolder {
 	 * @access public
 	 * @return bool 実行できるならTrue
 	 */
-	public function isExecutable () {
+	public function isExecutable ():bool {
 		return (!$this->isExecuted() || $this->isRepeatable()) && !$this->isExcludedAction();
 	}
 
@@ -90,7 +90,7 @@ abstract class Filter extends ParameterHolder {
 	 * @access public
 	 * @return bool 二度目も実行するならTrue
 	 */
-	public function isRepeatable () {
+	public function isRepeatable ():bool {
 		return false;
 	}
 
@@ -110,7 +110,7 @@ abstract class Filter extends ParameterHolder {
 	 * @access public
 	 * @return bool 実行されたならTrue
 	 */
-	public function isExecuted () {
+	public function isExecuted ():bool {
 		return !!self::$executed[$this->getName()];
 	}
 
@@ -120,7 +120,7 @@ abstract class Filter extends ParameterHolder {
 	 * @access public
 	 * @return bool 除外されたアクションならTrue
 	 */
-	public function isExcludedAction () {
+	public function isExcludedAction ():bool {
 		return Tuple::create($this['excluded_actions'])->isContain($this->action->getName());
 	}
 

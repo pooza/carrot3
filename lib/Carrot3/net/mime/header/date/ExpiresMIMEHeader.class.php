@@ -20,7 +20,7 @@ class ExpiresMIMEHeader extends DateMIMEHeader {
 	 * @access public
 	 * @return bool キャッシュ可能ならばTrue
 	 */
-	public function isCacheable () {
+	public function isCacheable ():bool {
 		return false;
 	}
 }

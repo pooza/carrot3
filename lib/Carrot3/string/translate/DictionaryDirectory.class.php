@@ -31,7 +31,7 @@ class DictionaryDirectory extends Directory {
 	 * @access public
 	 * @return bool サブディレクトリを持つならTrue
 	 */
-	public function hasSubDirectory () {
+	public function hasSubDirectory ():bool {
 		return false;
 	}
 

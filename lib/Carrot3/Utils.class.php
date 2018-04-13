@@ -26,7 +26,7 @@ class Utils {
 	 * @return bool 絶対パスならTrue
 	 * @static
 	 */
-	static public function isPathAbsolute ($path) {
+	static public function isPathAbsolute ($path):bool {
 		return !StringUtils::isBlank($path) && ($path[0] == '/');
 	}
 

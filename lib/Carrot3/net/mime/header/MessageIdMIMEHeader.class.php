@@ -51,7 +51,7 @@ class MessageIdMIMEHeader extends MIMEHeader {
 	 * @access protected
 	 * @return bool 整形を行うならTrue
 	 */
-	protected function isFormattable () {
+	protected function isFormattable ():bool {
 		return false;
 	}
 }

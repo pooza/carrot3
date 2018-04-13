@@ -99,7 +99,7 @@ class MySQLDatabase extends Database {
 	 * @access public
 	 * @return bool 旧式ならTrue
 	 */
-	public function isLegacy () {
+	public function isLegacy ():bool {
 		return ($this->getVersion() < 5);
 	}
 }

@@ -73,7 +73,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return bool executeメソッドを実行可能ならTrue
 	 */
-	public function isExecutable () {
+	public function isExecutable ():bool {
 		if (StringUtils::isBlank($method = $this->request->getMethod()) || ($method == 'HEAD')) {
 			$method = 'GET';
 		}
@@ -88,7 +88,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return bool キャッシュできるならTrue
 	 */
-	public function isCacheable () {
+	public function isCacheable ():bool {
 		return false;
 	}
 
@@ -100,7 +100,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return bool キャッシュされているならTrue
 	 */
-	public function isCached () {
+	public function isCached ():bool {
 		return $this->isCacheable() && RenderManager::getInstance()->hasCache($this);
 	}
 

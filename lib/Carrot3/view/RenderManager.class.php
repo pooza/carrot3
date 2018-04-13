@@ -85,7 +85,7 @@ class RenderManager {
 	 * @param Action $action アクション
 	 * @return bool キャッシュを持っていたらTrue
 	 */
-	public function hasCache (Action $action) {
+	public function hasCache (Action $action):bool {
 		return ($action->isCacheable() && $this->storage->hasCache($action));
 	}
 

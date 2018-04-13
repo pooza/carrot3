@@ -68,7 +68,7 @@ class RecordValidator extends Validator {
 	 * @param mixed $id レコードのID
 	 * @return bool 存在するならばTrue
 	 */
-	protected function isExists ($id) {
+	protected function isExists ($id):bool {
 		if ($recordFound = $this->getRecord($id)) {
 			if ($this['update']) {
 				if ($recordModule = $this->controller->getModule()->getRecord()) {

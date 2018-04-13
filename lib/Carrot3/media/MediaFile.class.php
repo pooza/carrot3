@@ -35,7 +35,7 @@ abstract class MediaFile extends File implements Assignable {
 	 * @access public
 	 * @return bool バイナリファイルならTrue
 	 */
-	public function isBinary () {
+	public function isBinary ():bool {
 		return true;
 	}
 

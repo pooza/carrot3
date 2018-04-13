@@ -74,7 +74,7 @@ class HeaderCSVData extends CSVData {
 	 * @access public
 	 * @return bool 行IDを持つならTrue
 	 */
-	public function hasRowID () {
+	public function hasRowID ():bool {
 		return $this->hasRowID;
 	}
 

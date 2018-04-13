@@ -98,7 +98,7 @@ class FileUtils {
 	 * @return bool ドットから始まるならTrue
 	 * @static
 	 */
-	static public function isDottedName (string $name) {
+	static public function isDottedName (string $name):bool {
 		return mb_ereg('^\\.', basename($name));
 	}
 

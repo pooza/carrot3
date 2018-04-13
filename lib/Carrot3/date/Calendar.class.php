@@ -98,7 +98,7 @@ class Calendar extends ParameterHolder {
 	 * @param string $name パラメータ名
 	 * @return bool 存在すればTrue
 	 */
-	public function hasParameter (?string $name) {
+	public function hasParameter (?string $name):bool {
 		if ($name instanceof Date) {
 			$name = $name->format('Y-m-d');
 		}

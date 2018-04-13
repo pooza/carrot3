@@ -108,7 +108,7 @@ abstract class Logger {
 	 * @param string $priority 優先順位
 	 * @return bool 例外ならTrue
 	 */
-	protected function isException ($priority) {
+	protected function isException ($priority):bool {
 		return mb_ereg('Exception$', $priority);
 	}
 }

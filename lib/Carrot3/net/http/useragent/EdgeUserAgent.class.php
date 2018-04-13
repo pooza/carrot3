@@ -20,7 +20,7 @@ class EdgeUserAgent extends WebKitUserAgent {
 	 * @access public
 	 * @return bool EdgeならTrue
 	 */
-	public function isEdge () {
+	public function isEdge ():bool {
 		return true;
 	}
 

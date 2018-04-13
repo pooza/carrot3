@@ -75,7 +75,7 @@ class RedisRenderStorage implements RenderStorage {
 	 * @param Action $action アクション
 	 * @return bool キャッシュを持っていたらTrue
 	 */
-	public function hasCache (Action $action) {
+	public function hasCache (Action $action):bool {
 		return !!$this->server->exists($action->digest());
 	}
 

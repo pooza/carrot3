@@ -22,7 +22,7 @@ class TasmanUserAgent extends UserAgent {
 	 * @access public
 	 * @return bool レガシーならばTrue
 	 */
-	public function isLegacy () {
+	public function isLegacy ():bool {
 		return true;
 	}
 

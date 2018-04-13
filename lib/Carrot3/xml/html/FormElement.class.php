@@ -85,7 +85,7 @@ class FormElement extends HTMLElement {
 	 * @access public
 	 * @return bool 可能ならTrue
 	 */
-	public function isAttachable () {
+	public function isAttachable ():bool {
 		return $this->getAttribute('enctype') == self::ATTACHABLE_TYPE;
 	}
 

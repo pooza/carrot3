@@ -19,7 +19,7 @@ class SerializeEntry extends Record {
 	 * @access protected
 	 * @return bool 更新可能ならTrue
 	 */
-	protected function isUpdatable () {
+	protected function isUpdatable ():bool {
 		return true;
 	}
 
@@ -41,7 +41,7 @@ class SerializeEntry extends Record {
 	 * @access protected
 	 * @return bool 削除可能ならTrue
 	 */
-	protected function isDeletable () {
+	protected function isDeletable ():bool {
 		return true;
 	}
 
@@ -52,7 +52,7 @@ class SerializeEntry extends Record {
 	 * @return bool シリアライズするならTrue
 	 * @final
 	 */
-	final function isSerializable () {
+	final function isSerializable ():bool {
 		return false;
 	}
 }

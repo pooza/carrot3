@@ -84,7 +84,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access public
 	 * @return bool レガシーならばTrue
 	 */
-	public function isLegacy () {
+	public function isLegacy ():bool {
 		return false;
 	}
 
@@ -97,7 +97,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @return bool レガシーならばTrue
 	 * @final
 	 */
-	final public function isDenied () {
+	final public function isDenied ():bool {
 		return $this->isLegacy();
 	}
 
@@ -178,7 +178,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @param string $name サポート名
 	 * @return bool サポートがあるならTrue
 	 */
-	public function hasSupport (string $name) {
+	public function hasSupport (string $name):bool {
 		return !!$this->supports[$name];
 	}
 
@@ -189,7 +189,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @param MediaFile $file
 	 * @return bool 再生できるならTrue
 	 */
-	public function isPlayable (MediaFile $file) {
+	public function isPlayable (MediaFile $file):bool {
 		$types = Tuple::create([
 			'audio/mpeg',
 			'audio/aac',
@@ -205,7 +205,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access public
 	 * @return bool ケータイ環境ならTrue
 	 */
-	public function isMobile () {
+	public function isMobile ():bool {
 		return false;
 	}
 
@@ -215,7 +215,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access public
 	 * @return bool スマートフォンならTrue
 	 */
-	public function isSmartPhone () {
+	public function isSmartPhone ():bool {
 		return false;
 	}
 
@@ -225,7 +225,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access public
 	 * @return bool タブレット型ならTrue
 	 */
-	public function isTablet () {
+	public function isTablet ():bool {
 		return false;
 	}
 

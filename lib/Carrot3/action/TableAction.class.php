@@ -125,7 +125,7 @@ abstract class TableAction extends Action {
 	 * @access protected
 	 * @return bool 表示して良いならTrue
 	 */
-	protected function isShowable () {
+	protected function isShowable ():bool {
 		return !$this->request->hasErrors();
 	}
 }

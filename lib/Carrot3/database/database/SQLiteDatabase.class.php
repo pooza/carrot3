@@ -118,7 +118,7 @@ class SQLiteDatabase extends Database {
 	 * @access public
 	 * @return bool 有効ならTrue
 	 */
-	public function hasForeignKey () {
+	public function hasForeignKey ():bool {
 		return false;
 	}
 
@@ -128,7 +128,7 @@ class SQLiteDatabase extends Database {
 	 * @access public
 	 * @return bool 可能ならTrue
 	 */
-	public function isRestoreable () {
+	public function isRestoreable ():bool {
 		return true;
 	}
 

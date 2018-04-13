@@ -44,7 +44,7 @@ class GeckoUserAgent extends UserAgent {
 	 * @access public
 	 * @return bool レガシーならばTrue
 	 */
-	public function isLegacy () {
+	public function isLegacy ():bool {
 		return version_compare($this->getVersion(), '1.7.5', '<'); // Firefox 1.0未満
 	}
 

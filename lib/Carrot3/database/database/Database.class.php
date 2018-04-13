@@ -244,7 +244,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @access protected
 	 * @return bool クエリーログを使用するならTrue
 	 */
-	protected function isLoggable () {
+	protected function isLoggable ():bool {
 		return !!$this->getAttribute('loggable');
 	}
 
@@ -254,7 +254,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return bool 旧式ならTrue
 	 */
-	public function isLegacy () {
+	public function isLegacy ():bool {
 		return false;
 	}
 
@@ -425,7 +425,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return bool 有効ならTrue
 	 */
-	public function hasForeignKey () {
+	public function hasForeignKey ():bool {
 		return true;
 	}
 
@@ -435,7 +435,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return bool 可能ならTrue
 	 */
-	public function isRestoreable () {
+	public function isRestoreable ():bool {
 		return false;
 	}
 

@@ -128,7 +128,7 @@ class POP3 extends Socket {
 	 * @access public
 	 * @return bool 成功ならばTrue
 	 */
-	public function isSuccess () {
+	public function isSuccess ():bool {
 		return mb_ereg('^\\+OK', $this->getLine());
 	}
 

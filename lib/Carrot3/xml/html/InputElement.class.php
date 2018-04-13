@@ -39,7 +39,7 @@ class InputElement extends HTMLElement {
 	 * @access public
 	 * @return bool 空要素ならTrue
 	 */
-	public function isEmptyElement () {
+	public function isEmptyElement ():bool {
 		return true;
 	}
 

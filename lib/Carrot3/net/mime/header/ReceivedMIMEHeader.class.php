@@ -71,7 +71,7 @@ class ReceivedMIMEHeader extends MIMEHeader {
 	 * @access public
 	 * @return bool 許容ならばTrue
 	 */
-	public function isMultiple () {
+	public function isMultiple ():bool {
 		return true;
 	}
 
@@ -81,7 +81,7 @@ class ReceivedMIMEHeader extends MIMEHeader {
 	 * @access public
 	 * @return bool 可視ならばTrue
 	 */
-	public function isVisible () {
+	public function isVisible ():bool {
 		return false;
 	}
 }

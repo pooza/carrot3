@@ -165,7 +165,7 @@ class MIMEHeader extends ParameterHolder {
 	 * @access protected
 	 * @return bool 整形を行うならTrue
 	 */
-	protected function isFormattable () {
+	protected function isFormattable ():bool {
 		return true;
 	}
 
@@ -198,7 +198,7 @@ class MIMEHeader extends ParameterHolder {
 	 * @access public
 	 * @return bool 可視ならばTrue
 	 */
-	public function isVisible () {
+	public function isVisible ():bool {
 		return !StringUtils::isBlank($this->getContents());
 	}
 
@@ -208,7 +208,7 @@ class MIMEHeader extends ParameterHolder {
 	 * @access public
 	 * @return bool キャッシュ可能ならばTrue
 	 */
-	public function isCacheable () {
+	public function isCacheable ():bool {
 		return true;
 	}
 
@@ -218,7 +218,7 @@ class MIMEHeader extends ParameterHolder {
 	 * @access public
 	 * @return bool 許容ならばTrue
 	 */
-	public function isMultiple () {
+	public function isMultiple ():bool {
 		return false;
 	}
 }

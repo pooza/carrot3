@@ -19,7 +19,7 @@ class TranslateException extends Exception {
 	 * @access public
 	 * @return bool ログを書き込むならTrue
 	 */
-	public function isLoggable () {
+	public function isLoggable ():bool {
 		return false;
 	}
 }

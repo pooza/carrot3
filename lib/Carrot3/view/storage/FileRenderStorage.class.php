@@ -70,7 +70,7 @@ class FileRenderStorage implements RenderStorage {
 	 * @param Action $action アクション
 	 * @return bool キャッシュを持っていたらTrue
 	 */
-	public function hasCache (Action $action) {
+	public function hasCache (Action $action):bool {
 		return !!$this->directory->getEntry($action->digest());
 	}
 

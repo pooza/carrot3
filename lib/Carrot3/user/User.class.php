@@ -91,7 +91,7 @@ class User extends ParameterHolder {
 	 * @param string $name 属性名
 	 * @return bool 属性値が存在すればTrue
 	 */
-	public function hasAttribute (string $name) {
+	public function hasAttribute (string $name):bool {
 		return $this->attributes->hasParameter($name);
 	}
 
@@ -271,7 +271,7 @@ class User extends ParameterHolder {
 	 * @param string $name クレデンシャル名
 	 * @return bool 持っていればTrue
 	 */
-	public function hasCredential (?string $name) {
+	public function hasCredential (?string $name):bool {
 		return StringUtils::isBlank($name) || $this->credentials[$name];
 	}
 
@@ -281,7 +281,7 @@ class User extends ParameterHolder {
 	 * @access public
 	 * @return bool 持っていればTrue
 	 */
-	public function isAdministrator () {
+	public function isAdministrator ():bool {
 		return $this->hasCredential(AdministratorRole::CREDENTIAL);
 	}
 
@@ -291,7 +291,7 @@ class User extends ParameterHolder {
 	 * @access public
 	 * @return bool 持っていればTrue
 	 */
-	public function isAuthor () {
+	public function isAuthor ():bool {
 		return $this->hasCredential(AuthorRole::CREDENTIAL);
 	}
 
@@ -301,7 +301,7 @@ class User extends ParameterHolder {
 	 * @access public
 	 * @return bool ゲストユーザーならばTrue
 	 */
-	public function isGuest () {
+	public function isGuest ():bool {
 		foreach ($this->getCredentials() as $credential) {
 			if (!!$credential) {
 				return false;

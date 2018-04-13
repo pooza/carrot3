@@ -31,7 +31,7 @@ class SecurityFilter extends Filter {
 	 * @access public
 	 * @return bool 二度目も実行するならTrue
 	 */
-	public function isRepeatable () {
+	public function isRepeatable ():bool {
 		return true;
 	}
 }

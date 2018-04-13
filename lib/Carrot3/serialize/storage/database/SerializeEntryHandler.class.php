@@ -19,7 +19,7 @@ class SerializeEntryHandler extends TableHandler {
 	 * @access protected
 	 * @return bool レコード追加可能ならTrue
 	 */
-	protected function isInsertable () {
+	protected function isInsertable ():bool {
 		return true;
 	}
 
@@ -45,7 +45,7 @@ class SerializeEntryHandler extends TableHandler {
 	 * @access protected
 	 * @return bool レコード追加可能ならTrue
 	 */
-	protected function isClearable () {
+	protected function isClearable ():bool {
 		return true;
 	}
 

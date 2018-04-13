@@ -32,7 +32,7 @@ abstract class RequestFilter extends Filter {
 	 * @return bool 配列を対象とするならTrue
 	 * @abstract
 	 */
-	protected function hasListSupport () {
+	protected function hasListSupport ():bool {
 		return false;
 	}
 

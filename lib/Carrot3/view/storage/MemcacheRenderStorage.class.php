@@ -67,7 +67,7 @@ class MemcacheRenderStorage implements RenderStorage {
 	 * @param Action $action アクション
 	 * @return bool キャッシュを持っていたらTrue
 	 */
-	public function hasCache (Action $action) {
+	public function hasCache (Action $action):bool {
 		return !!$this->memcache[$action->digest()];
 	}
 

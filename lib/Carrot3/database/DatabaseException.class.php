@@ -19,7 +19,7 @@ class DatabaseException extends Exception {
 	 * @access public
 	 * @return bool アラートを送るならTrue
 	 */
-	public function isAlertable () {
+	public function isAlertable ():bool {
 		return true;
 	}
 }

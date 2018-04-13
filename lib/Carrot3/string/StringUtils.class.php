@@ -462,7 +462,7 @@ class StringUtils {
 	 * @return bool 空白ならTrue
 	 * @static
 	 */
-	static public function isBlank ($str) {
+	static public function isBlank ($str):bool {
 		return ($str === '') || ($str === null);
 	}
 
@@ -476,7 +476,7 @@ class StringUtils {
 	 * @return bool 含むならTrue
 	 * @static
 	 */
-	static public function isContain ($pattern, $subject, bool $ignore = false) {
+	static public function isContain ($pattern, $subject, bool $ignore = false):bool {
 		if ($ignore) {
 			$function = 'stripos';
 		} else {

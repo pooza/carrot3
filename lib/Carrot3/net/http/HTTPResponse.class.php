@@ -102,7 +102,7 @@ class HTTPResponse extends MIMEDocument {
 	 * @access public
 	 * @return bool HTML文書ならTrue
 	 */
-	public function isHTML () {
+	public function isHTML ():bool {
 		return ($header = $this->getHeader('Content-Type')) && $header->isHTML();
 	}
 

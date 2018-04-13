@@ -153,7 +153,7 @@ class Socket {
 	 * @access public
 	 * @return bool 開かれていたらtrue
 	 */
-	public function isOpened () {
+	public function isOpened ():bool {
 		return is_resource($this->client);
 	}
 
@@ -163,7 +163,7 @@ class Socket {
 	 * @access public
 	 * @return bool EOFに達していたらtrue
 	 */
-	public function isEof () {
+	public function isEof ():bool {
 		return feof($this->client);
 	}
 

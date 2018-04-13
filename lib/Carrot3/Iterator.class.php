@@ -84,7 +84,7 @@ class Iterator implements \Iterator, \Countable {
 	 * @access public
 	 * @return bool 最初ならTrue
 	 */
-	public function isFirst () {
+	public function isFirst ():bool {
 		return ($this->cursor == 0);
 	}
 
@@ -94,7 +94,7 @@ class Iterator implements \Iterator, \Countable {
 	 * @access public
 	 * @return bool 最後ならTrue
 	 */
-	public function isLast () {
+	public function isLast ():bool {
 		return ($this->cursor == (count($this->values) - 1));
 	}
 

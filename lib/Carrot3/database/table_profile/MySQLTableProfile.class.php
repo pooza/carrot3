@@ -119,7 +119,7 @@ class MySQLTableProfile extends TableProfile {
 	 * @access public
 	 * @return bool
 	 */
-	public function isOptimizable () {
+	public function isOptimizable ():bool {
 		return ($this->getStorageEngine() != 'InnoDB');
 	}
 }

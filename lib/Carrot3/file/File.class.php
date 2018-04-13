@@ -94,7 +94,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return bool バイナリファイルならTrue
 	 */
-	public function isBinary () {
+	public function isBinary ():bool {
 		return $this->binary;
 	}
 
@@ -337,7 +337,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return bool 感染していたらtrue
 	 */
-	public function isInfected () {
+	public function isInfected ():bool {
 		$command = new CommandLine('bin/' . BS_CLAMAV_COMMAND);
 		$command->setDirectory(FileUtils::getDirectory('clamav'));
 		$command->push('--no-summary');
@@ -360,7 +360,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return bool 開かれていたらtrue
 	 */
-	public function isOpened () {
+	public function isOpened ():bool {
 		return is_resource($this->handle);
 	}
 
@@ -370,7 +370,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return bool EOFに達していたらtrue
 	 */
-	public function isEof () {
+	public function isEof ():bool {
 		if (!$this->isReadable()) {
 			throw new FileException($this . 'を読み込めません。');
 		}
@@ -406,7 +406,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return bool アップロードされたファイルならTrue
 	 */
-	public function isUploaded () {
+	public function isUploaded ():bool {
 		return is_uploaded_file($this->getPath());
 	}
 

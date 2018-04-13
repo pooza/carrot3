@@ -122,7 +122,7 @@ class BackupManager {
 		LogManager::getInstance()->put('リストアを実行しました。', $this);
 	}
 
-	protected function isValidBackup () {
+	protected function isValidBackup ():bool {
 		foreach ($this->config['databases'] as $name) {
 			if (!$this->temporaryDir->getEntry($name . '.sqlite3')) {
 				return false;
@@ -166,7 +166,7 @@ class BackupManager {
 	 * @access public
 	 * @return bool リストアに対応した環境ならTrue
 	 */
-	public function isRestoreable () {
+	public function isRestoreable ():bool {
 		foreach ($this->config['databases'] as $name) {
 			if (($db = Database::getInstance($name)) && !$db->isRestoreable()) {
 				return false;

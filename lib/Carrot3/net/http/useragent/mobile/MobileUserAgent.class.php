@@ -37,7 +37,7 @@ abstract class MobileUserAgent extends UserAgent {
 	 * @access public
 	 * @return bool ケータイ環境ならTrue
 	 */
-	public function isMobile () {
+	public function isMobile ():bool {
 		return true;
 	}
 
@@ -47,7 +47,7 @@ abstract class MobileUserAgent extends UserAgent {
 	 * @access public
 	 * @return bool 旧機種ならばTrue
 	 */
-	public function isLegacy () {
+	public function isLegacy ():bool {
 		return true;
 	}
 
@@ -58,7 +58,7 @@ abstract class MobileUserAgent extends UserAgent {
 	 * @param MediaFile $file
 	 * @return bool 再生できるならTrue
 	 */
-	public function isPlayable (MediaFile $file) {
+	public function isPlayable (MediaFile $file):bool {
 		return false;
 	}
 

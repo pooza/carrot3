@@ -76,7 +76,7 @@ class Numeric {
 	 * @return bool ゼロならTrue
 	 * @static
 	 */
-	static public function isZero ($num) {
+	static public function isZero ($num):bool {
 		return ($num === 0) || ($num === '0');
 	}
 

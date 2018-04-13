@@ -299,7 +299,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access public
 	 * @return bool 存在するならTrue
 	 */
-	public function isExists () {
+	public function isExists ():bool {
 		return $this->getDatabase()->getTableNames()->isContain($this->getName());
 	}
 
@@ -438,7 +438,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access protected
 	 * @return bool レコード追加可能ならTrue
 	 */
-	protected function isInsertable () {
+	protected function isInsertable ():bool {
 		return false;
 	}
 
@@ -448,7 +448,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access protected
 	 * @return bool サロゲートキーを持つならTrue
 	 */
-	protected function hasSurrogateKey () {
+	protected function hasSurrogateKey ():bool {
 		return $this->isInsertable();
 	}
 
@@ -474,7 +474,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access protected
 	 * @return bool レコード追加可能ならTrue
 	 */
-	protected function isClearable () {
+	protected function isClearable ():bool {
 		return false;
 	}
 
@@ -484,7 +484,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access protected
 	 * @return bool 実行されたならTrue
 	 */
-	protected function isExecuted () {
+	protected function isExecuted ():bool {
 		return $this->executed;
 	}
 
@@ -563,7 +563,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 *
 	 * @return bool テンポラリテーブルならTrue
 	 */
-	protected function isTemporary () {
+	protected function isTemporary ():bool {
 		return false;
 	}
 
@@ -685,7 +685,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access public
 	 * @return bool 最終ページならTrue
 	 */
-	public function isLastPage () {
+	public function isLastPage ():bool {
 		return $this->getPageNumber() == $this->getLastPageNumber();
 	}
 

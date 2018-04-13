@@ -22,7 +22,7 @@ class TemplateFile extends File {
 	 * @access public
 	 * @return bool バイナリファイルならTrue
 	 */
-	public function isBinary () {
+	public function isBinary ():bool {
 		return false;
 	}
 

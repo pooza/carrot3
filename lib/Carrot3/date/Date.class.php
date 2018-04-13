@@ -179,7 +179,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * @param mixed $date 比較対象の日付またはその配列
 	 * @return bool 過去日付ならtrue
 	 */
-	public function isPast ($date = null) {
+	public function isPast ($date = null):bool {
 		if (StringUtils::isBlank($date)) {
 			$date = self::create();
 		} else if (!($date instanceof Date)) {
@@ -197,7 +197,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * @param Date $now 比較対象の日付
 	 * @return bool 今日の日付ならtrue
 	 */
-	public function isToday (Date $now = null) {
+	public function isToday (Date $now = null):bool {
 		if (!$now) {
 			$now = self::create();
 		}
@@ -260,7 +260,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * @access public
 	 * @return bool うるう年ならtrue
 	 */
-	public function isLeapYear () {
+	public function isLeapYear ():bool {
 		return ($this->format('L') == 1);
 	}
 
@@ -291,7 +291,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * @param string $country 国名
 	 * @return bool 日曜日か祭日ならTrue
 	 */
-	public function isHoliday ($country = 'ja') {
+	public function isHoliday ($country = 'ja'):bool {
 		return (($this->getWeekday() == self::SUN) || !!$this->getHolidayName($country));
 	}
 

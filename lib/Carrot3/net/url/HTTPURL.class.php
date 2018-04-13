@@ -288,7 +288,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @param mixed $host 対象ホスト
 	 * @return bool 外部のURLならTrue
 	 */
-	public function isForeign ($host = null) {
+	public function isForeign ($host = null):bool {
 		if ($host) {
 			if ($host instanceof HTTPURL) {
 				$host = $host['host'];

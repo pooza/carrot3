@@ -67,7 +67,7 @@ class Exception extends \Exception {
 	 * @access public
 	 * @return bool ログを書き込むならTrue
 	 */
-	public function isLoggable () {
+	public function isLoggable ():bool {
 		return true;
 	}
 
@@ -77,7 +77,7 @@ class Exception extends \Exception {
 	 * @access public
 	 * @return bool アラートを送るならTrue
 	 */
-	public function isAlertable () {
+	public function isAlertable ():bool {
 		return false;
 	}
 }

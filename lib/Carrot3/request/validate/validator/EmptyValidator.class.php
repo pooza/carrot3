@@ -46,7 +46,7 @@ class EmptyValidator extends Validator {
 	 * @return bool フィールド値が空欄ならばTrue
 	 * @static
 	 */
-	static public function isEmpty ($value) {
+	static public function isEmpty ($value):bool {
 		if (is_iterable($value)) {
 			$value = Tuple::create($value);
 			if ($value['is_file']) {
