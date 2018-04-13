@@ -76,7 +76,7 @@ class XMLDocument extends XMLElement implements TextRenderer {
 	 * @access public
 	 * @return string XML文書
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		$contents = '<?xml version="1.0" encoding="utf-8" ?>' . parent::getContents();
 		if ($this->isDirty()) {
 			return $contents;

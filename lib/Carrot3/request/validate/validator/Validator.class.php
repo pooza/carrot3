@@ -47,7 +47,7 @@ abstract class Validator extends ParameterHolder {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName () {
+	public function getName ():string {
 		return Utils::getShortClass($this);
 	}
 

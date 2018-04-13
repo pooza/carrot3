@@ -82,7 +82,7 @@ class HTTPResponse extends MIMEDocument {
 	 * @access public
 	 * @return URL リクエストされたURL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		return $this->url;
 	}
 

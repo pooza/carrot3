@@ -768,7 +768,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access public
 	 * @return string テーブル名
 	 */
-	public function getName () {
+	public function getName ():string {
 		if (!$this->name) {
 
 			$this->name = StringUtils::underscorize(

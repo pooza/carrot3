@@ -65,7 +65,7 @@ class WebRequest extends Request {
 	 * @access public
 	 * @return string 出力内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (!$this->contents) {
 			$contents = Tuple::create();
 			$contents[] = $this->getRequestLine();
@@ -132,7 +132,7 @@ class WebRequest extends Request {
 	 * @access public
 	 * @return URL 送信先URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		if (!$this->url) {
 			$url = 'http';
 			if ($this->isTLS()) {

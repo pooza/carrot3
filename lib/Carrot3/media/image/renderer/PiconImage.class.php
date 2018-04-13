@@ -104,7 +104,7 @@ class PiconImage extends Image {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		return $this->url;
 	}
 

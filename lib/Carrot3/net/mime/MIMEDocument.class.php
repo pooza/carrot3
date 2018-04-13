@@ -229,7 +229,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 	 *
 	 * @access public
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (!$this->contents) {
 			foreach ($this->getHeaders() as $header) {
 				$this->contents .= $header->format();

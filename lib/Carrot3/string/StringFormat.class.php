@@ -29,7 +29,7 @@ class StringFormat extends Tuple implements MessageContainer {
 	 * @access public
 	 * @return string 内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		try {
 			return call_user_func_array('sprintf', $this->getParameters());
 		} catch (\Exception $e) {

@@ -157,7 +157,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access public
 	 * @return string ユーザーエージェント名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this['name'];
 	}
 

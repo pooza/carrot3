@@ -19,7 +19,7 @@ class VCardRenderer extends ParameterHolder implements Renderer {
 	 *
 	 * @access public
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (!$this->contents) {
 			$contents = Tuple::create();
 			$contents[] = 'BEGIN:VCARD';

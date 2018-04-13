@@ -37,7 +37,7 @@ class ResultJSONRenderer extends JSONRenderer {
 	 *
 	 * @access public
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		$contents = $this->result->decode();
 		$contents['api'] = $this->params->decode();
 		return $this->getSerializer()->encode($contents);

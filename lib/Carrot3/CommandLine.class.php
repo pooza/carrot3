@@ -200,7 +200,7 @@ class CommandLine {
 	 * @access public
 	 * @return string コマンドライン
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		$contents = clone $this->params;
 
 		if ($this->directory) {

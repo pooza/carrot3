@@ -65,7 +65,7 @@ class FieldSet extends Tuple {
 	 * @access public
 	 * @return string 内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this->join(', ');
 	}
 }

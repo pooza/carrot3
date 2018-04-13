@@ -215,7 +215,7 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * @access public
 	 * @return string スクリーン名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->getProfile()['screen_name'];
 	}
 
@@ -236,7 +236,7 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		if (!$this->url) {
 			$this->url = URL::create();
 			$this->url['scheme'] = 'https';

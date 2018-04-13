@@ -65,7 +65,7 @@ class Color extends ParameterHolder {
 	 * @access public
 	 * @return string HTML形式の色コード
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return '#' . $this->getCode();
 	}
 

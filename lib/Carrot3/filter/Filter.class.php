@@ -62,7 +62,7 @@ abstract class Filter extends ParameterHolder {
 	 * @access public
 	 * @return string フィルタ名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return Utils::getShortClass($this);
 	}
 

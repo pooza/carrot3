@@ -55,7 +55,7 @@ class SerializeEntryHandler extends TableHandler {
 	 * @access public
 	 * @return string テーブル名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return DatabaseSerializeStorage::TABLE_NAME;
 	}
 

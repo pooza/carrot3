@@ -151,7 +151,7 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 *
 	 * @access public
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		$this->close();
 		return $this->getFile()->getContents();
 	}

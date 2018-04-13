@@ -18,7 +18,7 @@ interface Renderer {
 	 *
 	 * @access public
 	 */
-	public function getContents ();
+	public function getContents ():string;
 
 	/**
 	 * 出力内容のサイズを返す

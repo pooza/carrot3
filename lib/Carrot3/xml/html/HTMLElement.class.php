@@ -185,7 +185,7 @@ class HTMLElement extends XMLElement {
 	 * @access public
 	 * @return string XML要素
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if ($this->styles->count()) {
 			$this->attributes['style'] = $this->styles->getContents();
 		} else {

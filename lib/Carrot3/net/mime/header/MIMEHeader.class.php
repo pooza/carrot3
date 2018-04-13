@@ -78,7 +78,7 @@ class MIMEHeader extends ParameterHolder {
 	 * @access public
 	 * @return string ヘッダ名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->name;
 	}
 
@@ -108,7 +108,7 @@ class MIMEHeader extends ParameterHolder {
 	 * @access public
 	 * @return string 内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this->contents;
 	}
 

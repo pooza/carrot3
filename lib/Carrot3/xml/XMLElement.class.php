@@ -97,7 +97,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->name;
 	}
 
@@ -265,7 +265,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @access public
 	 * @return string XML要素
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (!$this->contents) {
 			$this->contents = '<' . $this->getName();
 			foreach ($this->attributes as $key => $value) {

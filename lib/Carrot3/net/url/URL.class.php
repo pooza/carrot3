@@ -75,7 +75,7 @@ class URL implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return string URL
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (!$this->contents) {
 			if (StringUtils::isBlank($this->contents = $this->getHeadString())) {
 				return null;

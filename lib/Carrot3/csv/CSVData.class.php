@@ -141,7 +141,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * @access public
 	 * @return string CSVデータの内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (!$this->contents) {
 			$contents = Tuple::create();
 			foreach ($this->getRecords() as $key => $record) {

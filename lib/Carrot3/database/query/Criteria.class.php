@@ -139,7 +139,7 @@ class Criteria extends Tuple {
 	 * @access public
 	 * @return string 内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		$contents = Tuple::create();
 		foreach ($this as $criteria) {
 			if ($criteria instanceof Criteria) {

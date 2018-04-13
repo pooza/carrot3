@@ -39,7 +39,7 @@ class ReceivedMIMEHeader extends MIMEHeader {
 	 * @access public
 	 * @return string 内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this->servers->join("\n");
 	}
 

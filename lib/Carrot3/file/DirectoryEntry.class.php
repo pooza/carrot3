@@ -43,7 +43,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName () {
+	public function getName ():string {
 		return basename($this->getPath());
 	}
 

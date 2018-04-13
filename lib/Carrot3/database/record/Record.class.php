@@ -580,7 +580,7 @@ abstract class Record implements \ArrayAccess,
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		if (!$this->url) {
 			if (StringUtils::isBlank($this['url'])) {
 				$this->url = URL::create(null, 'carrot');

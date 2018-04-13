@@ -82,7 +82,7 @@ class CSVExporter implements Exporter, TextRenderer {
 	 * @access public
 	 * @return string CSVデータの内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if ($this->getFile()->isOpened()) {
 			$this->getFile()->close();
 		}

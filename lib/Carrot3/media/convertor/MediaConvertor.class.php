@@ -41,7 +41,7 @@ abstract class MediaConvertor {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName () {
+	public function getName ():string {
 		if (!$this->name) {
 			if (mb_ereg('\\\\([[:alnum:]]+)MediaConvertor$', Utils::getClass($this), $matches)) {
 				$this->name = $matches[1];

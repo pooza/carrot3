@@ -131,7 +131,7 @@ class HeaderCSVData extends CSVData {
 	 * @access public
 	 * @return string CSVデータの内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this->getHeader() . parent::getContents();
 	}
 

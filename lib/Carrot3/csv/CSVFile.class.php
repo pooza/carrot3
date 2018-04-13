@@ -65,7 +65,7 @@ class CSVFile extends File {
 	 * @access public
 	 * @return string 読み込んだ内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this->getRenderer()->getContents();
 	}
 

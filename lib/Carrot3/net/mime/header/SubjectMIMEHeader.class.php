@@ -20,7 +20,7 @@ class SubjectMIMEHeader extends MIMEHeader {
 	 * @access public
 	 * @return string 内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (BS_DEBUG) {
 			return '[TEST] ' . $this->contents;
 		}

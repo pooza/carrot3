@@ -22,7 +22,7 @@ class YAMLConfigParser extends \Spyc implements ConfigParser {
 	 * @access public
 	 * @return string 設定内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (!$this->contents && $this->result) {
 			$this->contents = $this->dump($this->result);
 		}

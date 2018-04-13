@@ -226,7 +226,7 @@ class Image implements ImageRenderer {
 	 * @access public
 	 * @return string 送信内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (StringUtils::isBlank($this->contents)) {
 			ob_start();
 			switch ($this->getType()) {

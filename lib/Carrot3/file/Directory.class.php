@@ -294,7 +294,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	 * @access public
 	 * @return HTTPURL URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		if (!$this->url) {
 			$documentRoot = FileUtils::getPath('www');
 			if (mb_ereg('^' . $documentRoot, $this->getPath())) {

@@ -182,7 +182,7 @@ abstract class ParameterHolder
 	 * @access public
 	 * @return string クラス名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return Utils::getClass($this);
 	}
 }

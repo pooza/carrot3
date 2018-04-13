@@ -178,7 +178,7 @@ class ImagickImage extends Image {
 	 * @access public
 	 * @return string 送信内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return (string)$this->getImagick();
 	}
 

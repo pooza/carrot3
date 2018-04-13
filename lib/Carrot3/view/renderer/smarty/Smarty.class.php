@@ -101,7 +101,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @access public
 	 * @return string 送信内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if (!$template = $this->getTemplate()) {
 			throw new ViewException('テンプレートが未定義です。');
 		}

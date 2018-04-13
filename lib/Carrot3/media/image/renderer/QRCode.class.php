@@ -84,7 +84,7 @@ class QRCode implements ImageRenderer {
 	 * @access public
 	 * @return string 送信内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		$image = new Image;
 		$image->setType($this->getType());
 		$image->setImage($this->getGDHandle());

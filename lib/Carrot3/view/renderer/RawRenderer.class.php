@@ -20,7 +20,7 @@ class RawRenderer implements Renderer {
 	 *
 	 * @access public
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this->contents;
 	}
 

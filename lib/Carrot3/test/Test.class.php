@@ -47,7 +47,7 @@ abstract class Test {
 	 * @access public
 	 * @return string テスト名
 	 */
-	public function getName () {
+	public function getName ():string {
 		if (!$this->name) {
 			if (mb_ereg('(.*)Test', Utils::getClass($this), $matches)) {
 				$this->name = $matches[1];

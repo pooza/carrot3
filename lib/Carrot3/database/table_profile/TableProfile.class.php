@@ -48,7 +48,7 @@ abstract class TableProfile implements Assignable, Serializable {
 	 * @access public
 	 * @return string テーブル名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->name;
 	}
 

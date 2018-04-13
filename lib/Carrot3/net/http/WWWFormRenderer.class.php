@@ -58,7 +58,7 @@ class WWWFormRenderer extends ParameterHolder implements Renderer {
 	 *
 	 * @access public
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return http_build_query($this->getParameters(), '', $this->separator);
 	}
 

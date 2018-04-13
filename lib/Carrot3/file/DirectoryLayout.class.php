@@ -92,7 +92,7 @@ class DirectoryLayout extends ParameterHolder {
 	 * @param string $name ディレクトリの名前
 	 * @return HTTPURL URL
 	 */
-	public function createURL (string $name) {
+	public function createURL (string $name):HTTPURL {
 		if (($info = $this->getEntry($name)) && StringUtils::isBlank($info['url'])) {
 			if (StringUtils::isBlank($info['href'])) {
 				$info['url'] = $this[$name]->getURL();

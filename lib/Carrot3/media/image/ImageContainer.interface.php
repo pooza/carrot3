@@ -67,7 +67,7 @@ interface ImageContainer {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName ();
+	public function getName ():string;
 
 	/**
 	 * コンテナのラベルを返す

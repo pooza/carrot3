@@ -78,7 +78,7 @@ class View extends HTTPResponse {
 	 * @access public
 	 * @return string ビュー名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->getAction()->getName() . $this->getNameSuffix();
 	}
 

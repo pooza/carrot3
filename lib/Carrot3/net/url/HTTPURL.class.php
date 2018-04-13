@@ -266,7 +266,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->getContents();
 	}
 
@@ -344,7 +344,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		return $this;
 	}
 

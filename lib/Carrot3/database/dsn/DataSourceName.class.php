@@ -35,7 +35,7 @@ abstract class DataSourceName extends ParameterHolder {
 	 * @access public
 	 * @return string DSN名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this['connection_name'];
 	}
 
@@ -45,7 +45,7 @@ abstract class DataSourceName extends ParameterHolder {
 	 * @access public
 	 * @return string 内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this['dsn'];
 	}
 

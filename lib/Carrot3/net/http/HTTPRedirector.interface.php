@@ -19,7 +19,7 @@ interface HTTPRedirector {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL ();
+	public function getURL ():HTTPURL;
 
 	/**
 	 * リダイレクト
@@ -35,5 +35,5 @@ interface HTTPRedirector {
 	 * @access public
 	 * @return URL
 	 */
-	public function createURL ();
+	public function createURL ():HTTPURL;
 }

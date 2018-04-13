@@ -136,7 +136,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return string 書類セット名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->name;
 	}
 
@@ -199,7 +199,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return string 送信内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this->contents;
 	}
 
@@ -317,7 +317,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		if (!$this->url) {
 			$this->url = FileUtils::createURL(
 				$this->getDirectoryName() . '_cache',

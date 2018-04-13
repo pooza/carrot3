@@ -100,7 +100,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return string モジュール名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->name;
 	}
 
@@ -401,7 +401,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		if (!$this->url) {
 			$this->url = URL::create(null, 'carrot');
 			$this->url['module'] = $this;

@@ -208,7 +208,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return string アクション名
 	 */
-	public function getName () {
+	public function getName ():string {
 		if (StringUtils::isBlank($this->name)) {
 			if (!mb_ereg('\\\\([[:alnum:]]+)Action$', Utils::getClass($this), $matches)) {
 				$message = new StringFormat('アクション "%s" の名前が正しくありません。');
@@ -454,7 +454,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		if (!$this->url) {
 			$this->url = URL::create(null, 'carrot');
 			$this->url['action'] = $this;

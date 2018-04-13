@@ -72,7 +72,7 @@ class HTTPRequest extends MIMEDocument {
 	 * @access public
 	 * @return URL 送信先URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		return $this->url;
 	}
 
@@ -93,7 +93,7 @@ class HTTPRequest extends MIMEDocument {
 	 * @access public
 	 * @return string 出力内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		$this->setHeader('Content-Length', $this->getRenderer()->getSize());
 		return $this->getRequestLine() . self::LINE_SEPARATOR . parent::getContents();
 	}

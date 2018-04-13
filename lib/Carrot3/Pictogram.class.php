@@ -64,7 +64,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->getNames()->getIterator()->getFirst();
 	}
 
@@ -114,7 +114,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @access public
 	 * @return string 絵文字表記
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		if ($this->request['without_pictogram_emulate']) {
 			$useragent = $this->request->getUserAgent();
 		} else {
@@ -182,7 +182,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @access public
 	 * @return URL URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		if (!$this->url) {
 			$this->url = FileUtils::createURL(
 				'pictogram',

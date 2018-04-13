@@ -59,7 +59,7 @@ class MailAddress implements Assignable {
 	 * @access public
 	 * @return string メールアドレス
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this->contents;
 	}
 
@@ -69,7 +69,7 @@ class MailAddress implements Assignable {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->name;
 	}
 
@@ -89,7 +89,7 @@ class MailAddress implements Assignable {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL () {
+	public function getURL ():HTTPURL {
 		if (!$this->url) {
 			$this->url = URL::create('mailto:' . $this->getContents());
 		}

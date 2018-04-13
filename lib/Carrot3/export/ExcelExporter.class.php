@@ -84,7 +84,7 @@ class ExcelExporter implements Exporter, Renderer {
 	 * @access public
 	 * @return string CSVデータの内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		$this->save();
 		return $this->getFile()->getContents();
 	}

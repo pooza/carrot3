@@ -34,7 +34,7 @@ class JSONRenderer implements Renderer, MessageContainer {
 	 *
 	 * @access public
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return $this->contents;
 	}
 

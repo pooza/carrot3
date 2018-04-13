@@ -57,7 +57,7 @@ class Exception extends \Exception {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName () {
+	public function getName ():string {
 		return Utils::getClass($this);
 	}
 

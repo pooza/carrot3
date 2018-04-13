@@ -317,7 +317,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return string 読み込んだ内容
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		return file_get_contents($this->getPath());
 	}
 

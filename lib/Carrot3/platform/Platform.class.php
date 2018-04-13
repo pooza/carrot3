@@ -49,7 +49,7 @@ abstract class Platform extends ParameterHolder {
 	 * @access public
 	 * @return string プラットフォーム名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this['name'];
 	}
 

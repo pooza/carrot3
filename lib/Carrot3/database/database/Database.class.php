@@ -200,7 +200,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return string インスタンス名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return $this->dsn->getName();
 	}
 

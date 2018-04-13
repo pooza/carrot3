@@ -26,7 +26,7 @@ class PlainTextRenderer implements TextRenderer, MessageContainer, \IteratorAggr
 	 *
 	 * @access public
 	 */
-	public function getContents () {
+	public function getContents ():string {
 		$contents = $this->contents;
 
 		if ($this->convertKanaFlag) {

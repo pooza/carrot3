@@ -46,7 +46,7 @@ class SessionHandler implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return int セッション名
 	 */
-	public function getName () {
+	public function getName ():string {
 		return session_name();
 	}
 

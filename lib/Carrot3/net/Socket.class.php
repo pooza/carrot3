@@ -59,7 +59,7 @@ class Socket {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName () {
+	public function getName ():string {
 		if (!$this->name) {
 			$url = URL::create(null, $this->getProtocol());
 			$url['host'] = $this->getHost();
