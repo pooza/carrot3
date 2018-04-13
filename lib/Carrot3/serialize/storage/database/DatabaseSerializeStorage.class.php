@@ -116,7 +116,7 @@ class DatabaseSerializeStorage implements SerializeStorage {
 	 * @param string $name 属性の名前
 	 * @return Date 更新日
 	 */
-	public function getUpdateDate (string $name) {
+	public function getUpdateDate (string $name):?Date {
 		if (!$record = $this->getTable()->getRecord($name)) {
 			return null;
 		}

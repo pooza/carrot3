@@ -285,7 +285,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return Date 作成日付
 	 */
-	public function getCreateDate () {
+	public function getCreateDate ():Date {
 		if (!$this->isExists()) {
 			throw new FileException($this . 'が存在しません。');
 		}
@@ -298,7 +298,7 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return Date 更新日付
 	 */
-	public function getUpdateDate () {
+	public function getUpdateDate ():Date {
 		if (!$this->isExists()) {
 			throw new FileException($this . 'が存在しません。');
 		}

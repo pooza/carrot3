@@ -281,7 +281,7 @@ abstract class Record implements \ArrayAccess,
 	 * @access public
 	 * @return Date 更新日
 	 */
-	public function getUpdateDate () {
+	public function getUpdateDate ():?Date {
 		return Date::create($this[$this->getTable()->getUpdateDateField()]);
 	}
 
@@ -291,7 +291,7 @@ abstract class Record implements \ArrayAccess,
 	 * @access public
 	 * @return Date 作成日
 	 */
-	public function getCreateDate () {
+	public function getCreateDate ():?Date {
 		return Date::create($this[$this->getTable()->getCreateDateField()]);
 	}
 
@@ -401,7 +401,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $name 名前
 	 * @return string ダウンロード時ファイル名
 	 */
-	public function getAttachmentFileName (string $name):string {
+	public function getAttachmentFileName (string $name):?string {
 		if ($file = $this->getAttachment($name)) {
 			return $this->getAttachmentBaseName($name) . $file->getSuffix();
 		}

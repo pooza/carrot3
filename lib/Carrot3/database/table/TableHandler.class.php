@@ -752,7 +752,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access public
 	 * @return Date 更新日付
 	 */
-	public function getUpdateDate () {
+	public function getUpdateDate ():?Date {
 		$date = null;
 		foreach ($this as $record) {
 			if (!$date || ($date < $record->getUpdateDate())) {

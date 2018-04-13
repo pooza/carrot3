@@ -77,7 +77,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @param string $name 属性の名前
 	 * @return Date 更新日
 	 */
-	public function getUpdateDate (string $name) {
+	public function getUpdateDate (string $name):?Date {
 		return $this->storage->getUpdateDate($this->createKey([$name]));
 	}
 

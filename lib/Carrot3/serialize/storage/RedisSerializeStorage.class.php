@@ -104,7 +104,7 @@ class RedisSerializeStorage implements SerializeStorage {
 	 * @param string $name 属性の名前
 	 * @return Date 更新日
 	 */
-	public function getUpdateDate (string $name) {
+	public function getUpdateDate (string $name):?Date {
 		if ($entry = $this->getEntry($name)) {
 			return $entry['update_date'];
 		}
