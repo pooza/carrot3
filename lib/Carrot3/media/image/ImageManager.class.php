@@ -149,7 +149,7 @@ class ImageManager {
 	 *   self::WIDTH_FIXED 幅固定
 	 * @return HTTPURL URL
 	 */
-	public function createURL (ImageContainer $record, string $size, ?int $pixel = null, int $flags = 0):HTTPURL {
+	public function createURL (ImageContainer $record, string $size, ?int $pixel = null, int $flags = 0):?HTTPURL {
 		if (!$file = $this->getFile($record, $size, $pixel, $flags)) {
 			return null;
 		}

@@ -12,6 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class GoogleMapsGeocodingService extends CurlHTTP {
+	use KeyGenerator;
 	private $table;
 	const DEFAULT_HOST = 'maps.googleapis.com';
 
@@ -36,7 +37,7 @@ class GoogleMapsGeocodingService extends CurlHTTP {
 	 * @return Geocode ジオコード
 	 */
 	public function getGeocode ($address) {
-		$key = Crypt::digest([Utils::getClass($this), $address]);
+		$key = $this->createKey([$address]);
 		$serials = new SerializeHandler;
 		if (!$geocode = $serials[$key]) {
 			$pattern = '^lat=([.[:digit:]]+),lng=([.[:digit:]]+)+$';

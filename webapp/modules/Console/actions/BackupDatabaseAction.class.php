@@ -40,7 +40,7 @@ class BackupDatabaseAction extends C\Action {
 		return C\View::NONE;
 	}
 
-	public function validate () {
+	public function validate ():bool {
 		return !!$this->getDatabase();
 	}
 }

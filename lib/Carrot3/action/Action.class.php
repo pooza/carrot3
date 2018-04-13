@@ -110,7 +110,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest () {
+	public function digest ():string {
 		if (!$this->digest) {
 			$this->digest = Crypt::digest([
 				$this->controller->getHost()->getName(),
@@ -182,7 +182,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return bool 妥当な入力ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return !$this->request->hasErrors();
 	}
 
@@ -454,7 +454,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			$this->url = URL::create(null, 'carrot');
 			$this->url['action'] = $this;

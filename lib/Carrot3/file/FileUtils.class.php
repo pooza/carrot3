@@ -53,7 +53,7 @@ class FileUtils {
 	 * @return HTTPURL URL
 	 * @static
 	 */
-	static public function createURL (string $name, $path = ''):HTTPURL {
+	static public function createURL (string $name, $path = ''):?HTTPURL {
 		if (self::getDirectory($name)) {
 			$url = DirectoryLayout::getInstance()->createURL($name);
 			$url['path'] .= $path;

@@ -45,7 +45,7 @@ class RSS10Document extends RSS09Document {
 	 * @access public
 	 * @return bool 妥当な文書ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return (XMLDocument::validate()
 			&& $this->query('/rss/channel/title')
 			&& $this->query('/rss/channel/description')

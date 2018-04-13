@@ -225,7 +225,7 @@ class URL implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return bool 妥当ならtrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return !StringUtils::isBlank($this->getContents());
 	}
 

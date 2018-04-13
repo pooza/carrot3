@@ -126,7 +126,7 @@ class ExcelExporter implements Exporter, Renderer {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		$this->save();
 		return true;
 	}

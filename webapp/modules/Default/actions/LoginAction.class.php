@@ -22,7 +22,7 @@ class LoginAction extends C\Action {
 		return $this->getDefaultView();
 	}
 
-	public function validate () {
+	public function validate ():bool {
 		$role = C\AdministratorRole::getInstance();
 		$email = C\MailAddress::create($this->request['email']);
 		if ($email->getContents() != $role->getMailAddress()->getContents()) {

@@ -12,7 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class SerializeHandler implements \ArrayAccess {
-	use BasicObject;
+	use BasicObject, KeyGenerator;
 	private $serializer;
 	private $storage;
 	private $attributes;
@@ -67,7 +67,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @return mixed 属性値
 	 */
 	public function getAttribute (string $name, Date $date = null) {
-		return $this->storage->getAttribute($this->createKey($name), $date);
+		return $this->storage->getAttribute($this->createKey([$name]), $date);
 	}
 
 	/**
@@ -78,7 +78,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @return Date 更新日
 	 */
 	public function getUpdateDate (string $name) {
-		return $this->storage->getUpdateDate($this->createKey($name));
+		return $this->storage->getUpdateDate($this->createKey([$name]));
 	}
 
 	/**
@@ -92,7 +92,7 @@ class SerializeHandler implements \ArrayAccess {
 		if (is_iterable($value)) {
 			$value = Tuple::create($value)->decode();
 		}
-		$this->storage->setAttribute($this->createKey($name), $value);
+		$this->storage->setAttribute($this->createKey([$name]), $value);
 	}
 
 	/**
@@ -102,7 +102,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @param string $name 属性の名前
 	 */
 	public function removeAttribute (string $name) {
-		$this->storage->removeAttribute($this->createKey($name));
+		$this->storage->removeAttribute($this->createKey([$name]));
 	}
 
 	/**
@@ -138,22 +138,6 @@ class SerializeHandler implements \ArrayAccess {
 	 */
 	public function offsetUnset ($key) {
 		$this->removeAttribute($key);
-	}
-
-	/**
-	 * シリアライズのダイジェストを返す
-	 *
-	 * @access public
-	 * @param mixed $name 属性名に用いる値
-	 * @return string 属性名
-	 */
-	public function createKey (string $name) {
-		if ($name instanceof Serializable) {
-			return $name->digest();
-		} else if (is_object($name)) {
-			return Crypt::digest(Utils::getClass($name));
-		}
-		return (string)$name;
 	}
 
 	/**

@@ -472,7 +472,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		if (!$this->isReadable()) {
 			$this->error = $this . 'が開けません。';
 			return false;
@@ -496,7 +496,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest () {
+	public function digest ():string {
 		return $this->getID();
 	}
 

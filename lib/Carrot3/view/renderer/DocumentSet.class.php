@@ -159,7 +159,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest () {
+	public function digest ():string {
 		if (!$this->digest) {
 			$values = Tuple::create();
 			$values['class'] = Utils::getClass($this);
@@ -289,7 +289,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return StringUtils::isBlank($this->error);
 	}
 
@@ -317,7 +317,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			$this->url = FileUtils::createURL(
 				$this->getDirectoryName() . '_cache',

@@ -141,7 +141,7 @@ class HeaderCSVData extends CSVData {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		if (!$this->getHeader()) {
 			$this->error = '見出し行が正しくありません。';
 			return false;

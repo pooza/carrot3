@@ -535,7 +535,7 @@ abstract class Record implements \ArrayAccess,
 	 * @return string ラベル
 	 * @final
 	 */
-	final public function getName (?string $lang = 'ja') {
+	final public function getName (?string $lang = 'ja'):string {
 		return $this->getLabel($lang);
 	}
 
@@ -580,7 +580,7 @@ abstract class Record implements \ArrayAccess,
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			if (StringUtils::isBlank($this['url'])) {
 				$this->url = URL::create(null, 'carrot');
@@ -612,7 +612,7 @@ abstract class Record implements \ArrayAccess,
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest () {
+	public function digest ():string {
 		if (!$this->digest) {
 			$this->digest = Crypt::digest([
 				Utils::getClass($this),

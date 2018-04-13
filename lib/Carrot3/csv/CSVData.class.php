@@ -269,7 +269,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		if (!($this->getRecords() instanceof Tuple)) {
 			$this->error = 'データ配列が正しくありません。';
 			return false;

@@ -95,7 +95,7 @@ class XMLDocument extends XMLElement implements TextRenderer {
 	 * @access public
 	 * @return bool 妥当な要素ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		if (!parent::getContents()) {
 			$this->error = '妥当なXML文書ではありません。';
 			return false;

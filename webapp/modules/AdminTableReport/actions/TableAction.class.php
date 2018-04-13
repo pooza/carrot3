@@ -40,7 +40,7 @@ class TableAction extends C\Action {
 		return $this->controller->getAction('not_found')->forward();
 	}
 
-	public function validate () {
+	public function validate ():bool {
 		return !!$this->getTableProfile();
 	}
 }

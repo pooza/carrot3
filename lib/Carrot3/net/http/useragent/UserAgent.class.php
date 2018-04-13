@@ -158,7 +158,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @return string ユーザーエージェント名
 	 */
 	public function getName ():string {
-		return $this['name'];
+		return (string)$this['name'];
 	}
 
 	/**
@@ -245,7 +245,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest () {
+	public function digest ():string {
 		if (!$this->digest) {
 			$this->digest = Crypt::digest([
 				__CLASS__,

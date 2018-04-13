@@ -140,7 +140,7 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest () {
+	public function digest ():string {
 		if (!$this->digest) {
 			$date = $this->getDate();
 			$this->digest = Crypt::digest([

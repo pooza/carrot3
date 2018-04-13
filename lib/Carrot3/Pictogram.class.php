@@ -182,7 +182,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @access public
 	 * @return URL URL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			$this->url = FileUtils::createURL(
 				'pictogram',
@@ -283,29 +283,5 @@ class Pictogram implements Assignable, ImageContainer {
 		return Tuple::create(
 			ConfigManager::getInstance()->compile('pictogram')['codes']
 		)->getKeys();
-	}
-
-	/**
-	 * 絵文字の画像ファイルを全て返す
-	 *
-	 * @access public
-	 * @return Tuple 絵文字名
-	 * @static
-	 */
-	static public function getPictogramImageInfos () {
-		$key = Crypt::digest([__CLASS__, __FUNCTION__]);
-		$serials = new SerializeHandler;
-		if (!$serials[$key]) {
-			$urls = Tuple::create();
-			foreach (self::getPictograms() as $pictogram) {
-				foreach ($pictogram->getNames() as $name) {
-					$urls[$name] = Tuple::create();
-					$urls[$name]['name'] = $name;
-					$urls[$name]['image'] = $pictogram->getImageInfo('image');
-				}
-			}
-			$serials[$key] = $urls;
-		}
-		return $serials[$key];
 	}
 }

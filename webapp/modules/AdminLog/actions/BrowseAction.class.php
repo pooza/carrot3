@@ -49,7 +49,7 @@ class BrowseAction extends C\Action {
 		return C\View::SUCCESS;
 	}
 
-	public function validate () {
+	public function validate ():bool {
 		try {
 			return !!$this->getModule()->getLogger();
 		} catch (C\LogException $e) {

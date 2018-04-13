@@ -246,7 +246,7 @@ class ImagickImage extends Image {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		if (StringUtils::isBlank($this->getContents())) {
 			$this->error = 'Imagick画像リソースが正しくありません。';
 			return false;

@@ -12,7 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
-	use HTTPRedirectorMethods;
+	use HTTPRedirectorMethods, KeyGenerator;
 	private $fullpath;
 	private $useragent;
 	private $shortURL;
@@ -313,7 +313,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 			if (!$service || !($service instanceof URLShorter)) {
 				throw new HTTPException('URL短縮サービスが取得できません。');
 			}
-			$key = Crypt::digest([Utils::getClass($this), $this->getContents()]);
+			$key = $this->createKey([$this->getContents()]);
 			$serials = new SerializeHandler;
 			if ($url = $serials[$key]) {
 				$this->shortURL = URL::create($url);
@@ -344,7 +344,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():?HTTPURL {
 		return $this;
 	}
 

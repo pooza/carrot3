@@ -89,7 +89,7 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 		}
 		return false;
 	}
-	private function createKeys (string $name) {
+	protected function createKeys (string $name):Tuple {
 		$name = (string)$name;
 		$keys = Tuple::create();
 		if (StringUtils::isContain('::', $name)) {

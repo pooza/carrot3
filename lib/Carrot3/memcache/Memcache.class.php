@@ -14,7 +14,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class Memcache implements \ArrayAccess {
-	use BasicObject;
+	use BasicObject, KeyGenerator;
 	protected $memcached;
 	private $attributes;
 
@@ -122,7 +122,7 @@ class Memcache implements \ArrayAccess {
 	 * @return string エントリーの値
 	 */
 	public function get (string $name) {
-		return $this->memcached->get($this->createKey($name));
+		return $this->memcached->get($this->createKey([$name]));
 	}
 
 	/**
@@ -141,7 +141,7 @@ class Memcache implements \ArrayAccess {
 		} else if (is_object($value)) {
 			throw new MemcacheException('オブジェクトを登録できません。');
 		}
-		return $this->memcached->set($this->createKey($name), $value, $expire);
+		return $this->memcached->set($this->createKey([$name]), $value, $expire);
 	}
 
 	/**
@@ -152,22 +152,7 @@ class Memcache implements \ArrayAccess {
 	 * @return bool 処理の成否
 	 */
 	public function delete (string $name) {
-		return $this->memcached->delete($this->createKey($name));
-	}
-
-	/**
-	 * memcachedでのエントリー名を返す
-	 *
-	 * @access protected
-	 * @param string $name エントリー名
-	 * @return string memcachedでの属性名
-	 */
-	protected function createKey (string $name) {
-		return Crypt::digest([
-			$this->controller->getHost()->getName(),
-			Utils::getShortClass($this),
-			$name,
-		]);
+		return $this->memcached->delete($this->createKey([$name]));
 	}
 
 	/**

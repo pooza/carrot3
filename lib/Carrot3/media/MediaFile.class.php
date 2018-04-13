@@ -126,7 +126,7 @@ abstract class MediaFile extends File implements Assignable {
 	 * @param iterable $params パラメータ配列
 	 * @return URL メディアURL
 	 */
-	protected function createURL (iterable $params):HTTPURL {
+	protected function createURL (iterable $params):?HTTPURL {
 		$url = URL::create($params['href_prefix']);
 		$url['path'] .= $this->getName() . $params['href_suffix'];
 		if ($this->user->isAdministrator()) {
@@ -141,7 +141,7 @@ abstract class MediaFile extends File implements Assignable {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		if (!$this->attributes->count()) {
 			$this->analyze();
 		}

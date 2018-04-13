@@ -143,7 +143,7 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		if (!parent::validate()) {
 			return false;
 		}

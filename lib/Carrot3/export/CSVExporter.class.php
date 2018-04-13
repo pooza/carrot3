@@ -125,7 +125,7 @@ class CSVExporter implements Exporter, TextRenderer {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return true;
 	}
 

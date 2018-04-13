@@ -21,7 +21,7 @@ class RawRenderer implements Renderer {
 	 * @access public
 	 */
 	public function getContents ():string {
-		return $this->contents;
+		return (string)$this->contents;
 	}
 
 	/**
@@ -73,7 +73,7 @@ class RawRenderer implements Renderer {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return true;
 	}
 

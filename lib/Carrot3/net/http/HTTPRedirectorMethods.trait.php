@@ -29,7 +29,7 @@ trait HTTPRedirectorMethods {
 	 * @access public
 	 * @return URL
 	 */
-	public function createURL ():HTTPURL {
+	public function createURL ():?HTTPURL {
 		return clone $this->getURL();
 	}
 }

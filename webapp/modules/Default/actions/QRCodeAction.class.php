@@ -16,7 +16,7 @@ class QRCodeAction extends C\Action {
 		return C\View::SUCCESS;
 	}
 
-	public function digest () {
+	public function digest ():string {
 		if (!$this->digest) {
 			$this->digest = C\Crypt::digest([
 				$this->request['value'],

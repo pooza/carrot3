@@ -342,7 +342,7 @@ class Image implements ImageRenderer {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		if (!is_resource($this->getGDHandle())) {
 			$this->error = 'GD画像リソースが正しくありません。';
 			return false;

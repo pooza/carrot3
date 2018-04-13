@@ -12,6 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class GoogleChartService extends CurlHTTP {
+	use KeyGenerator;
 	const DEFAULT_HOST = 'chart.apis.google.com';
 
 	/**
@@ -57,7 +58,7 @@ class GoogleChartService extends CurlHTTP {
 	 * @return ImageFile 画像ファイル
 	 */
 	public function getImageFile ($type, int $width, int $height, iterable $params) {
-		$key = $this->createKey($type, $width, $height, $params);
+		$key = $this->createKey([$type, $width, $height, $params]);
 		$dir = FileUtils::getDirectory('chart');
 		if (!$file = $dir->getEntry($key, 'ImageFile')) {
 			try {
@@ -81,16 +82,6 @@ class GoogleChartService extends CurlHTTP {
 			}
 		}
 		return $file;
-	}
-
-	private function createKey ($type, $width, $height, iterable $params) {
-		$values = Tuple::create();
-		$values['type'] = $type;
-		$values['width'] = $width;
-		$values['height'] = $height;
-		$values['params'] = Tuple::create($params->getParameters());
-		$serializer = new PHPSerializer;
-		return Crypt::digest($serializer->encode($values->decode()));
 	}
 
 	/**

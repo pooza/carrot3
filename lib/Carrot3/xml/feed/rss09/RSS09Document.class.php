@@ -53,7 +53,7 @@ class RSS09Document extends XMLDocument implements FeedDocument {
 	 * @access public
 	 * @return bool 妥当な文書ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return (parent::validate()
 			&& $this->query('/rss/channel/title')
 			&& $this->query('/rss/channel/description')

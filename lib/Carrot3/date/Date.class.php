@@ -161,7 +161,7 @@ class Date extends ParameterHolder implements Assignable {
 	 * @access public
 	 * @return bool 妥当な日付ならtrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return (checkdate($this['month'], $this['day'], $this['year'])
 			&& (0 <= $this['hour']) && ($this['hour'] <= 23)
 			&& (0 <= $this['minute']) && ($this['minute'] <= 59)

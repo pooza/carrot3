@@ -89,7 +89,7 @@ class PlainTextRenderer implements TextRenderer, MessageContainer, \IteratorAggr
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return true;
 	}
 

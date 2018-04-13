@@ -19,7 +19,7 @@ interface Serializable {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ();
+	public function digest ():string;
 
 	/**
 	 * シリアライズ時の値を返す

@@ -83,7 +83,7 @@ abstract class RecordAction extends Action {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest () {
+	public function digest ():string {
 		if (!$this->digest) {
 			$this->digest = Crypt::digest([
 				$this->controller->getHost()->getName(),
@@ -149,7 +149,7 @@ abstract class RecordAction extends Action {
 	 * @access public
 	 * @return bool 妥当な入力ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		if (!$this->isCreateAction() && !$this->getRecord()) {
 			$this->request->setError($this->getTable()->getKeyField(), '未登録です。');
 			$this->controller->setHeader('Status', HTTP::getStatus(404));

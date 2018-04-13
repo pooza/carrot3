@@ -236,7 +236,7 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			$this->url = URL::create();
 			$this->url['scheme'] = 'https';

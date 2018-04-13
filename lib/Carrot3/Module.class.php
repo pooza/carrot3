@@ -11,7 +11,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class Module implements HTTPRedirector, Assignable {
-	use HTTPRedirectorMethods, BasicObject;
+	use HTTPRedirectorMethods, BasicObject, KeyGenerator;
 	protected $name;
 	protected $title;
 	protected $url;
@@ -45,14 +45,6 @@ class Module implements HTTPRedirector, Assignable {
 		if ($file = $this->getConfigFile('filters')) {
 			$this->config['filters'] = Tuple::create($file->getResult());
 		}
-	}
-
-	private function createKey ($key) {
-		return Crypt::digest([
-			Utils::getClass($this),
-			$key,
-			$this->getName(),
-		]);
 	}
 
 	/**
@@ -175,7 +167,8 @@ class Module implements HTTPRedirector, Assignable {
 	public function getParameterCache () {
 		if (!$this->params) {
 			$this->params = Tuple::create();
-			if ($params = $this->user->getAttribute($this->createKey('parameters'))) {
+			$key = $this->createKey([$this->getName(), 'params']);
+			if ($params = $this->user->getAttribute($key)) {
 				$this->params->setParameters($params);
 			}
 		}
@@ -192,7 +185,10 @@ class Module implements HTTPRedirector, Assignable {
 		$this->params = Tuple::create($params);
 		$this->params->removeParameter(Module::ACCESSOR);
 		$this->params->removeParameter(Action::ACCESSOR);
-		$this->user->setAttribute($this->createKey('parameters'), $this->params);
+		$this->user->setAttribute(
+			$this->createKey([$this->getName(), 'params']),
+			$this->params
+		);
 	}
 
 	/**
@@ -201,7 +197,9 @@ class Module implements HTTPRedirector, Assignable {
 	 * @access public
 	 */
 	public function clearParameterCache () {
-		$this->user->removeAttribute($this->createKey('parameters'));
+		$this->user->removeAttribute(
+			$this->createKey([$this->getName(), 'params'])
+		);
 	}
 
 	/**
@@ -237,7 +235,9 @@ class Module implements HTTPRedirector, Assignable {
 	 * @return int カレントレコードID
 	 */
 	public function getRecordID () {
-		return $this->user->getAttribute($this->createKey('record'));
+		return $this->user->getAttribute(
+			$this->createKey([$this->getName(), 'record'])
+		);
 	}
 
 	/**
@@ -260,7 +260,7 @@ class Module implements HTTPRedirector, Assignable {
 				$id = null;
 			}
 		}
-		$this->user->setAttribute($this->createKey('record'), $id);
+		$this->user->setAttribute($this->createKey([$this->getName(), 'record']), $id);
 		$this->record = null;
 	}
 
@@ -270,7 +270,9 @@ class Module implements HTTPRedirector, Assignable {
 	 * @access public
 	 */
 	public function clearRecordID () {
-		$this->user->removeAttribute($this->createKey('record'));
+		$this->user->removeAttribute(
+			$this->createKey([$this->getName(), 'params'])
+		);
 		$this->record = null;
 	}
 
@@ -401,7 +403,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return URL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			$this->url = URL::create(null, 'carrot');
 			$this->url['module'] = $this;

@@ -116,7 +116,7 @@ abstract class TableProfile implements Assignable, Serializable {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest () {
+	public function digest ():string {
 		if (!$this->digest) {
 			$this->digest = Crypt::digest([
 				Utils::getClass($this),

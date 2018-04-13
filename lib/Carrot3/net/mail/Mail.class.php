@@ -131,7 +131,7 @@ class Mail extends MIMEDocument {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		try {
 			if (StringUtils::isBlank($this->getHeader('From')->getContents())) {
 				throw new MailException('送信元アドレスが指定されていません。');

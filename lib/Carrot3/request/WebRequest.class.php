@@ -132,7 +132,7 @@ class WebRequest extends Request {
 	 * @access public
 	 * @return URL 送信先URL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			$url = 'http';
 			if ($this->isTLS()) {

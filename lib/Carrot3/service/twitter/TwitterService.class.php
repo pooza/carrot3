@@ -12,6 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class TwitterService extends CurlHTTP {
+	use KeyGenerator;
 	protected $consumerKey;
 	protected $consumerSecret;
 	protected $accessToken;
@@ -133,12 +134,7 @@ class TwitterService extends CurlHTTP {
 	}
 
 	protected function getBearerToken () {
-		$key = Tuple::create([
-			$this->getConsumerKey(),
-			$this->getConsumerSecret(),
-			__CLASS__,
-			__FUNCTION__,
-		])->join(':');
+		$key = $this->createKey([$this->getConsumerKey(), $this->getConsumerSecret()]);
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$value = (new SerializeHandler)->getAttribute($key, $date)) {
@@ -210,7 +206,7 @@ class TwitterService extends CurlHTTP {
 	 * @return Tuple タイムライン
 	 */
 	public function getTimeline ($account, int $count = 10) {
-		$key = Crypt::digest([$account, $count, __CLASS__, __FUNCTION__]);
+		$key = $this->crerateKey([$account, $count]);
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$timeline = (new SerializeHandler)->getAttribute($key, $date)) {
@@ -246,7 +242,7 @@ class TwitterService extends CurlHTTP {
 	 * @return Tuple ツイート
 	 */
 	public function searchTweets ($keyword, int $count = 10) {
-		$key = Crypt::digest([$keyword, $count, __CLASS__, __FUNCTION__]);
+		$key = $this->createKey([$keyword, $count]);
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$timeline = (new SerializeHandler)->getAttribute($key, $date)) {
@@ -284,7 +280,7 @@ class TwitterService extends CurlHTTP {
 	 * @return Tuple プロフィール
 	 */
 	public function getProfile ($account) {
-		$key = Crypt::digest([$account, __CLASS__, __FUNCTION__]);
+		$key = $this->createKey([$account]);
 		$date = Date::create();
 		$date['minute'] = '-' . BS_SERVICE_TWITTER_MINUTES;
 		if (!$profile = (new SerializeHandler)->getAttribute($key, $date)) {

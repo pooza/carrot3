@@ -18,7 +18,6 @@ class MailAddress implements Assignable {
 	private $account;
 	private $domain;
 	private $url;
-	private $mx = [];
 
 	/**
 	 * @access private
@@ -60,7 +59,7 @@ class MailAddress implements Assignable {
 	 * @return string メールアドレス
 	 */
 	public function getContents ():string {
-		return $this->contents;
+		return (string)$this->contents;
 	}
 
 	/**
@@ -70,7 +69,7 @@ class MailAddress implements Assignable {
 	 * @return string 名前
 	 */
 	public function getName ():string {
-		return $this->name;
+		return (string)$this->name;
 	}
 
 	/**
@@ -80,7 +79,7 @@ class MailAddress implements Assignable {
 	 * @return string ドメイン名
 	 */
 	public function getDomainName ():string {
-		return $this->domain;
+		return (string)$this->domain;
 	}
 
 	/**

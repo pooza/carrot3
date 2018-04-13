@@ -82,7 +82,7 @@ class HTTPResponse extends MIMEDocument {
 	 * @access public
 	 * @return URL リクエストされたURL
 	 */
-	public function getURL ():HTTPURL {
+	public function getURL ():?HTTPURL {
 		return $this->url;
 	}
 
@@ -112,7 +112,7 @@ class HTTPResponse extends MIMEDocument {
 	 * @access public
 	 * @return bool 出力可能ならTrue
 	 */
-	public function validate () {
+	public function validate ():bool {
 		return ($this->getStatus() < 400);
 	}
 

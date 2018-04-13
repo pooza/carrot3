@@ -29,7 +29,7 @@ abstract class AttachmentAction extends RecordAction {
 		return $this->controller->getAction('not_found')->forward();
 	}
 
-	public function validate () {
+	public function validate ():bool {
 		return (parent::validate()
 			&& ($this->getRecord() instanceof AttachmentContainer)
 			&& $this->getRecord()->getAttachment($this->request['name'])
