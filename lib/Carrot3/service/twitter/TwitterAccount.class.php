@@ -166,7 +166,7 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile (string $size) {
+	public function getImageFile (string $size):?ImageFile {
 		$dir = FileUtils::getDirectory('twitter_account');
 		if ($file = $dir->getEntry($this->getImageFileBaseName($size), 'ImageFile')) {
 			$date = Date::create();
@@ -191,11 +191,11 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	/**
 	 * 画像ファイルベース名を返す
 	 *
-	 * @access public
+	 * @access protected
 	 * @param string $size サイズ名
 	 * @return string 画像ファイルベース名
 	 */
-	public function getImageFileBaseName (string $size) {
+	protected function getImageFileBaseName (string $size) {
 		return sprintf('%010d_%s', $this->getID(), $size);
 	}
 

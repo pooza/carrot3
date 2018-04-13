@@ -20,7 +20,7 @@ interface AttachmentContainer {
 	 * @param string $name 名前
 	 * @return File 添付ファイル
 	 */
-	public function getAttachment (string $name);
+	public function getAttachment (string $name):?File;
 
 	/**
 	 * 添付ファイルのダウンロード時の名を返す

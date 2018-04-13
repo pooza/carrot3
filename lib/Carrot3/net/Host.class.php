@@ -146,32 +146,8 @@ class Host implements Assignable, ImageContainer {
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile (string $size) {
+	public function getImageFile (string $size):?ImageFile {
 		return (new GoogleFaviconsService)->getImageFile($this);
-	}
-
-	/**
-	 * 画像ファイルベース名を返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @return string 画像ファイルベース名
-	 */
-	public function getImageFileBaseName (string $size) {
-		return Crypt::digest($this->getID());
-	}
-
-	/**
-	 * コンテナのIDを返す
-	 *
-	 * コンテナを一意に識別する値。
-	 * ファイルならinode、DBレコードなら主キー。
-	 *
-	 * @access public
-	 * @return int ID
-	 */
-	public function getID () {
-		$this->getName();
 	}
 
 	/**

@@ -178,7 +178,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * @access public
 	 * @return int サイズ
 	 */
-	public function getSize () {
+	public function getSize ():int {
 		return strlen($this->getContents());
 	}
 
@@ -188,7 +188,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		return MIMEType::getType('csv');
 	}
 
@@ -198,7 +198,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * @access public
 	 * @return string PHPのエンコード名
 	 */
-	public function getEncoding () {
+	public function getEncoding ():string {
 		return $this->encoding;
 	}
 

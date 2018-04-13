@@ -29,7 +29,7 @@ class CSSFile extends File {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		return MIMEType::getType('css');
 	}
 
@@ -39,7 +39,7 @@ class CSSFile extends File {
 	 * @access public
 	 * @return string PHPのエンコード名
 	 */
-	public function getEncoding () {
+	public function getEncoding ():string {
 		return 'utf-8';
 	}
 

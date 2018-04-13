@@ -254,7 +254,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return int サイズ
 	 */
-	public function getSize () {
+	public function getSize ():int {
 		return strlen($this->getContents());
 	}
 
@@ -264,7 +264,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		if (!$this->type) {
 			$file = FileUtils::createTemporaryFile(null, $this->getDocumentClass());
 			$this->type = $file->getType();
@@ -279,7 +279,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return string PHPのエンコード名
 	 */
-	public function getEncoding () {
+	public function getEncoding ():string {
 		return 'utf-8';
 	}
 

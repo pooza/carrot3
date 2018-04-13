@@ -109,7 +109,7 @@ class ImagickImage extends Image {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		switch ($type = $this->getImagick()->getImageMimeType()) {
 			case 'image/x-ico':
 				return MIMEType::getType('ico');

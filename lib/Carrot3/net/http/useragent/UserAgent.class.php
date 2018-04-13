@@ -310,7 +310,7 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access public
 	 * @return string タイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		if (!$this->type) {
 			mb_ereg('\\\\([[:alnum:]]+)UserAgent$', Utils::getClass($this), $matches);
 			$this->type = $matches[1];

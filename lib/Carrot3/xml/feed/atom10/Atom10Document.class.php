@@ -70,7 +70,7 @@ class Atom10Document extends XMLDocument implements FeedDocument {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		return MIMEType::getType('atom');
 	}
 

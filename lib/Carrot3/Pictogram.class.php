@@ -16,7 +16,6 @@ class Pictogram implements Assignable, ImageContainer {
 	private $name;
 	private $codes;
 	private $names;
-	private $imagefile;
 	private $element;
 	private $imageinfo;
 	private $url;
@@ -199,23 +198,9 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile (string $size) {
-		if (!$this->imagefile) {
-			$dir = FileUtils::getDirectory('pictogram');
-			$this->imagefile = $dir->getEntry($this->getImageFileBaseName($size), 'ImageFile');
-		}
-		return $this->imagefile;
-	}
-
-	/**
-	 * 画像ファイルベース名を返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @return string 画像ファイルベース名
-	 */
-	public function getImageFileBaseName (string $size) {
-		return $this->getID();
+	public function getImageFile (string $size):?ImageFile {
+		$dir = FileUtils::getDirectory('pictogram');
+		returrn $dir->getEntry($this->getID(), 'ImageFile');
 	}
 
 	/**

@@ -105,7 +105,7 @@ class ExcelExporter implements Exporter, Renderer {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string:string {
 		return MIMEType::getType('xlsx');
 	}
 
@@ -115,7 +115,7 @@ class ExcelExporter implements Exporter, Renderer {
 	 * @access public
 	 * @return int サイズ
 	 */
-	public function getSize () {
+	public function getSize ():int {
 		$this->save();
 		return $this->getFile()->getSize();
 	}

@@ -75,7 +75,7 @@ class YAMLConfigParser extends \Spyc implements ConfigParser {
 	 * @access public
 	 * @return int サイズ
 	 */
-	public function getSize () {
+	public function getSize ():int {
 		return strlen($this->getContents());
 	}
 
@@ -85,7 +85,7 @@ class YAMLConfigParser extends \Spyc implements ConfigParser {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		return MIMEType::getType('yaml');
 	}
 
@@ -95,7 +95,7 @@ class YAMLConfigParser extends \Spyc implements ConfigParser {
 	 * @access public
 	 * @return string PHPのエンコード名
 	 */
-	public function getEncoding () {
+	public function getEncoding ():string {
 		return 'utf-8';
 	}
 

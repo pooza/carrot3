@@ -128,7 +128,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @access public
 	 * @return int サイズ
 	 */
-	public function getSize () {
+	public function getSize ():int {
 		return strlen($this->getContents());
 	}
 
@@ -182,7 +182,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		if (!$this->type) {
 			$this->type = MIMEType::getType('html');
 		}
@@ -205,7 +205,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @access public
 	 * @return string PHPのエンコード名
 	 */
-	public function getEncoding () {
+	public function getEncoding ():string {
 		return $this->encoding;
 	}
 

@@ -107,7 +107,7 @@ class Image implements ImageRenderer {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		if (!$this->type) {
 			$this->type = getimagesizefromstring($this->getContents())['mime'];
 		}
@@ -255,7 +255,7 @@ class Image implements ImageRenderer {
 	 * @access public
 	 * @return int サイズ
 	 */
-	public function getSize () {
+	public function getSize ():int {
 		return strlen($this->getContents());
 	}
 

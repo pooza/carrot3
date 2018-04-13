@@ -134,7 +134,7 @@ class ImageManager {
 	 * @access public
 	 * @return string タイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		return $this->getUserAgent()->getDefaultImageType();
 	}
 

@@ -71,7 +71,7 @@ abstract class MediaFile extends File implements Assignable {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		if (StringUtils::isBlank($this->attributes['type'])) {
 			$this->analyze();
 		}

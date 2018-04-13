@@ -19,5 +19,5 @@ interface TextRenderer extends Renderer {
 	 * @access public
 	 * @return string PHPのエンコード名
 	 */
-	public function getEncoding ();
+	public function getEncoding ():string;
 }

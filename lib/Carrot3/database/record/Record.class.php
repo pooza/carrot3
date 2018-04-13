@@ -327,7 +327,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $name 名前
 	 * @return File 添付ファイル
 	 */
-	public function getAttachment (string $name) {
+	public function getAttachment (string $name):?File {
 		$finder = new MediaFileFinder;
 		$finder->clearDirectories();
 		$finder->registerDirectory($this->getTable()->getDirectory());
@@ -346,7 +346,7 @@ abstract class Record implements \ArrayAccess,
 	public function setAttachment (string $name, File $file, ?string $filename = null) {
 		if ($file instanceof ImageFile) {
 			$this->removeImageFile($name);
-			$file->rename($this->getImageFileBaseName($name));
+			$file->rename($this->getAttachmentBaseName($name));
 		} else {
 			$this->removeAttachment($name);
 			if (StringUtils::isBlank($suffix = $file->getSuffix())) {
@@ -386,11 +386,11 @@ abstract class Record implements \ArrayAccess,
 	/**
 	 * 添付ファイルベース名を返す
 	 *
-	 * @access public
+	 * @access protected
 	 * @param string $name 名前
 	 * @return string 添付ファイルベース名
 	 */
-	public function getAttachmentBaseName (string $name) {
+	protected function getAttachmentBaseName (string $name) {
 		return sprintf('%010d_%s', $this->getID(), $name);
 	}
 
@@ -401,7 +401,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $name 名前
 	 * @return string ダウンロード時ファイル名
 	 */
-	public function getAttachmentFileName (string $name) {
+	public function getAttachmentFileName (string $name):string {
 		if ($file = $this->getAttachment($name)) {
 			return $this->getAttachmentBaseName($name) . $file->getSuffix();
 		}
@@ -464,13 +464,14 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile (string $size) {
+	public function getImageFile (string $size):?ImageFile {
 		foreach (Image::getSuffixes() as $suffix) {
-			$name = $this->getImageFileBaseName($size) . $suffix;
+			$name = $this->getAttachmentBaseName($size) . $suffix;
 			if ($file = $this->getTable()->getDirectory()->getEntry($name, 'ImageFile')) {
 				return $file;
 			}
 		}
+		return null;
 	}
 
 	/**
@@ -493,17 +494,6 @@ abstract class Record implements \ArrayAccess,
 	public function removeImageFile (string $size) {
 		$this->removeImageCache($size);
 		$this->removeAttachment($size);
-	}
-
-	/**
-	 * 画像ファイルベース名を返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @return string 画像ファイルベース名
-	 */
-	public function getImageFileBaseName (string $size) {
-		return sprintf('%010d_%s', $this->getID(), $size);
 	}
 
 	/**

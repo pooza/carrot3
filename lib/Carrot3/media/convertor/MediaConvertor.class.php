@@ -75,7 +75,7 @@ abstract class MediaConvertor {
 	 * @access public
 	 * @return string MIMEタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		return MIMEType::getType($this->getSuffix());
 	}
 

@@ -95,7 +95,7 @@ class CSVExporter implements Exporter, TextRenderer {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		return MIMEType::getType('csv');
 	}
 
@@ -105,7 +105,7 @@ class CSVExporter implements Exporter, TextRenderer {
 	 * @access public
 	 * @return int サイズ
 	 */
-	public function getSize () {
+	public function getSize ():int {
 		return $this->getFile()->getSize();
 	}
 
@@ -115,7 +115,7 @@ class CSVExporter implements Exporter, TextRenderer {
 	 * @access public
 	 * @return string PHPのエンコード名
 	 */
-	public function getEncoding () {
+	public function getEncoding ():string {
 		return 'sjis-win';
 	}
 

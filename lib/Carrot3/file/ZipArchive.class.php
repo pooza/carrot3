@@ -162,7 +162,7 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 * @access public
 	 * @return int サイズ
 	 */
-	public function getSize () {
+	public function getSize ():int {
 		return strlen($this->getContents());
 	}
 
@@ -172,7 +172,7 @@ class ZipArchive extends \ZipArchive implements Renderer {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		return MIMEType::getType('zip');
 	}
 

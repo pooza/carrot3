@@ -63,7 +63,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType () {
+	public function getType ():string {
 		return MIMEType::getType($this->getSuffix());
 	}
 
@@ -383,9 +383,11 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return int ファイルサイズ
 	 */
-	public function getSize () {
+	public function getSize ():int {
 		if ($this->isExists()) {
 			return filesize($this->getPath());
+		} else {
+			return 0;
 		}
 	}
 

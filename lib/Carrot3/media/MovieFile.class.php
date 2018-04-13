@@ -186,27 +186,16 @@ class MovieFile extends MediaFile implements ImageContainer {
 	 * @param string $size サイズ名
 	 * @return ImageFile 画像ファイル
 	 */
-	public function getImageFile (string $size) {
+	public function getImageFile (string $size):?ImageFile {
 		$dir = FileUtils::getDirectory('movie_file');
-		if ($file = $dir->getEntry($this->getImageFileBaseName($size), 'ImageFile')) {
+		if ($file = $dir->getEntry($this->getID(), 'ImageFile')) {
 			return $file;
 		}
 
 		$file = new ImageFile($this->convert(new PNGMediaConvertor)->getPath());
-		$file->setName($this->getImageFileBaseName($size));
+		$file->setName($this->getID());
 		$file->moveTo($dir);
 		return $file;
-	}
-
-	/**
-	 * 画像ファイルベース名を返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @return string 画像ファイルベース名
-	 */
-	public function getImageFileBaseName (string $size) {
-		return $this->getID();
 	}
 
 	/**

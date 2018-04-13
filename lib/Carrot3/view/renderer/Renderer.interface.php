@@ -26,7 +26,7 @@ interface Renderer {
 	 * @access public
 	 * @return int サイズ
 	 */
-	public function getSize ();
+	public function getSize ():int;
 
 	/**
 	 * メディアタイプを返す
@@ -34,7 +34,7 @@ interface Renderer {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function getType ();
+	public function getType ():string;
 
 	/**
 	 * 出力可能か？
