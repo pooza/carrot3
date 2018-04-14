@@ -115,7 +115,7 @@ class URL implements \ArrayAccess, Assignable {
 		if (StringUtils::isBlank($this['scheme'])) {
 			return null;
 		}
-		$head = $this['scheme'] . '://';
+		$head = $this['scheme'] . ':';
 
 		if (!StringUtils::isBlank($this['user'])) {
 			$head .= $this['user'];
@@ -126,7 +126,7 @@ class URL implements \ArrayAccess, Assignable {
 		}
 
 		if ($this['host']) {
-			$head .= $this['host']->getName();
+			$head .= '//' . $this['host']->getName();
 			if ($this['port'] != NetworkService::getPort($this['scheme'])) {
 				$head .= ':' . $this['port'];
 			}
