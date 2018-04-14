@@ -18,6 +18,9 @@ function p ($var) {
 	if (!headers_sent()) {
 		header('Content-Type: text/html; charset=utf-8');
 	}
+	if ($var instanceof Tuple) {
+		$var = $var->decode();
+	}
 	var_dump($var);
 }
 
