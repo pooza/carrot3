@@ -62,47 +62,47 @@ class SerializeHandler implements \ArrayAccess {
 	 * 属性を返す
 	 *
 	 * @access public
-	 * @param string $name 属性の名前
+	 * @param mixed $name 属性の名前
 	 * @param Date $date 比較する日付 - この日付より古い属性値は破棄
 	 * @return mixed 属性値
 	 */
-	public function getAttribute (string $name, Date $date = null) {
-		return $this->storage->getAttribute($this->createKey([$name]), $date);
+	public function getAttribute ($name, Date $date = null) {
+		return $this->storage->getAttribute($this->createKey($name), $date);
 	}
 
 	/**
 	 * 属性の更新日を返す
 	 *
 	 * @access public
-	 * @param string $name 属性の名前
+	 * @param mixed $name 属性の名前
 	 * @return Date 更新日
 	 */
-	public function getUpdateDate (string $name):?Date {
-		return $this->storage->getUpdateDate($this->createKey([$name]));
+	public function getUpdateDate ($name):?Date {
+		return $this->storage->getUpdateDate($this->createKey($name));
 	}
 
 	/**
 	 * 属性を設定
 	 *
 	 * @access public
-	 * @param string $name 属性の名前
+	 * @param mixed $name 属性の名前
 	 * @param mixed $value 値
 	 */
-	public function setAttribute (string $name, $value) {
+	public function setAttribute ($name, $value) {
 		if (is_iterable($value)) {
 			$value = Tuple::create($value)->decode();
 		}
-		$this->storage->setAttribute($this->createKey([$name]), $value);
+		$this->storage->setAttribute($this->createKey($name), $value);
 	}
 
 	/**
 	 * 属性を削除
 	 *
 	 * @access public
-	 * @param string $name 属性の名前
+	 * @param mixed $name 属性の名前
 	 */
-	public function removeAttribute (string $name) {
-		$this->storage->removeAttribute($this->createKey([$name]));
+	public function removeAttribute ($name) {
+		$this->storage->removeAttribute($this->createKey($name));
 	}
 
 	/**
