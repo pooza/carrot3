@@ -71,12 +71,21 @@ class FormElement extends HTMLElement {
 	 */
 	public function setAction ($action) {
 		if ($action instanceof HTTPRedirector) {
-			$this->setAttribute('action', $action->getURL()->getContents());
+			$action = $action->getURL()->getContents();
 		} else if (is_iterable($action)) {
-			$this->setAction($action['path']);
+			if ($path = $action['path']) {
+				$action = $path;
+			} else if ($action['module'] || $action['action']) {
+				$url = URL::create(null, 'carrot');
+				foreach ($action as $key => $value) {
+					$url[$key] = $value;
+				}
+				$action = $url->getContents();
+			}
 		} else {
-			$this->setAttribute('action', $action);
+			$action = null;
 		}
+		$this->setAttribute('action', $action);
 	}
 
 	/**

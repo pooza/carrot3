@@ -279,7 +279,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @param string $name 属性名
 	 * @return mixed 属性
 	 */
-	public function getAttribute ($name) {
+	public function getAttribute (string $name) {
 		return $this->get_template_vars($name);
 	}
 
@@ -300,11 +300,11 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @param string $name 属性名
 	 * @param mixed $value 属性値
 	 */
-	public function setAttribute ($name, $value) {
+	public function setAttribute (string $name, $value) {
 		if ($value instanceof Assignable) {
-			$this->assign((string)$name, $value->assign());
+			$this->assign($name, $value->assign());
 		} else if (!StringUtils::isBlank($value)) {
-			$this->assign((string)$name, $value);
+			$this->assign($name, $value);
 		}
 	}
 
