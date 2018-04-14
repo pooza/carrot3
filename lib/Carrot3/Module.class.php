@@ -271,7 +271,7 @@ class Module implements HTTPRedirector, Assignable {
 	 */
 	public function clearRecordID () {
 		$this->user->removeAttribute(
-			$this->createKey([$this->getName(), 'params'])
+			$this->createKey([$this->getName(), 'record'])
 		);
 		$this->record = null;
 	}
