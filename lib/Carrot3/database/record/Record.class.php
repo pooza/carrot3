@@ -19,7 +19,6 @@ abstract class Record implements \ArrayAccess,
 	protected $attributes;
 	protected $table;
 	protected $url;
-	protected $criteria;
 	protected $records;
 	protected $digest;
 	const ACCESSOR = 'i';
@@ -98,12 +97,10 @@ abstract class Record implements \ArrayAccess,
 	 * @access protected
 	 * @return Criteria 抽出条件
 	 */
-	protected function getCriteria () {
-		if (!$this->criteria) {
-			$this->criteria = $this->createCriteria();
-			$this->criteria->register($this->getTable()->getKeyField(), $this);
-		}
-		return $this->criteria;
+	protected function createCriteria ():Criteria {
+		$criteria = $this->getDatabase()->createCriteria();
+		$criteria->register($this->getTable()->getKeyField(), $this);
+		return $criteria;
 	}
 
 	/**
@@ -132,7 +129,7 @@ abstract class Record implements \ArrayAccess,
 			return;
 		}
 
-		$db->exec(SQL::getUpdateQuery($table, $values, $this->getCriteria(), $db));
+		$db->exec(SQL::getUpdateQuery($table, $values, $this->createCriteria(), $db));
 		$this->attributes->setParameters($values);
 		if (($record = $this->getParent()) && !($flags & Database::WITHOUT_PARENT)) {
 			$record->touch();
@@ -189,7 +186,7 @@ abstract class Record implements \ArrayAccess,
 			$record->touch();
 		}
 		$this->getDatabase()->exec(
-			SQL::getDeleteQuery($this->getTable(), $this->getCriteria())
+			SQL::getDeleteQuery($this->getTable(), $this->createCriteria())
 		);
 		foreach ($this->getTable()->getImageNames() as $field) {
 			$this->removeImageFile($field);
@@ -253,16 +250,6 @@ abstract class Record implements \ArrayAccess,
 	 */
 	public function getParent () {
 		return null;
-	}
-
-	/**
-	 * 抽出条件を生成して返す
-	 *
-	 * @access protected
-	 * @return Criteria 抽出条件
-	 */
-	protected function createCriteria () {
-		return $this->getDatabase()->createCriteria();
 	}
 
 	/**
@@ -503,7 +490,7 @@ abstract class Record implements \ArrayAccess,
 	 * @param string $lang 言語
 	 * @return string ラベル
 	 */
-	public function getLabel (?string $lang = 'ja') {
+	public function getLabel (?string $lang = 'ja'):?string {
 		foreach (['name', 'label', 'title'] as $name) {
 			foreach ([null, $this->getTable()->getName() . '_'] as $prefix) {
 				foreach ([null, '_' . $lang] as $suffix) {
@@ -513,6 +500,7 @@ abstract class Record implements \ArrayAccess,
 				}
 			}
 		}
+		return null;
 	}
 
 	/**
@@ -525,7 +513,7 @@ abstract class Record implements \ArrayAccess,
 	 * @return string ラベル
 	 * @final
 	 */
-	final public function getName (?string $lang = 'ja'):string {
+	final public function getName (?string $lang = 'ja'):?string {
 		return $this->getLabel($lang);
 	}
 

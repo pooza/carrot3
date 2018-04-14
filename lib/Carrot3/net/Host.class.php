@@ -60,7 +60,7 @@ class Host implements Assignable, ImageContainer {
 	 * @access public
 	 * @return string FQDNホスト名又はIPv4アドレス
 	 */
-	public function getName ():string {
+	public function getName ():?string {
 		return $this->name;
 	}
 
@@ -157,7 +157,7 @@ class Host implements Assignable, ImageContainer {
 	 * @param string $lang 言語
 	 * @return string ラベル
 	 */
-	public function getLabel (?string $lang = 'ja') {
+	public function getLabel (?string $lang = 'ja'):?string {
 		return $this->getID();
 	}
 

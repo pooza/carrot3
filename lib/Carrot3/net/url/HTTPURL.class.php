@@ -242,7 +242,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName ():string {
+	public function getName ():?string {
 		return $this->getContents();
 	}
 
@@ -253,7 +253,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	 * @param string $lang 言語
 	 * @return string ラベル
 	 */
-	public function getLabel (?string $lang = 'ja') {
+	public function getLabel (?string $lang = 'ja'):?string {
 		return $this->getID();
 	}
 

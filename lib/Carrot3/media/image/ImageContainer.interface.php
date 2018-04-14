@@ -47,7 +47,7 @@ interface ImageContainer {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName ():string;
+	public function getName ():?string;
 
 	/**
 	 * コンテナのラベルを返す
@@ -56,5 +56,5 @@ interface ImageContainer {
 	 * @param string $lang 言語
 	 * @return string ラベル
 	 */
-	public function getLabel (?string $lang = 'ja');
+	public function getLabel (?string $lang = 'ja'):?string;
 }

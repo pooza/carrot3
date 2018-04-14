@@ -63,7 +63,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @access public
 	 * @return string 名前
 	 */
-	public function getName ():string {
+	public function getName ():?string {
 		return $this->getNames()->getIterator()->getFirst();
 	}
 
@@ -210,7 +210,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 * @param string $lang 言語
 	 * @return string ラベル
 	 */
-	public function getLabel (?string $lang = 'ja') {
+	public function getLabel (?string $lang = 'ja'):?string {
 		return $this->getName();
 	}
 

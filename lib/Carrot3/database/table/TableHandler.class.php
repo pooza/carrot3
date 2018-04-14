@@ -694,10 +694,10 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 *
 	 * @access public
 	 * @param string $lang 言語
-	 * @return array ラベルの配列
+	 * @return Tuple ラベルの配列
 	 */
-	public function getLabels (?string $lang = 'ja') {
-		$labels = [];
+	public function getLabels (?string $lang = 'ja'):Tuple {
+		$labels = Tuple::create();
 		foreach ($this as $record) {
 			$labels[$record->getID()] = $record->getLabel($lang);
 		}
