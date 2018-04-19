@@ -13,7 +13,6 @@ namespace Carrot3;
  */
 class TemplateFile extends File {
 	private $engine;
-	private $compiled;
 	private $body;
 
 	/**
@@ -42,23 +41,10 @@ class TemplateFile extends File {
 	 * @access public
 	 * @return string コンパイル結果
 	 */
-	public function compile () {
+	public function compile ():string {
 		if (!$this->body) {
 			$this->body = $this->engine->fetch($this->getPath());
 		}
 		return $this->body;
-	}
-
-	/**
-	 * コンパイル済みファイルを返す
-	 *
-	 * @access public
-	 * @return File コンパイル済みファイル
-	 */
-	public function getCompiled () {
-		if (!$this->compiled) {
-			return new File($this->engine->_get_compile_path($this->getPath()));
-		}
-		return $this->compiled;
 	}
 }

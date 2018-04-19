@@ -134,7 +134,7 @@ class SmartyCompiler extends \Smarty_Compiler {
 	public function _compile_file ($resource, $source, &$contents) {
 		$serials = new SerializeHandler;
 		$template = new TemplateFile($resource);
-		$key = $this->createKey([$resource, $source]);
+		$key = $this->createKey([$source, $template->getID()]);
 		$contents = $serials->getAttribute($key, $template->getUpdateDate());
 		if (StringUtils::isBlank($contents)) {
 			$this->_load_filters();
