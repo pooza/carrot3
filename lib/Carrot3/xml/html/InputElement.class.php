@@ -49,7 +49,7 @@ class InputElement extends HTMLElement {
 	 * @access public
 	 * @param string $type
 	 */
-	public function setType ($type) {
+	public function setType (string $type) {
 		$this->setAttribute('type', $type);
 	}
 

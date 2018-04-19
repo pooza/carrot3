@@ -123,7 +123,7 @@ class ImagickImage extends Image {
 	 * @access public
 	 * @param string $type メディアタイプ又は拡張子
 	 */
-	public function setType ($type) {
+	public function setType (string $type) {
 		if (StringUtils::isBlank($suffix = MIMEType::getSuffix($type))) {
 			$message = new StringFormat('"%s"は正しくないMIMEタイプです。');
 			$message[] = $type;

@@ -60,7 +60,7 @@ class RawRenderer implements Renderer {
 	 * @access public
 	 * @param string $type メディアタイプ又は拡張子
 	 */
-	public function setType ($type) {
+	public function setType (string $type) {
 		if (!StringUtils::isBlank($suggested = MIMEType::getType($type, null))) {
 			$type = $suggested;
 		}
