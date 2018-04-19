@@ -12,6 +12,8 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class ConfigFile extends File {
+	use KeyGenerator;
+
 	private $config = [];
 	private $parser;
 	private $cache;
@@ -69,18 +71,21 @@ class ConfigFile extends File {
 	 * コンパイル
 	 *
 	 * @access public
-	 * @return File 設定キャッシュファイル
+	 * @return mixed 設定キャッシュファイル
 	 */
 	public function compile () {
-		if (defined('BS_MEMCACHE_DEFAULT_HOST') && defined('BS_MEMCACHE_DEFAULT_PORT')) {
-			$server = MemcacheManager::getInstance()->getServer();
+		if (defined('BS_REDIS_HOST') && defined('BS_REDIS_PORT')) {
+			$redis = new \Redis;
+			$redis->connect(BS_REDIS_HOST, BS_REDIS_PORT);
+			$redis->select(BS_REDIS_DATABASES_SERIALIZE);
 			$serializer = new PHPSerializer;
-			if ($script = $server[$this->getID()]) {
+			$key = $this->createKey([$this->getID()]);
+			if ($script = $redis->get($key)) {
 				$script = $serializer->decode($script);
 			} else {
 				$script = $this->getCompiler()->execute($this);
 				$script = str_replace('<?php', '', $script);
-				$server[$this->getID()] = $serializer->encode($script);
+				$redis->set($key, $serializer->encode($script));
 			}
 			return eval($script);
 		} else {
