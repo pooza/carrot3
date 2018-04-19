@@ -91,11 +91,10 @@ class HTMLElement extends XMLElement {
 	 * @param string $id ID
 	 */
 	public function setID ($id) {
-		if (StringUtils::isBlank($id)) {
-			return;
+		if (!StringUtils::isBlank($id)) {
+			$this->attributes['id'] = $id;
+			$this->contents = null;
 		}
-		$this->attributes['id'] = $id;
-		$this->contents = null;
 	}
 
 	/**
