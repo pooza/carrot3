@@ -13,6 +13,7 @@ require_once BS_LIB_DIR . '/Smarty/Smarty_Compiler.class.php';
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class SmartyCompiler extends \Smarty_Compiler {
+	use KeyGenerator;
 
 	/**
 	 * 初期化
@@ -131,17 +132,24 @@ class SmartyCompiler extends \Smarty_Compiler {
 	 * @return true
 	 */
 	public function _compile_file ($resource, $source, &$contents) {
-		$this->_load_filters();
-		$this->_current_file = $resource;
-		$source = $this->removeComments($source);
-		$source = $this->pushLiterals($source, ($literals = Tuple::create()));
-		$blocks = $this->split($source);
-		$tags = $this->compileTags($this->fetchTags($source), $blocks);
-		$this->parseStrip($tags, $blocks);
-		$contents = clone $this->getHeader();
-		$contents[] = $this->join($tags, $blocks);
-		$contents->merge($this->getFooter());
-		$contents = $this->popLiterals($contents->join("\n"), $literals);
+		$serials = new SerializeHandler;
+		$template = new TemplateFile($resource);
+		$key = $this->createKey([$resource, $source]);
+		$contents = $serials->getAttribute($key, $template->getUpdateDate());
+		if (StringUtils::isBlank($contents)) {
+			$this->_load_filters();
+			$this->_current_file = $resource;
+			$source = $this->removeComments($source);
+			$source = $this->pushLiterals($source, ($literals = Tuple::create()));
+			$blocks = $this->split($source);
+			$tags = $this->compileTags($this->fetchTags($source), $blocks);
+			$this->parseStrip($tags, $blocks);
+			$contents = clone $this->getHeader();
+			$contents[] = $this->join($tags, $blocks);
+			$contents->merge($this->getFooter());
+			$contents = $this->popLiterals($contents->join("\n"), $literals);
+			$serials->setAttribute($key, $contents);
+		}
 		return true;
 	}
 

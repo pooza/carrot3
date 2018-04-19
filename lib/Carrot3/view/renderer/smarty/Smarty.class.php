@@ -13,7 +13,7 @@ require_once BS_LIB_DIR . '/Smarty/Smarty.class.php';
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class Smarty extends \Smarty implements TextRenderer {
-	use BasicObject;
+	use BasicObject, KeyGenerator;
 	private $type;
 	private $encoding;
 	private $template;
@@ -31,11 +31,12 @@ class Smarty extends \Smarty implements TextRenderer {
 		$this->finder = new FileFinder('TemplateFile');
 		$this->finder->clearDirectories();
 		$this->compile_dir = FileUtils::getPath('compile');
-		$this->plugins_dir = [];
-		$this->plugins_dir[] = FileUtils::getPath('local_lib') . '/smarty';
-		$this->plugins_dir[] = FileUtils::getPath('carrot') . '/view/renderer/smarty/plugins';
-		$this->plugins_dir[] = FileUtils::getPath('lib') . '/Smarty/plugins';
-		$this->force_compile = BS_DEBUG;
+		$this->plugins_dir = [
+			FileUtils::getPath('local_lib') . '/smarty',
+			FileUtils::getPath('carrot') . '/view/renderer/smarty/plugins',
+			FileUtils::getPath('lib') . '/Smarty/plugins',
+		];
+		$this->force_compile = true;
 		$this->error_reporting = E_ALL ^ E_NOTICE;
 		$this->registerDirectory(FileUtils::getDirectory('templates'));
 		$this->setEncoding('utf-8');
@@ -195,8 +196,42 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @access public
 	 * @param string $type メディアタイプ
 	 */
-	public function setType ($type) {
+	public function setType (string $type) {
 		$this->type = $type;
+	}
+
+	/**
+	 * コンパイル後、テンプレートを実行
+	 *
+	 * @access public
+	 * @param mixed $resource テンプレートファイル名等
+	 * @param string $chache_id 未使用
+	 * @param string $compile_id 未使用
+	 * @param bool $display 未使用
+	 * @return string 実行結果
+	 */
+	public function fetch ($resource, $cache_id = null, $compile_id = null, $display = false) {
+		$template = $this->searchTemplate($resource);
+		$key = $this->createKey([$template->getContents(), $this->getAttributes()]);
+		$serials = new SerializeHandler;
+		if (StringUtils::isBlank($contents = $serials->getAttribute($key))) {
+			$this->getCompiler()->_compile_file(
+				$template->getPath(),
+				$template->getContents(),
+				$compiled
+			);
+
+			ob_start();
+			eval(mb_ereg_replace('^\s*\<\?php', '', $compiled));
+			$contents = ob_get_contents();
+			ob_end_clean();
+
+			foreach ((array)$this->_plugins['outputfilter'] as $filter) {
+				$contents = call_user_func_array($filter[0], [$contents, &$this]);
+			}
+			$serials->setAttribute($key, $contents);
+		}
+		return $contents;
 	}
 
 	/**
@@ -394,24 +429,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @return bool 成功ならTrue
 	 */
 	public function _compile_source ($resource, &$source, &$compiled, $path = null) {
-		$compiler = $this->getCompiler();
-
-		if (isset($path) && isset($this->_cache_serials[$path])) {
-			$compiler->setAttribute('_cache_serial', $this->_cache_serials[$path]);
-		}
-		$compiler->setAttribute('_cache_include', $path);
-		$result = $compiler->_compile_file($resource, $source, $compiled);
-
-		if ($compiler->_cache_serial) {
-			$this->_cache_include_info = [
-				'cache_serial' => $compiler->getAttribute('_cache_serial'),
-				'plugins_code' => $compiler->getAttribute('_plugins_code'),
-				'include_file_path' => $path,
-			];
-		} else {
-			$this->_cache_include_info = null;
-		}
-		return $result;
+		return $this->getCompiler()->_compile_file($resource, $source, $compiled);
 	}
 
 	/**
@@ -421,15 +439,15 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @param mixed $params パラメータ一式
 	 */
 	public function _smarty_include ($params) {
-		$template =& $params['smarty_include_tpl_file'];
-		if ($file = $this->searchTemplate($template)) {
-			$template = $file->getPath();
-			return parent::_smarty_include($params);
+		$template = $params['smarty_include_tpl_file'];
+		if (!$file = $this->searchTemplate($template)) {
+			$message = new StringFormat('テンプレート "%s"が見つかりません。');
+			$message[] = $template;
+			throw new ViewException($message);
 		}
 
-		$message = new StringFormat('テンプレート "%s"が見つかりません。');
-		$message[] = $template;
-		throw new ViewException($message);
+		$params['smarty_include_tpl_file'] = $file->getPath();
+		return parent::_smarty_include($params);
 	}
 
 	/**
