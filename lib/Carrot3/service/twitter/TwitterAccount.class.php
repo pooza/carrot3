@@ -181,7 +181,7 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 			return null;
 		}
 		$file = FileUtils::createTemporaryFile('.png', 'ImageFile');
-		$file->setEngine($icon);
+		$file->setRenderer($icon);
 		$file->save();
 		$file->setName($this->getImageFileBaseName($size));
 		$file->moveTo($dir);

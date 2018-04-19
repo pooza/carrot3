@@ -112,19 +112,6 @@ class ImageFile extends MediaFile implements ImageContainer {
 	}
 
 	/**
-	 * レンダラーを設定
-	 *
-	 * setRendererのエイリアス
-	 *
-	 * @access public
-	 * @param ImageRenderer $renderer レンダラー
-	 * @final
-	 */
-	final public function setEngine (ImageRenderer $renderer) {
-		$this->setRenderer($renderer);
-	}
-
-	/**
 	 * 保存
 	 *
 	 * @access public
