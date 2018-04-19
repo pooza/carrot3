@@ -41,6 +41,12 @@ spl_autoload_register(function ($name) {
 
 set_error_handler(function ($severity, $message, $file, $line) {
 	if (error_reporting() & $severity) {
+		$message = sprintf(
+			'%s (file:%s line:%d)',
+			$message,
+			str_replace(BS_ROOT_DIR . '/', '', $file),
+			$line
+		);
 		throw new \ErrorException($message, 0, $severity, $file, $line);
 	}
 });
