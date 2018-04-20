@@ -205,7 +205,7 @@ class StringUtils {
 			}
 		} else if ($length < self::getWidth($value)) {
 			$value = mb_ereg_replace('[[:space:]]', null, $value);
-			$value = mb_strcut($value, 0, $length) . $suffix;
+			$value = mb_substr($value, 0, $length) . $suffix;
 		}
 		return $value;
 	}
