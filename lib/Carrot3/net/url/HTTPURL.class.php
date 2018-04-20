@@ -215,7 +215,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0) {
 		if ($file = $this->getImageFile($size)) {
 			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
-			$info['alt'] = $this->getID();
+			$info['alt'] = $this['host']->getName();
 			return $info;
 		}
 	}

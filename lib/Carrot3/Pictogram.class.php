@@ -200,7 +200,7 @@ class Pictogram implements Assignable, ImageContainer {
 	 */
 	public function getImageFile (string $size):?ImageFile {
 		$dir = FileUtils::getDirectory('pictogram');
-		returrn $dir->getEntry($this->getID(), 'ImageFile');
+		return $dir->getEntry($this->getID(), 'ImageFile');
 	}
 
 	/**

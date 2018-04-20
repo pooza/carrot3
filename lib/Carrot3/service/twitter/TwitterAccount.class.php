@@ -220,6 +220,17 @@ class TwitterAccount implements ImageContainer, HTTPRedirector {
 	}
 
 	/**
+	 * コンテナのラベルを返す
+	 *
+	 * @access public
+	 * @param string $lang 言語
+	 * @return string ラベル
+	 */
+	public function getLabel (?string $lang = 'ja'):?string {
+		return $this->getName();
+	}
+
+	/**
 	 * リダイレクト対象
 	 *
 	 * @access public
