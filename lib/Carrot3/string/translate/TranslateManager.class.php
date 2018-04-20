@@ -22,9 +22,12 @@ class TranslateManager implements \IteratorAggregate {
 	 */
 	protected function __construct () {
 		$this->dictionaries = Tuple::create();
-
-		foreach ($this->getDirectory()->getEntryNames(Directory::WITHOUT_DOTTED) as $name) {
-			$this->register($this->getDirectory()->getEntry($name));
+		$iterator = new DirectoryIterator(
+			$this->getDirectory(),
+			Directory::WITHOUT_DOTTED
+		);
+		foreach ($iterator as $dictionary) {
+			$this->register($dictionary);
 		}
 		$this->setDictionaryPriority(
 			$this->loader->getClass('DictionaryFile') . '.carrot',
@@ -71,13 +74,13 @@ class TranslateManager implements \IteratorAggregate {
 	 * 単語を変換して返す
 	 *
 	 * @access public
-	 * @param string $string 単語
+	 * @param string $label 単語
 	 * @param string $name 辞書の名前
 	 * @param string $lang 言語
 	 * @return string 訳語
 	 */
-	public function translate ($string, string $name = null, ?string $lang = null) {
-		if (StringUtils::isBlank($string)) {
+	public function translate (string $label, string $name = null, ?string $lang = null):?string {
+		if (StringUtils::isBlank($label)) {
 			return null;
 		}
 		if (StringUtils::isBlank($lang)) {
@@ -85,7 +88,7 @@ class TranslateManager implements \IteratorAggregate {
 		}
 		foreach ($this->createDictionaryNames($name) as $name) {
 			if ($dictionary = $this->dictionaries[$name]) {
-				foreach ($this->getWords($string) as $word) {
+				foreach ($this->getWords($label) as $word) {
 					$answer = $dictionary->translate($word, $lang);
 					if ($answer !== null) {
 						return $answer;
@@ -95,10 +98,10 @@ class TranslateManager implements \IteratorAggregate {
 		}
 		if (BS_DEBUG) {
 			$message = new StringFormat('"%s"の訳語が見つかりません。');
-			$message[] = $string;
+			$message[] = $label;
 			throw new TranslateException($message);
 		} else {
-			return $string;
+			return $label;
 		}
 	}
 

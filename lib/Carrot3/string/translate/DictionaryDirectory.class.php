@@ -22,7 +22,7 @@ class DictionaryDirectory extends Directory {
 			$path = FileUtils::getPath('dictionaries');
 		}
 		parent::__construct($path);
-		$this->setDefaultSuffix('.csv');
+		$this->setDefaultSuffix('.yaml');
 	}
 
 	/**

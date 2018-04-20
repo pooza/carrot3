@@ -131,16 +131,17 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 	 * @param string $lang 言語
 	 * @return string 翻訳された文字列
 	 */
-	public function translate ($label, ?string $lang) {
+	public function translate (string $label, ?string $lang):?string {
 		foreach ([null, '_' . $lang] as $suffix) {
 			if ($this->hasParameter($label . $suffix)) {
 				if (StringUtils::isBlank($value = $this[$label . $suffix])) {
-					return '';
+					return null;
 				} else {
 					return $value;
 				}
 			}
 		}
+		return null;
 	}
 
 	/**
@@ -149,7 +150,7 @@ class ConstantHandler extends ParameterHolder implements Dictionary {
 	 * @access public
 	 * @return string 辞書の名前
 	 */
-	public function getDictionaryName () {
+	public function getDictionaryName ():string {
 		return Utils::getClass($this);
 	}
 }

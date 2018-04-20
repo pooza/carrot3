@@ -18,7 +18,7 @@ class DirectoryIterator extends Iterator {
 	 * @access public
 	 * @param Directory $directory ディレクトリ
 	 * @param int $flags フラグのビット列
-	 *   self::WITHOUT_DOTTED ドットファイルを除く
+	 *   Directory::WITHOUT_DOTTED ドットファイルを除く
 	 */
 	public function __construct (Directory $directory, int $flags = 0) {
 		$this->directory = $directory;

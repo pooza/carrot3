@@ -22,7 +22,7 @@ class RawDictionary implements Dictionary {
 	 * @param string $lang 言語
 	 * @return string 翻訳された文字列
 	 */
-	public function translate ($label, ?string $lang) {
+	public function translate (string $label, ?string $lang):?string {
 		return $label;
 	}
 
@@ -32,7 +32,7 @@ class RawDictionary implements Dictionary {
 	 * @access public
 	 * @return string 辞書の名前
 	 */
-	public function getDictionaryName () {
+	public function getDictionaryName ():string {
 		return Utils::getClass($this);
 	}
 }

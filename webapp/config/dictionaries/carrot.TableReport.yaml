@@ -1,0 +1,28 @@
+config_file:
+  ja: 設定ファイル
+connection_name:
+  ja: 接続名
+database:
+  ja: データベース
+database_name:
+  ja: データベース名
+dbms:
+  ja: DBMS
+dsn:
+  ja: DSN
+charset:
+  ja: 文字セット
+encoding:
+  ja: エンコード
+encoding_name:
+  ja: エンコード名
+file:
+  ja: ファイル
+host:
+  ja: ホスト
+loggable:
+  ja: ログ可
+port:
+  ja: ポート
+version:
+  ja: ヴァージョン

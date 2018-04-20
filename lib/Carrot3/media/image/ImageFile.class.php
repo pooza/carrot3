@@ -213,15 +213,7 @@ class ImageFile extends MediaFile implements ImageContainer {
 	 * @return string ラベル
 	 */
 	public function getLabel (?string $lang = 'ja'):?string {
-		try {
-			return TranslateManager::getInstance()->execute(
-				$this->getBaseName(),
-				'user_image',
-				$lang
-			);
-		} catch (TranslateException $e) {
-			return $this->getBaseName();
-		}
+		return $this->getBaseName();
 	}
 
 	/**

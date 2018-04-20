@@ -38,7 +38,7 @@ db:
   parent: var
   suffix: .sqlite3
 dictionaries:
-  parent: webapp
+  parent: config
   class: DictionaryDirectory
 dump:
   parent: var

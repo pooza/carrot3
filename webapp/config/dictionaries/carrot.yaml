@@ -1,0 +1,72 @@
+account:
+  ja: アカウント
+cookie:
+  ja: Cookie
+create_date:
+  ja: 作成日
+data:
+  ja: データ
+date:
+  ja: 日付
+directories:
+  ja: ディレクトリ
+email:
+  ja: メールアドレス
+format:
+  ja: 形式
+google_analytics_id:
+  ja: Google Analytics ID
+hide:
+  ja: 非表示
+id:
+  ja: ID
+log:
+  ja: ログ
+log_entry:
+  ja: ログエントリー
+message:
+  ja: メッセージ
+minus:
+  ja: -
+name:
+  ja: 名前
+password:
+  ja: パスワード
+plus:
+  ja: +
+priority:
+  ja: 優先順位
+rank:
+  ja: 順位
+remoteaddr:
+  ja: リモートアドレス
+remote_address:
+  ja: リモートアドレス
+remotehost:
+  ja: リモートホスト
+remote_host:
+  ja: リモートホスト
+serialize_entry:
+  ja: シリアライズエントリー
+session_entry:
+  ja: セッションエントリー
+show:
+  ja: 表示
+site:
+  ja: サイト
+status:
+  ja: 状態
+time:
+  ja: タイムスタンプ
+token:
+  ja: トークン
+twitter_id:
+  ja: Twitter ID
+update_date:
+  ja: 更新日
+useragent:
+  ja: ユーザーエージェント
+user_agent:
+  ja: ユーザーエージェント
+utils:
+  ja: Utils
