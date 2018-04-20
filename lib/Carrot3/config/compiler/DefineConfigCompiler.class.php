@@ -32,7 +32,7 @@ class DefineConfigCompiler extends ConfigCompiler {
 	private function getConstants ($arg, $prefix = ConstantHandler::PREFIX) {
 		if ($arg instanceof ParameterHolder) {
 			if ($arg->hasParameter(0)) {
-				return [StringUtils::toUpper($prefix) => $arg->join(',')];
+				return [StringUtils::toUpper($prefix) => $arg];
 			} else {
 				$constants = [];
 				foreach ($arg as $key => $value) {

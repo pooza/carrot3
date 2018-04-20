@@ -263,7 +263,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @param string $name ビュー名
 	 * @return View ビュー
 	 */
-	public function getView (?string $name) {
+	public function getView (?string $name):View {
 		if (StringUtils::isBlank($name) || ($this->request->getMethod() == 'HEAD')) {
 			return new EmptyView($this, null);
 		}

@@ -158,7 +158,7 @@ class TranslateManager implements \IteratorAggregate {
 	 */
 	public function setLanguage (?string $lang) {
 		$lang = StringUtils::toLower($lang);
-		if (!self::getLanguageNames()->isContain($lang)) {
+		if (!Tuple::create(BS_LANGUAGES)->isContain($lang)) {
 			$message = new StringFormat('言語コード"%s"が正しくありません。');
 			$message[] = $lang;
 			throw new TranslateException($message);
@@ -188,32 +188,5 @@ class TranslateManager implements \IteratorAggregate {
 	 */
 	public function getIterator () {
 		return $this->dictionaries->getIterator();
-	}
-
-	/**
-	 * 言語キー配列を出力
-	 *
-	 * @access public
-	 * @return Tuple 言語キー配列
-	 * @static
-	 */
-	static public function getLanguageNames () {
-		return self::getLanguages()->createFlipped();
-	}
-
-	/**
-	 * 言語配列を返す
-	 *
-	 * @access public
-	 * @return Tuple 言語配列
-	 * @static
-	 */
-	static public function getLanguages () {
-		if (!self::$langs) {
-			self::$langs = self::getInstance()->getHash(
-				Tuple::explode(',', BS_LANGUAGES), 'en'
-			);
-		}
-		return self::$langs;
 	}
 }

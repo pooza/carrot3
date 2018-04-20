@@ -472,7 +472,7 @@ class Module implements HTTPRedirector, Assignable {
 	 */
 	static public function getPrefixes () {
 		if (!self::$prefixes) {
-			self::$prefixes = StringUtils::explode(',', BS_MODULE_PREFIXES);
+			self::$prefixes = Tuple::create(BS_MODULE_PREFIXES);
 		}
 		return self::$prefixes;
 	}

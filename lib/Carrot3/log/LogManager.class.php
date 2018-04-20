@@ -20,7 +20,7 @@ class LogManager implements \IteratorAggregate {
 	 */
 	protected function __construct () {
 		$this->loggers = Tuple::create();
-		foreach (StringUtils::explode(',', BS_LOG_LOGGERS) as $class) {
+		foreach (Tuple::create(BS_LOG_LOGGERS) as $class) {
 			$this->register($this->loader->createObject($class . 'Logger'));
 		}
 	}

@@ -220,8 +220,6 @@ service:
       id:
     calendar:
       api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg
-    url_shortener:
-      api_key: AIzaSyAmndtwEGM1gFl1fBHYo4jK2OKqEls0-Dg
   twitter:
     consumer:
       key: hhXdKP3kEwvWumb1AFbTlQ
