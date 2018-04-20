@@ -11,35 +11,24 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class FileSerializeStorage implements SerializeStorage {
-	use BasicObject;
+class FileSerializeStorage extends SerializeStorage {
 	private $attributes;
-	private $serializer;
-
-	/**
-	 * @access public
-	 * @param Serializer $serializer
-	 */
-	public function __construct (Serializer $serializer = null) {
-		if (!$serializer) {
-			$serializer = $this->loader->createObject(BS_SERIALIZE_SERIALIZER . 'Serializer');
-		}
-		$this->serializer = $serializer;
-		$this->attributes = Tuple::create();
-	}
 
 	/**
 	 * 初期化
 	 *
 	 * @access public
-	 * @return string 利用可能ならTrue
+	 * @param SerializeHandler $handler
+	 * @return bool 利用可能ならTrue
 	 */
-	public function initialize () {
-		$this->getDirectory()->setDefaultSuffix($this->serializer->getSuffix());
+	public function initialize (SerializeHandler $handler):bool {
+		parent::initialize($handler);
+		$this->attributes = Tuple::create();
+		$this->getDirectory()->setDefaultSuffix($this->getSerializer()->getSuffix());
 		return $this->getDirectory()->isWritable();
 	}
 
-	private function getDirectory () {
+	private function getDirectory ():Directory {
 		return FileUtils::getDirectory('serialized');
 	}
 
@@ -49,13 +38,11 @@ class FileSerializeStorage implements SerializeStorage {
 	 * @access public
 	 * @param string $name 属性の名前
 	 * @param mixed $value 値
-	 * @return string シリアライズされた値
 	 */
 	public function setAttribute (string $name, $value) {
 		$file = $this->getDirectory()->createEntry($name);
-		$file->setContents($serialized = $this->serializer->encode($value));
+		$file->setContents($serialized = $this->getSerializer()->encode($value));
 		$this->attributes[$name] = $value;
-		return $serialized;
 	}
 
 	/**
@@ -83,7 +70,9 @@ class FileSerializeStorage implements SerializeStorage {
 		if (!$this->attributes->hasParameter($name)) {
 			if (($file = $this->getDirectory()->getEntry($name)) && $file->isReadable()) {
 				if (!$date || !$file->getUpdateDate()->isPast($date)) {
-					$this->attributes[$name] = $this->serializer->decode($file->getContents());
+					$this->attributes[$name] = $this->getSerializer()->decode(
+						$file->getContents()
+					);
 				}
 			}
 		}

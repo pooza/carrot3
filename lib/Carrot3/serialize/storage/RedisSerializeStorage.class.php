@@ -11,29 +11,18 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class RedisSerializeStorage implements SerializeStorage {
-	use BasicObject;
+class RedisSerializeStorage extends SerializeStorage {
 	private $server;
-	private $serializer;
-
-	/**
-	 * @access public
-	 * @param Serializer $serializer
-	 */
-	public function __construct (Serializer $serializer = null) {
-		if (!$serializer) {
-			$serializer = $this->loader->createObject(BS_SERIALIZE_SERIALIZER . 'Serializer');
-		}
-		$this->serializer = $serializer;
-	}
 
 	/**
 	 * 初期化
 	 *
 	 * @access public
-	 * @return string 利用可能ならTrue
+	 * @param SerializeHandler $handler
+	 * @return bool 利用可能ならTrue
 	 */
-	public function initialize () {
+	public function initialize (SerializeHandler $handler):bool {
+		parent::initialize($handler);
 		if (!extension_loaded('redis')) {
 			return false;
 		}
@@ -65,16 +54,17 @@ class RedisSerializeStorage implements SerializeStorage {
 	 * @access public
 	 * @param string $name 属性の名前
 	 * @param mixed $value 値
-	 * @return string シリアライズされた値
 	 */
 	public function setAttribute (string $name, $value) {
-		$values = [
+		$serialized = $this->getSerializer()->encode([
 			'update_date' => Date::create()->format('Y-m-d H:i:s'),
 			'contents' => $value,
-		];
-		$serialized = $this->serializer->encode($values);
-		$this->server->set($name, $serialized);
-		return $serialized;
+		]);
+		if ($ttl = (int)$this->handler->getConfig('template_cache_ttl')) {
+			$this->server->setEx($name, $ttl, $serialized);
+		} else {
+			$this->server->set($name, $serialized);
+		}
 	}
 
 	/**
@@ -85,16 +75,6 @@ class RedisSerializeStorage implements SerializeStorage {
 	 */
 	public function removeAttribute (string $name) {
 		return $this->server->delete($name);
-	}
-
-	/**
-	 * 属性を全て削除
-	 *
-	 * @access public
-	 * @final
-	 */
-	final public function clearAttributes () {
-		return $this->server->flushDb();
 	}
 
 	/**
@@ -112,7 +92,7 @@ class RedisSerializeStorage implements SerializeStorage {
 
 	private function getEntry (string $name) {
 		if ($entry = $this->server->get($name)) {
-			$entry = Tuple::create($this->serializer->decode($entry));
+			$entry = Tuple::create($this->getSerializer()->decode($entry));
 			$entry['update_date'] = Date::create($entry['update_date']);
 			return $entry;
 		}

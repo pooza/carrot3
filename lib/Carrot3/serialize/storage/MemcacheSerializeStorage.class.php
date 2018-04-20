@@ -11,29 +11,18 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class MemcacheSerializeStorage implements SerializeStorage {
-	use BasicObject;
+class MemcacheSerializeStorage extends SerializeStorage {
 	private $server;
-	private $serializer;
-
-	/**
-	 * @access public
-	 * @param Serializer $serializer
-	 */
-	public function __construct (Serializer $serializer = null) {
-		if (!$serializer) {
-			$serializer = $this->loader->createObject(BS_SERIALIZE_SERIALIZER . 'Serializer');
-		}
-		$this->serializer = $serializer;
-	}
 
 	/**
 	 * 初期化
 	 *
 	 * @access public
-	 * @return string 利用可能ならTrue
+	 * @param SerializeHandler $handler
+	 * @return bool 利用可能ならTrue
 	 */
-	public function initialize () {
+	public function initialize (SerializeHandler $handler):bool {
+		parent::initialize($handler);
 		if ($this->server = MemcacheManager::getInstance()->getServer()) {
 			 return true;
 		}
@@ -62,16 +51,12 @@ class MemcacheSerializeStorage implements SerializeStorage {
 	 * @access public
 	 * @param string $name 属性の名前
 	 * @param mixed $value 値
-	 * @return string シリアライズされた値
 	 */
 	public function setAttribute (string $name, $value) {
-		$values = [
+		$this->server->set($name, $this->getSerializer()->encode([
 			'update_date' => Date::create()->format('Y-m-d H:i:s'),
 			'contents' => $value,
-		];
-		$serialized = $this->serializer->encode($values);
-		$this->server->set($name, $serialized);
-		return $serialized;
+		]));
 	}
 
 	/**
@@ -82,16 +67,6 @@ class MemcacheSerializeStorage implements SerializeStorage {
 	 */
 	public function removeAttribute (string $name) {
 		return $this->server->delete($name);
-	}
-
-	/**
-	 * 属性を全て削除
-	 *
-	 * @access public
-	 * @final
-	 */
-	final public function clearAttributes () {
-		return $this->clear();
 	}
 
 	/**
@@ -109,7 +84,7 @@ class MemcacheSerializeStorage implements SerializeStorage {
 
 	private function getEntry (string $name) {
 		if ($values = $this->server->get($name)) {
-			$values = $this->serializer->decode($values);
+			$values = $this->getSerializer()->decode($values);
 			$entry = Tuple::create($values);
 			$entry['update_date'] = Date::create($entry['update_date']);
 			return $entry;

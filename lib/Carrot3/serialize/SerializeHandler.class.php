@@ -16,6 +16,7 @@ class SerializeHandler implements \ArrayAccess {
 	private $serializer;
 	private $storage;
 	private $attributes;
+	private $config;
 
 	/**
 	 * @access public
@@ -33,9 +34,11 @@ class SerializeHandler implements \ArrayAccess {
 			$storage = $this->loader->createObject(BS_SERIALIZE_STORAGE . 'SerializeStorage');
 		}
 		$this->storage = $storage;
-		if (!$this->storage->initialize()) {
+		if (!$this->storage->initialize($this)) {
 			throw new ConfigException($storage . 'が初期化できません。');
 		}
+
+		$this->config = Tuple::create();
 	}
 
 	/**
@@ -44,7 +47,7 @@ class SerializeHandler implements \ArrayAccess {
 	 * @access public
 	 * @return Serializer シリアライザー
 	 */
-	public function getSerializer () {
+	public function getSerializer ():Serializer {
 		return $this->serializer;
 	}
 
@@ -54,8 +57,30 @@ class SerializeHandler implements \ArrayAccess {
 	 * @access public
 	 * @return SerializeStorage ストレージ
 	 */
-	public function getStorage () {
+	public function getStorage ():SerializeStorage {
 		return $this->storage;
+	}
+
+	/**
+	 * 設定を返す
+	 *
+	 * @access public
+	 * @param string $name
+	 * @return mixed
+	 */
+	public function getConfig (string $name) {
+		return $this->config[$name];
+	}
+
+	/**
+	 * 設定
+	 *
+	 * @access public
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	public function setConfig (string $name, $value) {
+		return $this->config[$name] = $value;
 	}
 
 	/**

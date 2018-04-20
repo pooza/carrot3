@@ -11,30 +11,20 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class DatabaseSerializeStorage implements SerializeStorage {
+class DatabaseSerializeStorage extends SerializeStorage {
 	use BasicObject;
 	const TABLE_NAME = 'serialize_entry';
 	private $table;
-	private $serializer;
-
-	/**
-	 * @access public
-	 * @param Serializer $serializer
-	 */
-	public function __construct (Serializer $serializer = null) {
-		if (!$serializer) {
-			$serializer = $this->loader->createObject(BS_SERIALIZE_SERIALIZER . 'Serializer');
-		}
-		$this->serializer = $serializer;
-	}
 
 	/**
 	 * 初期化
 	 *
 	 * @access public
-	 * @return string 利用可能ならTrue
+	 * @param SerializeHandler $handler
+	 * @return bool 利用可能ならTrue
 	 */
-	public function initialize () {
+	public function initialize (SerializeHandler $handler):bool {
+		parent::initialize($handler);
 		try {
 			$this->table = TableHandler::create(self::TABLE_NAME);
 			return true;
@@ -59,13 +49,11 @@ class DatabaseSerializeStorage implements SerializeStorage {
 	 * @access public
 	 * @param string $name 属性の名前
 	 * @param mixed $value 値
-	 * @return string シリアライズされた値
 	 */
 	public function setAttribute (string $name, $value) {
-		$serialized = $this->serializer->encode($value);
 		$values = [
 			'id' => $name,
-			'data' => $serialized,
+			'data' => $this->getSerializer()->encode($value),
 			'update_date' => Date::create()->format('Y-m-d H:i:s'),
 		];
 
@@ -74,8 +62,6 @@ class DatabaseSerializeStorage implements SerializeStorage {
 		} else {
 			$this->getTable()->createRecord($values);
 		}
-
-		return $serialized;
 	}
 
 	/**
@@ -106,7 +92,7 @@ class DatabaseSerializeStorage implements SerializeStorage {
 			$record->delete();
 			return null;
 		}
-		return $this->serializer->decode($record['data']);
+		return $this->getSerializer()->decode($record['data']);
 	}
 
 	/**
