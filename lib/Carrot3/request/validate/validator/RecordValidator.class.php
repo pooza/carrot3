@@ -96,7 +96,7 @@ class RecordValidator extends Validator {
 			$values = Tuple::create($value);
 			if (!$values->isContain($record[$field])) {
 				$message = new StringFormat('%sが正しくありません。');
-				$message[] = TranslateManager::getInstance()->execute($field);
+				$message[] = $this->translator->translate($field);
 				$this->error = $message->getContents();
 				return false;
 			}

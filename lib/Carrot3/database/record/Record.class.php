@@ -350,7 +350,7 @@ abstract class Record implements \ArrayAccess,
 
 		$message = new StringFormat('%sの%sを設定しました。');
 		$message[] = $this;
-		$message[] = TranslateManager::getInstance()->translate($name);
+		$message[] = $this->translator->translate($name);
 		$this->getDatabase()->log($message);
 	}
 
@@ -365,7 +365,7 @@ abstract class Record implements \ArrayAccess,
 			$file->delete();
 			$message = new StringFormat('%sの%sを削除しました。');
 			$message[] = $this;
-			$message[] = TranslateManager::getInstance()->translate($name);
+			$message[] = $this->translator->translate($name);
 			$this->getDatabase()->log($message);
 		}
 	}
@@ -681,7 +681,7 @@ abstract class Record implements \ArrayAccess,
 	 */
 	public function __toString () {
 		try {
-			$word = TranslateManager::getInstance()->execute($this->getTable()->getName());
+			$word = $this->translator->translate($this->getTable()->getName());
 		} catch (TranslateException $e) {
 			$word = $this->getTable()->getName();
 		}

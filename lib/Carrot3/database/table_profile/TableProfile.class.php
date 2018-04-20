@@ -91,26 +91,6 @@ abstract class TableProfile implements Assignable, Serializable {
 	abstract public function getConstraints ();
 
 	/**
-	 * テーブルクラスを返す
-	 *
-	 * @access protected
-	 * @return string テーブルクラス
-	 */
-	protected function getTableClass () {
-		return $this->loader->getClass(Utils::getClass($this));
-	}
-
-	/**
-	 * レコードクラスを返す
-	 *
-	 * @access protected
-	 * @return string レコードクラス
-	 */
-	protected function getRecordClass () {
-		return $this->loader->getClass($this->getName());
-	}
-
-	/**
 	 * ダイジェストを返す
 	 *
 	 * @access public
@@ -147,9 +127,7 @@ abstract class TableProfile implements Assignable, Serializable {
 	public function assign () {
 		$values = [
 			'name' => $this->getName(),
-			'name_ja' => TranslateManager::getInstance()->execute($this->getName(), 'ja'),
-			'class' => $this->getTableClass(),
-			'record_class' => $this->getRecordClass(),
+			'name_ja' => $this->translator->translate($this->getName(), 'ja'),
 			'constraints' => $this->getConstraints(),
 		];
 

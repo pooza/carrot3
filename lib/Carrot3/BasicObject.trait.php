@@ -34,7 +34,7 @@ trait BasicObject {
 			case 'useragent':
 				return Request::getInstance()->getUserAgent();
 			case 'translator':
-				return TranslateManager::getInstance();
+				return Translator::getInstance();
 		}
 	}
 }

@@ -438,7 +438,7 @@ class Module implements HTTPRedirector, Assignable {
 			if (StringUtils::isBlank($lang)) {
 				return $this->loader->getClass($this->recordClass);
 			} else {
-				return TranslateManager::getInstance()->execute(
+				return $this->translator->translate(
 					StringUtils::underscorize($this->recordClass)
 				);
 			}

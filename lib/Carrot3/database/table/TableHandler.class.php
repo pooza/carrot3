@@ -384,7 +384,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 		$this->setExecuted(false);
 		if (!($flags & Database::WITHOUT_LOGGING)) {
 			$message = new StringFormat('%s(%s)を作成しました。');
-			$message[] = TranslateManager::getInstance()->execute($this->getName());
+			$message[] = $this->translator->translate($this->getName());
 			$message[] = $id;
 			$db->log($message);
 		}
@@ -714,9 +714,8 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	public function getFieldNames (?string $lang = 'ja') {
 		if (!$this->fieldNames) {
 			if ($result = $this->getResult()) {
-				$translator = TranslateManager::getInstance();
 				foreach ($result[0] as $key => $value) {
-					$this->fieldNames[$key] = $translator->execute($key, $lang);
+					$this->fieldNames[$key] = $this->translator->execute($key, $lang);
 				}
 			}
 		}
@@ -857,7 +856,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 */
 	public function __toString () {
 		try {
-			$word = TranslateManager::getInstance()->execute($this->getName());
+			$word = $this->translator->translate($this->getName());
 		} catch (TranslateException $e) {
 			$word = $this->getName();
 		}
@@ -921,8 +920,9 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @static
 	 */
 	static public function getStatusOptions () {
-		return TranslateManager::getInstance()->getHash(
-			['show', 'hide']
-		);
+		return Translator::getInstance()->createTuple([
+			'show',
+			'hide',
+		]);
 	}
 }
