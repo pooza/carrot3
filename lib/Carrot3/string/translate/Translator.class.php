@@ -161,11 +161,11 @@ class Translator implements \IteratorAggregate {
 	 * @return Tuple ハッシュ
 	 */
 	public function createTuple (iterable $words, ?string $lang = 'ja') {
-		$hash = Tuple::create();
+		$values = Tuple::create();
 		foreach ($words as $word) {
-			$hash[$word] = $this->translate($word, $lang);
+			$values[$word] = $this->translate($word, $lang);
 		}
-		return $hash;
+		return $values;
 	}
 
 	/**

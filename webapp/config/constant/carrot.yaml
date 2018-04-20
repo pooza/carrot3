@@ -125,7 +125,6 @@ module:
   prefixes:
     - Admin
     - User
-    - Agent
     - Console
   default:
     module: Default
