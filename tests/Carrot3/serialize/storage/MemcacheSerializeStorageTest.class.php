@@ -8,7 +8,7 @@ namespace Carrot3;
 class MemcacheSerializeStorageTest extends Test {
 	public function execute () {
 		$storage = new MemcacheSerializeStorage;
-		if ($storage->initialize()) {
+		if ($storage->initialize(new SerializeHandler)) {
 			$key = Utils::getClass($this);
 			$storage->setAttribute($key, '木の水晶球');
 			$this->assert('getAttribute_1', ($storage->getAttribute($key) == '木の水晶球'));
