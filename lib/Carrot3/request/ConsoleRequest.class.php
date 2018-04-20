@@ -92,7 +92,7 @@ class ConsoleRequest extends Request {
 	 * @access public
 	 * @return UserAgent リモートホストのUserAgent
 	 */
-	public function getUserAgent () {
+	public function getUserAgent ():UserAgent {
 		if (!$this->useragent) {
 			$this->setUserAgent(UserAgent::create('Console'));
 		}

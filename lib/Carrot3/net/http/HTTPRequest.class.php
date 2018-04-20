@@ -118,7 +118,7 @@ class HTTPRequest extends MIMEDocument {
 	 * @access public
 	 * @return UserAgent リモートホストのUserAgent
 	 */
-	public function getUserAgent () {
+	public function getUserAgent ():UserAgent {
 		if (!$this->useragent) {
 			if ($header = $this->getHeader('user-agent')) {
 				$this->setUserAgent($header->getEntity());

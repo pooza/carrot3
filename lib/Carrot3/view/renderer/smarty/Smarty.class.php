@@ -152,7 +152,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @access public
 	 * @return UserAgent 対象UserAgent
 	 */
-	public function getUserAgent () {
+	public function getUserAgent ():UserAgent {
 		return $this->useragent;
 	}
 
@@ -213,7 +213,9 @@ class Smarty extends \Smarty implements TextRenderer {
 	public function fetch ($resource, $cache_id = null, $compile_id = null, $display = false) {
 		$template = $this->searchTemplate($resource);
 		$key = $this->createKey([$template->getContents(), $this->getAttributes()]);
+
 		$serials = new SerializeHandler;
+		$serials->setConfig('template_cache_ttl', BS_VIEW_TEMPLATE_CACHE_TTL);
 		if (StringUtils::isBlank($contents = $serials->getAttribute($key))) {
 			$this->getCompiler()->_compile_file(
 				$template->getPath(),

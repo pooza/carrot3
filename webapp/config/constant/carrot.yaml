@@ -262,6 +262,8 @@ view:
   content_type_options: nosniff
   ua_compatible: IE=edge
   xss_protection: 1; mode=block
+  template_cache:
+    ttl: 86400
   layout:
     smartphone:
       width: 600

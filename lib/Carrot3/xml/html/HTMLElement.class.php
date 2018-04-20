@@ -59,7 +59,7 @@ class HTMLElement extends XMLElement {
 	 * @access public
 	 * @return UserAgent 対象UserAgent
 	 */
-	public function getUserAgent () {
+	public function getUserAgent ():UserAgent {
 		return $this->useragent;
 	}
 
