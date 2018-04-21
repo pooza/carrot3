@@ -12,7 +12,8 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  * @abstract
  */
-abstract class MediaFile extends File implements Assignable {
+abstract class MediaFile extends File implements Assignable, Serializable {
+	use SerializableFile;
 	protected $output;
 
 	/**

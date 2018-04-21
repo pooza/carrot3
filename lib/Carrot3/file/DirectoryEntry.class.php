@@ -285,11 +285,10 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return Date 作成日付
 	 */
-	public function getCreateDate ():Date {
-		if (!$this->isExists()) {
-			throw new FileException($this . 'が存在しません。');
+	public function getCreateDate ():?Date {
+		if ($this->isExists()) {
+			return Date::create(filectime($this->getPath()), Date::TIMESTAMP);
 		}
-		return Date::create(filectime($this->getPath()), Date::TIMESTAMP);
 	}
 
 	/**
@@ -298,11 +297,11 @@ abstract class DirectoryEntry {
 	 * @access public
 	 * @return Date 更新日付
 	 */
-	public function getUpdateDate ():Date {
-		if (!$this->isExists()) {
-			throw new FileException($this . 'が存在しません。');
+	public function getUpdateDate ():?Date {
+		if ($this->isExists()) {
+			return Date::create(filemtime($this->getPath()), Date::TIMESTAMP);
 		}
-		return Date::create(filemtime($this->getPath()), Date::TIMESTAMP);
+		return null;
 	}
 
 	/**

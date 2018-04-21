@@ -19,8 +19,7 @@ namespace Carrot3;
  * @link http://www.finds.jp/wsdocs/calendar/
  */
 class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, Serializable {
-	use SerializableMethods;
-	protected $digest;
+	use SerializableObject, KeyGenerator;
 	private $date;
 	private $holidays;
 	const DEFAULT_HOST = 'www.googleapis.com';
@@ -140,16 +139,10 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
-		if (!$this->digest) {
-			$date = $this->getDate();
-			$this->digest = Crypt::digest([
-				Utils::getClass($this),
-				$date['year'],
-				$date['month'],
-			]);
-		}
-		return $this->digest;
+	public function digest ():?string {
+		return $this->createKey([
+			$this->getDate()->format('Ym'),
+		]);
 	}
 
 	/**
@@ -193,9 +186,12 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 	 * @access public
 	 * @return mixed シリアライズ時の値
 	 */
-	public function getSerialized () {
+	public function getSerialized ():?Tuple {
 		$date = Date::create()->setParameter('month', '-1');
-		return (new SerializeHandler)->getAttribute($this, $date);
+		if ($value = (new SerializeHandler)->getAttribute($this, $date)) {
+			return Tuple::create($value);
+		}
+		return null;
 	}
 
 	/**

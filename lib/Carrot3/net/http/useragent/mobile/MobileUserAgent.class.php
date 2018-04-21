@@ -13,6 +13,7 @@ namespace Carrot3;
  * @abstract
  */
 abstract class MobileUserAgent extends UserAgent {
+	use KeyGenerator;
 
 	/**
 	 * ビューを初期化
@@ -100,13 +101,9 @@ abstract class MobileUserAgent extends UserAgent {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
-		if (!$this->digest) {
-			$this->digest = Crypt::digest([
-				Utils::getClass($this),
-				$this->getDisplayInfo()['width'],
-			]);
-		}
-		return $this->digest;
+	public function digest ():?string {
+		return $this->createKey([
+			$this->getDisplayInfo()['width'],
+		]);
 	}
 }

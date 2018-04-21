@@ -44,15 +44,4 @@ class SerializeEntry extends Record {
 	protected function isDeletable ():bool {
 		return true;
 	}
-
-	/**
-	 * シリアライズするか？
-	 *
-	 * @access public
-	 * @return bool シリアライズするならTrue
-	 * @final
-	 */
-	final function isSerializable ():bool {
-		return false;
-	}
 }

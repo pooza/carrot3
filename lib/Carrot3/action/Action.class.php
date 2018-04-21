@@ -13,7 +13,7 @@ namespace Carrot3;
  * @abstract
  */
 abstract class Action implements HTTPRedirector, Assignable {
-	use HTTPRedirectorMethods, BasicObject;
+	use HTTPRedirectorObject, BasicObject, KeyGenerator;
 	protected $name;
 	protected $title;
 	protected $url;
@@ -21,7 +21,6 @@ abstract class Action implements HTTPRedirector, Assignable {
 	protected $module;
 	protected $methods;
 	protected $renderResource;
-	protected $digest;
 	const ACCESSOR = 'a';
 
 	/**
@@ -110,15 +109,11 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
-		if (!$this->digest) {
-			$this->digest = Crypt::digest([
-				$this->controller->getHost()->getName(),
-				$this->getModule()->getName(),
-				$this->getName(),
-			]);
-		}
-		return $this->digest;
+	public function digest ():?string {
+		return $this->createKey([
+			$this->getModule()->getName(),
+			$this->getName(),
+		]);
 	}
 
 	/**

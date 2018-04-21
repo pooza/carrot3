@@ -11,16 +11,19 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-trait SerializableMethods {
+trait SerializableObject {
 
 	/**
 	 * シリアライズ時の値を返す
 	 *
 	 * @access public
-	 * @return mixed シリアライズ時の値
+	 * @return Tuple シリアライズ時の値
 	 */
-	public function getSerialized () {
-		return (new SerializeHandler)[$this];
+	public function getSerialized ():?Tuple {
+		if ($value = (new SerializeHandler)[$this]) {
+			return Tuple::create($value);
+		}
+		return null;
 	}
 
 	/**

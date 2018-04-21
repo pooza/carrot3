@@ -15,11 +15,10 @@ namespace Carrot3;
  * @abstract
  */
 abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAggregate {
-	use HTTPRedirectorMethods, BasicObject;
+	use HTTPRedirectorObject, BasicObject, KeyGenerator, SerializableFile;
 	protected $name;
 	protected $error;
 	protected $type;
-	protected $digest;
 	protected $cacheFile;
 	protected $documents;
 	protected $contents;
@@ -159,17 +158,12 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
-		if (!$this->digest) {
-			$values = Tuple::create();
-			$values['class'] = Utils::getClass($this);
-			$values['name'] = $this->getName();
-			foreach ($this as $entry) {
-				$values[$entry->getPath()] = $entry->digest();
-			}
-			$this->digest = Crypt::digest($values);
+	public function digest ():?string {
+		$values = Tuple::create([$this->getName()]);
+		foreach ($this as $entry) {
+			$values[$entry->getPath()] = $entry->digest();
 		}
-		return $this->digest;
+		return $this->createKey($values);
 	}
 
 	/**
@@ -215,7 +209,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 			$contents = Tuple::create();
 			foreach ($this as $file) {
 				$file->serialize();
-				$contents[] = $file->getSerialized();
+				$contents[] = $file->getSerialized()['minified'];
 			}
 			$cache->setContents($contents->join("\n"));
 			LogManager::getInstance()->put($this . 'を更新しました。', $this);

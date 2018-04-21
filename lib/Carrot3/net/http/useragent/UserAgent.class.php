@@ -13,10 +13,9 @@ namespace Carrot3;
  * @abstract
  */
 abstract class UserAgent extends ParameterHolder {
-	use BasicObject;
+	use BasicObject, KeyGenerator;
 	protected $supports;
 	protected $type;
-	protected $digest;
 	const ACCESSOR = 'ua';
 	const DEFAULT_NAME = 'Mozilla/5.0';
 
@@ -245,19 +244,15 @@ abstract class UserAgent extends ParameterHolder {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
-		if (!$this->digest) {
-			$this->digest = Crypt::digest([
-				__CLASS__,
-				(int)$this->hasSupport('html5_video'),
-				(int)$this->hasSupport('html5_audio'),
-				(int)$this->hasSupport('touch'),
-				(int)$this->isMobile(),
-				(int)$this->isSmartPhone(),
-				(int)$this->isTablet(),
-			]);
-		}
-		return $this->digest;
+	public function digest ():?string {
+		return $this->createKey([
+			(int)$this->hasSupport('html5_video'),
+			(int)$this->hasSupport('html5_audio'),
+			(int)$this->hasSupport('touch'),
+			(int)$this->isMobile(),
+			(int)$this->isSmartPhone(),
+			(int)$this->isTablet(),
+		]);
 	}
 
 	/**

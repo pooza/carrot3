@@ -13,11 +13,10 @@ namespace Carrot3;
  * @abstract
  */
 abstract class TableProfile implements Assignable, Serializable {
-	use BasicObject, SerializableMethods;
+	use BasicObject, SerializableObject, KeyGenerator;
 	protected $database;
 	protected $fields;
 	protected $constraints;
-	protected $digest;
 	private $name;
 
 	/**
@@ -96,14 +95,8 @@ abstract class TableProfile implements Assignable, Serializable {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
-		if (!$this->digest) {
-			$this->digest = Crypt::digest([
-				Utils::getClass($this),
-				$this->getName(),
-			]);
-		}
-		return $this->digest;
+	public function digest ():?string {
+		return $this->createKey([]);
 	}
 
 	/**
@@ -112,25 +105,12 @@ abstract class TableProfile implements Assignable, Serializable {
 	 * @access public
 	 */
 	public function serialize () {
-		(new SerializeHandler)->setAttribute($this, [
+		$values = Tuple::create([
+			'name' => $this->getName(),
+			'name_ja' => $this->translator->translate($this->getName(), 'ja'),
 			'fields' => $this->getFields(),
 			'constraints' => $this->getConstraints(),
 		]);
-	}
-
-	/**
-	 * アサインすべき値を返す
-	 *
-	 * @access public
-	 * @return mixed アサインすべき値
-	 */
-	public function assign () {
-		$values = [
-			'name' => $this->getName(),
-			'name_ja' => $this->translator->translate($this->getName(), 'ja'),
-			'constraints' => $this->getConstraints(),
-		];
-
 		$pattern = '^(' . $this->getDatabase()->getTableNames()->join('|') . ')_id$';
 		foreach ($this->getFields() as $field) {
 			if (isset($field['is_nullable'])) {
@@ -141,8 +121,17 @@ abstract class TableProfile implements Assignable, Serializable {
 			}
 			$values['fields'][] = $field;
 		}
+		(new SerializeHandler)->setAttribute($this, $values);
+	}
 
-		return $values;
+	/**
+	 * アサインすべき値を返す
+	 *
+	 * @access public
+	 * @return mixed アサインすべき値
+	 */
+	public function assign () {
+		return $this->getSerialized();
 	}
 
 	/**
