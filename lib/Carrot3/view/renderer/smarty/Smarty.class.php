@@ -324,10 +324,10 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * 全ての属性を返す
 	 *
 	 * @access public
-	 * @return array 全ての属性
+	 * @return Tuple 全ての属性
 	 */
-	public function getAttributes () {
-		return $this->get_template_vars();
+	public function getAttributes ():Tuple {
+		return Tuple::create($this->get_template_vars());
 	}
 
 	/**

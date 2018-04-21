@@ -86,9 +86,9 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * 属性を全て返す
 	 *
 	 * @access public
-	 * @return Tuple 属性
+	 * @return DataSourceName 属性
 	 */
-	public function getAttributes () {
+	public function getAttributes ():DataSourceName {
 		return $this->dsn;
 	}
 

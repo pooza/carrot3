@@ -11,8 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializable {
-	use SerializableMethods;
+class File extends DirectoryEntry implements \ArrayAccess, Renderer {
 	protected $error;
 	protected $handle;
 	protected $attributes;
@@ -26,6 +25,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @param string $path パス
 	 */
 	public function __construct ($path) {
+		$this->attributes = Tuple::create();
 		$this->setPath($path);
 		$this->analyze();
 	}
@@ -43,10 +43,10 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * ユニークなファイルIDを返す
 	 *
 	 * @access public
-	 * @return int ID
+	 * @return string ID
 	 */
-	public function getID () {
-		if (!$this->id) {
+	public function getID ():?string {
+		if (!$this->id && $this->isExists()) {
 			$this->id = Crypt::digest([
 				$this->getPath(),
 				$this->getSize(),
@@ -429,7 +429,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 * @access public
 	 * @return Tuple 全ての属性
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		return $this->attributes;
 	}
 
@@ -490,37 +490,6 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, Serializabl
 	 */
 	public function getError () {
 		return $this->error;
-	}
-
-	/**
-	 * ダイジェストを返す
-	 *
-	 * @access public
-	 * @return string ダイジェスト
-	 */
-	public function digest ():string {
-		return $this->getID();
-	}
-
-	/**
-	 * シリアライズ
-	 *
-	 * @access public
-	 */
-	public function serialize () {
-		throw new FileException('シリアライズできません。');
-	}
-
-	/**
-	 * シリアライズ時の値を返す
-	 *
-	 * @access public
-	 * @return mixed シリアライズ時の値
-	 */
-	public function getSerialized () {
-		if ($this->isExists()) {
-			return (new SerializeHandler)->getAttribute($this, $this->getUpdateDate());
-		}
 	}
 
 	/**

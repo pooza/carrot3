@@ -12,7 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class TwitterAccount implements ImageContainer, HTTPRedirector {
-	use HTTPRedirectorMethods;
+	use HTTPRedirectorObject;
 	protected $name;
 	protected $url;
 	private $service;

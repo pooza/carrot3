@@ -12,6 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class TridentUserAgent extends UserAgent {
+	use KeyGenerator;
 	const DEFAULT_NAME = 'Mozilla/5.0 (Trident/7.0; rv 11.0)';
 
 	/**
@@ -43,15 +44,12 @@ class TridentUserAgent extends UserAgent {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
-		if (!$this->digest) {
-			$this->digest = Crypt::digest([
-				__CLASS__,
-				$this->isSmartPhone(),
-				$this->isTablet(),
-			]);
-		}
-		return $this->digest;
+	public function digest ():?string {
+		return $this->createKey([
+			$this->isSmartPhone(),
+			$this->isTablet(),
+			$this->getVersion(),
+		]);
 	}
 
 	/**

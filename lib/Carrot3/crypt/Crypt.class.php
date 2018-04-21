@@ -76,7 +76,7 @@ class Crypt {
 	 * @return string ダイジェスト文字列
 	 * @static
 	 */
-	static public function digest ($value, $method = BS_CRYPT_DIGEST_METHOD) {
+	static public function digest ($value, $method = BS_CRYPT_DIGEST_METHOD):string {
 		if (!extension_loaded('hash')) {
 			throw new CryptException('hashモジュールがロードされていません。');
 		}

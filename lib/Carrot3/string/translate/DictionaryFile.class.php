@@ -11,7 +11,8 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class DictionaryFile extends ConfigFile implements Dictionary {
+class DictionaryFile extends ConfigFile implements Dictionary, Serializable {
+	use SerializableFile;
 
 	/**
 	 * @access public
@@ -31,7 +32,18 @@ class DictionaryFile extends ConfigFile implements Dictionary {
 	 * @return Tuple 辞書の内容
 	 */
 	public function getWords ():Tuple {
-		return Tuple::create($this->getSerialized());
+		return Tuple::create($this->getSerialized()['result']);
+	}
+
+	/**
+	 * シリアライズ
+	 *
+	 * @access public
+	 */
+	public function serialize () {
+		$values = Tuple::create($this->getAttributes());
+		$values['result'] = $this->getResult();
+		(new SerializeHandler)->setAttribute($this, $values);
 	}
 
 	/**

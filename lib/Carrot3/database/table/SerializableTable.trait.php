@@ -68,7 +68,7 @@ trait SerializableTable {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
+	public function digest ():?string {
 		return Crypt::digest(Utils::getClass($this));
 	}
 

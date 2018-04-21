@@ -19,15 +19,15 @@ interface Serializable {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string;
+	public function digest ():?string;
 
 	/**
 	 * シリアライズ時の値を返す
 	 *
 	 * @access public
-	 * @return mixed シリアライズ時の値
+	 * @return Tuple シリアライズ時の値
 	 */
-	public function getSerialized ();
+	public function getSerialized ():?Tuple;
 
 	/**
 	 * シリアライズされたキャッシュを削除
@@ -42,9 +42,4 @@ interface Serializable {
 	 * @access public
 	 */
 	public function serialize ();
-
-	/**
-	 * @access public
-	 */
-	public function __toString ();
 }

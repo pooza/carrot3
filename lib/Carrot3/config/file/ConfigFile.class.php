@@ -13,7 +13,6 @@ namespace Carrot3;
  */
 class ConfigFile extends File {
 	use KeyGenerator;
-
 	private $config = [];
 	private $parser;
 	private $cache;
@@ -112,15 +111,6 @@ class ConfigFile extends File {
 			$this->cache = new File($path);
 		}
 		return $this->cache;
-	}
-
-	/**
-	 * シリアライズ
-	 *
-	 * @access public
-	 */
-	public function serialize () {
-		(new SerializeHandler)->setAttribute($this, $this->getResult());
 	}
 
 	/**

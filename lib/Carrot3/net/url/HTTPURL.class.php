@@ -12,7 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
-	use HTTPRedirectorMethods, KeyGenerator;
+	use HTTPRedirectorObject, KeyGenerator;
 	private $fullpath;
 	private $useragent;
 	private $shortURL;

@@ -11,7 +11,8 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class CSSFile extends File {
+class CSSFile extends File implements Serializable {
+	use SerializableFile;
 
 	/**
 	 * バイナリファイルか？
@@ -49,9 +50,10 @@ class CSSFile extends File {
 	 * @access public
 	 */
 	public function serialize () {
+		$values = Tuple::create($this->getAttributes());
 		require_once BS_LIB_DIR . '/Minify/CSS/Compressor.php';
-		$contents = \Minify_CSS_Compressor::process($this->getContents());
-		(new SerializeHandler)->setAttribute($this, $contents);
+		$values['minified'] = \Minify_CSS_Compressor::process($this->getContents());
+		(new SerializeHandler)->setAttribute($this, $values);
 	}
 
 	/**

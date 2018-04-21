@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-trait HTTPRedirectorMethods {
+trait HTTPRedirectorObject {
 
 	/**
 	 * リダイレクト

@@ -64,7 +64,7 @@ abstract class Request extends HTTPRequest {
 	 * @access public
 	 * @return Tuple 属性値
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		if (!$this->attributes) {
 			$this->attributes = Tuple::create();
 		}

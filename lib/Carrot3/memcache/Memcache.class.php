@@ -88,7 +88,7 @@ class Memcache implements \ArrayAccess {
 	 * @access public
 	 * @return Tuple 属性
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		return $this->attributes;
 	}
 

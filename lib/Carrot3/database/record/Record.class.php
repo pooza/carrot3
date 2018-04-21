@@ -12,15 +12,12 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  * @abstract
  */
-abstract class Record implements \ArrayAccess,
-	Serializable, Assignable, AttachmentContainer, ImageContainer, HTTPRedirector {
-
-	use HTTPRedirectorMethods, BasicObject, SerializableMethods;
+abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, ImageContainer, HTTPRedirector {
+	use HTTPRedirectorObject, BasicObject, KeyGenerator;
 	protected $attributes;
 	protected $table;
 	protected $url;
 	protected $records;
-	protected $digest;
 	const ACCESSOR = 'i';
 
 	/**
@@ -87,7 +84,7 @@ abstract class Record implements \ArrayAccess,
 	 * @access public
 	 * @return Tuple 全属性値
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		return clone $this->attributes;
 	}
 
@@ -134,7 +131,7 @@ abstract class Record implements \ArrayAccess,
 		if (($record = $this->getParent()) && !($flags & Database::WITHOUT_PARENT)) {
 			$record->touch();
 		}
-		if ($this->isSerializable() && !($flags & Database::WITHOUT_SERIALIZE)) {
+		if (($this instanceof Serializable) && !($flags & Database::WITHOUT_SERIALIZE)) {
 			$this->removeSerialized();
 		}
 		if (!($flags & Database::WITHOUT_LOGGING)) {
@@ -392,6 +389,7 @@ abstract class Record implements \ArrayAccess,
 		if ($file = $this->getAttachment($name)) {
 			return $this->getAttachmentBaseName($name) . $file->getSuffix();
 		}
+		return null;
 	}
 
 	/**
@@ -575,56 +573,16 @@ abstract class Record implements \ArrayAccess,
 	}
 
 	/**
-	 * シリアライズするか？
-	 *
-	 * @access public
-	 * @return bool シリアライズするならTrue
-	 */
-	public function isSerializable ():bool {
-		return SerializeHandler::getClasses()->isContain(Utils::getShortClass($this));
-	}
-
-	/**
 	 * ダイジェストを返す
 	 *
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
-		if (!$this->digest) {
-			$this->digest = Crypt::digest([
-				Utils::getClass($this),
-				$this->getID(),
-				$this->getUpdateDate()->getTimestamp(),
-			]);
-		}
-		return $this->digest;
-	}
-
-	/**
-	 * シリアライズ
-	 *
-	 * @access public
-	 */
-	public function serialize () {
-		if (!$this->isSerializable()) {
-			throw new DatabaseException($this . 'はシリアライズできません。');
-		}
-		(new SerializeHandler)->setAttribute($this, $this->getSerializableValues());
-	}
-
-	/**
-	 * シリアライズ時の値を返す
-	 *
-	 * @access public
-	 * @return mixed シリアライズ時の値
-	 */
-	public function getSerialized () {
-		if ($date = $this->getUpdateDate()) {
-			return (new SerializeHandler)->getAttribute($this, $date);
-		} else {
-			return (new SerializeHandler)[$this];
-		}
+	public function digest ():?string {
+		return $this->createKey([
+			$this->getID(),
+			$this->getUpdateDate()->getTimestamp(),
+		]);
 	}
 
 	/**
@@ -633,8 +591,9 @@ abstract class Record implements \ArrayAccess,
 	 * @access protected
 	 * @return Tuple ファイル属性の配列
 	 */
-	protected function getSerializableValues () {
-		$values = $this->getAttributes();
+	protected function createSerializableValues () {
+		$values = Tuple::create($this->getAttributes());
+		$values['is_visible'] = $this->isVisible();
 		if ($url = $this->getURL()) {
 			$values['url'] = $url->getContents();
 		}
@@ -663,15 +622,12 @@ abstract class Record implements \ArrayAccess,
 	 */
 	public function assign () {
 		$values = null;
-		if ($this->isSerializable()) {
+		if ($this instanceof Serializable) {
 			if (StringUtils::isBlank($values = $this->getSerialized())) {
 				$this->serialize();
+				$values = $this->getSerialized();
 			}
 		}
-		if (StringUtils::isBlank($values)) {
-			$values = $this->getSerializableValues();
-		}
-		$values['is_visible'] = $this->isVisible();
 		return $values;
 	}
 

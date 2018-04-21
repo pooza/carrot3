@@ -13,6 +13,7 @@ namespace Carrot3;
  * @abstract
  */
 abstract class RecordAction extends Action {
+	use KeyGenerator;
 
 	/**
 	 * 初期化
@@ -83,17 +84,13 @@ abstract class RecordAction extends Action {
 	 * @access public
 	 * @return string ダイジェスト
 	 */
-	public function digest ():string {
-		if (!$this->digest) {
-			$this->digest = Crypt::digest([
-				$this->controller->getHost()->getName(),
-				$this->getModule()->getName(),
-				$this->getName(),
-				$this->getRecord()->getID(),
-				$this->getRecord()->getUpdateDate()->getTimestamp(),
-			]);
-		}
-		return $this->digest;
+	public function digest ():?string {
+		return $this->createKey([
+			$this->getModule()->getName(),
+			$this->getName(),
+			$this->getRecord()->getID(),
+			$this->getRecord()->getUpdateDate()->getTimestamp(),
+		]);
 	}
 
 	/**

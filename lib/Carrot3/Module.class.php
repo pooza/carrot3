@@ -11,7 +11,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class Module implements HTTPRedirector, Assignable {
-	use HTTPRedirectorMethods, BasicObject, KeyGenerator;
+	use HTTPRedirectorObject, BasicObject, KeyGenerator;
 	protected $name;
 	protected $title;
 	protected $url;
@@ -77,7 +77,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return Tuple 属性値
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		return Tuple::create([
 			'name' => $this->getName(),
 			'title' => $this->getTitle(),

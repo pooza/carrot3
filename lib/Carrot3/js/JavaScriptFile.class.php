@@ -11,7 +11,8 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class JavaScriptFile extends File {
+class JavaScriptFile extends File implements Serializable {
+	use SerializableFile;
 
 	/**
 	 * バイナリファイルか？
@@ -49,8 +50,10 @@ class JavaScriptFile extends File {
 	 * @access public
 	 */
 	public function serialize () {
+		$values = Tuple::create($this->getAttributes());
 		require_once BS_LIB_DIR . '/jsmin.php';
-		(new SerializeHandler)->setAttribute($this, \JSMin::minify($this->getContents()));
+		$values['minified'] = \JSMin::minify($this->getContents());
+		(new SerializeHandler)->setAttribute($this, $values);
 	}
 
 	/**
