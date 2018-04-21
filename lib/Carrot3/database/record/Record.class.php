@@ -84,7 +84,7 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 	 * @access public
 	 * @return Tuple 全属性値
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		return clone $this->attributes;
 	}
 

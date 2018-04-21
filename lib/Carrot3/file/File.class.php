@@ -25,6 +25,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer {
 	 * @param string $path パス
 	 */
 	public function __construct ($path) {
+		$this->attributes = Tuple::create();
 		$this->setPath($path);
 		$this->analyze();
 	}
@@ -428,7 +429,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer {
 	 * @access public
 	 * @return Tuple 全ての属性
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		return $this->attributes;
 	}
 

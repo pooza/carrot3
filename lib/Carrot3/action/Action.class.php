@@ -234,7 +234,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return Tuple 属性値
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		return Tuple::create([
 			'name' => $this->getName(),
 			'title' => $this->getTitle(),

@@ -146,7 +146,7 @@ class User extends ParameterHolder {
 	 * @access public
 	 * @return Tuple 属性値
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		return $this->attributes;
 	}
 

@@ -213,9 +213,9 @@ class URL implements \ArrayAccess, Assignable {
 	 * 属性を全て返す
 	 *
 	 * @access public
-	 * @return array 属性
+	 * @return Tuple 属性
 	 */
-	public function getAttributes () {
+	public function getAttributes ():Tuple {
 		return $this->attributes;
 	}
 
