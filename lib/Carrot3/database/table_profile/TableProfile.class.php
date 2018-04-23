@@ -57,7 +57,7 @@ abstract class TableProfile implements Assignable, Serializable {
 	 * @access public
 	 * @return Database データベース
 	 */
-	public function getDatabase () {
+	public function getDatabase ():Database {
 		return $this->database;
 	}
 
@@ -96,7 +96,10 @@ abstract class TableProfile implements Assignable, Serializable {
 	 * @return string ダイジェスト
 	 */
 	public function digest ():?string {
-		return $this->createKey([]);
+		return $this->createKey([
+			$this->getDatabase()['dsn'],
+			$this->getName(),
+		]);
 	}
 
 	/**
@@ -108,7 +111,7 @@ abstract class TableProfile implements Assignable, Serializable {
 		$values = Tuple::create([
 			'name' => $this->getName(),
 			'name_ja' => $this->translator->translate($this->getName(), 'ja'),
-			'fields' => $this->getFields(),
+			'fields' => [],
 			'constraints' => $this->getConstraints(),
 		]);
 		$pattern = '^(' . $this->getDatabase()->getTableNames()->join('|') . ')_id$';

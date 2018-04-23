@@ -37,7 +37,7 @@ class RecordFinder extends ParameterHolder {
 		}
 	}
 
-	private function getRecord ($id) {
+	private function getRecord ($id):?Record {
 		if (!$this->record) {
 			if (!$id) {
 				$id = $this['id'];
