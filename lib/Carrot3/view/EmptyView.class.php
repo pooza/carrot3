@@ -19,9 +19,9 @@ class EmptyView extends View {
 	 * 初期化
 	 *
 	 * @access public
-	 * @return bool 初期化が成功すればTrue
+	 * @return bool
 	 */
-	public function initialize () {
+	public function initialize ():bool {
 		return true;
 	}
 

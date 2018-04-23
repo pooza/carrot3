@@ -19,8 +19,9 @@ class RecordValidator extends Validator {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		$this['table'] = null;
 		$this['class'] = null;
 		$this['field'] = 'id';
@@ -126,7 +127,7 @@ class RecordValidator extends Validator {
 	 * @param mixed $id レコードのID
 	 * @return Record 対象レコード
 	 */
-	protected function getRecord ($id) {
+	protected function getRecord ($id):?Record {
 		try {
 			$values = [$this['field'] => $id];
 			foreach (Tuple::create($this['criteria']) as $field => $value) {

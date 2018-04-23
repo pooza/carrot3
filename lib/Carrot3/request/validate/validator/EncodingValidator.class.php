@@ -18,8 +18,9 @@ class EncodingValidator extends Validator {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		$this['match_error'] = '利用できないエンコード名です。';
 		return Validator::initialize($params);
 	}

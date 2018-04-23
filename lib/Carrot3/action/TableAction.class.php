@@ -25,9 +25,9 @@ abstract class TableAction extends Action {
 	 * Falseを返すと、例外が発生。
 	 *
 	 * @access public
-	 * @return bool 正常終了ならTrue
+	 * @return bool
 	 */
-	public function initialize () {
+	public function initialize ():bool {
 		parent::initialize();
 		$this->getModule()->clearRecordID();
 

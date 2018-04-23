@@ -18,8 +18,9 @@ class MovieValidator extends Validator {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		$this['invalid_error'] = '正しいファイルではありません。';
 		return Validator::initialize($params);
 	}

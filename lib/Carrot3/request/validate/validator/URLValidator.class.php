@@ -18,8 +18,9 @@ class URLValidator extends Validator {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		$this['net_error'] = '正しくありません。';
 		$this['schemes'] = ['http', 'https'];
 		$this['scheme_error'] = sprintf(

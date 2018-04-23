@@ -19,8 +19,9 @@ class EnglishValidator extends RegexValidator {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		$this['match'] = true;
 		$this['match_error'] = '使用出来ない文字が含まれています。';
 		$this['pattern'] = self::PATTERN;

@@ -25,7 +25,7 @@ class KanaRequestFilter extends RequestFilter {
 		return StringUtils::convertKana($value, $this['option']);
 	}
 
-	public function initialize (iterable $params = []) {
+	public function initialize (iterable $params = []):bool {
 		$this['option'] = 'KV';
 		return parent::initialize($params);
 	}

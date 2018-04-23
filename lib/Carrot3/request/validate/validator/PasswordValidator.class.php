@@ -18,8 +18,9 @@ class PasswordValidator extends RegexValidator {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		if (!isset($params['digits'])) {
 			$params['digits'] = 8;
 		}

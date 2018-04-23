@@ -20,10 +20,10 @@ abstract class Logger {
 	 * 初期化
 	 *
 	 * @access public
-	 * @return string 利用可能ならTrue
+	 * @return bool
 	 * @abstract
 	 */
-	abstract public function initialize ();
+	abstract public function initialize ():bool;
 
 	/**
 	 * ログを出力

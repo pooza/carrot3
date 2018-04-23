@@ -49,9 +49,9 @@ abstract class Filter extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ
-	 * @return bool 初期化が成功すればTrue
+	 * @return bool
 	 */
-	public function initialize (iterable $params = []) {
+	public function initialize (iterable $params = []):bool {
 		$this->setParameters($params);
 		return true;
 	}

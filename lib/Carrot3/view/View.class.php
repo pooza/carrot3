@@ -57,7 +57,7 @@ class View extends HTTPResponse {
 	 * @access public
 	 * @return bool 初期化が成功すればTrue
 	 */
-	public function initialize () {
+	public function initialize ():bool {
 		if ($filename = $this->request->getAttribute('filename')) {
 			$this->setFileName($filename);
 		}

@@ -39,8 +39,9 @@ class ImageValidator extends Validator {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		$this['types'] = 'jpg,gif,png';
 		$this['types_error'] = '画像形式が正しくありません。';
 		$this['min_height'] = null;
