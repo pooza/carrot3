@@ -49,7 +49,7 @@ class Criteria extends Tuple {
 	 * @access public
 	 * @return Database 対象データベース
 	 */
-	public function getDatabase () {
+	public function getDatabase ():Database {
 		if (!$this->db) {
 			$this->db = Database::getInstance();
 		}

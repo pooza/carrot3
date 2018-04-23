@@ -21,7 +21,7 @@ class OptimizeDatabaseAction extends C\Action {
 		return $this->database;
 	}
 
-	public function initialize () {
+	public function initialize ():bool {
 		$this->request->addOption('d');
 		$this->request->parse();
 		return true;

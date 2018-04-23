@@ -21,9 +21,9 @@ abstract class RecordAction extends Action {
 	 * Falseを返すと、例外が発生。
 	 *
 	 * @access public
-	 * @return bool 正常終了ならTrue
+	 * @return bool
 	 */
-	public function initialize () {
+	public function initialize ():bool {
 		if ($id = $this->request['id']) {
 			$this->setRecordID($id);
 		}
@@ -109,7 +109,7 @@ abstract class RecordAction extends Action {
 	 * @access public
 	 * @return Record 編集中レコード
 	 */
-	public function getRecord () {
+	public function getRecord ():?Record {
 		return $this->getModule()->getRecord();
 	}
 

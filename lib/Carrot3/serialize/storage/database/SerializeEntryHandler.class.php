@@ -65,7 +65,7 @@ class SerializeEntryHandler extends TableHandler {
 	 * @access public
 	 * @return Database データベース
 	 */
-	public function getDatabase () {
+	public function getDatabase ():Database {
 		return Database::getInstance('serialize');
 	}
 

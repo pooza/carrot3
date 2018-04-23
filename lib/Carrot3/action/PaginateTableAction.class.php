@@ -58,7 +58,7 @@ abstract class PaginateTableAction extends TableAction {
 		return $this->table;
 	}
 
-	public function initialize () {
+	public function initialize ():bool {
 		parent::initialize();
 		$this->request->setAttribute('page', $this->getPageNumber());
 		$this->request->setAttribute('lastpage', $this->getTable()->getLastPageNumber());

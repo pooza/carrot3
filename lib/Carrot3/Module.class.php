@@ -221,7 +221,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return Record 編集中レコード
 	 */
-	public function getRecord () {
+	public function getRecord ():?Record {
 		if (!$this->record && $this->getRecordID()) {
 			$this->record = $this->getTable()->getRecord($this->getRecordID());
 		}

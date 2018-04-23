@@ -17,9 +17,9 @@ class SendmailMailSender extends MailSender {
 	 * 初期化
 	 *
 	 * @access public
-	 * @return string 利用可能ならTrue
+	 * @return bool
 	 */
-	public function initialize () {
+	public function initialize ():bool {
 		try {
 			$this->createCommand();
 			return true;
@@ -63,7 +63,7 @@ class SendmailMailSender extends MailSender {
 
 	/**
 	 * sendmailコマンドを返す
-	 * 
+	 *
 	 * @access protected
 	 * @return CommandLine sendmailコマンド
 	 */

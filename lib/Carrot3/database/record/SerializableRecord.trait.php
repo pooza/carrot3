@@ -40,4 +40,33 @@ trait SerializableRecord {
 	public function removeSerialized () {
 		(new SerializeHandler)->removeAttribute($this);
 	}
+
+	/**
+	 * 全てのファイル属性
+	 *
+	 * @access protected
+	 * @return Tuple ファイル属性の配列
+	 */
+	protected function createSerializableValues () {
+		$values = Tuple::create($this->getAttributes());
+		$values['is_visible'] = $this->isVisible();
+		if ($url = $this->getURL()) {
+			$values['url'] = $url->getContents();
+		}
+		foreach ($this->getTable()->getImageNames() as $field) {
+			if (!!$this->getImageFile($field)) {
+				$values['has_' . $field] = true;
+				$values[$field] = $this->getImageInfo($field);
+			}
+		}
+		foreach ($this->getTable()->getAttachmentNames() as $field) {
+			if ($file = $this->getAttachment($field)) {
+				$values['has_' . $field] = true;
+				if ($file instanceof Assignable) {
+					$values[$field] = $file->assign();
+				}
+			}
+		}
+		return $values;
+	}
 }

@@ -19,7 +19,7 @@ class MemcacheSerializeStorage extends SerializeStorage {
 	 *
 	 * @access public
 	 * @param SerializeHandler $handler
-	 * @return bool 利用可能ならTrue
+	 * @return bool
 	 */
 	public function initialize (SerializeHandler $handler):bool {
 		parent::initialize($handler);

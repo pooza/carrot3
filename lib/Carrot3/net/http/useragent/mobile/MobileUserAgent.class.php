@@ -20,9 +20,9 @@ abstract class MobileUserAgent extends UserAgent {
 	 *
 	 * @access public
 	 * @param SmartyView 対象ビュー
-	 * @return bool 成功時にTrue
+	 * @return bool
 	 */
-	public function initializeView (SmartyView $view) {
+	public function initializeView (SmartyView $view):bool {
 		parent::initializeView($view);
 		$view->getRenderer()->addModifier('sanitize');
 		$view->getRenderer()->addOutputFilter('mobile');

@@ -19,8 +19,9 @@ class ZipcodeValidator extends RegexValidator {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		$this['match'] = true;
 		$this['match_error'] = '正しくありません。';
 		$this['pattern'] = self::PATTERN;

@@ -55,10 +55,10 @@ abstract class Validator extends ParameterHolder {
 	 * 初期化
 	 *
 	 * @access public
-	 * @param iterable $params パラメータ
-	 * @return bool 初期化が成功すればTrue
+	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		$this->setParameters($params);
 		return true;
 	}

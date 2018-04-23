@@ -309,7 +309,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access public
 	 * @return Database データベース
 	 */
-	public function getDatabase () {
+	public function getDatabase ():Database {
 		return Database::getInstance();
 	}
 
@@ -319,7 +319,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access protected
 	 * @return Criteria 抽出条件
 	 */
-	protected function createCriteria () {
+	protected function createCriteria ():Criteria {
 		return $this->getDatabase()->createCriteria();
 	}
 
@@ -330,7 +330,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @param mixed $key 検索条件
 	 * @return Record レコード
 	 */
-	public function getRecord ($key) {
+	public function getRecord ($key):?Record {
 		if (is_iterable($key)) {
 			$key = Tuple::create($key);
 		} else {
@@ -346,7 +346,9 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 						continue 2;
 					}
 				}
-				return $record->initialize($row);
+				if ($record->initialize($row)) {
+					return $record;
+				}
 			}
 		} else {
 			$table = clone $this;
@@ -355,9 +357,12 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 			}
 			if ($table->count() == 1) {
 				$table->query();
-				return $record->initialize($table->result[0]);
+				if ($record->initialize($table->result[0])) {
+					return $record;
+				}
 			}
 		}
+		return null;
 	}
 
 	/**

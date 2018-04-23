@@ -28,11 +28,11 @@ abstract class ConfigCompiler extends ParameterHolder {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ
-	 * @return bool 成功ならばTrue
-	 * @static
+	 * @return bool
 	 */
-	public function initialize (iterable $params = []) {
+	public function initialize (iterable $params = []):bool {
 		$this->setParameters($params);
+		return true;
 	}
 
 	/**

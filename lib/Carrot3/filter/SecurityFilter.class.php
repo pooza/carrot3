@@ -12,7 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class SecurityFilter extends Filter {
-	public function initialize (iterable $params = []) {
+	public function initialize (iterable $params = []):bool {
 		$this['credential'] = $this->action->getCredential();
 		return parent::initialize($params);
 	}

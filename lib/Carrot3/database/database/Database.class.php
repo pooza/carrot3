@@ -188,7 +188,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return Criteria 抽出条件
 	 */
-	public function createCriteria () {
+	public function createCriteria ():Criteria {
 		$criteria = new Criteria;
 		$criteria->setDatabase($this);
 		return $criteria;

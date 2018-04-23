@@ -18,8 +18,9 @@ class ChoiceValidator extends Validator {
 	 *
 	 * @access public
 	 * @param iterable $params パラメータ配列
+	 * @return bool
 	 */
-	public function initialize (?iterable $params = []) {
+	public function initialize (?iterable $params = []):bool {
 		$this['class'] = null;
 		$this['function'] = 'getStatusOptions';
 		$this['choices'] = null;
