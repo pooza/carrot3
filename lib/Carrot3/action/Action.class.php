@@ -49,6 +49,8 @@ abstract class Action implements HTTPRedirector, Assignable {
 					return $table->getDatabase();
 				}
 				return Database::getInstance();
+			case 'translator':
+				return Translator::getInstance();
 		}
 	}
 
@@ -122,9 +124,9 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * Falseを返すと、例外が発生。
 	 *
 	 * @access public
-	 * @return bool 正常終了ならTrue
+	 * @return bool
 	 */
-	public function initialize () {
+	public function initialize ():bool {
 		if ($errors = $this->user->getAttribute('errors')) {
 			$this->request->setErrors($errors);
 			$this->user->removeAttribute('errors');
@@ -361,7 +363,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return Record 編集中レコード
 	 */
-	public function getRecord () {
+	public function getRecord ():?Record {
 		return null;
 	}
 
@@ -381,7 +383,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access protected
 	 * @return Criteria 抽出条件
 	 */
-	protected function createCriteria () {
+	protected function createCriteria ():Criteria {
 		return $this->database->createCriteria();
 	}
 
