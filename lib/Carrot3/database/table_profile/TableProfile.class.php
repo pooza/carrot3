@@ -122,7 +122,7 @@ abstract class TableProfile implements Assignable, Serializable {
 			if (mb_ereg($pattern, $field['column_name'], $matches)) {
 				$field['extrenal_table'] = $matches[1];
 			}
-			$values['fields'][] = $field;
+			$values['fields'][$field['column_name']] = $field;
 		}
 		(new SerializeHandler)->setAttribute($this, $values);
 	}
