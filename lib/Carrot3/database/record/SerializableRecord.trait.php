@@ -83,7 +83,7 @@ trait SerializableRecord {
 	 * @return Tuple アサインすべき値
 	 */
 	public function assign () {
-		if ($this->isSerialized()) {
+		if (!$this->isSerialized()) {
 			$this->serialize();
 		}
 		return $this->getSerialized();
