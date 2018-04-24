@@ -68,7 +68,7 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 		}
 		$this->date['day'] = 1;
 
-		if (StringUtils::isBlank($this->getSerialized())) {
+		if (!$this->isSerialized()) {
 			$this->serialize();
 		}
 		$this->holidays->clear();

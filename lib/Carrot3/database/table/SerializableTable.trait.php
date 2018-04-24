@@ -19,7 +19,7 @@ trait SerializableTable {
 	 * @param mixed $order ソート順
 	 */
 	public function __construct ($criteria = null, $order = null) {
-		if (!$this->getSerialized()) {
+		if (!$this->isSerialized()) {
 			$this->serialize();
 		}
 		$this->setExecuted(true);

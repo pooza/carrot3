@@ -15,7 +15,7 @@ namespace Carrot3;
  * @abstract
  */
 abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAggregate {
-	use HTTPRedirectorObject, BasicObject, KeyGenerator, SerializableFile;
+	use HTTPRedirectorObject, BasicObject, KeyGenerator;
 	protected $name;
 	protected $error;
 	protected $type;

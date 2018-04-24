@@ -19,6 +19,16 @@ trait SerializableObject {
 	 * @access public
 	 * @return Tuple シリアライズ時の値
 	 */
+	public function isSerialized ():bool {
+		return !StringUtils::isBlank($this->getSerialized());
+	}
+
+	/**
+	 * シリアライズ時の値を返す
+	 *
+	 * @access public
+	 * @return Tuple シリアライズ時の値
+	 */
 	public function getSerialized ():?Tuple {
 		if ($value = (new SerializeHandler)[$this]) {
 			return Tuple::create($value);
