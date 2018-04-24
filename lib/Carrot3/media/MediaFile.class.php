@@ -23,11 +23,10 @@ abstract class MediaFile extends File implements Assignable, Serializable {
 	public function __construct ($path) {
 		$this->setPath($path);
 		$this->attributes = Tuple::create();
-		if ($this->getSerialized()) {
-			$this->attributes->setParameters($this->getSerialized());
-		} else if ($this->isExists()) {
+		if ($this->isExists() && !$this->isSerialized()) {
 			$this->serialize();
 		}
+		$this->attributes->setParameters($this->getSerialized());
 	}
 
 	/**

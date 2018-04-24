@@ -13,7 +13,7 @@ namespace Carrot3;
  * @abstract
  */
 abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, ImageContainer, HTTPRedirector {
-	use HTTPRedirectorObject, BasicObject, KeyGenerator;
+	use HTTPRedirectorObject, BasicObject;
 	protected $attributes;
 	protected $table;
 	protected $url;
@@ -573,33 +573,13 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 	}
 
 	/**
-	 * ダイジェストを返す
-	 *
-	 * @access public
-	 * @return string ダイジェスト
-	 */
-	public function digest ():?string {
-		return $this->createKey([
-			$this->getID(),
-			$this->getUpdateDate()->getTimestamp(),
-		]);
-	}
-
-	/**
 	 * アサインすべき値を返す
 	 *
 	 * @access public
 	 * @return Tuple アサインすべき値
 	 */
 	public function assign () {
-		$values = null;
-		if ($this instanceof Serializable) {
-			if (StringUtils::isBlank($values = $this->getSerialized())) {
-				$this->serialize();
-				$values = $this->getSerialized();
-			}
-		}
-		return $values;
+		return $this->getAttributes();
 	}
 
 	/**

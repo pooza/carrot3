@@ -12,6 +12,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 trait SerializableFile {
+	use SerializableObject;
 
 	/**
 	 * ダイジェストを返す
@@ -35,18 +36,8 @@ trait SerializableFile {
 			if ($value = (new SerializeHandler)->getAttribute($this, $date)) {
 				return Tuple::create($value);
 			}
-		} else {
-			$this->removeSerialized();
 		}
+		$this->removeSerialized();
 		return null;
-	}
-
-	/**
-	 * シリアライズされたキャッシュを削除
-	 *
-	 * @access public
-	 */
-	public function removeSerialized () {
-		(new SerializeHandler)->removeAttribute($this);
 	}
 }

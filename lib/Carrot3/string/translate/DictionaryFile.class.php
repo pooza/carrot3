@@ -20,7 +20,7 @@ class DictionaryFile extends ConfigFile implements Dictionary, Serializable {
 	 */
 	public function __construct ($path) {
 		parent::__construct($path);
-		if ($this->isExists() && !$this->getSerialized()) {
+		if ($this->isExists() && !$this->isSerialized()) {
 			$this->serialize();
 		}
 	}

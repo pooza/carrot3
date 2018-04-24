@@ -34,7 +34,7 @@ abstract class TableProfile implements Assignable, Serializable {
 			throw new DatabaseException($this . 'が取得できません。');
 		}
 
-		if (!$this->getSerialized()) {
+		if (!$this->isSerialized()) {
 			$this->serialize();
 		}
 		$this->fields = Tuple::create($this->getSerialized()['fields']);

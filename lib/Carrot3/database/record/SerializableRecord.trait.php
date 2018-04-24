@@ -12,6 +12,20 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 trait SerializableRecord {
+	use SerializableObject, KeyGenerator;
+
+	/**
+	 * ダイジェストを返す
+	 *
+	 * @access public
+	 * @return string ダイジェスト
+	 */
+	public function digest ():?string {
+		return $this->createKey([
+			$this->getID(),
+			$this->getUpdateDate()->getTimestamp(),
+		]);
+	}
 
 	/**
 	 * シリアライズ時の値を返す
@@ -29,16 +43,8 @@ trait SerializableRecord {
 				return Tuple::create($value);
 			}
 		}
+		$this->removeSerialized();
 		return null;
-	}
-
-	/**
-	 * シリアライズされたキャッシュを削除
-	 *
-	 * @access public
-	 */
-	public function removeSerialized () {
-		(new SerializeHandler)->removeAttribute($this);
 	}
 
 	/**
@@ -68,5 +74,18 @@ trait SerializableRecord {
 			}
 		}
 		return $values;
+	}
+
+	/**
+	 * アサインすべき値を返す
+	 *
+	 * @access public
+	 * @return Tuple アサインすべき値
+	 */
+	public function assign () {
+		if ($this->isSerialized()) {
+			$this->serialize();
+		}
+		return $this->getSerialized();
 	}
 }
