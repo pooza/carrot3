@@ -36,7 +36,10 @@ function smarty_function_image ($params, &$smarty) {
 				$element = $element->wrap($anchor);
 				try {
 					$element->setImage(
-						$record, $params['size'], $params['pixel_full'], $params['flags_full']
+						$record,
+						$params['size'],
+						(int)$params['pixel_full'],
+						$manager->createBits($params['flags_full'])
 					);
 				} catch (\Exception $e) {
 					$record->removeImageCache($params['size']);
