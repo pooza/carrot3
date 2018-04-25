@@ -58,7 +58,6 @@ class DatabaseSerializeStorage extends SerializeStorage {
 		];
 
 		if ($record = $this->getTable()->getRecord($name)) {
-p($record);
 			$record->update($values);
 		} else {
 			$this->getTable()->createRecord($values);
