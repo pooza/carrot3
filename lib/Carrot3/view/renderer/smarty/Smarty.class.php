@@ -216,7 +216,7 @@ class Smarty extends \Smarty implements TextRenderer {
 
 		$serials = new SerializeHandler;
 		$serials->setConfig('template_cache_ttl', BS_VIEW_TEMPLATE_CACHE_TTL);
-		if (StringUtils::isBlank($contents = $serials->getAttribute($key))) {
+		if (StringUtils::isBlank($contents = $serials[$key])) {
 			$this->getCompiler()->_compile_file(
 				$template->getPath(),
 				$template->getContents(),
@@ -231,7 +231,7 @@ class Smarty extends \Smarty implements TextRenderer {
 			foreach ((array)$this->_plugins['outputfilter'] as $filter) {
 				$contents = call_user_func_array($filter[0], [$contents, &$this]);
 			}
-			$serials->setAttribute($key, $contents);
+			$serials[$key] = $contents;
 		}
 		return $contents;
 	}
