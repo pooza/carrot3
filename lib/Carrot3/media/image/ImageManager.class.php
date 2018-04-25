@@ -101,31 +101,33 @@ class ImageManager {
 	 * @param mixed $flags フラグのビット列、又は配列
 	 */
 	public function setFlags ($flags) {
-		if (StringUtils::isBlank($flags)) {
-			return;
-		} else if (is_numeric($flags)) {
-			$this->setFlag($flags);
-		} else {
-			if (is_string($flags)) {
-				$flags = StringUtils::explode(',', $flags);
-			}
-			foreach ($flags as $flag) {
-				$this->setFlag($flag);
-			}
-		}
+		$this->flags = $this->createBits($flags);
 	}
 
-	protected function setFlag ($flag) {
-		if (!is_numeric($flag)) {
-			$constants = new ConstantHandler;
-			$value = StringUtils::toUpper($flag);
-			if (StringUtils::isBlank($flag = $constants['Carrot3\\ImageManager::' . $value])) {
-				$message = new StringFormat('Carrot3\\ImageManager::%sが未定義です。');
-				$message[] = $value;
-				throw new ImageException($message);
+	/**
+	 * ビット列を生成して返す
+	 *
+	 * @access public
+	 * @param mixed $arg フラグのビット列、又は配列
+	 * @return int
+	 */
+	public function createBits ($arg):?int {
+		if (is_numeric($arg)) {
+			return (int)$arg;
+		} else if (is_string($arg)) {
+			$bits = 0;
+			foreach (StringUtils::explode(',', $arg) as $flag) {
+				if ($bit = (new ConstantHandler)['Carrot3\\ImageManager::' . $flag]) {
+					$bits |= $bit;
+				} else {
+					$message = new StringFormat('Carrot3\\ImageManager::%sが未定義です。');
+					$message[] = $flag;
+					throw new ImageException($message);
+				}
 			}
+			return $bits;
 		}
-		$this->flags |= $flag;
+		return null;
 	}
 
 	/**
