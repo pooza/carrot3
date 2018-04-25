@@ -31,8 +31,8 @@ function smarty_function_html_options ($params, &$smarty) {
 	}
 
 	foreach ($select->getElements() as $option) {
-		$option->setBody($select->getAttribute('label'));
-		if ($params['selected'] == $option->getAttribute('label')) {
+		$option->setBody($option->getAttribute('label'));
+		if ($params['selected'] == $option->getAttribute('value')) {
 			$option->setAttribute('selected', 'selected');
 		}
 	}
