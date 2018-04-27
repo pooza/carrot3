@@ -90,6 +90,15 @@ class RedisSerializeStorage extends SerializeStorage {
 		}
 	}
 
+	/**
+	 * クリア
+	 *
+	 * @access public
+	 */
+	public function clear () {
+		$this->server->flushDb();
+	}
+
 	private function getEntry (string $name) {
 		if ($entry = $this->server->get($name)) {
 			$entry = Tuple::create($this->getSerializer()->decode($entry));
