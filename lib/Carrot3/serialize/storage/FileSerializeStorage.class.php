@@ -93,6 +93,15 @@ class FileSerializeStorage extends SerializeStorage {
 	}
 
 	/**
+	 * クリア
+	 *
+	 * @access public
+	 */
+	public function clear () {
+		$this->getDirectory()->clear();
+	}
+
+	/**
 	 * @access public
 	 * @return string 基本情報
 	 */

@@ -110,6 +110,15 @@ class DatabaseSerializeStorage extends SerializeStorage {
 	}
 
 	/**
+	 * クリア
+	 *
+	 * @access public
+	 */
+	public function clear () {
+		$this->getTable()->clear();
+	}
+
+	/**
 	 * @access public
 	 * @return string 基本情報
 	 */

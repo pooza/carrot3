@@ -82,6 +82,15 @@ class MemcacheSerializeStorage extends SerializeStorage {
 		}
 	}
 
+	/**
+	 * クリア
+	 *
+	 * @access public
+	 */
+	public function clear () {
+		$this->server->clear();
+	}
+
 	private function getEntry (string $name) {
 		if ($values = $this->server->get($name)) {
 			$values = $this->getSerializer()->decode($values);

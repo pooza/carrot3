@@ -107,6 +107,15 @@ class SerializeHandler implements \ArrayAccess {
 	}
 
 	/**
+	 * クリア
+	 *
+	 * @access public
+	 */
+	public function clear () {
+		return $this->storage->clear();
+	}
+
+	/**
 	 * 属性を設定
 	 *
 	 * @access public

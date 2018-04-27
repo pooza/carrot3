@@ -69,6 +69,14 @@ abstract class SerializeStorage {
 	abstract public function getUpdateDate (string $name):?Date;
 
 	/**
+	 * クリア
+	 *
+	 * @access public
+	 * @abstract
+	 */
+	abstract public function clear ();
+
+	/**
 	 * シリアライザを返す
 	 *
 	 * @access public
