@@ -21,8 +21,7 @@ class RedisRenderStorage implements RenderStorage {
 		if (!extension_loaded('redis')) {
 			throw new ViewException('redisモジュールがロードされていません。');
 		}
-		$this->server = new \Redis;
-		$this->server->connect(BS_REDIS_HOST, BS_REDIS_PORT);
+		$this->server = new Redis;
 		$this->server->select(BS_REDIS_DATABASES_RENDER);
 	}
 
@@ -34,7 +33,7 @@ class RedisRenderStorage implements RenderStorage {
 	 * @return View キャッシュ
 	 */
 	public function getCache (Action $action) {
-		if ($data = $this->server->get($action->digest())) {
+		if ($data = $this->server[$action->digest()]) {
 			return Tuple::create((new PHPSerializer)->decode($data));
 		}
 	}
@@ -62,10 +61,7 @@ class RedisRenderStorage implements RenderStorage {
 				$data['headers'][$header->getName()] = $header->getContents();
 			}
 		}
-		$this->server->set(
-			$view->getAction()->digest(),
-			(new PHPSerializer)->encode($data)
-		);
+		$this->server[$view->getAction()->digest()] = (new PHPSerializer)->encode($data);
 	}
 
 	/**
@@ -85,6 +81,6 @@ class RedisRenderStorage implements RenderStorage {
 	 * @access public
 	 */
 	public function clear () {
-		$this->server->flushDb();
+		$this->server->clear();
 	}
 }
