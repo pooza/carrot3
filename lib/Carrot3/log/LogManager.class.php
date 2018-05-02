@@ -58,8 +58,10 @@ class LogManager implements \IteratorAggregate {
 		if ($message instanceof MessageContainer) {
 			$message = $message->getMessage();
 		} else if ($message instanceof Exception) {
-			$priority = $message->getName();
+			$priority = Utils::getClass($message);
 			$message = $message->getMessage();
+		} else if (is_iterable($message)) {
+			$message = Tuple::create($message)->getMessage();
 		}
 		if (is_object($priority)) {
 			$priority = Utils::getClass($priority);

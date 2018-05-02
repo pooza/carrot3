@@ -386,16 +386,8 @@ class Image implements ImageRenderer {
 	 */
 	static public function getSuffixes () {
 		if (!self::$suffixes) {
-			$suffixes = Tuple::create(['.gif', '.jpg', '.png']);
-			if (extension_loaded('imagick')) {
-				$suffixes->merge(['.tif', '.eps', '.ico', '.pdf']);
-			}
-			if (extension_loaded('gmagick')) {
-				$suffixes->merge(['.tif', '.eps', '.pdf']);
-			}
-
 			self::$suffixes = Tuple::create();
-			foreach ($suffixes->uniquize() as $suffix) {
+			foreach (['.gif', '.jpg', '.png'] as $suffix) {
 				self::$suffixes[MIMEType::getType($suffix)] = $suffix;
 			}
 		}

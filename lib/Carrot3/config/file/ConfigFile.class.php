@@ -74,16 +74,15 @@ class ConfigFile extends File {
 	 */
 	public function compile () {
 		if (defined('BS_REDIS_HOST') && defined('BS_REDIS_PORT') && extension_loaded('redis')) {
-			$redis = new \Redis;
-			$redis->connect(BS_REDIS_HOST, BS_REDIS_PORT);
+			$redis = new Redis;
 			$redis->select(BS_REDIS_DATABASES_SERIALIZE);
 			$key = $this->createKey([$this->getID()]);
-			if ($script = $redis->get($key)) {
+			if ($script = $redis[$key]) {
 				$script = (new PHPSerializer)->decode($script);
 			} else {
 				$script = $this->getCompiler()->execute($this);
 				$script = str_replace('<?php', '', $script);
-				$redis->set($key, (new PHPSerializer)->encode($script));
+				$redis[$key] = (new PHPSerializer)->encode($script);
 			}
 			return eval($script);
 		} else {

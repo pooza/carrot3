@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class DiscordWebhookService extends CurlHTTP {
+class DiscordWebhookService extends CurlHTTP implements ExceptionAlerter {
 	const DEFAULT_HOST = 'discordapp.com';
 
 	/**
@@ -38,6 +38,16 @@ class DiscordWebhookService extends CurlHTTP {
 		$renderer = new JSONRenderer;
 		$renderer->setContents(['content' => $message->getMessage()]);
 		return $this->sendPOST(BS_SERVICE_DISCORD_WEBHOOK_URL, $renderer);
+	}
+
+	/**
+	 * アラート
+	 *
+	 * @access public
+	 * @param MessageContainer $message
+	 */
+	public function alert (MessageContainer $message) {
+		return $this->say($message);
 	}
 
 	/**

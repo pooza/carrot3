@@ -45,20 +45,13 @@ class Exception extends \Exception {
 		$json = new JSONRenderer;
 		$json->setContents([
 			'service' => $this->controller->getHost()->getName(),
-			'class' => $this->getName($this),
+			'class' => Utils::getClass($this),
 			'message' => $this->getMessage(),
 		]);
-		(new DiscordWebhookService)->say($json);
-	}
-
-	/**
-	 * 名前を返す
-	 *
-	 * @access public
-	 * @return string 名前
-	 */
-	public function getName ():string {
-		return Utils::getClass($this);
+		$alerter = $this->loader->createObject(BS_ALERT_CLASS);
+		if ($alerter instanceof ExceptionAlerter) {
+			$alerter->alert($json);
+		}
 	}
 
 	/**

@@ -11,9 +11,7 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  * @abstract
  */
-abstract class ParameterHolder
-	implements \IteratorAggregate, \ArrayAccess, \Countable, Assignable {
-
+abstract class ParameterHolder implements \IteratorAggregate, \ArrayAccess, \Countable, Assignable, MessageContainer {
 	protected $params = [];
 
 	/**
@@ -174,6 +172,16 @@ abstract class ParameterHolder
 	 */
 	public function assign () {
 		return $this->getParameters();
+	}
+
+	/**
+	 * メッセージ文字列を返す
+	 *
+	 * @access public
+	 * @return string メッセージ文字列
+	 */
+	public function getMessage ():string {
+		return (new JSONSerializer)->encode($this->getParameters());
 	}
 
 	/**

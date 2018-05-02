@@ -43,7 +43,7 @@ class StringFormat extends Tuple implements MessageContainer {
 	 * @access public
 	 * @return string メッセージ文字列
 	 */
-	public function getMessage () {
+	public function getMessage ():string {
 		return $this->getContents();
 	}
 

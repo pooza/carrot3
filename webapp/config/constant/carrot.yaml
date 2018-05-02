@@ -12,6 +12,8 @@ admin:
   password:
   networks:
   twitter: pooza
+alert:
+  class: DiscordWebhookService
 app:
   deploy:
     dir:

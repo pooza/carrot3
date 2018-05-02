@@ -26,8 +26,7 @@ class RedisSerializeStorage extends SerializeStorage {
 		if (!extension_loaded('redis')) {
 			return false;
 		}
-		$this->server = new \Redis;
-		$this->server->connect(BS_REDIS_HOST, BS_REDIS_PORT);
+		$this->server = new Redis;
 		$this->server->select(BS_REDIS_DATABASES_SERIALIZE);
 		return true;
 	}
@@ -63,7 +62,7 @@ class RedisSerializeStorage extends SerializeStorage {
 		if ($ttl = (int)$this->handler->getConfig('template_cache_ttl')) {
 			$this->server->setEx($name, $ttl, $serialized);
 		} else {
-			$this->server->set($name, $serialized);
+			$this->server[$name] = $serialized;
 		}
 	}
 
@@ -96,11 +95,11 @@ class RedisSerializeStorage extends SerializeStorage {
 	 * @access public
 	 */
 	public function clear () {
-		$this->server->flushDb();
+		$this->server->clear();
 	}
 
 	private function getEntry (string $name) {
-		if ($entry = $this->server->get($name)) {
+		if ($entry = $this->server[$name]) {
 			$entry = Tuple::create($this->getSerializer()->decode($entry));
 			$entry['update_date'] = Date::create($entry['update_date']);
 			return $entry;
