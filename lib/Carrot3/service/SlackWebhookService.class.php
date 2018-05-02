@@ -11,7 +11,7 @@ namespace Carrot3;
  *
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
-class SlackWebhookService extends CurlHTTP {
+class SlackWebhookService extends CurlHTTP implements ExceptionAlerter {
 	const DEFAULT_HOST = 'hooks.slack.com';
 
 	/**
@@ -38,6 +38,16 @@ class SlackWebhookService extends CurlHTTP {
 		$renderer = new JSONRenderer;
 		$renderer->setContents(['text' => $message->getMessage()]);
 		return $this->sendPOST(BS_SERVICE_SLACK_WEBHOOK_URL, $renderer);
+	}
+
+	/**
+	 * アラート
+	 *
+	 * @access public
+	 * @param MessageContainer $message
+	 */
+	public function alert (MessageContainer $message) {
+		return $this->say($message);
 	}
 
 	/**
