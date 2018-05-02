@@ -31,10 +31,7 @@ function p ($var) {
  * @param mixed $var 出力対象
  */
 function l ($var) {
-	LogManager::getInstance()->put(
-		json_encode(Tuple::create($var)->decode()),
-		'debug'
-	);
+	LogManager::getInstance()->put($var, 'debug');
 }
 
 spl_autoload_register(function ($name) {
