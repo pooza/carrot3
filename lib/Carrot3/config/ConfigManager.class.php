@@ -65,7 +65,7 @@ class ConfigManager {
 	 * @access public
 	 */
 	public function clear () {
-		FileUtils::getDirectory('config_cache')->clear();
+		FileUtils::getDirectory('compile')->clear();
 	}
 
 	/**

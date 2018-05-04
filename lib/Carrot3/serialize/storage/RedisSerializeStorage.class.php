@@ -28,6 +28,7 @@ class RedisSerializeStorage extends SerializeStorage {
 		}
 		$this->server = new Redis;
 		$this->server->select(BS_REDIS_DATABASES_SERIALIZE);
+		$this->server->setSerializer($handler->getSerializer());
 		return true;
 	}
 
@@ -40,9 +41,13 @@ class RedisSerializeStorage extends SerializeStorage {
 	 * @return mixed 属性値
 	 */
 	public function getAttribute (string $name, Date $date = null) {
-		if ($entry = $this->getEntry($name)) {
-			if (!$date || !$entry['update_date']->isPast($date)) {
-				return $entry['contents'];
+		if ($entry = $this->server[$name]) {
+			if (!$date || !$this->getUpdateDate($name)->isPast($date)) {
+				if (is_array($entry['contents'])) {
+					return Tuple::create($entry['contents']);
+				} else {
+					return $entry['contents'];
+				}
 			}
 		}
 	}
@@ -55,14 +60,16 @@ class RedisSerializeStorage extends SerializeStorage {
 	 * @param mixed $value 値
 	 */
 	public function setAttribute (string $name, $value) {
-		$serialized = $this->getSerializer()->encode([
-			'update_date' => Date::create()->format('Y-m-d H:i:s'),
-			'contents' => $value,
-		]);
 		if ($ttl = (int)$this->handler->getConfig('template_cache_ttl')) {
-			$this->server->setEx($name, $ttl, $serialized);
+			$this->server->setEx($name, $ttl, [
+				'update_date' => Date::create()->format('Y-m-d H:i:s'),
+				'contents' => $value,
+			]);
 		} else {
-			$this->server[$name] = $serialized;
+			$this->server[$name] = [
+				'update_date' => Date::create()->format('Y-m-d H:i:s'),
+				'contents' => $value,
+			];
 		}
 	}
 
@@ -84,8 +91,8 @@ class RedisSerializeStorage extends SerializeStorage {
 	 * @return Date 更新日
 	 */
 	public function getUpdateDate (string $name):?Date {
-		if ($entry = $this->getEntry($name)) {
-			return $entry['update_date'];
+		if ($entry = $this->server[$name]) {
+			return Date::create($entry['update_date']);
 		}
 	}
 
@@ -96,14 +103,6 @@ class RedisSerializeStorage extends SerializeStorage {
 	 */
 	public function clear () {
 		$this->server->clear();
-	}
-
-	private function getEntry (string $name) {
-		if ($entry = $this->server[$name]) {
-			$entry = Tuple::create($this->getSerializer()->decode($entry));
-			$entry['update_date'] = Date::create($entry['update_date']);
-			return $entry;
-		}
 	}
 
 	/**

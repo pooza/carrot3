@@ -12,6 +12,8 @@ namespace Carrot3;
  * @author 小石達也 <tkoishi@b-shock.co.jp>
  */
 class Redis extends \Redis implements \ArrayAccess {
+	use KeyGenerator;
+	protected $serializer;
 
 	/**
 	 * @access public
@@ -23,6 +25,7 @@ class Redis extends \Redis implements \ArrayAccess {
 			$url['port'] = BS_REDIS_PORT;
 			throw new RedisException($url->getContents() . 'に接続できません。');
 		}
+		$this->setSerializer(new PHPSerializer);
 	}
 
 	/**
@@ -35,6 +38,16 @@ class Redis extends \Redis implements \ArrayAccess {
 			throw new RedisException($id . 'に接続できません。');
 		}
 		return true;
+	}
+
+	/**
+	 * シリアライザーを返す
+	 *
+	 * @access public
+	 * @param Serializer $serializer シリアライザー
+	 */
+	public function setSerializer (Serializer $serializer) {
+		$this->serializer = $serializer;
 	}
 
 	/**
@@ -53,7 +66,7 @@ class Redis extends \Redis implements \ArrayAccess {
 	 * @return bool 要素が存在すればTrue
 	 */
 	public function offsetExists ($key) {
-		return $this->exists($key);
+		return $this->exists($this->createKey($key));
 	}
 
 	/**
@@ -62,7 +75,9 @@ class Redis extends \Redis implements \ArrayAccess {
 	 * @return mixed 要素
 	 */
 	public function offsetGet ($key) {
-		return $this->get($key);
+		return $this->serializer->decode(
+			$this->get($this->createKey($key))
+		);
 	}
 
 	/**
@@ -71,7 +86,18 @@ class Redis extends \Redis implements \ArrayAccess {
 	 * @param mixed $value 要素
 	 */
 	public function offsetSet ($key, $value) {
-		$this->set($key, $value);
+		$this->set(
+			$this->createKey($key),
+			$this->serializer->encode($value)
+		);
+	}
+
+	public function setEx ($key, $ttl, $value) {
+		parent::setEx(
+			$this->createKey($key),
+			$ttl,
+			$this->serializer->encode($value)
+		);
 	}
 
 	/**
@@ -79,7 +105,7 @@ class Redis extends \Redis implements \ArrayAccess {
 	 * @param string $key 添え字
 	 */
 	public function offsetUnset ($key) {
-		$this->delete($key);
+		$this->delete($this->createKey($key));
 	}
 
 	/**
