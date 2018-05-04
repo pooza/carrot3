@@ -22,9 +22,6 @@ clamav:
   platform: yes
 config:
   parent: webapp
-config_cache:
-  parent: var
-  suffix: .cache.php
 compile:
   parent: var
 css:

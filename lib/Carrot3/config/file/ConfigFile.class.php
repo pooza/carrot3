@@ -77,14 +77,10 @@ class ConfigFile extends File {
 			$redis = new Redis;
 			$redis->select(BS_REDIS_DATABASES_SERIALIZE);
 			$key = $this->createKey([$this->getID()]);
-			if ($script = $redis[$key]) {
-				$script = (new PHPSerializer)->decode($script);
-			} else {
-				$script = $this->getCompiler()->execute($this);
-				$script = str_replace('<?php', '', $script);
-				$redis[$key] = (new PHPSerializer)->encode($script);
+			if ($redis[$key] === false) {
+				$redis[$key] = $this->getCompiler()->execute($this);
 			}
-			return eval($script);
+			return eval(mb_ereg_replace('^\s*\<\?php', '', $redis[$key]));
 		} else {
 			$cache = $this->getCacheFile();
 			if (!$cache->isExists() || $cache->getUpdateDate()->isPast($this->getUpdateDate())) {
@@ -103,7 +99,7 @@ class ConfigFile extends File {
 	public function getCacheFile () {
 		if (!$this->cache) {
 			$path = str_replace(BS_ROOT_DIR, '', $this->getPath());
-			$path = sprintf('%s/config_cache/%s.php', BS_VAR_DIR, str_replace('/', '%', $path));
+			$path = sprintf('%s/compile/%s.php', BS_VAR_DIR, str_replace('/', '%', $path));
 			if (!file_exists($dir = dirname($path))) {
 				mkdir($dir);
 			}

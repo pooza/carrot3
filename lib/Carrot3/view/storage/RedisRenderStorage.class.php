@@ -30,11 +30,11 @@ class RedisRenderStorage implements RenderStorage {
 	 *
 	 * @access public
 	 * @param Action $action アクション
-	 * @return View キャッシュ
+	 * @return Tuple キャッシュ
 	 */
-	public function getCache (Action $action) {
+	public function getCache (Action $action):Tuple {
 		if ($data = $this->server[$action->digest()]) {
-			return Tuple::create((new PHPSerializer)->decode($data));
+			return Tuple::create($data);
 		}
 	}
 
@@ -61,7 +61,7 @@ class RedisRenderStorage implements RenderStorage {
 				$data['headers'][$header->getName()] = $header->getContents();
 			}
 		}
-		$this->server[$view->getAction()->digest()] = (new PHPSerializer)->encode($data);
+		$this->server[$view->getAction()->digest()] = $data;
 	}
 
 	/**
