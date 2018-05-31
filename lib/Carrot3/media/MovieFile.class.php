@@ -1,23 +1,7 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage media
- */
-
 namespace Carrot3;
 
-/**
- * 動画ファイル
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
-class MovieFile extends MediaFile implements ImageContainer {
-
-	/**
-	 * ファイルを解析
-	 *
-	 * @access protected
-	 */
+class MovieFile extends MediaFile {
 	protected function analyze () {
 		parent::analyze();
 		if (mb_ereg('frame rate: [^\\-]+ -> ([.[:digit:]]+)', $this->output, $matches)) {
@@ -32,22 +16,6 @@ class MovieFile extends MediaFile implements ImageContainer {
 		}
 	}
 
-	/**
-	 * 削除
-	 *
-	 * @access public
-	 */
-	public function delete () {
-		$this->removeImageCache('image');
-		parent::delete();
-	}
-
-	/**
-	 * 動画トラックを持つか？
-	 *
-	 * @access public
-	 * @return bool 動画トラックを持つならTrue
-	 */
 	public function hasMovieTrack ():bool {
 		if (!$this->attributes->count()) {
 			$this->analyze();
@@ -55,13 +23,6 @@ class MovieFile extends MediaFile implements ImageContainer {
 		return ($this['width'] && $this['height']);
 	}
 
-	/**
-	 * MPEG4変換して返す
-	 *
-	 * @access public
-	 * @param MediaConvertor $convertor コンバータ
-	 * @return MovieFile 変換後ファイル
-	 */
 	public function convert (MediaConvertor $convertor = null) {
 		if (!$convertor) {
 			$convertor = new MPEG4MediaConvertor;
@@ -69,14 +30,6 @@ class MovieFile extends MediaFile implements ImageContainer {
 		return $convertor->execute($this);
 	}
 
-	/**
-	 * 表示用のHTML要素を返す
-	 *
-	 * @access public
-	 * @param iterable $params パラメータ配列
-	 * @param UserAgent $useragent 対象ブラウザ
-	 * @return DivisionElement 要素
-	 */
 	public function createElement (iterable $params, UserAgent $useragent = null) {
 		switch ($params['mode']) {
 			case 'lity':
@@ -86,13 +39,6 @@ class MovieFile extends MediaFile implements ImageContainer {
 		}
 	}
 
-	/**
-	 * Lityへのリンク要素を返す
-	 *
-	 * @access public
-	 * @param iterable $params パラメータ配列
-	 * @return DivisionElement 要素
-	 */
 	public function createLityElement (iterable $params) {
 		$params = Tuple::create($params);
 		if (!$params['width_movie']) {
@@ -121,13 +67,6 @@ class MovieFile extends MediaFile implements ImageContainer {
 		return $container;
 	}
 
-	/**
-	 * video要素を返す
-	 *
-	 * @access public
-	 * @param iterable $params パラメータ配列
-	 * @return VideoElement 要素
-	 */
 	public function createVideoElement (iterable $params) {
 		$this->resizeByWidth($params, $useragent);
 		$element = new VideoElement;
@@ -137,12 +76,6 @@ class MovieFile extends MediaFile implements ImageContainer {
 		return $element->wrap(new DivisionElement);
 	}
 
-	/**
-	 * 出力可能か？
-	 *
-	 * @access public
-	 * @return bool 出力可能ならTrue
-	 */
 	public function validate ():bool {
 		if (!parent::validate()) {
 			return false;
@@ -150,69 +83,17 @@ class MovieFile extends MediaFile implements ImageContainer {
 		return ($this->getMainType() == 'video');
 	}
 
-	/**
-	 * キャッシュをクリア
-	 *
-	 * @access public
-	 * @param string $size
-	 */
-	public function removeImageCache (string $size) {
-		if ($file = $this->getImageFile('image')) {
-			$file->removeImageCache($size);
-		}
-	}
-
-	/**
-	 * 画像の情報を返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @param int $pixel ピクセル数
-	 * @param int $flags フラグのビット列
-	 * @return Tuple 画像の情報
-	 */
-	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0) {
-		if ($file = $this->getImageFile('image')) {
-			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
-			$info['alt'] = $this->getLabel();
-			return $info;
-		}
-	}
-
-	/**
-	 * 画像ファイルを返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @return ImageFile 画像ファイル
-	 */
 	public function getImageFile (string $size):?ImageFile {
-		$dir = FileUtils::getDirectory('movie_file');
+		$dir = FileUtils::getDirectory('file_thumbnail');
 		if ($file = $dir->getEntry($this->getID(), 'ImageFile')) {
 			return $file;
 		}
-
 		$file = new ImageFile($this->convert(new PNGMediaConvertor)->getPath());
 		$file->setName($this->getID());
 		$file->moveTo($dir);
 		return $file;
 	}
 
-	/**
-	 * コンテナのラベルを返す
-	 *
-	 * @access public
-	 * @param string $lang 言語
-	 * @return string ラベル
-	 */
-	public function getLabel (?string $lang = 'ja'):?string {
-		return $this->getBaseName();
-	}
-
-	/**
-	 * @access public
-	 * @return string 基本情報
-	 */
 	public function __toString () {
 		return sprintf('動画ファイル "%s"', $this->getShortPath());
 	}

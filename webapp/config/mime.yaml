@@ -21,8 +21,10 @@
   suffixes: ['.csv']
 - type: application/vnd.ms-word
   suffixes: ['.doc']
+  thumbnailable: true
 - type: application/msword
   alias_to: application/vnd.ms-word
+  thumbnailable: true
 - type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
   suffixes: ['.docx']
 - type: message/rfc822
@@ -31,12 +33,15 @@
   suffixes: ['.eps']
 - type: video/x-flv
   suffixes: ['.flv']
+  thumbnailable: true
 - type: image/gif
   suffixes: ['.gif']
+  thumbnailable: true
 - type: application/x-gzip
   suffixes: ['.gz', '.tgz']
 - type: image/x-heif
   suffixes: ['.heic']
+  thumbnailable: true
 - type: text/html
   suffixes: ['.html', '.htm']
 - type: image/vnd.microsoft.icon
@@ -45,6 +50,7 @@
   suffixes: ['.ini']
 - type: image/jpeg
   suffixes: ['.jpg', '.jpeg']
+  thumbnailable: true
 - type: text/javascript
   suffixes: ['.js']
 - type: application/json
@@ -55,18 +61,24 @@
   alias_to: audio/mp4
 - type: video/quicktime
   suffixes: ['.mov', '.qt']
+  thumbnailable: true
 - type: audio/mpeg
   suffixes: ['.mp3']
 - type: video/mp4
   suffixes: ['.mp4', '.m4v']
+  thumbnailable: true
 - type: application/pdf
   suffixes: ['.pdf']
+  thumbnailable: true
 - type: image/png
   suffixes: ['.png']
+  thumbnailable: true
 - type: application/vnd.ms-powerpoint
   suffixes: ['.ppt']
+  thumbnailable: true
 - type: application/vnd.openxmlformats-officedocument.presentationml.presentation
   suffixes: ['.pptx']
+  thumbnailable: true
 - type: image/tiff
   suffixes: ['.tif', '.tiff']
 - type: text/x-smarty-template
@@ -89,8 +101,10 @@
   suffixes: ['.yaml', '.yml']
 - type: application/vnd.ms-excel
   suffixes: ['.xls']
+  thumbnailable: true
 - type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   suffixes: ['.xlsx']
+  thumbnailable: true
 - type: application/xml
   suffixes: ['.xml']
 - type: text/x-vcard

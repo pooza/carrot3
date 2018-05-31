@@ -5,7 +5,7 @@
 
 carrot:
   name: carrot Framework
-  ver: 3.1.9
+  ver: 3.1.10
 
 admin:
   email:
@@ -41,11 +41,6 @@ author:
   twitter: carrot_fw
 backup:
   class: BackupManager
-clamav:
-  command: clamdscan
-  dir:
-    default: /usr/local
-    ubuntu: /usr
 controller:
   action:
     register_limit: 20
@@ -97,6 +92,7 @@ image:
   thumbnail:
     bgcolor: black
     type: image/png
+    limit_size: 8
   apple_icon:
     pixels: 57
   favicon:
