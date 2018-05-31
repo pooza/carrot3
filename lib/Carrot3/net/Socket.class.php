@@ -118,7 +118,7 @@ class Socket {
 	 * @param int $length 一度に読み込む最大のサイズ
 	 * @return string 読み込んだ内容
 	 */
-	public function getLine ($length = self::LINE_BUFFER) {
+	public function getLine ($length = self::LINE_BUFFER):string {
 		if (!$this->isOpened()) {
 			$this->open();
 		} else if ($this->isEof()) {
@@ -143,7 +143,7 @@ class Socket {
 	 * @access public
 	 * @return Tuple 読み込んだ内容
 	 */
-	public function getLines () {
+	public function getLines ():Tuple {
 		return StringUtils::explode(self::LINE_SEPARATOR, stream_get_contents($this->client));
 	}
 

@@ -83,7 +83,7 @@ class RawRenderer implements Renderer {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return null;
 	}
 }

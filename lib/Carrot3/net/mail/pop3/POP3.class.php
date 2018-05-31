@@ -48,7 +48,7 @@ class POP3 extends Socket {
 	 * @access public
 	 * @return Tuple 読み込んだ内容
 	 */
-	public function getLines () {
+	public function getLines ():Tuple {
 		$lines = Tuple::create();
 		do {
 			$line = $this->getLine();

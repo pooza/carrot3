@@ -114,7 +114,7 @@ class JSONRenderer implements Renderer, MessageContainer {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return null;
 	}
 }

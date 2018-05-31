@@ -402,7 +402,7 @@ class StringUtils {
 	 * @return int 半角単位での幅
 	 * @static
 	 */
-	static public function getWidth ($str) {
+	static public function getWidth ($str):int {
 		return mb_strwidth($str);
 	}
 
