@@ -110,15 +110,10 @@ class BackupManager {
 		}
 
 		(new ImageManager)->clear();
+		(new SerializeHandler)->clear();
 		RenderManager::getInstance()->clear();
-		foreach (SerializeHandler::getClasses() as $class) {
-			foreach (TableHandler::create($class) as $record) {
-				$record->removeSerialized();
-			}
-		}
 		$this->restoreDatabase();
 		$this->restoreDirectories();
-		$this->restoreOptional();
 		LogManager::getInstance()->put('リストアを実行しました。', $this);
 	}
 
@@ -154,10 +149,6 @@ class BackupManager {
 				}
 			}
 		}
-	}
-
-	protected function restoreOptional () {
-		// 適宜オーバーライド
 	}
 
 	/**
