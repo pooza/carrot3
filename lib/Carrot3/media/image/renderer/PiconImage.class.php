@@ -50,7 +50,7 @@ class PiconImage extends Image {
 	 * @access public
 	 * @return int 幅
 	 */
-	public function getWidth () {
+	public function getWidth ():int {
 		return getimagesizefromstring($this->getContents())[0];
 	}
 
@@ -60,7 +60,7 @@ class PiconImage extends Image {
 	 * @access public
 	 * @return int 高さ
 	 */
-	public function getHeight () {
+	public function getHeight ():int {
 		return getimagesizefromstring($this->getContents())[1];
 	}
 
@@ -70,7 +70,7 @@ class PiconImage extends Image {
 	 * @access public
 	 * @return string メディアタイプ
 	 */
-	public function analyzeType () {
+	public function analyzeType ():string {
 		return getimagesizefromstring($this->getContents())['mime'];
 	}
 

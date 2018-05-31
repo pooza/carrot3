@@ -138,7 +138,7 @@ class ImagickImage extends Image {
 	 * @access public
 	 * @return int 幅
 	 */
-	public function getWidth () {
+	public function getWidth ():int {
 		return $this->getImagick()->getImageWidth();
 	}
 
@@ -148,7 +148,7 @@ class ImagickImage extends Image {
 	 * @access public
 	 * @return int 高さ
 	 */
-	public function getHeight () {
+	public function getHeight ():int {
 		return $this->getImagick()->getImageHeight();
 	}
 

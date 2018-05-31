@@ -27,7 +27,7 @@ interface ImageRenderer extends Renderer {
 	 * @access public
 	 * @return int 幅
 	 */
-	public function getWidth ();
+	public function getWidth ():int;
 
 	/**
 	 * 高さを返す
@@ -35,5 +35,5 @@ interface ImageRenderer extends Renderer {
 	 * @access public
 	 * @return int 高さ
 	 */
-	public function getHeight ();
+	public function getHeight ():int;
 }

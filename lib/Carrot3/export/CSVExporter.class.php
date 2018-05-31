@@ -135,7 +135,7 @@ class CSVExporter implements Exporter, TextRenderer {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return null;
 	}
 }
