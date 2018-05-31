@@ -89,7 +89,7 @@ class Numeric {
 	 * @static
 	 * @link http://ja.wikipedia.org/wiki/2進接頭辞
 	 */
-	static public function getBinarySize ($num) {
+	static public function getBinarySize ($num):string {
 		foreach (['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi', 'Yi'] as $i => $unit) {
 			$unitsize = pow(1024, $i);
 			if ($num < ($unitsize * 1024 * 2)) {

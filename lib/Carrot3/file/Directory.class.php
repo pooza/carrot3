@@ -1,16 +1,6 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage file
- */
-
 namespace Carrot3;
 
-/**
- * ディレクトリ
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class Directory extends DirectoryEntry implements \IteratorAggregate {
 	private $suffix;
 	private $entries;
@@ -21,10 +11,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	const WITHOUT_DOTTED = 1;
 	const WITH_RECURSIVE = 2;
 
-	/**
-	 * @access public
-	 * @param string $path ディレクトリのパス
-	 */
 	public function __construct ($path) {
 		$this->setPath($path);
 		if (!is_dir($this->getPath())) {
@@ -32,47 +18,19 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		}
 	}
 
-	/**
-	 * パスを設定
-	 *
-	 * @access protected
-	 * @param string $path パス
-	 */
 	protected function setPath ($path) {
 		parent::setPath(rtrim($path, '/'));
 	}
 
-	/**
-	 * 規定サフィックスを返す
-	 *
-	 * @access public
-	 * @return string サフィックス
-	 */
-	public function getDefaultSuffix () {
+	public function getDefaultSuffix ():?string {
 		return $this->suffix;
 	}
 
-	/**
-	 * 規定サフィックスを設定
-	 *
-	 * @access public
-	 * @param string $suffix
-	 */
 	public function setDefaultSuffix ($suffix) {
 		$this->suffix = ltrim($suffix, '*');
 		$this->entries = null;
 	}
 
-	/**
-	 * エントリーの名前を返す
-	 *
-	 * 拡張子による抽出を行い、かつ拡張子を削除する。
-	 *
-	 * @access public
-	 * @param int $flags フラグのビット列
-	 *   self::WITHOUT_DOTTED ドットファイルを除く
-	 * @return Tuple 抽出されたエントリー名
-	 */
 	public function getEntryNames (int $flags = 0) {
 		$names = Tuple::create();
 		foreach ($this->getAllEntryNames() as $name) {
@@ -86,14 +44,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return $names;
 	}
 
-	/**
-	 * 全エントリーの名前を返す
-	 *
-	 * 拡張子に関わらず全てのエントリーを返す。
-	 *
-	 * @access public
-	 * @return Tuple 全エントリー名
-	 */
 	public function getAllEntryNames () {
 		if (!$this->entries) {
 			$this->entries = Tuple::create();
@@ -112,23 +62,10 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return $this->entries;
 	}
 
-	/**
-	 * エントリー名キャッシュをクリア
-	 *
-	 * @access public
-	 */
 	public function clearEntryNames () {
 		$this->entries = null;
 	}
 
-	/**
-	 * エントリーを返す
-	 *
-	 * @access public
-	 * @param string $name エントリーの名前
-	 * @param string $class エントリーのクラス名
-	 * @return DirectoryEntry ディレクトリかファイル
-	 */
 	public function getEntry (string $name, $class = null) {
 		if (StringUtils::isBlank($class)) {
 			$class = $this->getDefaultEntryClass();
@@ -146,14 +83,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		}
 	}
 
-	/**
-	 * 新しく作ったエントリーを作って返す
-	 *
-	 * @access public
-	 * @param string $name エントリーの名前
-	 * @param string $class クラス名
-	 * @return File ファイル
-	 */
 	public function createEntry (string $name, $class = null) {
 		if (StringUtils::isBlank($class)) {
 			$class = $this->getDefaultEntryClass();
@@ -169,16 +98,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return $file;
 	}
 
-	/**
-	 * コピー
-	 *
-	 * 再帰的にコピーを行う。ドットファイル等は対象に含まない。
-	 *
-	 * @access public
-	 * @param Directory $dir コピー先ディレクトリ
-	 * @return File コピーされたファイル
-	 */
-	public function copyTo (Directory $dir) {
+	public function copyTo (Directory $dir):DirectoryEntry {
 		$name = $this->getName();
 		if ($dir->getPath() == $this->getDirectory()->getPath()) {
 			while ($dir->getEntry($name)) {
@@ -194,11 +114,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return $dest;
 	}
 
-	/**
-	 * 削除
-	 *
-	 * @access public
-	 */
 	public function delete () {
 		if ($this->isLink()) {
 			if (!unlink($this->getPath())) {
@@ -212,11 +127,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		}
 	}
 
-	/**
-	 * 全てのエントリを削除
-	 *
-	 * @access public
-	 */
 	public function clear () {
 		$iterator = new \DirectoryIterator($this->getPath());
 		foreach ($iterator as $entry) {
@@ -227,11 +137,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		}
 	}
 
-	/**
-	 * ドットファイル等を削除
-	 *
-	 * @access public
-	 */
 	public function clearDottedFiles () {
 		foreach ($this as $entry) {
 			$entry->clearDottedFiles();
@@ -240,12 +145,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		$this->entries = null;
 	}
 
-	/**
-	 * 古いファイルを削除
-	 *
-	 * @access public
-	 * @param Date $date 基準日
-	 */
 	public function purge (Date $date = null) {
 		if (!$date) {
 			$date = Date::create()->setParameter('month', '-1');
@@ -265,14 +164,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		LogManager::getInstance()->put($message, $this);
 	}
 
-	/**
-	 * 新規ディレクトリを作り、返す
-	 *
-	 * @access public
-	 * @param string $name ディレクトリの名前
-	 * @param string $class クラス名
-	 * @return Directory 作成されたディレクトリ
-	 */
 	public function createDirectory (string $name, $class = 'Carrot3\\Directory') {
 		$path = $this->getPath() . '/' . $name;
 		if (file_exists($path)) {
@@ -286,14 +177,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return new $class($path);
 	}
 
-	/**
-	 * URLを返す
-	 *
-	 * FileUtils::createURLから呼ばれるので、こちらを利用すること。
-	 *
-	 * @access public
-	 * @return HTTPURL URL
-	 */
 	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			$documentRoot = FileUtils::getPath('www');
@@ -305,14 +188,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return $this->url;
 	}
 
-	/**
-	 * ZIPアーカイブを返す
-	 *
-	 * @access public
-	 * @param int $flags フラグのビット列
-	 *   self::WITHOUT_DOTTED ドットファイルを除く
-	 * @return ZipArchive ZIPアーカイブ
-	 */
 	public function getArchive ($flags = self::WITHOUT_DOTTED) {
 		if (!extension_loaded('zip')) {
 			throw new FileException('zipモジュールがロードされていません。');
@@ -328,14 +203,6 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return $this->zip;
 	}
 
-	/**
-	 * ファイルモード（パーミッション）を設定
-	 *
-	 * @access public
-	 * @param int $mode ファイルモード
-	 * @param int $flags フラグのビット列
-	 *   self::WITH_RECURSIVE 再帰的に
-	 */
 	public function setMode (int $mode, int $flags = 0) {
 		parent::setMode($mode);
 		if ($flags & self::WITH_RECURSIVE) {
@@ -345,48 +212,22 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		}
 	}
 
-	/**
-	 * @access public
-	 * @return DirectoryIterator イテレータ
-	 */
 	public function getIterator () {
 		return new DirectoryIterator($this);
 	}
 
-	/**
-	 * サブディレクトリを持つか？
-	 *
-	 * @access public
-	 * @return bool サブディレクトリを持つならTrue
-	 */
 	public function hasSubDirectory ():bool {
 		return true;
 	}
 
-	/**
-	 * エントリーのクラス名を返す
-	 *
-	 * @access public
-	 * @return string エントリーのクラス名
-	 */
 	public function getDefaultEntryClass () {
 		return $this->loader->getClass('File');
 	}
 
-	/**
-	 * ソート順を返す
-	 *
-	 * @access public
-	 * @return string (ソート順 self::SORT_ASC | self::SORT_DESC)
-	 */
 	public function getSortOrder () {
 		return self::SORT_ASC;
 	}
 
-	/**
-	 * @access public
-	 * @return string 基本情報
-	 */
 	public function __toString () {
 		return sprintf('ディレクトリ "%s"', $this->getShortPath());
 	}

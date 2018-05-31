@@ -64,7 +64,7 @@ class QRCode implements ImageRenderer {
 	 * @access public
 	 * @return int 幅
 	 */
-	public function getWidth () {
+	public function getWidth ():int {
 		return imagesx($this->getGDHandle());
 	}
 
@@ -74,7 +74,7 @@ class QRCode implements ImageRenderer {
 	 * @access public
 	 * @return int 高さ
 	 */
-	public function getHeight () {
+	public function getHeight ():int {
 		return imagesy($this->getGDHandle());
 	}
 
@@ -121,7 +121,7 @@ class QRCode implements ImageRenderer {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return $this->error;
 	}
 }

@@ -283,7 +283,7 @@ class CSVData implements TextRenderer, \IteratorAggregate, \Countable {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return $this->error;
 	}
 

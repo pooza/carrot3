@@ -1,30 +1,12 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage net.http
- */
-
 namespace Carrot3;
 
-/**
- * CurlによるHTTP処理
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class CurlHTTP extends HTTP {
 	protected $engine;
 	protected $uid;
 	protected $password;
-	protected $ssl = false;
+	protected $tls = false;
 
-	/**
-	 * @access public
-	 * @param mixed $host ホスト
-	 * @param int $port ポート
-	 * @param string $protocol プロトコル
-	 *   NetworkService::TCP
-	 *   NetworkService::UDP
-	 */
 	public function __construct ($host, int $port = null, $protocol = NetworkService::TCP) {
 		parent::__construct($host, $port, $protocol);
 		if ($port == NetworkService::getPort('https')) {
@@ -32,41 +14,16 @@ class CurlHTTP extends HTTP {
 		}
 	}
 
-	/**
-	 * HEADリクエスト
-	 *
-	 * @access public
-	 * @param string $path パス
-	 * @param iterable $params パラメータの配列
-	 * @return HTTPResponse レスポンス
-	 */
 	public function sendHEAD ($path = '/', iterable $params = null) {
 		$this->setAttribute('nobody', true);
 		return parent::sendHEAD($path, $params);
 	}
 
-	/**
-	 * GETリクエスト
-	 *
-	 * @access public
-	 * @param string $path パス
-	 * @param iterable $params パラメータの配列
-	 * @return HTTPResponse レスポンス
-	 */
 	public function sendGET ($path = '/', iterable $params = null) {
 		$this->setAttribute('httpget', true);
 		return parent::sendGET($path, $params);
 	}
 
-	/**
-	 * POSTリクエスト
-	 *
-	 * @access public
-	 * @param string $path パス
-	 * @param Renderer $renderer レンダラー
-	 * @param File $file 添付ファイル
-	 * @return HTTPResponse レスポンス
-	 */
 	public function sendPOST ($path = '/', Renderer $renderer = null, File $file = null) {
 		$request = $this->createRequest();
 		$request->setMethod('POST');
@@ -96,6 +53,7 @@ class CurlHTTP extends HTTP {
 
 		$response = new HTTPResponse;
 		$response->setURL($request->getURL());
+		$response->setMethod($request->getMethod());
 		if (($contents = curl_exec($this->getCurl())) === false) {
 			throw new HTTPException($request->getURL() . 'へ送信できません。');
 		}
@@ -119,12 +77,6 @@ class CurlHTTP extends HTTP {
 		}
 	}
 
-	/**
-	 * Curlエンジンを返す
-	 *
-	 * @access protected
-	 * @return handle Curlエンジン
-	 */
 	protected function getCurl () {
 		if (!$this->engine) {
 			if (!extension_loaded('curl')) {
@@ -143,13 +95,6 @@ class CurlHTTP extends HTTP {
 		return $this->engine;
 	}
 
-	/**
-	 * 属性を設定
-	 *
-	 * @access public
-	 * @param string $name 属性名
-	 * @param mixed $value 属性値
-	 */
 	public function setAttribute (string $name, $value) {
 		if (!$this->getCurl()) {
 			return;
@@ -163,13 +108,6 @@ class CurlHTTP extends HTTP {
 		}
 	}
 
-	/**
-	 * HTTP認証のアカウントを設定
-	 *
-	 * @access public
-	 * @param string $uid ユーザー名
-	 * @param string $password Cryptで暗号化されたパスワード
-	 */
 	public function setAuth ($uid, $password) {
 		if (StringUtils::isBlank($password)) {
 			return;
@@ -179,24 +117,12 @@ class CurlHTTP extends HTTP {
 		$this->setAttribute('userpwd', $this->uid . ':' . $this->password);
 	}
 
-	/**
-	 * SSLモードか？
-	 *
-	 * @access public
-	 * @return bool SSLモードならTrue
-	 */
 	public function isTLS ():bool {
-		return $this->ssl;
+		return $this->tls;
 	}
 
-	/**
-	 * SSLモードを設定
-	 *
-	 * @access public
-	 * @param bool $mode SSLモード
-	 */
 	public function setSSL (bool $mode) {
-		$this->ssl = !!$mode;
+		$this->tls = !!$mode;
 		$this->name = null;
 	}
 }

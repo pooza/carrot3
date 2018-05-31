@@ -279,7 +279,7 @@ class Smarty extends \Smarty implements TextRenderer {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return $this->error;
 	}
 

@@ -173,15 +173,4 @@ class SerializeHandler implements \ArrayAccess {
 	public function offsetUnset ($key) {
 		$this->removeAttribute($key);
 	}
-
-	/**
-	 * シリアライズ可能なクラスを返す
-	 *
-	 * @access public
-	 * @return Tuple クラス名の配列
-	 * @static
-	 */
-	static public function getClasses () {
-		return Tuple::create(BS_SERIALIZE_CLASSES);
-	}
 }

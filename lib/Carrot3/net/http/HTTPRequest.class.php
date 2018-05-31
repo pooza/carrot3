@@ -155,7 +155,7 @@ class HTTPRequest extends MIMEDocument {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return 'メソッド又は送信先URLが空欄です。';
 	}
 

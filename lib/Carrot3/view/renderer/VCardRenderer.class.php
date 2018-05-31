@@ -82,7 +82,7 @@ class VCardRenderer extends ParameterHolder implements Renderer {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return null;
 	}
 }

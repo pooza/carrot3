@@ -99,7 +99,7 @@ class PlainTextRenderer implements TextRenderer, MessageContainer, \IteratorAggr
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return null;
 	}
 

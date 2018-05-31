@@ -115,7 +115,7 @@ class YAMLConfigParser extends \Spyc implements ConfigParser {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		return '要素が含まれていません。';
 	}
 }

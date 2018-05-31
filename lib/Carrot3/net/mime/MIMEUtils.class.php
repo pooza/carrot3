@@ -166,7 +166,7 @@ class MIMEUtils {
 	 * @return string メインタイプ
 	 * @static
 	 */
-	static public function getMainType ($type) {
+	static public function getMainType ($type):string {
 		$header = MIMEHeader::create('Content-Type');
 		$header->setContents($type);
 		return $header['main_type'];

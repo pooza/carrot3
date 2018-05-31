@@ -156,7 +156,7 @@ abstract class Database extends \PDO implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return string エラーメッセージ
 	 */
-	public function getError () {
+	public function getError ():?string {
 		$err = self::errorInfo();
 		return StringUtils::convertEncoding($err[2]);
 	}
