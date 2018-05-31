@@ -1,24 +1,9 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- */
-
 namespace Carrot3;
 
-/**
- * 例外
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class Exception extends \Exception {
 	use BasicObject;
 
-	/**
-	 * @access public
-	 * @param mixed $message メッセージ
-	 * @param int $code コード
-	 * @param Exception $prev 直前の例外。例外の連結に使用。
-	 */
 	public function __construct ($message = null, $code = 0, Exception $prev = null) {
 		if ($message instanceof MessageContainer) {
 			$message = $message->getMessage();
@@ -35,12 +20,6 @@ class Exception extends \Exception {
 		}
 	}
 
-	/**
-	 * アラートをとばす
-	 *
-	 * @access public
-	 * @return string 名前
-	 */
 	public function alert () {
 		$json = new JSONRenderer;
 		$json->setContents([
@@ -54,22 +33,10 @@ class Exception extends \Exception {
 		}
 	}
 
-	/**
-	 * ログを書き込むか
-	 *
-	 * @access public
-	 * @return bool ログを書き込むならTrue
-	 */
 	public function isLoggable ():bool {
 		return true;
 	}
 
-	/**
-	 * アラートを送るか
-	 *
-	 * @access public
-	 * @return bool アラートを送るならTrue
-	 */
 	public function isAlertable ():bool {
 		return false;
 	}

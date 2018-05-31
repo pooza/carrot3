@@ -1,17 +1,6 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage file
- */
-
 namespace Carrot3;
 
-/**
- * ディレクトリエントリ
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- * @abstract
- */
 abstract class DirectoryEntry {
 	use BasicObject;
 	protected $path;
@@ -21,12 +10,6 @@ abstract class DirectoryEntry {
 	private $linkTarget;
 	protected $directory;
 
-	/**
-	 * ユニークなファイルIDを返す
-	 *
-	 * @access public
-	 * @return int ID
-	 */
 	public function getID () {
 		if (!$this->id) {
 			$this->id = Crypt::digest([
@@ -37,35 +20,14 @@ abstract class DirectoryEntry {
 		return $this->id;
 	}
 
-	/**
-	 * 名前を返す
-	 *
-	 * @access public
-	 * @return string 名前
-	 */
 	public function getName ():string {
 		return basename($this->getPath());
 	}
 
-	/**
-	 * 名前を設定
-	 *
-	 * renameのエイリアス
-	 *
-	 * @access public
-	 * @param string $name 新しい名前
-	 * @final
-	 */
 	final public function setName (string $name) {
 		return $this->rename($name);
 	}
 
-	/**
-	 * リネーム
-	 *
-	 * @access public
-	 * @param string $name 新しい名前
-	 */
 	public function rename (string $name) {
 		if (!$this->isExists()) {
 			throw new FileException($this . 'が存在しません。');
@@ -87,30 +49,12 @@ abstract class DirectoryEntry {
 		$this->getDirectory()->clearEntryNames();
 	}
 
-	/**
-	 * 削除
-	 *
-	 * @access public
-	 * @abstract
-	 */
 	abstract public function delete ();
 
-	/**
-	 * パスを返す
-	 *
-	 * @access public
-	 * @return string パス
-	 */
 	public function getPath () {
 		return $this->path;
 	}
 
-	/**
-	 * パスを設定
-	 *
-	 * @access protected
-	 * @param string $path パス
-	 */
 	protected function setPath ($path) {
 		if (!Utils::isPathAbsolute($path) || StringUtils::isContain('../', $path)) {
 			$message = new StringFormat('パス"%s"が正しくありません。');
@@ -121,12 +65,6 @@ abstract class DirectoryEntry {
 		$this->suffix = null;
 	}
 
-	/**
-	 * 短いパスを返す
-	 *
-	 * @access public
-	 * @return string 短いパス
-	 */
 	public function getShortPath () {
 		if (!$this->shortPath) {
 			$this->shortPath = str_replace(
@@ -138,12 +76,6 @@ abstract class DirectoryEntry {
 		return $this->shortPath;
 	}
 
-	/**
-	 * 移動
-	 *
-	 * @access public
-	 * @param Directory $dir 移動先ディレクトリ
-	 */
 	public function moveTo (Directory $dir) {
 		if (!$this->isExists()) {
 			throw new FileException($this . 'が存在しません。');
@@ -161,14 +93,7 @@ abstract class DirectoryEntry {
 		$this->setPath($path);
 	}
 
-	/**
-	 * コピー
-	 *
-	 * @access public
-	 * @param Directory $dir コピー先ディレクトリ
-	 * @return File コピーされたファイル
-	 */
-	public function copyTo (Directory $dir) {
+	public function copyTo (Directory $dir):DirectoryEntry {
 		$path = $dir->getPath() . '/' . $this->getName();
 		if (!copy($this->getPath(), $path)) {
 			throw new FileException($this . 'をコピーできません。');
@@ -177,23 +102,12 @@ abstract class DirectoryEntry {
 		return new $class($path);
 	}
 
-	/**
-	 * ドットファイル等を削除
-	 *
-	 * @access public
-	 */
 	public function clearDottedFiles () {
 		if ($this->isDotted()) {
 			$this->delete();
 		}
 	}
 
-	/**
-	 * サフィックスを返す
-	 *
-	 * @access public
-	 * @return string サフィックス
-	 */
 	public function getSuffix () {
 		if (!$this->suffix) {
 			$this->suffix = FileUtils::getSuffix($this->getName());
@@ -201,42 +115,18 @@ abstract class DirectoryEntry {
 		return $this->suffix;
 	}
 
-	/**
-	 * ベース名を返す
-	 *
-	 * @access public
-	 * @return string ベース名
-	 */
 	public function getBaseName () {
 		return basename($this->getPath(), $this->getSuffix());
 	}
 
-	/**
-	 * 名前がドットから始まるか？
-	 *
-	 * @access public
-	 * @return bool ドットから始まるならTrue
-	 */
 	public function isDotted ():bool {
 		return FileUtils::isDottedName($this->getName());
 	}
 
-	/**
-	 * シンボリックリンクか？
-	 *
-	 * @access public
-	 * @return bool シンボリックリンクならTrue
-	 */
 	public function isLink ():bool {
 		return is_link($this->getPath());
 	}
 
-	/**
-	 * リンク先を返す
-	 *
-	 * @access public
-	 * @return DirectoryEntry リンク先
-	 */
 	public function getLinkTarget () {
 		if ($this->isLink() && !$this->linkTarget) {
 			$class = Utils::getClass($this);
@@ -245,14 +135,6 @@ abstract class DirectoryEntry {
 		return $this->linkTarget;
 	}
 
-	/**
-	 * シンボリックリンクを作成
-	 *
-	 * @access public
-	 * @param Directory $dir 作成先ディレクトリ
-	 * @param string $name リンクのファイル名。空欄の場合は、元ファイルと同じ。
-	 * @return DirectoryEntry リンク先
-	 */
 	public function createLink (Directory $dir, string $name = null) {
 		if (StringUtils::isBlank($name)) {
 			$name = $this->getName();
@@ -266,12 +148,6 @@ abstract class DirectoryEntry {
 		return $dir->getEntry($name);
 	}
 
-	/**
-	 * 親ディレクトリを返す
-	 *
-	 * @access public
-	 * @return Directory ディレクトリ
-	 */
 	public function getDirectory () {
 		if (!$this->directory) {
 			$this->directory = new Directory(dirname($this->getPath()));
@@ -279,24 +155,12 @@ abstract class DirectoryEntry {
 		return $this->directory;
 	}
 
-	/**
-	 * 作成日付を返す
-	 *
-	 * @access public
-	 * @return Date 作成日付
-	 */
 	public function getCreateDate ():?Date {
 		if ($this->isExists()) {
 			return Date::create(filectime($this->getPath()), Date::TIMESTAMP);
 		}
 	}
 
-	/**
-	 * 更新日付を返す
-	 *
-	 * @access public
-	 * @return Date 更新日付
-	 */
 	public function getUpdateDate ():?Date {
 		if ($this->isExists()) {
 			return Date::create(filemtime($this->getPath()), Date::TIMESTAMP);
@@ -304,43 +168,18 @@ abstract class DirectoryEntry {
 		return null;
 	}
 
-	/**
-	 * 存在するか？
-	 *
-	 * @access public
-	 * @return bool 存在するならtrue
-	 */
 	public function isExists ():bool {
 		return file_exists($this->getPath());
 	}
 
-	/**
-	 * 存在し、かつ読めるか？
-	 *
-	 * @access public
-	 * @return bool 読めればtrue
-	 */
 	public function isReadable ():bool {
 		return is_readable($this->getPath());
 	}
 
-	/**
-	 * 存在し、書き込めるか？
-	 *
-	 * @access public
-	 * @return bool 書き込めればtrue
-	 */
 	public function isWritable ():bool {
 		return is_writable($this->getPath());
 	}
 
-	/**
-	 * ファイルモード（パーミッション）を設定
-	 *
-	 * @access public
-	 * @param int $mode ファイルモード
-	 * @param int $flags フラグのビット列
-	 */
 	public function setMode (int $mode, int $flags = 0) {
 		if (!chmod($this->getPath(), $mode)) {
 			throw new FileException($this . 'のファイルモードを変更できません。');
