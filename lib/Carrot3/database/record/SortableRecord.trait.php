@@ -1,27 +1,11 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage database.record
- */
-
 namespace Carrot3;
 
-/**
- * ソート可能なテーブルのレコード
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 trait SortableRecord {
 	protected $next;
 	protected $prev;
 	protected $similars;
 
-	/**
-	 * 前レコードを返す
-	 *
-	 * @access public
-	 * @return SortableRecord 前レコード
-	 */
 	public function getPrev () {
 		if (!$this->prev) {
 			$iterator = $this->getSimilars()->getIterator();
@@ -34,12 +18,6 @@ trait SortableRecord {
 		return $this->prev;
 	}
 
-	/**
-	 * 次レコードを返す
-	 *
-	 * @access public
-	 * @return SortableRecord 次レコード
-	 */
 	public function getNext () {
 		if (!$this->next) {
 			$iterator = $this->getSimilars()->getIterator();
@@ -52,32 +30,14 @@ trait SortableRecord {
 		return $this->next;
 	}
 
-	/**
-	 * 更新可能か？
-	 *
-	 * @access protected
-	 * @return bool 更新可能ならTrue
-	 */
 	protected function isUpdatable ():bool {
 		return true;
 	}
 
-	/**
-	 * 削除可能か？
-	 *
-	 * @access protected
-	 * @return bool 削除可能ならTrue
-	 */
 	protected function isDeletable ():bool {
 		return true;
 	}
 
-	/**
-	 * 同種のレコードを返す
-	 *
-	 * @access protected
-	 * @return SortableTableHandler テーブル
-	 */
 	protected function getSimilars () {
 		if (!$this->similars) {
 			$this->similars = TableHandler::create(Utils::getShortClass($this));
@@ -91,12 +51,6 @@ trait SortableRecord {
 		return $this->similars;
 	}
 
-	/**
-	 * 順位を変更
-	 *
-	 * @access public
-	 * @param string $option (up|down|top|bottom)
-	 */
 	public function setOrder ($option) {
 		$rank = 0;
 		foreach ($ids = $this->getSimilars()->getIDs() as $id) {
@@ -138,14 +92,6 @@ trait SortableRecord {
 		}
 	}
 
-	/**
-	 * 順位を設定
-	 *
-	 * $this->update()を使用すると非常に重くなるので、SQLを直接実行する。
-	 *
-	 * @access protected
-	 * @param int $rank 順位
-	 */
 	protected function setRank (int $rank) {
 		$record = $this;
 		$values = [$record->getTable()->getRankField() => $rank];
@@ -153,7 +99,7 @@ trait SortableRecord {
 			$this->getDatabase()->exec(SQL::getUpdateQuery(
 				$record->getTable(),
 				$values,
-				$record->getCriteria()
+				$record->createCriteria()
 			));
 			if (!$record = $record->getParent()) {
 				break;

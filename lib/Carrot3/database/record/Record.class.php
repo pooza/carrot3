@@ -1,17 +1,6 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage database.record
- */
-
 namespace Carrot3;
 
-/**
- * テーブルのレコード
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- * @abstract
- */
 abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, ImageContainer, HTTPRedirector {
 	use HTTPRedirectorObject, BasicObject;
 	protected $attributes;
@@ -20,11 +9,6 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 	protected $records;
 	const ACCESSOR = 'i';
 
-	/**
-	 * @access public
-	 * @param TableHandler $table テーブルハンドラ
-	 * @param iterable $attributes 属性の連想配列
-	 */
 	public function __construct (TableHandler $table, iterable $attributes = null) {
 		$this->table = $table;
 		$this->attributes = Tuple::create();
@@ -34,11 +18,6 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		}
 	}
 
-	/**
-	 * @access public
-	 * @param string $method メソッド名
-	 * @param mixed $values 引数
-	 */
 	public function __call ($method, $values) {
 		if (mb_ereg('^get([[:upper:]][[:alnum:]]+)$', $method, $matches)) {
 			$name = $matches[1];
@@ -54,61 +33,26 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		throw new \BadFunctionCallException($message);
 	}
 
-	/**
-	 * 属性値を初期化
-	 *
-	 * @access public
-	 * @param iterable $attributes 属性の連想配列
-	 * @return bool
-	 */
 	public function initialize (iterable $attributes) {
 		$this->attributes->clear();
 		$this->attributes->setParameters($attributes);
 		return true;
 	}
 
-	/**
-	 * 属性を返す
-	 *
-	 * @access public
-	 * @param string $name 属性名
-	 * @return string 属性値
-	 */
 	public function getAttribute (string $name) {
 		return $this->attributes[StringUtils::toLower($name)];
 	}
 
-	/**
-	 * 全属性を返す
-	 *
-	 * @access public
-	 * @return Tuple 全属性値
-	 */
 	public function getAttributes ():Tuple {
 		return clone $this->attributes;
 	}
 
-	/**
-	 * 抽出条件を返す
-	 *
-	 * @access protected
-	 * @return Criteria 抽出条件
-	 */
 	protected function createCriteria ():Criteria {
 		$criteria = $this->getDatabase()->createCriteria();
 		$criteria->register($this->getTable()->getKeyField(), $this);
 		return $criteria;
 	}
 
-	/**
-	 * 更新
-	 *
-	 * @access public
-	 * @param mixed $values 更新する値
-	 * @param int $flags フラグのビット列
-	 *   Database::WITHOUT_LOGGING ログを残さない
-	 *   Database::WITHOUT_SERIALIZE シリアライズしない
-	 */
 	public function update ($values, int $flags = 0) {
 		if (!$this->isUpdatable()) {
 			throw new DatabaseException($this . 'を更新することはできません。');
@@ -139,32 +83,14 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		}
 	}
 
-	/**
-	 * 更新可能か？
-	 *
-	 * @access protected
-	 * @return bool 更新可能ならTrue
-	 */
 	protected function isUpdatable ():bool {
 		return false;
 	}
 
-	/**
-	 * 更新日付のみ更新
-	 *
-	 * @access public
-	 */
 	public function touch () {
 		$this->update([], Database::WITHOUT_LOGGING);
 	}
 
-	/**
-	 * 削除
-	 *
-	 * @access public
-	 * @param int $flags フラグのビット列
-	 *   Database::WITHOUT_LOGGING ログを残さない
-	 */
 	public function delete (int $flags = 0) {
 		if (!$this->isDeletable()) {
 			throw new DatabaseException($this . 'を削除することはできません。');
@@ -191,101 +117,46 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		foreach ($this->getTable()->getAttachmentNames() as $field) {
 			$this->removeAttachment($field);
 		}
-		$this->removeSerialized();
+		if ($this instanceof Serializable) {
+			$this->removeSerialized();
+		}
 		if (!($flags & Database::WITHOUT_LOGGING)) {
 			$this->getDatabase()->log($this . 'を削除しました。');
 		}
 	}
 
-	/**
-	 * 削除可能か？
-	 *
-	 * @access protected
-	 * @return bool 削除可能ならTrue
-	 */
 	protected function isDeletable ():bool {
 		return false;
 	}
 
-	/**
-	 * 表示して良いか？
-	 *
-	 * @access public
-	 * @return bool 表示して良いならTrue
-	 */
 	public function isVisible ():bool {
 		return ($this['status'] == 'show');
 	}
 
-	/**
-	 * 生成元テーブルハンドラを返す
-	 *
-	 * @access public
-	 * @return TableHandler テーブルハンドラ
-	 */
 	public function getTable () {
 		return $this->table;
 	}
 
-	/**
-	 * データベースを返す
-	 *
-	 * @access public
-	 * @return Database データベース
-	 */
 	public function getDatabase ():Database {
 		return $this->getTable()->getDatabase();
 	}
 
-	/**
-	 * 親レコードを返す
-	 *
-	 * 適切にオーバーライドすれば、update等の動作が少し利口に。
-	 *
-	 * @access public
-	 * @return Record 親レコード
-	 */
 	public function getParent () {
 		return null;
 	}
 
-	/**
-	 * IDを返す
-	 *
-	 * @access public
-	 * @return int ID
-	 */
 	public function getID () {
 		return $this[$this->getTable()->getKeyField()];
 	}
 
-	/**
-	 * 更新日を返す
-	 *
-	 * @access public
-	 * @return Date 更新日
-	 */
 	public function getUpdateDate ():?Date {
 		return Date::create($this[$this->getTable()->getUpdateDateField()]);
 	}
 
-	/**
-	 * 作成日を返す
-	 *
-	 * @access public
-	 * @return Date 作成日
-	 */
 	public function getCreateDate ():?Date {
 		return Date::create($this[$this->getTable()->getCreateDateField()]);
 	}
 
-	/**
-	 * メールを送信
-	 *
-	 * @access public
-	 * @param string $template テンプレート名
-	 * @param iterable $params アサインするパラメータ
-	 */
 	public function sendMail ($template, iterable $params = []) {
 		try {
 			$mail = new SmartyMail;
@@ -304,13 +175,6 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		}
 	}
 
-	/**
-	 * 添付ファイルを返す
-	 *
-	 * @access public
-	 * @param string $name 名前
-	 * @return File 添付ファイル
-	 */
 	public function getAttachment (string $name):?File {
 		$finder = new MediaFileFinder;
 		$finder->clearDirectories();
@@ -319,14 +183,6 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		return $finder->execute($this->getAttachmentBaseName($name));
 	}
 
-	/**
-	 * 添付ファイルを設定
-	 *
-	 * @access public
-	 * @param string $name 名前
-	 * @param File $file 添付ファイル
-	 * @param string $filename ファイル名
-	 */
 	public function setAttachment (string $name, File $file, ?string $filename = null) {
 		if ($file instanceof ImageFile) {
 			$this->removeImageFile($name);
@@ -351,12 +207,6 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		$this->getDatabase()->log($message);
 	}
 
-	/**
-	 * 添付ファイルを削除する
-	 *
-	 * @access public
-	 * @param string $name 名前
-	 */
 	public function removeAttachment (string $name) {
 		if ($file = $this->getAttachment($name)) {
 			$file->delete();
@@ -367,24 +217,10 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		}
 	}
 
-	/**
-	 * 添付ファイルベース名を返す
-	 *
-	 * @access protected
-	 * @param string $name 名前
-	 * @return string 添付ファイルベース名
-	 */
 	protected function getAttachmentBaseName (string $name) {
 		return sprintf('%010d_%s', $this->getID(), $name);
 	}
 
-	/**
-	 * 添付ファイルのダウンロード時の名を返す
-	 *
-	 * @access public
-	 * @param string $name 名前
-	 * @return string ダウンロード時ファイル名
-	 */
 	public function getAttachmentFileName (string $name):?string {
 		if ($file = $this->getAttachment($name)) {
 			return $this->getAttachmentBaseName($name) . $file->getSuffix();
@@ -392,12 +228,6 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		return null;
 	}
 
-	/**
-	 * 添付ファイルをまとめて設定
-	 *
-	 * @access public
-	 * @param WebRequest $request リクエスト
-	 */
 	public function setAttachments (WebRequest $request) {
 		$dir = $request->getSession()->getDirectory();
 		foreach ($this->getTable()->getImageNames() as $name) {
@@ -419,36 +249,14 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		}
 	}
 
-	/**
-	 * キャッシュをクリア
-	 *
-	 * @access public
-	 * @param string $size
-	 */
 	public function removeImageCache (string $size) {
 		(new ImageManager)->removeEntry($this, $size);
 	}
 
-	/**
-	 * 画像の情報を返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @param int $pixel ピクセル数
-	 * @param int $flags フラグのビット列
-	 * @return Tuple 画像の情報
-	 */
 	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0) {
 		return (new ImageManager)->getInfo($this, $size, $pixel, $flags);
 	}
 
-	/**
-	 * 画像ファイルを返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @return ImageFile 画像ファイル
-	 */
 	public function getImageFile (string $size):?ImageFile {
 		foreach (Image::getSuffixes() as $suffix) {
 			$name = $this->getAttachmentBaseName($size) . $suffix;
@@ -459,35 +267,15 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		return null;
 	}
 
-	/**
-	 * 画像ファイルを設定
-	 *
-	 * @access public
-	 * @param string $size 画像名
-	 * @param ImageFile $file 画像ファイル
-	 */
 	public function setImageFile (string $size, ImageFile $file) {
 		$this->setAttachment($size, $file);
 	}
 
-	/**
-	 * 画像ファイルを削除する
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 */
 	public function removeImageFile (string $size) {
 		$this->removeImageCache($size);
 		$this->removeAttachment($size);
 	}
 
-	/**
-	 * ラベルを返す
-	 *
-	 * @access public
-	 * @param string $lang 言語
-	 * @return string ラベル
-	 */
 	public function getLabel (?string $lang = 'ja'):?string {
 		foreach (['name', 'label', 'title'] as $name) {
 			foreach ([null, $this->getTable()->getName() . '_'] as $prefix) {
@@ -501,61 +289,26 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		return null;
 	}
 
-	/**
-	 * ラベルを返す
-	 *
-	 * getLabelのエイリアス
-	 *
-	 * @access public
-	 * @param string $lang 言語
-	 * @return string ラベル
-	 * @final
-	 */
 	final public function getName (?string $lang = 'ja'):?string {
 		return $this->getLabel($lang);
 	}
 
-	/**
-	 * @access public
-	 * @param string $key 添え字
-	 * @return bool 要素が存在すればTrue
-	 */
 	public function offsetExists ($key) {
 		return $this->attributes->hasParameter($key);
 	}
 
-	/**
-	 * @access public
-	 * @param string $key 添え字
-	 * @return mixed 要素
-	 */
 	public function offsetGet ($key) {
 		return $this->getAttribute($key);
 	}
 
-	/**
-	 * @access public
-	 * @param string $key 添え字
-	 * @param mixed 要素
-	 */
 	public function offsetSet ($key, $value) {
 		throw new DatabaseException('レコードの属性を直接更新することはできません。');
 	}
 
-	/**
-	 * @access public
-	 * @param string $key 添え字
-	 */
 	public function offsetUnset ($key) {
 		throw new DatabaseException('レコードの属性は削除できません。');
 	}
 
-	/**
-	 * リダイレクト対象
-	 *
-	 * @access public
-	 * @return URL
-	 */
 	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			if (StringUtils::isBlank($this['url'])) {
@@ -572,20 +325,10 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 		return $this->url;
 	}
 
-	/**
-	 * アサインすべき値を返す
-	 *
-	 * @access public
-	 * @return Tuple アサインすべき値
-	 */
 	public function assign () {
 		return $this->getAttributes();
 	}
 
-	/**
-	 * @access public
-	 * @return string 基本情報
-	 */
 	public function __toString () {
 		try {
 			$word = $this->translator->translate($this->getTable()->getName());
