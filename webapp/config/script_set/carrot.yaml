@@ -1,27 +1,6 @@
-# JavaScriptセット設定ファイル
-#
-# @package jp.co.b-shock.carrot3
-# @author 小石達也 <tkoishi@b-shock.co.jp>
-
 carrot:
   files:
-    - prototype
-    - scriptaculous/effects
-    - scriptaculous/builder
-    - scriptaculous/dragdrop
-    - scriptaculous/slider
-    - ajaxzip3
-    - lightbox
-    - prototabs
-    - protocalendar/protocalendar
-    - protocalendar/lang_ja
-    - usermenu
+    - foreach
+    - doller
     - elevator
-    - yahoo.color
-    - color_picker
     - activity_indicator
-    - carrot
-    - application
-lightpop:
-  files:
-    - jquery.lightpop

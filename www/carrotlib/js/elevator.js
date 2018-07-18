@@ -1,33 +1,21 @@
-/**
- * エレベータ処理
- *
- * @package jp.co.b-shock.carrot3
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
+function Elevator (element, options) {
+  var x = (options.x || 0);
+  var yMin = (options.yMin || 0);
+  var yMargin = (options.yMargin || 10);
+  var seconds = (options.seconds || 0.1);
+  var container = (options.container || window);
 
-Elevator = Class.create({
-  initialize: function (element, options) {
-    element = $(element);
-    options = Object.extend({
-      x: 0,
-      yMin: 0,
-      yMargin: 10,
-      seconds: 0.1,
-      container: window
-    }, options);
+  setInterval(function () {
+    var y = container.pageYOffset;
+    if (y < yMin) {
+      y = yMin;
+    } else {
+      y = y + yMargin;
+    }
+    element.style.position = 'absolute';
+    element.style.left = x + 'px';
+    element.style.top = y + 'px';
+  }, seconds);
+}
 
-    new PeriodicalExecuter(function () {
-      var y = options.container.pageYOffset;
-      if (y < options.yMin) {
-        y = options.yMin;
-      } else {
-        y = y + options.yMargin;
-      }
-      element.style.position = 'absolute';
-      element.style.left = options.x + 'px';
-      element.style.top = y + 'px';
-    }, options.seconds);
-  },
 
-  initialized: true
-});

@@ -1,56 +1,60 @@
-/**
- * インジケータ
- *
- * @package jp.co.b-shock.carrot3
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
+function ActivityIndicator () {
+  var progress = document.createElement('progress');
+  var img = document.createElement('img');
+  img.src = '/carrotlib/images/indicator.gif';
+  img.width = 220;
+  img.height = 19;
+  img.style.margin = '10px';
+  progress.appendChild(img);
 
-ActivityIndicator = Class.create({
-  initialize: function () {
-    this.img = document.createElement('img');
-    this.img.src = '/carrotlib/images/indicator.gif';
-    this.img.width = 220;
-    this.img.height = 19;
-    this.img.style.margin = '10px';
+  var container = document.createElement('div');
+  container.style.display = 'none';
+  container.style.position = 'fixed';
+  container.style.left = '50%';
+  container.style.top = '50%';
+  container.style.zIndex = 9999;
+  container.style.backgroundColor = '#fff';
+  container.style.textAlign = 'center';
+  container.style.borderWidth = '1px';
+  container.style.borderStyle = 'solid';
+  container.style.borderColor = '#000';
+  container.style.opacity = 0.9;
+  container.appendChild(progress);
 
-    this.container = document.createElement('div');
-    this.container.style.display = 'none';
-    this.container.style.position = 'fixed';
-    this.container.style.left = '50%';
-    this.container.style.top = '50%';
-    this.container.style.zIndex = 9999;
-    this.container.style.width = '240px';
-    this.container.style.height = '40px';
-    this.container.style.backgroundColor = '#fff';
-    this.container.style.textAlign = 'center';
-    this.container.style.borderWidth = '1px';
-    this.container.style.borderStyle = 'solid';
-    this.container.style.borderColor = '#000';
-    this.container.style.opacity = 0.9;
-    this.container.style.filter = 'alpha(opacity=90)';
-    this.container.appendChild(this.img);
+  document.getElementsByTagName('body')[0].appendChild(container);
 
-    $$('body')[0].appendChild(this.container);
-  },
+  this.show = function () {
+    container.style.display = 'block';
+    container.style.width = (progress.clientWidth + 8) + 'px';
+    container.style.height = (progress.clientHeight + 8) + 'px';
+    container.style.marginLeft = (-0.5 * progress.offsetWidth) + 'px';
+    container.style.marginTop = (-0.5 * progress.offsetHeight) + 'px';
+  }
 
-  show: function () {
-    this.container.style.display = 'block';
-    this.container.style.marginLeft = (-0.5 * this.img.offsetWidth) + 'px';
-    this.container.style.marginTop = (-0.5 * this.img.offsetHeight) + 'px';
-  },
+  this.hide = function () {
+    container.style.display = 'none';
+  }
 
-  hide: function () {
-    this.container.style.display = 'none';
-  },
+  this.setMax = function (max) {
+    if (max === undefined || max === null) {
+      progress.removeAttribute('value');
+      progress.removeAttribute('max');
+    } else {
+      progress.max = max;
+      progress.value = 0;
+    }
+  }
 
-  initialized: true
-});
+  this.setValue = function (value) {
+    progress.value = value;
+  }
+}
 
-document.observe('dom:loaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
   var indicator = new ActivityIndicator();
-  $$('form').each(function (frm) {
-    if (!Element.hasClassName(frm, 'no_indicator')) {
-      frm.observe('submit', function (event) {
+  document.getElementsByTagName('form').forEach(function (frm) {
+    if (!frm.className.match(/no_indicator/)) {
+      frm.addEventListener('submit', function () {
         indicator.show();
       });
     }

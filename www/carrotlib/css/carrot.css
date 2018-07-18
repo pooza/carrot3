@@ -1,10 +1,3 @@
-/**
- * carrot標準スタイルシート
- *
- * @package jp.co.b-shock.carrot3
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
-
 body {
   color: black;
   font-family: serif;
@@ -147,7 +140,7 @@ table th.holiday {
   display: block;
   height:0px;
   clear:both;
-  line-height:0; 
+  line-height:0;
   visibility:hidden;
 }
 .clearfix { /*for IE 5.5-7*/

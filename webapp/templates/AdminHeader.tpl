@@ -33,17 +33,23 @@
   </ul>
 </nav>
 <script>
-document.observe('dom:loaded', function () {
-  new Elevator('left_menu', {
+document.addEventListener('DOMContentLoaded', function () {
+  new Elevator($('left_menu'), {
     x: 10,
     yMin: 30,
-    yMargin: 10
+    yMargin: 10,
   });
-  new PeriodicalExecuter(function () {
-    new Ajax.Request('/Ping', {
-      method: 'get'
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  setInterval(function () {
+    window.superagent.get('/Ping')
+    .end(function (error, response) {
+      if (!response.ok) {
+        alert('レスポンスが不正です。(' + error + ')');
+      }
     });
-  }, 300);
+  }, 60000);
 });
 </script>
 {/if}

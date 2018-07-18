@@ -74,7 +74,7 @@ ffmpeg:
     mp3:
 geocode:
   map:
-    function: CarrotMapsLib.handleMap
+    function: MapsLib.handleMap
 image:
   renderers:
     default:

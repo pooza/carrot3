@@ -1,14 +1,4 @@
-# スタイルセット設定ファイル
-#
-# @package jp.co.b-shock.carrot3
-# @author 小石達也 <tkoishi@b-shock.co.jp>
-
 carrot:
   files:
     - html5-reset
     - carrot
-    - protocalendar
-    - prototabs
-    - lightbox
-    - color_picker
-    - application
