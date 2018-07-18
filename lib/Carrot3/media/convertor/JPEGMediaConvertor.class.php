@@ -19,7 +19,7 @@ class JPEGMediaConvertor extends MediaConvertor {
 	 * @access public
 	 * @return string サフィックス
 	 */
-	public function getSuffix () {
+	public function getSuffix ():string {
 		return '.jpg';
 	}
 

@@ -140,7 +140,7 @@ class Module implements HTTPRedirector, Assignable {
 	 * @param string $name ディレクトリ名
 	 * @return Directory 対象ディレクトリ
 	 */
-	public function getDirectory (string $name = 'module') {
+	public function getDirectory (string $name = 'module'):?Directory {
 		if (!$this->directories) {
 			$this->directories = Tuple::create();
 		}

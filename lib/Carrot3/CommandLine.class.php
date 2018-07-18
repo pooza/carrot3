@@ -42,7 +42,7 @@ class CommandLine {
 	 * @access public
 	 * @return Directory ディレクトリプレフィックス
 	 */
-	public function getDirectory () {
+	public function getDirectory ():?Directory {
 		return $this->directory;
 	}
 

@@ -56,7 +56,7 @@ abstract class MediaConvertor {
 	 * @access public
 	 * @return string サフィックス
 	 */
-	public function getSuffix () {
+	public function getSuffix ():string {
 		return '.' . StringUtils::toLower($this->getName());
 	}
 

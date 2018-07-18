@@ -1,17 +1,6 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage image.attachment
- */
-
 namespace Carrot3;
 
-/**
- * 添付ファイルのダウンロードアクション
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- * @abstract
- */
 abstract class AttachmentAction extends RecordAction {
 	public function execute () {
 		$this->request->setAttribute(

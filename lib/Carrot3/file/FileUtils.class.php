@@ -5,7 +5,7 @@ class FileUtils {
 	private function __construct () {
 	}
 
-	static public function getDirectory (string $name) {
+	static public function getDirectory (string $name):?Directory {
 		return DirectoryLayout::getInstance()[$name];
 	}
 
@@ -23,7 +23,7 @@ class FileUtils {
 		}
 	}
 
-	static public function getSuffix (string $name) {
+	static public function getSuffix (string $name):string {
 		$parts = StringUtils::explode('.', $name);
 		if (1 < $parts->count()) {
 			return StringUtils::toLower('.' . $parts->getIterator()->getLast());

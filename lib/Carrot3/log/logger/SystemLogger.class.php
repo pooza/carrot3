@@ -64,7 +64,7 @@ class SystemLogger extends Logger {
 	 * @access public
 	 * @return LogDirectory ログディレクトリ
 	 */
-	public function getDirectory () {
+	public function getDirectory ():Directory {
 		return FileUtils::getDirectory('log');
 	}
 

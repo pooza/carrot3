@@ -90,7 +90,7 @@ abstract class Platform extends ParameterHolder {
 	 * @param string $name ディレクトリ名
 	 * @return Directory ディレクトリ
 	 */
-	public function getDirectory (string $name) {
+	public function getDirectory (string $name):?Directory {
 		$constants = new ConstantHandler($name);
 		foreach ([$this->getName(), 'DEFAULT'] as $suffix) {
 			if (!StringUtils::isBlank($path = $constants['DIR_' . $suffix])) {

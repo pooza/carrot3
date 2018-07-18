@@ -65,7 +65,7 @@ abstract class DirectoryEntry {
 		$this->suffix = null;
 	}
 
-	public function getShortPath () {
+	public function getShortPath ():string {
 		if (!$this->shortPath) {
 			$this->shortPath = str_replace(
 				FileUtils::getPath('root') . '/',
@@ -108,14 +108,14 @@ abstract class DirectoryEntry {
 		}
 	}
 
-	public function getSuffix () {
+	public function getSuffix ():string {
 		if (!$this->suffix) {
 			$this->suffix = FileUtils::getSuffix($this->getName());
 		}
 		return $this->suffix;
 	}
 
-	public function getBaseName () {
+	public function getBaseName ():string {
 		return basename($this->getPath(), $this->getSuffix());
 	}
 
@@ -127,7 +127,7 @@ abstract class DirectoryEntry {
 		return is_link($this->getPath());
 	}
 
-	public function getLinkTarget () {
+	public function getLinkTarget ():DirectoryEntry {
 		if ($this->isLink() && !$this->linkTarget) {
 			$class = Utils::getClass($this);
 			$this->linkTarget = new $class(readlink($this->getPath()));
@@ -135,7 +135,7 @@ abstract class DirectoryEntry {
 		return $this->linkTarget;
 	}
 
-	public function createLink (Directory $dir, string $name = null) {
+	public function createLink (Directory $dir, string $name = null):DirectoryEntry {
 		if (StringUtils::isBlank($name)) {
 			$name = $this->getName();
 		}
@@ -148,7 +148,7 @@ abstract class DirectoryEntry {
 		return $dir->getEntry($name);
 	}
 
-	public function getDirectory () {
+	public function getDirectory ():Directory {
 		if (!$this->directory) {
 			$this->directory = new Directory(dirname($this->getPath()));
 		}

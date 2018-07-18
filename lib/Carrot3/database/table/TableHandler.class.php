@@ -806,7 +806,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access public
 	 * @return Directory ディレクトリ
 	 */
-	public function getDirectory () {
+	public function getDirectory ():Directory {
 		return FileUtils::getDirectory($this->getName());
 	}
 

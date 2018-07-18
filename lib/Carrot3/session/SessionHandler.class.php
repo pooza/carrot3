@@ -154,7 +154,7 @@ class SessionHandler implements \ArrayAccess, Assignable {
 	 * @access public
 	 * @return Directory セッションディレクトリ
 	 */
-	public function getDirectory () {
+	public function getDirectory ():Directory {
 		if (!$this->directory) {
 			if (!$this->directory = FileUtils::getDirectory('tmp')->getEntry($this->getID())) {
 				$this->directory = FileUtils::getDirectory('tmp')->createDirectory($this->getID());
