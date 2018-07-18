@@ -1,16 +1,6 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage config.compiler
- */
-
 namespace Carrot3;
 
-/**
- * 規定設定コンパイラ
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class DefaultConfigCompiler extends ConfigCompiler {
 	public function execute (ConfigFile $file) {
 		// $file->serialize()が使用できないケースがある為、直接シリアライズ
@@ -25,14 +15,7 @@ class DefaultConfigCompiler extends ConfigCompiler {
 		return $this->getBody();
 	}
 
-	/**
-	 * 設定配列をシリアライズできる内容に修正
-	 *
-	 * @access protected
-	 * @param iterable $config 対象
-	 * @return Tuple 変換後
-	 */
-	protected function getContents (iterable $config) {
+	protected function getContents (?iterable $config) {
 		return $config;
 	}
 }
