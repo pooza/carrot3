@@ -47,8 +47,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	public function getAllEntryNames ():Tuple {
 		if (!$this->entries) {
 			$this->entries = Tuple::create();
-			$iterator = new \DirectoryIterator($this->getPath());
-			foreach ($iterator as $entry) {
+			foreach (new \DirectoryIterator($this->getPath()) as $entry) {
 				if (!$entry->isDot()) {
 					$this->entries[] = $entry->getFilename();
 				}
@@ -129,8 +128,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 	}
 
 	public function clear () {
-		$iterator = new \DirectoryIterator($this->getPath());
-		foreach ($iterator as $entry) {
+		foreach (new \DirectoryIterator($this->getPath()) as $entry) {
 			if (FileUtils::isDottedName($entry->getFileName())) {
 				continue;
 			}
