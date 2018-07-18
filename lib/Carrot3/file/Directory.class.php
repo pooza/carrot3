@@ -31,7 +31,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		$this->entries = null;
 	}
 
-	public function getEntryNames (int $flags = 0) {
+	public function getEntryNames (int $flags = 0):Tuple {
 		$names = Tuple::create();
 		foreach ($this->getAllEntryNames() as $name) {
 			if (($flags & self::WITHOUT_DOTTED) && FileUtils::isDottedName($name)) {
@@ -44,7 +44,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return $names;
 	}
 
-	public function getAllEntryNames () {
+	public function getAllEntryNames ():Tuple {
 		if (!$this->entries) {
 			$this->entries = Tuple::create();
 			$iterator = new \DirectoryIterator($this->getPath());
@@ -66,7 +66,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		$this->entries = null;
 	}
 
-	public function getEntry (string $name, $class = null) {
+	public function getEntry (string $name, $class = null):?DirectoryEntry {
 		if (StringUtils::isBlank($class)) {
 			$class = $this->getDefaultEntryClass();
 		}
@@ -81,9 +81,10 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 				return new $class($path);
 			}
 		}
+		return null;
 	}
 
-	public function createEntry (string $name, $class = null) {
+	public function createEntry (string $name, $class = null):DirectoryEntry {
 		if (StringUtils::isBlank($class)) {
 			$class = $this->getDefaultEntryClass();
 		}
@@ -164,7 +165,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		LogManager::getInstance()->put($message, $this);
 	}
 
-	public function createDirectory (string $name, $class = 'Carrot3\\Directory') {
+	public function createDirectory (string $name, $class = 'Carrot3\\Directory'):Directory {
 		$path = $this->getPath() . '/' . $name;
 		if (file_exists($path)) {
 			if (!is_dir($path)) {
@@ -188,7 +189,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return $this->url;
 	}
 
-	public function getArchive ($flags = self::WITHOUT_DOTTED) {
+	public function getArchive ($flags = self::WITHOUT_DOTTED):ZipArchive {
 		if (!extension_loaded('zip')) {
 			throw new FileException('zipモジュールがロードされていません。');
 		}
@@ -220,11 +221,11 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 		return true;
 	}
 
-	public function getDefaultEntryClass () {
+	public function getDefaultEntryClass ():string {
 		return $this->loader->getClass('File');
 	}
 
-	public function getSortOrder () {
+	public function getSortOrder ():string {
 		return self::SORT_ASC;
 	}
 

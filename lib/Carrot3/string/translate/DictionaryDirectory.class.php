@@ -41,7 +41,7 @@ class DictionaryDirectory extends Directory {
 	 * @access public
 	 * @return string エントリーのクラス名
 	 */
-	public function getDefaultEntryClass () {
+	public function getDefaultEntryClass ():string {
 		return 'DictionaryFile';
 	}
 }

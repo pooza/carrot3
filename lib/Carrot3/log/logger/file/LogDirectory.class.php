@@ -1,22 +1,7 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage log.logger.file
- */
-
 namespace Carrot3;
 
-/**
- * ログディレクトリ
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class LogDirectory extends Directory {
-
-	/**
-	 * @access public
-	 * @param string $path ディレクトリのパス
-	 */
 	public function __construct ($path = null) {
 		if (!$path) {
 			$path = FileUtils::getPath('log');
@@ -25,33 +10,15 @@ class LogDirectory extends Directory {
 		$this->setDefaultSuffix('.log');
 	}
 
-	/**
-	 * サブディレクトリを持つか？
-	 *
-	 * @access public
-	 * @return bool サブディレクトリを持つならTrue
-	 */
 	public function hasSubDirectory ():bool {
 		return false;
 	}
 
-	/**
-	 * エントリーのクラス名を返す
-	 *
-	 * @access public
-	 * @return string エントリーのクラス名
-	 */
-	public function getDefaultEntryClass () {
+	public function getDefaultEntryClass ():string {
 		return 'LogFile';
 	}
 
-	/**
-	 * ソート順を返す
-	 *
-	 * @access public
-	 * @return string (ソート順 self::SORT_ASC | self::SORT_DESC)
-	 */
-	public function getSortOrder () {
+	public function getSortOrder ():string {
 		return self::SORT_DESC;
 	}
 }
