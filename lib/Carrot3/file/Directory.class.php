@@ -120,9 +120,12 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 				throw new FileException($this . 'を削除できません。');
 			}
 		} else {
-			$this->clear();
-			if (!rmdir($this->getPath())) {
-				throw new FileException($this . 'を削除できません。');
+			$command = new CommandLine('rm');
+			$command->setStderrRedirectable();
+			$command->push('-R');
+			$command->push($this->getPath());
+			if ($command->getReturnCode()) {
+				throw new FileException($command->getResult());
 			}
 		}
 	}
