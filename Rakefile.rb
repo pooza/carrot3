@@ -3,7 +3,7 @@
 # @package jp.co.b-shock.carrot3
 # @author 小石達也 <tkoishi@b-shock.co.jp>
 
-ROOT_DIR = File.expand_path('..', __FILE__)
+ROOT_DIR = File.expand_path(__dir__)
 $LOAD_PATH.push(File.join(ROOT_DIR, 'lib/ruby'))
 
 require 'fileutils'
@@ -15,7 +15,7 @@ require 'carrot/rsyslog_util'
 require File.join(ROOT_DIR, 'webapp/config/Rakefile.local')
 
 desc 'インストール'
-task :install => [
+task install: [
   'var:init',
   'environment:init',
   'htdocs:init',
@@ -26,28 +26,28 @@ task :install => [
 ]
 
 desc 'アンインストール'
-task :uninstall => [
+task uninstall: [
   'htdocs:clean',
   'periodic:clean',
   'rsyslog:clean',
 ]
 
 desc 'テストを実行'
-task :test =>['var:classes:clean'] do
+task test: ['var:classes:clean'] do
   sh "sudo -u #{Carrot::Constants.new['BS_APP_PROCESS_UID']} bin/carrotctl.php -a Test"
 end
 
 namespace :database do
   desc 'データベースを初期化'
-  task :init => ['local:database:init']
+  task init: ['local:database:init']
 end
 
 namespace :environment do
-  task :init => ['file:init']
+  task init: ['file:init']
 
   namespace :file do
     desc 'サーバ環境設定ファイルを作成'
-    task :init => [
+    task init: [
       Carrot::Environment.file_path,
     ]
 
@@ -58,7 +58,7 @@ namespace :environment do
 end
 
 namespace :rsyslog do
-  task :init => [:clean, :create]
+  task init: [:clean, :create]
 
   desc 'rsyslog設定をクリア'
   task :clean do
@@ -72,7 +72,7 @@ namespace :rsyslog do
 end
 
 namespace :htdocs do
-  task :init => [:clean, :create]
+  task init: [:clean, :create]
 
   desc 'htdocsをクリア'
   task :clean do
@@ -87,7 +87,7 @@ end
 
 namespace :periodic do
   desc 'periodicを初期化'
-  task :init => [:clean, :daily, :hourly, :frequently]
+  task init: [:clean, :daily, :hourly, :frequently]
 
   desc 'periodicをクリア'
   task :clean do
@@ -106,15 +106,15 @@ end
 
 namespace :var do
   desc 'varディレクトリを初期化'
-  task :init => [:chmod]
+  task init: [:chmod]
 
   task :chmod do
     puts "chmod 777 #{File.join(ROOT_DIR, 'var/*')}"
-    FileUtils.chmod(0777, Dir.glob(File.join(ROOT_DIR, 'var/*')))
+    FileUtils.chmod(0o777, Dir.glob(File.join(ROOT_DIR, 'var/*')))
   end
 
   desc '各種キャッシュをクリア'
-  task :clean => [
+  task clean: [
     'css:clean',
     'js:clean',
     'image:clean',

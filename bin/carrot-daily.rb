@@ -6,9 +6,7 @@
 # @author 小石達也 <tkoishi@b-shock.co.jp>
 
 path = File.expand_path(__FILE__)
-while (File.ftype(path) == 'link')
-  path = File.expand_path(File.readlink(path))
-end
+path = File.expand_path(File.readlink(path)) while File.ftype(path) == 'link'
 ROOT_DIR = File.expand_path('../..', path)
 $LOAD_PATH.push(File.join(ROOT_DIR, 'lib/ruby'))
 

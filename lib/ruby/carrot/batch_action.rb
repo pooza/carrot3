@@ -8,7 +8,7 @@ require 'carrot/environment'
 
 module Carrot
   class BatchAction < Array
-    def initialize (period)
+    def initialize(period)
       @period = period
       tasks.each do |task|
         register(task)
@@ -18,14 +18,15 @@ module Carrot
     def execute
       log nil
       log "#{Environment.name} #{@period} tasks:"
-      self.each do |action|
+      each do |action|
         log "== module:#{action[:m]} action:#{action[:a]}"
         system(*create_command(action))
       end
     end
 
     private
-    def register (task)
+
+    def register(task)
       task = task.split(':')
       push({
         m: task[0],
@@ -33,16 +34,16 @@ module Carrot
       })
     end
 
-    def create_command (action)
+    def create_command(action)
       command = [
         File.join(Constants.new['BS_SUDO_DIR'], 'bin/sudo'),
         '-u',
         Constants.new['BS_APP_PROCESS_UID'],
         File.join(Constants.new['BS_PHP_DIR'], 'bin/php'),
-        File.join(ROOT_DIR, 'bin/carrotctl.php')
+        File.join(ROOT_DIR, 'bin/carrotctl.php'),
       ]
       action.each do |key, value|
-        command.push("-#{key.to_s}")
+        command.push("-#{key}")
         command.push(value)
       end
       return command
@@ -61,7 +62,7 @@ module Carrot
       return @period == 'frequently'
     end
 
-    def log (message)
+    def log(message)
       puts message unless silent?
     end
   end
