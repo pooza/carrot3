@@ -26,21 +26,20 @@ module Carrot
       exit 1
     end
 
-    def self.carrot? (f = nil)
-      f ||= dest
-      return File.exist?(File.join(f, 'www/carrotctl.php'))
+    def self.carrot?(path = nil)
+      path ||= dest
+      return File.exist?(File.join(path, 'www/carrotctl.php'))
     end
 
-    def self.kariyon? (f = nil)
-      f ||= dest
-      return File.exist?(File.join(f, '.kariyon'))
+    def self.kariyon?(path = nil)
+      path ||= dest
+      return File.exist?(File.join(path, '.kariyon'))
     end
 
-    private
     def self.dest
       return File.join(
         Constants.new['BS_APP_DEPLOY_DIR'],
-        Environment.name
+        Environment.name,
       )
     end
   end

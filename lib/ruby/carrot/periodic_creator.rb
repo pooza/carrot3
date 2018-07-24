@@ -28,27 +28,27 @@ module Carrot
     end
 
     def create
-      unless File.exist?(dest)
-        FileUtils.mkdir_p(File.dirname(dest))
-        self[:source] ||= default_source
-        puts "link #{self[:source]} -> #{dest}"
-        File.symlink(self[:source], dest)
-      end
+      return if File.exist?(dest)
+      FileUtils.mkdir_p(File.dirname(dest))
+      self[:source] ||= default_source
+      puts "link #{self[:source]} -> #{dest}"
+      File.symlink(self[:source], dest)
     end
 
-    private
     def self.dirs
       dirs = []
       ['daily', 'hourly', 'frequently'].each do |period|
         case Environment.platform
-          when 'FreeBSD', 'Darwin'
-            dirs.push(File.join('/usr/local/etc/periodic', period))
-          when 'Debian'
-            dirs.push(File.join('/etc', "cron.#{period}"))
+        when 'FreeBSD', 'Darwin'
+          dirs.push(File.join('/usr/local/etc/periodic', period))
+        when 'Debian'
+          dirs.push(File.join('/etc', "cron.#{period}"))
         end
       end
       return dirs
     end
+
+    private
 
     def default_source
       return File.join(ROOT_DIR, "bin/#{self[:basename]}-#{self[:period]}.rb")

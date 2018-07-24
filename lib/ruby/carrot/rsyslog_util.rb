@@ -31,17 +31,16 @@ module Carrot
       exit 1
     end
 
-    private
     def self.program_name
       return "carrot-#{Environment.name}"
     end
 
     def self.template_name
-      return "FilePath#{Environment.name.gsub('.', '').capitalize}"
+      return "FilePath#{Environment.name.delete('.').capitalize}"
     end
 
     def self.log_path
-      return File.join(ROOT_DIR, "/var/log/%$now%.log")
+      return File.join(ROOT_DIR, '/var/log/%$now%.log')
     end
 
     def self.dest

@@ -16,20 +16,21 @@ module Carrot
       end
     end
 
-    def [] (name)
+    def [](name)
       [
         "#{name}_#{Environment.platform}",
         "#{name}_DEFAULT",
         name,
-      ].each do |name|
-        name.upcase!
-        return @constants[name] if @constants[name]
+      ].each do |key|
+        key.upcase!
+        return @constants[key] if @constants[key]
       end
       return nil
     end
 
     private
-    def flatten (prefix, node, glue)
+
+    def flatten(prefix, node, glue)
       contents = {}
       if node.instance_of?(Hash)
         node.each do |key, value|

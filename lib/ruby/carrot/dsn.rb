@@ -7,7 +7,7 @@ require 'carrot/constants'
 
 module Carrot
   class DSN
-    def initialize (name = 'default')
+    def initialize(name = 'default')
       @name = name
       @dsn = Constants.new["BS_PDO_#{name}_DSN"]
       dsn = @dsn.split(':')
@@ -21,7 +21,7 @@ module Carrot
       raise "スキーマ '#{schema_file}' がありません。" unless schema_file
       puts "import #{schema_file} -> #{@db}"
       system("sqlite3 #{@db} < #{schema_file}")
-      File.chmod(0666, @db)
+      File.chmod(0o666, @db)
     rescue => e
       puts "#{e.class}: #{e.message}"
       exit 1
@@ -38,6 +38,7 @@ module Carrot
     end
 
     private
+
     def installable?
       return @scheme == 'sqlite'
     end
