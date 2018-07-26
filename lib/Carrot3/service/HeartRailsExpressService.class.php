@@ -47,7 +47,7 @@ class HeartRailsExpressService extends CurlHTTP {
 				$message[] = $geocode['lat'];
 				$message[] = $geocode['lng'];
 				LogManager::getInstance()->put($message, $this);
-			} catch (\Exception $e) {
+			} catch (\Throwable $e) {
 				return null;
 			}
 		}

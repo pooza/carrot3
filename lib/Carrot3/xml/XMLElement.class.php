@@ -245,7 +245,7 @@ class XMLElement implements \IteratorAggregate {
 	 * @access public
 	 * @return string ネームスペース
 	 */
-	public function getNamespace () {
+	public function getNamespace ():?string {
 		return $this->getAttribute('xmlns');
 	}
 
@@ -307,7 +307,7 @@ class XMLElement implements \IteratorAggregate {
 		$xml = new DOMDocument('1.0', 'utf-8');
 		try {
 			$xml->loadXML($contents);
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$message = new StringFormat('パースエラーです。 (%s)');
 			$message[] = StringUtils::stripTags($e->getMessage());
 			throw new XMLException($message);

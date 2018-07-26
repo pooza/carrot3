@@ -61,7 +61,7 @@ class Controller {
 
 		try {
 			$action = Module::getInstance($module)->getAction($action);
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$action = $this->getAction('not_found');
 		}
 		$action->forward();
@@ -136,7 +136,7 @@ class Controller {
 	 * $param string $name アクション名
 	 * @return Action 名前で指定されたアクション、指定なしの場合は呼ばれたアクション
 	 */
-	public function getAction (string $name = null) {
+	public function getAction (string $name = null):?Action {
 		if (StringUtils::isBlank($name)) {
 			return $this->actions->getIterator()->getLast();
 		}
@@ -144,6 +144,7 @@ class Controller {
 		if ($module = $this->getModule($constants['MODULE_' . $name . '_MODULE'])) {
 			return $module->getAction($constants['MODULE_' . $name . '_ACTION']);
 		}
+		return null;
 	}
 
 	/**

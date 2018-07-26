@@ -57,7 +57,7 @@ class MIMEHeader extends ParameterHolder {
 		try {
 			$loader = Loader::getInstance();
 			$class = $loader->getClass(str_replace('-', '', $name) . 'MIMEHeader');
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$class = $loader->getClass('MIMEHeader');
 		}
 		$header = new $class;

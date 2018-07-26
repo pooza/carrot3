@@ -58,7 +58,7 @@ abstract class TableAction extends Action {
 			if (StringUtils::isBlank($this->title = $this->getConfig('title'))) {
 				try {
 					$this->title = $this->getModule()->getRecordClass('ja') . '一覧';
-				} catch (\Exception $e) {
+				} catch (\Throwable $e) {
 					$this->title = $this->getName();
 				}
 			}

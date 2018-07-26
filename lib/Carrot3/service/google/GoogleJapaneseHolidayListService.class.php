@@ -175,7 +175,7 @@ class GoogleJapaneseHolidayListService extends CurlHTTP implements HolidayList, 
 				}
 			}
 			(new SerializeHandler)->setAttribute($this, $holidays);
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			// ログのみ
 		}
 	}

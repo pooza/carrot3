@@ -138,7 +138,7 @@ class View extends HTTPResponse {
 	 * @access public
 	 * @return Action アクション
 	 */
-	public function getAction () {
+	public function getAction ():Action {
 		return $this->action;
 	}
 

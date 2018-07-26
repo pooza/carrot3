@@ -788,7 +788,7 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 	 * @access protected
 	 * @return string レコードクラス名
 	 */
-	protected function getRecordClass () {
+	protected function getRecordClass ():?string {
 		if (!$this->recordClass) {
 			$pattern = '\\\\([[:alnum:]]+)' . self::CLASS_SUFFIX . '$';
 			if (mb_ereg($pattern, Utils::getClass($this), $matches)) {

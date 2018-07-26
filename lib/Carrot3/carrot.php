@@ -70,7 +70,7 @@ if (BS_DEBUG) {
 		Controller::getInstance()->dispatch();
 	} catch (Exception $e) {
 		print 'エラーが発生しました。しばらくお待ち下さい。';
-	} catch (\Exception $e) {
+	} catch (\Throwable $e) {
 		throw new Exception($e->getMessage());
 	}
 }

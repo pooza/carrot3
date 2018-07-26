@@ -77,7 +77,7 @@ class GoogleChartService extends CurlHTTP {
 				$file->setMode(0666);
 				$file->rename($key);
 				$file->moveTo($dir);
-			} catch (\Exception $e) {
+			} catch (\Throwable $e) {
 				return null;
 			}
 		}

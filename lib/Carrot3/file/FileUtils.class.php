@@ -28,6 +28,7 @@ class FileUtils {
 		if (1 < $parts->count()) {
 			return StringUtils::toLower('.' . $parts->getIterator()->getLast());
 		}
+		return '';
 	}
 
 	static public function getDefaultType (string $name) {

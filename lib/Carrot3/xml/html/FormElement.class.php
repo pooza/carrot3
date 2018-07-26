@@ -59,7 +59,7 @@ class FormElement extends HTMLElement {
 	 * @access public
 	 * @return string action属性
 	 */
-	public function getAction () {
+	public function getAction ():?string {
 		return $this->getAttribute('action');
 	}
 

@@ -256,7 +256,7 @@ class MIMEDocument extends ParameterHolder implements Renderer {
 					$this->parseBody($parts->join($delimiter));
 					return;
 				}
-			} catch (\Exception $e) {
+			} catch (\Throwable $e) {
 				// ログのみ。例外は最後にはMIMEExceptionとしてthrowされるはず。
 			}
 		}

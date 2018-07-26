@@ -23,7 +23,7 @@ class SendmailMailSender extends MailSender {
 		try {
 			$this->createCommand();
 			return true;
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			return false;
 		}
 	}

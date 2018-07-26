@@ -32,7 +32,7 @@ class StringFormat extends Tuple implements MessageContainer {
 	public function getContents ():string {
 		try {
 			return call_user_func_array('sprintf', $this->getParameters());
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			return $this->join(', ');
 		}
 	}

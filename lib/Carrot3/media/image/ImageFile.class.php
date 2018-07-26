@@ -35,7 +35,7 @@ class ImageFile extends MediaFile {
 			$this->attributes['width'] = (int)$this->getRenderer()->getWidth();
 			$this->attributes['height'] = (int)$this->getRenderer()->getHeight();
 			$this->attributes['pixel_size'] = $this['width'] . '×' . $this['height'];
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$this->attributes['error'] = $e->getMessage();
 		}
 	}

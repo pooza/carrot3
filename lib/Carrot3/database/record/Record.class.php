@@ -170,7 +170,7 @@ abstract class Record implements \ArrayAccess, Assignable, AttachmentContainer, 
 			$mail->getRenderer()->setAttribute('params', $params);
 			$mail->send();
 			unset($mail);
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			throw new MailException('メールの送信に失敗しました。', $e->getCode(), $e);
 		}
 	}

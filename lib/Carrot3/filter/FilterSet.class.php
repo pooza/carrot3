@@ -35,7 +35,7 @@ class FilterSet extends Tuple {
 	 * @access protected
 	 * @return Tuple 設定ファイルの配列
 	 */
-	protected function getConfigFiles () {
+	protected function getConfigFiles ():Tuple {
 		$files = Tuple::create();
 		$files[] = 'filters/carrot';
 		$files[] = 'filters/application';

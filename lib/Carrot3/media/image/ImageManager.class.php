@@ -193,7 +193,7 @@ class ImageManager {
 		}
 		try {
 			$image = $file->getRenderer();
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$file->delete();
 			LogManager::getInstance()->put($file . 'を削除しました。' . $e->getMessage());
 			return;

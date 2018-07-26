@@ -111,7 +111,7 @@ class CarrotURL extends HTTPURL {
 	 * @access public
 	 * @return string アクション名
 	 */
-	public function getActionName () {
+	public function getActionName ():?string {
 		return $this->action;
 	}
 

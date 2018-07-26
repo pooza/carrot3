@@ -13,7 +13,7 @@ class TwitterAccountTest extends Test {
 			try {
 				$response = $account->tweet($message);
 				$this->assert('tweet', $response instanceof JSONRenderer);
-			} catch (\Exception $e) {
+			} catch (\Throwable $e) {
 			}
 
 			try {
@@ -22,7 +22,7 @@ class TwitterAccountTest extends Test {
 					new TwitterAccount(BS_ADMIN_TWITTER)
 				);
 				$this->assert('sendDirectMessage', $response instanceof JSONRenderer);
-			} catch (\Exception $e) {
+			} catch (\Throwable $e) {
 			}
 		}
 	}

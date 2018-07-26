@@ -114,7 +114,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access protected
 	 * @return Tuple 設定ファイルの配列
 	 */
-	protected function getConfigFiles () {
+	protected function getConfigFiles ():Tuple {
 		$files = Tuple::create();
 		$prefix = mb_ereg_replace(
 			StringUtils::toLower(__NAMESPACE__) . '\\\\_?',
@@ -145,11 +145,12 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	 * @access public
 	 * @return string プレフィックス
 	 */
-	public function getPrefix () {
+	public function getPrefix ():?string {
 		$name = StringUtils::explode('.', $this->getName());
 		if (1 < $name->count()) {
 			return $name[0];
 		}
+		return null;
 	}
 
 	/**

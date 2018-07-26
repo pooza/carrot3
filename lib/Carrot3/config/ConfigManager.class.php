@@ -76,7 +76,7 @@ class ConfigManager {
 	 * @param string $class 設定ファイルのクラス名
 	 * @return ConfigFile 設定ファイル
 	 */
-	static public function getConfigFile (string $name, $class = 'ConfigFile') {
+	static public function getConfigFile (string $name, $class = 'ConfigFile'):?ConfigFile {
 		if (!Utils::isPathAbsolute($name)) {
 			$name = BS_WEBAPP_DIR . '/config/' . $name;
 		}
@@ -88,5 +88,6 @@ class ConfigManager {
 			}
 			return $file;
 		}
+		return null;
 	}
 }

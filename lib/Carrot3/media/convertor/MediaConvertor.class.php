@@ -67,7 +67,7 @@ abstract class MediaConvertor {
 	 * @return string クラス名
 	 * @abstract
 	 */
-	abstract public function getClass ();
+	abstract public function getClass ():string;
 
 	/**
 	 * 変換後ファイルのMIMEタイプ

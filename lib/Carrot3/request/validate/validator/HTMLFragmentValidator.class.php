@@ -41,7 +41,7 @@ class HTMLFragmentValidator extends Validator {
 				$this->error = $errors->join();
 				return false;
 			}
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$this->error = $e->getMessage();
 			return false;
 		}

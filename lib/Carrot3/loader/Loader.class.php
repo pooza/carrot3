@@ -103,7 +103,7 @@ class Loader {
 	 * @param string $class クラス名
 	 * @return string 存在するクラス名
 	 */
-	public function getClass ($class) {
+	public function getClass ($class):string {
 		foreach (array_merge([null], $this->getNamespaces()) as $namespace) {
 			$name = strtolower(mb_ereg_replace('[_[:cntrl:]]', '', $class));
 			if ($namespace != '') {

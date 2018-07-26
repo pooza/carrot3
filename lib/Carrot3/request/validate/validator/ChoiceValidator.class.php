@@ -58,7 +58,7 @@ class ChoiceValidator extends Validator {
 		} else if ($this['class']) {
 			try {
 				$class = $this->loader->getClass($this['class'] . TableHandler::CLASS_SUFFIX);
-			} catch (\Exception $e) {
+			} catch (\Throwable $e) {
 				$class = $this->loader->getClass($this['class']);
 			}
 			$choices->setParameters(call_user_func([$class, $this['function']]));

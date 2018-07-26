@@ -49,7 +49,7 @@ class SmartyValidator extends Validator {
 			$smarty = new Smarty;
 			$smarty->setTemplate($tempfile);
 			$smarty->getContents();
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$this->error = $e->getMessage();
 		}
 

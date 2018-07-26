@@ -119,7 +119,7 @@ class Directory extends DirectoryEntry implements \IteratorAggregate {
 			if (!unlink($this->getPath())) {
 				throw new FileException($this . 'を削除できません。');
 			}
-		} else {
+		} else if ($this->isExists()) {
 			$command = new CommandLine('rm');
 			$command->setStderrRedirectable();
 			$command->push('-R');

@@ -42,7 +42,7 @@ function smarty_function_image ($params, &$smarty) {
 						(int)$params['pixel_full'],
 						$manager->createBits($params['flags_full'])
 					);
-				} catch (\Exception $e) {
+				} catch (\Throwable $e) {
 					$record->removeImageCache($params['size']);
 					$element = new C\DivisionElement;
 					$element->setBody($e->getMessage());

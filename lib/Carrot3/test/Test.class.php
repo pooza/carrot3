@@ -90,7 +90,7 @@ abstract class Test {
 			if (!$assertion) {
 				return $this->setError($name);
 			}
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			return $this->setError($name);
 		}
 	}

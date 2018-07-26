@@ -60,7 +60,7 @@ abstract class Logger {
 			if (isset($_SERVER[$key]) && ($value = $_SERVER[$key])) {
 				try {
 					return trim(mb_split('[:,]', $value)[0]);
-				} catch (\Exception $e) {
+				} catch (\Throwable $e) {
 					return $value;
 				}
 			}

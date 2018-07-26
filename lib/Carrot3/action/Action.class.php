@@ -396,7 +396,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return string 必要なクレデンシャル
 	 */
-	public function getCredential () {
+	public function getCredential ():?string {
 		return $this->getModule()->getCredential();
 	}
 
@@ -441,7 +441,7 @@ abstract class Action implements HTTPRedirector, Assignable {
 	 * @access public
 	 * @return ConfigFile バリデーション設定ファイル
 	 */
-	public function getValidationFile () {
+	public function getValidationFile ():?ConfigFile {
 		return $this->getModule()->getValidationFile($this->getName());
 	}
 

@@ -211,7 +211,7 @@ abstract class Request extends HTTPRequest {
 					try {
 						$host = trim(StringUtils::explode(',', $hosts)->pop());
 						return $this->host = new Host($host);
-					} catch (\Exception $e) {
+					} catch (\Throwable $e) {
 						return $this->host = new Host('0.0.0.0');
 					}
 				}

@@ -41,7 +41,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 					$this->attributes['fragment'] = $values['fragment'];
 					$this['query'] = $values['query'];
 					$this->dirty = false;
-				} catch (\Exception $e) {
+				} catch (\Throwable $e) {
 					$this->attributes->clear();
 					$this->attributes['path'] = $value;
 					$this->dirty = true;
@@ -176,7 +176,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 			$class = $this->loader->getClass($class);
 			$response = (new $class($this['host']))->sendGET($this->getFullPath());
 			return $response->getRenderer()->getContents();
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			throw new HTTPException($this . 'を取得できません。');
 		}
 	}

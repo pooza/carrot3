@@ -41,7 +41,7 @@ class MovieValidator extends Validator {
 					$this->error .= '(' . $error . ')';
 				}
 			}
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$this->error = $this['invalid_error'] . '(' . $e->getMessage() . ')';
 		}
 		return StringUtils::isBlank($this->error);

@@ -1,15 +1,6 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- */
-
 namespace Carrot3;
 
-/**
- * モジュール
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class Module implements HTTPRedirector, Assignable {
 	use HTTPRedirectorObject, BasicObject, KeyGenerator;
 	protected $name;
@@ -28,10 +19,6 @@ class Module implements HTTPRedirector, Assignable {
 	static private $prefixes = [];
 	const ACCESSOR = 'm';
 
-	/**
-	 * @access protected
-	 * @param string $name モジュール名
-	 */
 	protected function __construct (string $name) {
 		$this->name = $name;
 		$this->actions = Tuple::create();
@@ -47,13 +34,6 @@ class Module implements HTTPRedirector, Assignable {
 		}
 	}
 
-	/**
-	 * フライウェイトインスタンスを返す
-	 *
-	 * @access public
-	 * @param string $name モジュール名
-	 * @static
-	 */
 	static public function getInstance (string $name) {
 		if (!self::$instances) {
 			self::$instances = Tuple::create();
@@ -71,12 +51,6 @@ class Module implements HTTPRedirector, Assignable {
 		return self::$instances[$name];
 	}
 
-	/**
-	 * 属性値を全て返す
-	 *
-	 * @access public
-	 * @return Tuple 属性値
-	 */
 	public function getAttributes ():Tuple {
 		return Tuple::create([
 			'name' => $this->getName(),
@@ -86,22 +60,10 @@ class Module implements HTTPRedirector, Assignable {
 		]);
 	}
 
-	/**
-	 * モジュール名を返す
-	 *
-	 * @access public
-	 * @return string モジュール名
-	 */
 	public function getName ():string {
 		return $this->name;
 	}
 
-	/**
-	 * タイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
 	public function getTitle () {
 		if (StringUtils::isBlank($this->title)) {
 			if (StringUtils::isBlank($title = $this->getConfig('title'))) {
@@ -116,13 +78,7 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->title;
 	}
 
-	/**
-	 * メニューでのタイトルを返す
-	 *
-	 * @access public
-	 * @return string タイトル
-	 */
-	public function getMenuTitle () {
+	public function getMenuTitle ():string {
 		if (StringUtils::isBlank($title = $this->getConfig('title_menu'))) {
 			if (StringUtils::isBlank($title = $this->getConfig('title'))) {
 				if (StringUtils::isBlank($title = $this->getRecordClass('ja'))) {
@@ -133,13 +89,6 @@ class Module implements HTTPRedirector, Assignable {
 		return $title;
 	}
 
-	/**
-	 * ディレクトリを返す
-	 *
-	 * @access public
-	 * @param string $name ディレクトリ名
-	 * @return Directory 対象ディレクトリ
-	 */
 	public function getDirectory (string $name = 'module'):?Directory {
 		if (!$this->directories) {
 			$this->directories = Tuple::create();
@@ -158,12 +107,6 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->directories[$name];
 	}
 
-	/**
-	 * 検索条件キャッシュを返す
-	 *
-	 * @access public
-	 * @return Tuple 検索条件キャッシュ
-	 */
 	public function getParameterCache () {
 		if (!$this->params) {
 			$this->params = Tuple::create();
@@ -175,12 +118,6 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->params;
 	}
 
-	/**
-	 * 検索条件キャッシュを設定
-	 *
-	 * @access public
-	 * @param iterable $params 検索条件キャッシュ
-	 */
 	public function cacheParameters (iterable $params) {
 		$this->params = Tuple::create($params);
 		$this->params->removeParameter(Module::ACCESSOR);
@@ -191,23 +128,12 @@ class Module implements HTTPRedirector, Assignable {
 		);
 	}
 
-	/**
-	 * 検索条件キャッシュをクリア
-	 *
-	 * @access public
-	 */
 	public function clearParameterCache () {
 		$this->user->removeAttribute(
 			$this->createKey([$this->getName(), 'params'])
 		);
 	}
 
-	/**
-	 * テーブルを返す
-	 *
-	 * @access public
-	 * @return TableHandler テーブル
-	 */
 	public function getTable () {
 		if (!$this->table && !StringUtils::isBlank($class = $this->getRecordClass())) {
 			$this->table = TableHandler::create($class);
@@ -215,12 +141,6 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->table;
 	}
 
-	/**
-	 * 編集中レコードを返す
-	 *
-	 * @access public
-	 * @return Record 編集中レコード
-	 */
 	public function getRecord ():?Record {
 		if (!$this->record && $this->getRecordID()) {
 			$this->record = $this->getTable()->getRecord($this->getRecordID());
@@ -228,24 +148,12 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->record;
 	}
 
-	/**
-	 * カレントレコードIDを返す
-	 *
-	 * @access public
-	 * @return int カレントレコードID
-	 */
 	public function getRecordID () {
 		return $this->user->getAttribute(
 			$this->createKey([$this->getName(), 'record'])
 		);
 	}
 
-	/**
-	 * カレントレコードIDを設定
-	 *
-	 * @access public
-	 * @param mixed $id カレントレコードID、又はレコード
-	 */
 	public function setRecordID ($id) {
 		if ($id instanceof Record) {
 			$id = $id->getID();
@@ -264,11 +172,6 @@ class Module implements HTTPRedirector, Assignable {
 		$this->record = null;
 	}
 
-	/**
-	 * カレントレコードIDをクリア
-	 *
-	 * @access public
-	 */
 	public function clearRecordID () {
 		$this->user->removeAttribute(
 			$this->createKey([$this->getName(), 'record'])
@@ -276,14 +179,7 @@ class Module implements HTTPRedirector, Assignable {
 		$this->record = null;
 	}
 
-	/**
-	 * 設定ファイルを返す
-	 *
-	 * @access public
-	 * @param string $name ファイル名
-	 * @return ConfigFile 設定ファイル
-	 */
-	public function getConfigFile (string $name = 'module') {
+	public function getConfigFile (string $name = 'module'):?ConfigFile {
 		if (!$this->configFiles) {
 			$this->configFiles = Tuple::create();
 		}
@@ -300,41 +196,20 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->configFiles[$name];
 	}
 
-	/**
-	 * 設定値を返す
-	 *
-	 * @access public
-	 * @param string $key キー名
-	 * @param string $section セクション名
-	 * @return string 設定値
-	 */
 	public function getConfig ($key, $section = 'module') {
 		if (isset($this->config[$section][$key])) {
 			return $this->config[$section][$key];
 		}
 	}
 
-	/**
-	 * バリデーション設定ファイルを返す
-	 *
-	 * @access public
-	 * @param string $name 設定ファイルの名前
-	 * @return ConfigFile バリデーション設定ファイル
-	 */
-	public function getValidationFile (string $name) {
+	public function getValidationFile (string $name):?ConfigFile {
 		if ($dir = $this->getDirectory('validate')) {
 			return ConfigManager::getConfigFile($dir->getPath() . '/' . $name);
 		}
+		return null;
 	}
 
-	/**
-	 * アクションを返す
-	 *
-	 * @access public
-	 * @param string $name アクション名
-	 * @return Action アクション
-	 */
-	public function getAction (string $name) {
+	public function getAction (string $name):Action {
 		if (!$this->actions[$name]) {
 			$class = $this->loader->getClass($this->getNamespace() . '\\' . $name . 'Action');
 			$this->actions[$name] = new $class($this);
@@ -342,13 +217,7 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->actions[$name];
 	}
 
-	/**
-	 * クレデンシャルを返す
-	 *
-	 * @access public
-	 * @return string クレデンシャル
-	 */
-	public function getCredential () {
+	public function getCredential ():?string {
 		if ($file = $this->getConfigFile('filters')) {
 			foreach ($file->getResult() as $section) {
 				if ($section['class'] == 'SecurityFilter') {
@@ -361,23 +230,11 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->getPrefix();
 	}
 
-	/**
-	 * モジュールが属する名前空間を返す
-	 *
-	 * @access public
-	 * @return string 名前空間
-	 */
-	public function getNamespace () {
+	public function getNamespace ():string {
 		return __NAMESPACE__ . '\\' . $this->getName() . 'Module';
 	}
 
-	/**
-	 * モジュール名プレフィックスを返す
-	 *
-	 * @access public
-	 * @return string モジュール名プレフィックス
-	 */
-	public function getPrefix () {
+	public function getPrefix ():?string {
 		if (!$this->prefix) {
 			$pattern = '^(' . self::getPrefixes()->join('|') . ')';
 			if (mb_ereg($pattern, $this->getName(), $matches)) {
@@ -387,22 +244,10 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->prefix;
 	}
 
-	/**
-	 * 管理者向けモジュールか？
-	 *
-	 * @access public
-	 * @return bool 管理者向けモジュールならTrue
-	 */
 	public function isAdminModule ():bool {
 		return $this->getPrefix() == 'Admin';
 	}
 
-	/**
-	 * リダイレクト対象
-	 *
-	 * @access public
-	 * @return URL
-	 */
 	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			$this->url = URL::create(null, 'carrot');
@@ -411,14 +256,7 @@ class Module implements HTTPRedirector, Assignable {
 		return $this->url;
 	}
 
-	/**
-	 * レコードクラス名を返す
-	 *
-	 * @access public
-	 * @param string $lang 言語 - 翻訳が必要な場合
-	 * @return string レコードクラス名
-	 */
-	public function getRecordClass (?string $lang = null) {
+	public function getRecordClass (?string $lang = null):?string {
 		if (!$this->recordClass) {
 			if (StringUtils::isBlank($name = $this->getConfig('record_class'))) {
 				$pattern = '^' . $this->getPrefix() . '([[:upper:]][[:alpha:]]+)$';
@@ -429,7 +267,7 @@ class Module implements HTTPRedirector, Assignable {
 			if (!StringUtils::isBlank($name)) {
 				try {
 					$this->recordClass = $this->loader->getClass($name);
-				} catch (\Exception $e) {
+				} catch (\Throwable $e) {
 					return null;
 				}
 			}
@@ -443,33 +281,17 @@ class Module implements HTTPRedirector, Assignable {
 				);
 			}
 		}
+		return null;
 	}
 
-	/**
-	 * アサインすべき値を返す
-	 *
-	 * @access public
-	 * @return mixed アサインすべき値
-	 */
 	public function assign () {
 		return $this->getAttributes();
 	}
 
-	/**
-	 * @access public
-	 * @return string 基本情報
-	 */
 	public function __toString () {
 		return sprintf('モジュール "%s"', $this->getName());
 	}
 
-	/**
-	 * 全てのモジュール名プレフィックスを配列で返す
-	 *
-	 * @access public
-	 * @return Tuple モジュール名プレフィックス
-	 * @static
-	 */
 	static public function getPrefixes () {
 		if (!self::$prefixes) {
 			self::$prefixes = Tuple::create(BS_MODULE_PREFIXES);

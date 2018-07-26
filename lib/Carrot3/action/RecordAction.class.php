@@ -70,7 +70,7 @@ abstract class RecordAction extends Action {
 							$this->title = $this->getName();
 						}
 					}
-				} catch (\Exception $e) {
+				} catch (\Throwable $e) {
 					$this->title = $this->getName();
 				}
 			}

@@ -15,7 +15,7 @@ class AdminLogModule extends C\Module {
 		return '管理ログ閲覧モジュール';
 	}
 
-	public function getMenuTitle () {
+	public function getMenuTitle ():string {
 		return '管理ログ';
 	}
 

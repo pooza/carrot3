@@ -40,7 +40,7 @@ class MySQLDataSourceName extends DataSourceName {
 			);
 			$this['version'] = $db->getVersion();
 			$db->setDSN($this);
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$message = new StringFormat('データベース "%s" に接続できません。');
 			$message[] = $this->getName();
 			throw new DatabaseException($message);

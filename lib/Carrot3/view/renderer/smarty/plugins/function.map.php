@@ -27,7 +27,7 @@ function smarty_function_map ($params, &$smarty) {
 			$params['addr'] = $addr->getContents();
 		}
 		$element = $service->createElement($params['addr'], $params);
-	} catch (\Exception $e) {
+	} catch (\Throwable $e) {
 		$element = new C\DivisionElement;
 		$span = $element->addElement(new C\SpanElement);
 		$span->registerStyleClass('alert');

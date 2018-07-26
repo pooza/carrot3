@@ -29,7 +29,7 @@ class AACMediaConvertor extends MediaConvertor {
 	 * @access public
 	 * @return string クラス名
 	 */
-	public function getClass () {
+	public function getClass ():string {
 		return 'MusicFile';
 	}
 }

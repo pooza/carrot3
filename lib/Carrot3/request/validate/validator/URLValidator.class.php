@@ -54,7 +54,7 @@ class URLValidator extends Validator {
 			if (!$this['allow_fullpath'] && !$this->getSchemes()->isContain($url['scheme'])) {
 				$this->error = $this['scheme_error'];
 			}
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$this->error = $this['net_error'];
 		}
 		return StringUtils::isBlank($this->error);

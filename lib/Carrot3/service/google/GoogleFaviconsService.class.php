@@ -64,7 +64,7 @@ class GoogleFaviconsService extends CurlHTTP {
 				$file->setMode(0666);
 				$file->rename($name);
 				$file->moveTo($dir);
-			} catch (\Exception $e) {
+			} catch (\Throwable $e) {
 				return null;
 			}
 		}

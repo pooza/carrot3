@@ -1,33 +1,13 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- */
-
 namespace Carrot3;
 
-/**
- * ジオコードエントリー
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class Geocode extends ParameterHolder {
 	private $stations;
 
-	/**
-	 * @access public
-	 * @param iterable $params 要素の配列
-	 */
 	public function __construct (iterable $params = []) {
 		$this->setParameters($params);
 	}
 
-	/**
-	 * パラメータを設定
-	 *
-	 * @access public
-	 * @param string $name パラメータ名
-	 * @param mixed $value 値
-	 */
 	public function setParameter (?string $name, $value) {
 		if ($name == 'lon') {
 			$name = 'lng';
@@ -35,24 +15,10 @@ class Geocode extends ParameterHolder {
 		parent::setParameter($name, $value);
 	}
 
-	/**
-	 * 書式化して返す
-	 *
-	 * @access public
-	 * @param string $separator 区切り文字
-	 * @return string 書式化した文字列
-	 */
 	public function format ($separator = ',') {
 		return $this['lat'] . $separator . $this['lng'];
 	}
 
-	/**
-	 * script要素を返す
-	 *
-	 * @access public
-	 * @param iterable $params パラメータ配列
-	 * @return DivisionElement
-	 */
 	public function createElement (iterable $params) {
 		$params = Tuple::create($params);
 		$container = new DivisionElement;
@@ -79,21 +45,13 @@ class Geocode extends ParameterHolder {
 		return $container;
 	}
 
-	/**
-	 * 最寄り駅を返す
-	 *
-	 * @access public
-	 * @param int $flags フラグのビット列
-	 *   HeartRailsExpressService::FORCE_QUERY 新規取得を強制
-	 * @return Tuple 最寄り駅
-	 */
 	public function getStations (int $flags = 0) {
 		if (!$this->stations) {
 			$this->stations = Tuple::create();
 			try {
 				$service = new HeartRailsExpressService;
 				$this->stations->setParameters($service->getStations($this, $flags));
-			} catch (\Exception $e) {
+			} catch (\Throwable $e) {
 				// ログのみ
 			}
 		}

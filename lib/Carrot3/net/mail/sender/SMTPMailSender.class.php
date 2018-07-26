@@ -23,7 +23,7 @@ class SMTPMailSender extends MailSender {
 	public function initialize ():bool {
 		try {
 			return !!self::getServer();
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			return false;
 		}
 	}

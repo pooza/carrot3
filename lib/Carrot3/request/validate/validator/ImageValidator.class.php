@@ -65,7 +65,7 @@ class ImageValidator extends Validator {
 			}
 			$file = new ImageFile($name);
 			$image = $file->getRenderer();
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$this->error = $this['types_error'];
 			return false;
 		}

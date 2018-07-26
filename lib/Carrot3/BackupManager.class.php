@@ -1,23 +1,11 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- */
-
 namespace Carrot3;
 
-/**
- * バックアップマネージャ
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class BackupManager {
 	use Singleton, BasicObject;
 	protected $config;
 	protected $temporaryDir;
 
-	/**
-	 * @access protected
-	 */
 	protected function __construct () {
 		$this->config = Tuple::create();
 		$this->temporaryDir = FileUtils::createTemporaryDirectory();
@@ -28,20 +16,10 @@ class BackupManager {
 		}
 	}
 
-	/**
-	 * @access public
-	 */
 	public function __destruct () {
 		$this->temporaryDir->delete();
 	}
 
-	/**
-	 * ZIPアーカイブにバックアップを取り、返す
-	 *
-	 * @access public
-	 * @param Directory $dir 出力先ディレクトリ
-	 * @return File バックアップファイル
-	 */
 	public function execute (Directory $dir = null) {
 		if (!$dir) {
 			$dir = FileUtils::getDirectory('backup');
@@ -58,14 +36,14 @@ class BackupManager {
 			$dir->purge();
 			LogManager::getInstance()->put('バックアップを実行しました。', $this);
 			return $file;
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$message = new StringFormat('バックアップに失敗しました。(%s)');
 			$message[] = $e->getMessage();
 			LogManager::getInstance()->put($message, $this);
 		}
 	}
 
-	protected function createArchive () {
+	protected function createArchive ():ZipArchive {
 		$zip = new ZipArchive;
 		$zip->open();
 		foreach ($this->config['databases'] as $name) {
@@ -85,16 +63,10 @@ class BackupManager {
 		return $zip;
 	}
 
-	protected function getOptionalEntries () {
+	protected function getOptionalEntries ():Tuple {
 		return Tuple::create();
 	}
 
-	/**
-	 * ZIPアーカイブファイルをリストア
-	 *
-	 * @access public
-	 * @param File $file アーカイブファイル
-	 */
 	public function restore (File $file) {
 		if (!$this->isRestoreable()) {
 			throw new FileException('この環境はリストアできません。');
@@ -151,12 +123,6 @@ class BackupManager {
 		}
 	}
 
-	/**
-	 * リストア可能な環境か？
-	 *
-	 * @access public
-	 * @return bool リストアに対応した環境ならTrue
-	 */
 	public function isRestoreable ():bool {
 		foreach ($this->config['databases'] as $name) {
 			if (($db = Database::getInstance($name)) && !$db->isRestoreable()) {
