@@ -27,6 +27,7 @@
   thumbnailable: true
 - type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
   suffixes: ['.docx']
+  thumbnailable: true
 - type: message/rfc822
   suffixes: ['.eml']
 - type: application/eps
@@ -61,7 +62,6 @@
   alias_to: audio/mp4
 - type: video/quicktime
   suffixes: ['.mov', '.qt']
-  thumbnailable: true
 - type: audio/mpeg
   suffixes: ['.mp3']
 - type: video/mp4

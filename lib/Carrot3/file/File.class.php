@@ -266,11 +266,7 @@ class File extends DirectoryEntry implements \ArrayAccess, Renderer, ImageContai
 		if (!$file = $dir->getEntry($this->getID(), 'ImageFile')) {
 	 		$temp = FileUtils::createTemporaryFile(MIMEType::getSuffix($this->getType()));
 			$temp->setContents($this->getContents());
-			$params = new WWWFormRenderer;
-			$params['width'] = BS_REPLACEMENT_THUMBNAIL_PIXELS;
-			$params['height'] = BS_REPLACEMENT_THUMBNAIL_PIXELS;
-			$params['background_color'] = BS_IMAGE_THUMBNAIL_BGCOLOR;
-			$response = (new PiconService)->sendPOST('/resize', $params, $temp);
+			$response = (new PiconService)->sendPOST('/convert', new WWWFormRenderer, $temp);
 			$image = new Image;
 			$image->setType('image/png');
 			$image->setImage($response->getRenderer()->getContents());
