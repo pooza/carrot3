@@ -12,7 +12,9 @@ class MovieFile extends MediaFile {
 			$this->attributes['width'] = (int)$info['width'];
 			$this->attributes['height'] = (int)$info['height'];
 			$this->attributes['pixel_size'] = $this['width'] . '×' . $this['height'];
-			$this->attributes['aspect'] = $this['width'] / $this['height'];
+			if ($this['height']) {
+				$this->attributes['aspect'] = $this['width'] / $this['height'];
+			}
 		}
 	}
 
@@ -81,17 +83,6 @@ class MovieFile extends MediaFile {
 			return false;
 		}
 		return ($this->getMainType() == 'video');
-	}
-
-	public function getImageFile (string $size):?ImageFile {
-		$dir = FileUtils::getDirectory('file_thumbnail');
-		if ($file = $dir->getEntry($this->getID(), 'ImageFile')) {
-			return $file;
-		}
-		$file = new ImageFile($this->convert(new PNGMediaConvertor)->getPath());
-		$file->setName($this->getID());
-		$file->moveTo($dir);
-		return $file;
 	}
 
 	public function __toString () {
