@@ -6,6 +6,7 @@ class URL implements \ArrayAccess, Assignable {
 	protected $attributes;
 	protected $contents;
 	protected $query;
+	protected $fullpath;
 	const PATTERN = '^[[:alnum:]]+:(//)?[[:graph:]]+$';
 
 	protected function __construct ($contents = null) {
@@ -103,7 +104,7 @@ class URL implements \ArrayAccess, Assignable {
 		$this->contents = null;
 	}
 
-	public function getFullPath () {
+	public function getFullPath ():?string {
 		return $this['path'];
 	}
 
