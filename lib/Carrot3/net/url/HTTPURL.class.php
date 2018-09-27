@@ -1,31 +1,12 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage net.url
- */
-
 namespace Carrot3;
 
-/**
- * HTTPスキーマのURL
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 	use HTTPRedirectorObject, KeyGenerator;
-	private $fullpath;
 	private $useragent;
 	private $shortURL;
 	private $dirty = false;
 
-	/**
-	 * 属性を設定
-	 *
-	 * @access public
-	 * @param string $name 属性の名前
-	 * @param mixed $value 値
-	 * @return HTTPURL 自分自身
-	 */
 	public function setAttribute (string $name, $value) {
 		$this->contents = null;
 		$this->fullpath = null;
@@ -51,12 +32,6 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		return parent::setAttribute($name, $value);
 	}
 
-	/**
-	 * URLを設定
-	 *
-	 * @access public
-	 * @param mixed $contents URL
-	 */
 	public function setContents ($contents) {
 		if (is_string($contents) || StringUtils::isBlank($contents)) {
 			$contents = parse_url($contents);
@@ -77,13 +52,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		parent::setContents($contents);
 	}
 
-	/**
-	 * path以降を返す
-	 *
-	 * @access public
-	 * @return string URLのpath以降
-	 */
-	public function getFullPath () {
+	public function getFullPath ():?string {
 		if (!$this->fullpath) {
 			if (StringUtils::isBlank($this->attributes['path'])) {
 				$this->fullpath = '/';
@@ -100,55 +69,24 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		return $this->fullpath;
 	}
 
-	/**
-	 * パラメータを設定
-	 *
-	 * @access public
-	 * @param string $name パラメータの名前
-	 * @param string $value パラメータの値
-	 */
 	public function setParameter (?string $name, $value) {
 		parent::setParameter($name, $value);
 		$this->fullpath = null;
 	}
 
-	/**
-	 * クエリー文字列の全てのパラメータを返す
-	 *
-	 * @access public
-	 * @return Tuple パラメータの配列
-	 */
 	public function getParameters () {
 		return $this->query->getParameters();
 	}
 
-	/**
-	 * パラメータを設定
-	 *
-	 * @access public
-	 * @param mixed $params パラメータ文字列、又は配列
-	 */
 	public function setParameters ($params) {
 		$this->query->setParameters($params);
 		$this->fullpath = null;
 	}
 
-	/**
-	 * 対象UserAgentを返す
-	 *
-	 * @access public
-	 * @return UserAgent 対象UserAgent
-	 */
 	public function getUserAgent ():UserAgent {
 		return $this->useragent;
 	}
 
-	/**
-	 * 対象UserAgentを設定
-	 *
-	 * @access public
-	 * @param UserAgent $useragent 対象UserAgent
-	 */
 	public function setUserAgent (UserAgent $useragent) {
 		if ($this->useragent) {
 			if ($this->useragent === $useragent) {
@@ -164,13 +102,6 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		return $this;
 	}
 
-	/**
-	 * Curlでフェッチして文字列で返す
-	 *
-	 * @access public
-	 * @param string $class HTTPクラス名
-	 * @return string フェッチした内容
-	 */
 	public function fetch ($class = 'CurlHTTP') {
 		try {
 			$class = $this->loader->getClass($class);
@@ -181,37 +112,16 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		}
 	}
 
-	/**
-	 * favicon画像を返す
-	 *
-	 * @access public
-	 * @return Image favicon画像
-	 */
 	public function getFavicon () {
 		return $this->getImageFile('favicon');
 	}
 
-	/**
-	 * キャッシュをクリア
-	 *
-	 * @access public
-	 * @param string $size
-	 */
 	public function removeImageCache (string $size) {
 		if ($file = $this->getImageFile('image')) {
 			$file->removeImageCache($size);
 		}
 	}
 
-	/**
-	 * 画像の情報を返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @param int $pixel ピクセル数
-	 * @param int $flags フラグのビット列
-	 * @return Tuple 画像の情報
-	 */
 	public function getImageInfo (string $size, ?int $pixel = null, int $flags = 0) {
 		if ($file = $this->getImageFile($size)) {
 			$info = (new ImageManager)->getInfo($file, $size, $pixel, $flags);
@@ -220,13 +130,6 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		}
 	}
 
-	/**
-	 * 画像ファイルを返す
-	 *
-	 * @access public
-	 * @param string $size サイズ名
-	 * @return ImageFile 画像ファイル
-	 */
 	public function getImageFile (string $size):?ImageFile {
 		switch ($size) {
 			case 'favicon':
@@ -236,34 +139,14 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		}
 	}
 
-	/**
-	 * コンテナの名前を返す
-	 *
-	 * @access public
-	 * @return string 名前
-	 */
 	public function getName ():?string {
 		return $this->getContents();
 	}
 
-	/**
-	 * コンテナのラベルを返す
-	 *
-	 * @access public
-	 * @param string $lang 言語
-	 * @return string ラベル
-	 */
 	public function getLabel (?string $lang = 'ja'):?string {
 		return $this->getID();
 	}
 
-	/**
-	 * 外部のURLか？
-	 *
-	 * @access public
-	 * @param mixed $host 対象ホスト
-	 * @return bool 外部のURLならTrue
-	 */
 	public function isForeign ($host = null):bool {
 		if ($host) {
 			if ($host instanceof HTTPURL) {
@@ -277,12 +160,6 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		return $this['host']->isForeign($host);
 	}
 
-	/**
-	 * 短縮URLを返す
-	 *
-	 * @access public
-	 * @return URL 短縮URL
-	 */
 	public function getShortURL () {
 		if (!$this->shortURL) {
 			$service = $this->loader->createObject(BS_NET_URL_SHORTER . 'Service');
@@ -301,35 +178,14 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 		return $this->shortURL;
 	}
 
-	/**
-	 * 短縮URLを返す
-	 *
-	 * getShortURLのエイリアス
-	 *
-	 * @access public
-	 * @return URL 短縮URL
-	 * @final
-	 */
 	final public function getTinyURL () {
 		return $this->getShortURL();
 	}
 
-	/**
-	 * リダイレクト対象
-	 *
-	 * @access public
-	 * @return URL
-	 */
 	public function getURL ():?HTTPURL {
 		return $this;
 	}
 
-	/**
-	 * リダイレクト
-	 *
-	 * @access public
-	 * @return string ビュー名
-	 */
 	public function redirect () {
 		$url = $this->createURL();
 		$url->setParameters($this->request->getUserAgent()->getQuery());
