@@ -277,7 +277,7 @@ class Module implements HTTPRedirector, Assignable {
 				return $this->loader->getClass($this->recordClass);
 			} else {
 				return $this->translator->translate(
-					StringUtils::underscorize($this->recordClass)
+					StringUtils::underscorize(Utils::getShortClass($this->recordClass))
 				);
 			}
 		}
