@@ -19,7 +19,7 @@ function smarty_function_image ($params, &$smarty) {
 		$params['size'] = 'image';
 	}
 
-	$manager = $smarty->getUserAgent()->createImageManager($params['flags']);
+	$manager = $smarty->getUserAgent()->createImageManager((int)$params['flags']);
 	if (($record = $manager->search($params))
 		&& ($record instanceof C\ImageContainer)
 		&& ($info = $manager->getInfo($record, $params['size'], $params['pixel']))) {
