@@ -59,6 +59,10 @@ abstract class TableHandler implements \IteratorAggregate, Dictionary, Assignabl
 		}
 	}
 
+	public function __sleep () {
+		return [];
+	}
+
 	/**
 	 * 出力フィールド文字列を返す
 	 *
