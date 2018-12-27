@@ -7,7 +7,7 @@ class HTTPResponse extends MIMEDocument {
 	protected $message;
 	protected $url;
 	protected $method;
-	const STATUS_PATTERN = '^HTTP/([[:digit:]]+\\.[[:digit:]]+) ([[:digit:]]{3}) (.*)$';
+	const STATUS_PATTERN = '^HTTP/([[:digit:].]+) ([[:digit:]]{3}) (.*)$';
 
 	protected function parseHeaders ($headers) {
 		$this->getHeaders()->clear();
@@ -30,11 +30,11 @@ class HTTPResponse extends MIMEDocument {
 		return $this->version;
 	}
 
-	public function getStatus () {
+	public function getStatus ():int {
 		if ($header = $this->getHeader('status')) {
-			return $header['code'];
+			return (int)$header['code'];
 		} else {
-			return $this->status;
+			return (int)$this->status;
 		}
 	}
 
