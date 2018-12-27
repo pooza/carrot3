@@ -1,8 +1,3 @@
-# ホスト別設定ファイル
-#
-# @package jp.co.b-shock.carrot3
-# @author 小石達也 <tkoishi@b-shock.co.jp>
-
 root_url: http://carrot3.b-shock.local/
 debug: yes
 

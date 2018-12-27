@@ -1,11 +1,6 @@
-# アプリケーション定数設定ファイル - carrot分
-#
-# @package jp.co.b-shock.carrot3
-# @author 小石達也 <tkoishi@b-shock.co.jp>
-
 carrot:
   name: carrot Framework
-  ver: 3.1.18
+  ver: 3.1.19
 
 admin:
   email:
@@ -123,6 +118,7 @@ module:
   prefixes:
     - Admin
     - User
+    - Agent
     - Console
   default:
     module: Default

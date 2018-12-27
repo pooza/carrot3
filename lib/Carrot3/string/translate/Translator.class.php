@@ -1,25 +1,12 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage string.translate
- */
-
 namespace Carrot3;
 
-/**
- * 単語翻訳機能
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class Translator implements \IteratorAggregate {
 	use BasicObject, Singleton;
 	private $lang = 'ja';
 	private $dictionaries;
 	static private $langs;
 
-	/**
-	 * @access protected
-	 */
 	protected function __construct () {
 		$this->dictionaries = Tuple::create();
 		$iterator = new DirectoryIterator(
@@ -40,25 +27,11 @@ class Translator implements \IteratorAggregate {
 		return FileUtils::getDirectory('dictionaries');
 	}
 
-	/**
-	 * 辞書を登録
-	 *
-	 * @access public
-	 * @param Dictionary 辞書
-	 * @param bool $priority 優先順位 (Tuple::POSITION_TOP|Tuple::POSITION_BOTTOM)
-	 */
 	public function register (Dictionary $dictionary, bool $priority = Tuple::POSITION_BOTTOM) {
 		$name = StringUtils::toLower($dictionary->getDictionaryName());
 		$this->dictionaries->setParameter($name, $dictionary, $priority);
 	}
 
-	/**
-	 * 辞書の優先順位を設定
-	 *
-	 * @access public
-	 * @param string $name 辞書の名前
-	 * @param bool $priority 優先順位 (Tuple::POSITION_TOP|Tuple::POSITION_BOTTOM)
-	 */
 	public function setDictionaryPriority (string $name, bool $priority) {
 		$name = StringUtils::toLower($name);
 		if (!$dictionary = $this->dictionaries[$name]) {
@@ -70,15 +43,6 @@ class Translator implements \IteratorAggregate {
 		$this->dictionaries->setParameter($name, $dictionary, $priority);
 	}
 
-	/**
-	 * 単語を変換して返す
-	 *
-	 * @access public
-	 * @param string $label 単語
-	 * @param string $name 辞書の名前
-	 * @param string $lang 言語
-	 * @return string 訳語
-	 */
 	public function translate (string $label, string $name = null, ?string $lang = null):?string {
 		if (StringUtils::isBlank($label)) {
 			return null;
@@ -126,22 +90,10 @@ class Translator implements \IteratorAggregate {
 		return $names;
 	}
 
-	/**
-	 * 言語コードを返す
-	 *
-	 * @access public
-	 * @return string 言語コード
-	 */
 	public function getLanguage ():string {
 		return $this->lang;
 	}
 
-	/**
-	 * 言語コードを設定
-	 *
-	 * @access public
-	 * @param string $lang 言語コード
-	 */
 	public function setLanguage (string $lang) {
 		$lang = StringUtils::toLower($lang);
 		if (!Tuple::create(BS_LANGUAGES)->isContain($lang)) {
@@ -152,14 +104,6 @@ class Translator implements \IteratorAggregate {
 		$this->lang = $lang;
 	}
 
-	/**
-	 * ハッシュを返す
-	 *
-	 * @access public
-	 * @param iterable $words 見出し語の配列
-	 * @param string $lang 言語
-	 * @return Tuple ハッシュ
-	 */
 	public function createTuple (iterable $words, ?string $lang = 'ja') {
 		$values = Tuple::create();
 		foreach ($words as $word) {
@@ -168,10 +112,6 @@ class Translator implements \IteratorAggregate {
 		return $values;
 	}
 
-	/**
-	 * @access public
-	 * @return Iterator イテレータ
-	 */
 	public function getIterator () {
 		return $this->dictionaries->getIterator();
 	}
