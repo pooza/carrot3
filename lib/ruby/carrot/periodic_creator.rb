@@ -13,7 +13,7 @@ module Carrot
         next unless Dir.exist?(dir)
         Dir.glob(File.join(dir, '*')) do |f|
           next unless File.symlink?(f)
-          if File.readlink(f).match(ROOT_DIR)
+          if File.readlink(f).match?(ROOT_DIR)
             puts "delete #{f}"
             File.unlink(f)
           end
