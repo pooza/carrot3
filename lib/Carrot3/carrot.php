@@ -15,6 +15,13 @@ function l ($var) {
 	LogManager::getInstance()->put($var, 'debug');
 }
 
+function d ($var) {
+	if (!($var instanceof ExceptionAlarter)) {
+		$var = new StringFormat((string)$var);
+	}
+	(new DiscordWebhookService)->say($var);
+}
+
 spl_autoload_register(function ($name) {
 	require_once BS_LIB_DIR . '/Carrot3/loader/Loader.class.php';
 	Loader::getInstance()->includeClass($name);
