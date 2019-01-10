@@ -1,8 +1,3 @@
-# バリデータ設定ファイル
-#
-# @package jp.co.b-shock.carrot3
-# @author 小石達也 <tkoishi@b-shock.co.jp>
-
 color:
   class: Carrot3\RegexValidator
   params:
@@ -51,8 +46,6 @@ movie:
   class: Carrot3\MovieValidator
 music:
   class: Carrot3\MusicValidator
-ng_word:
-  class: Carrot3\NGWordValidator
 number:
   class: Carrot3\NumberValidator
 password:
