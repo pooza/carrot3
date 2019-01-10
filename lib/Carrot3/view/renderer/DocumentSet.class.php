@@ -1,19 +1,6 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage view.renderer
- */
-
 namespace Carrot3;
 
-/**
- * 書類セット
- *
- * ScriptSet/StyleSetの基底クラス
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- * @abstract
- */
 abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAggregate {
 	use HTTPRedirectorObject, BasicObject, KeyGenerator;
 	protected $name;
@@ -25,10 +12,6 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	protected $url;
 	static protected $entries;
 
-	/**
-	 * @access protected
-	 * @param string $name 書類セット名
-	 */
 	public function __construct (string $name) {
 		$this->name = $name;
 		$this->documents = Tuple::create();
@@ -43,46 +26,19 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 			}
 			$this->register($name);
 		}
-		$this->update();
+		if (StringUtils::isBlank($this->getCacheFile()->getContents())) {
+			$this->update();
+		}
 	}
 
-	/**
-	 * 書類クラスを返す
-	 *
-	 * @access protected
-	 * @return string 書類クラス
-	 * @abstract
-	 */
 	abstract protected function getDocumentClass ();
 
-	/**
-	 * ディレクトリ名を返す
-	 *
-	 * @access protected
-	 * @return string ディレクトリ名
-	 * @abstract
-	 */
 	abstract protected function getDirectoryName ();
 
-	/**
-	 * ソースディレクトリを返す
-	 *
-	 * 書類クラスがファイルではないレンダラーなら、nullを返すように
-	 *
-	 * @access public
-	 * @return Directory ソースディレクトリ
-	 * @abstract
-	 */
 	public function getSourceDirectory () {
 		return FileUtils::getDirectory($this->getDirectoryName());
 	}
 
-	/**
-	 * キャッシュディレクトリを返す
-	 *
-	 * @access public
-	 * @return Directory キャッシュディレクトリ
-	 */
 	public function getCacheDirectory () {
 		$parent = FileUtils::getDirectory($this->getDirectoryName() . '_cache');
 		if (!$dir = $parent->getEntry($this->name)) {
@@ -92,12 +48,6 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		return $dir;
 	}
 
-	/**
-	 * キャッシュファイルを返す
-	 *
-	 * @access public
-	 * @return File キャッシュファイル
-	 */
 	public function getCacheFile () {
 		if (!$this->cacheFile) {
 			$dir = $this->getCacheDirectory();
@@ -108,12 +58,6 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		return $this->cacheFile;
 	}
 
-	/**
-	 * 設定ファイルを返す
-	 *
-	 * @access protected
-	 * @return Tuple 設定ファイルの配列
-	 */
 	protected function getConfigFiles ():Tuple {
 		$files = Tuple::create();
 		$prefix = mb_ereg_replace(
@@ -129,22 +73,10 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		return $files;
 	}
 
-	/**
-	 * 書類セット名を返す
-	 *
-	 * @access public
-	 * @return string 書類セット名
-	 */
 	public function getName ():string {
 		return $this->name;
 	}
 
-	/**
-	 * 書類セットのプレフィックスを返す
-	 *
-	 * @access public
-	 * @return string プレフィックス
-	 */
 	public function getPrefix ():?string {
 		$name = StringUtils::explode('.', $this->getName());
 		if (1 < $name->count()) {
@@ -153,12 +85,6 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		return null;
 	}
 
-	/**
-	 * ダイジェストを返す
-	 *
-	 * @access public
-	 * @return string ダイジェスト
-	 */
 	public function digest ():?string {
 		$values = Tuple::create([$this->getName()]);
 		foreach ($this as $entry) {
@@ -167,12 +93,6 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		return $this->createKey($values);
 	}
 
-	/**
-	 * 登録
-	 *
-	 * @access public
-	 * @param mixed $entry エントリー
-	 */
 	public function register ($entry) {
 		if (is_string($entry)) {
 			$dir = $this->getSourceDirectory();
@@ -188,42 +108,23 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		$this->contents = null;
 	}
 
-	/**
-	 * 送信内容を返す
-	 *
-	 * @access public
-	 * @return string 送信内容
-	 */
 	public function getContents ():string {
 		return $this->contents;
 	}
 
-	/**
-	 * 送信内容を更新
-	 *
-	 * @access public
-	 */
 	public function update () {
 		$cache = $this->getCacheFile();
-		if (StringUtils::isBlank($cache->getContents()) && !!$this->documents->count()) {
-			$cache->getDirectory()->purge(Date::create());
-			$contents = Tuple::create();
-			foreach ($this as $file) {
-				$file->serialize();
-				$contents[] = $file->getSerialized()['minified'];
-			}
-			$cache->setContents($contents->join("\n"));
-			LogManager::getInstance()->put($this . 'を更新しました。', $this);
+		$cache->getDirectory()->purge(Date::create());
+		$contents = Tuple::create();
+		foreach ($this as $file) {
+			$file->serialize();
+			$contents[] = $file->getSerialized()['minified'];
 		}
+		$cache->setContents($contents->join("\n"));
+		LogManager::getInstance()->put($this . 'を更新しました。', $this);
 		$this->contents = $cache->getContents();
 	}
 
-	/**
-	 * 登録されている書類セットを配列で返す
-	 *
-	 * @access protected
-	 * @return Tuple 登録内容
-	 */
 	protected function getEntries () {
 		if (!self::$entries) {
 			self::$entries = Tuple::create();
@@ -243,22 +144,10 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		return self::$entries[Utils::getClass($this)];
 	}
 
-	/**
-	 * 出力内容のサイズを返す
-	 *
-	 * @access public
-	 * @return int サイズ
-	 */
 	public function getSize ():int {
 		return strlen($this->getContents());
 	}
 
-	/**
-	 * メディアタイプを返す
-	 *
-	 * @access public
-	 * @return string メディアタイプ
-	 */
 	public function getType ():string {
 		if (!$this->type) {
 			$file = FileUtils::createTemporaryFile(null, $this->getDocumentClass());
@@ -268,50 +157,22 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		return $this->type;
 	}
 
-	/**
-	 * エンコードを返す
-	 *
-	 * @access public
-	 * @return string PHPのエンコード名
-	 */
 	public function getEncoding ():string {
 		return 'utf-8';
 	}
 
-	/**
-	 * 出力可能か？
-	 *
-	 * @access public
-	 * @return bool 出力可能ならTrue
-	 */
 	public function validate ():bool {
 		return StringUtils::isBlank($this->error);
 	}
 
-	/**
-	 * エラーメッセージを返す
-	 *
-	 * @access public
-	 * @return string エラーメッセージ
-	 */
 	public function getError ():?string {
 		return $this->error;
 	}
 
-	/**
-	 * @access public
-	 * @return Iterator イテレータ
-	 */
 	public function getIterator () {
 		return new Iterator($this->documents);
 	}
 
-	/**
-	 * リダイレクト対象
-	 *
-	 * @access public
-	 * @return URL
-	 */
 	public function getURL ():?HTTPURL {
 		if (!$this->url) {
 			$this->url = FileUtils::createURL(
@@ -322,10 +183,6 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 		return $this->url;
 	}
 
-	/**
-	 * @access public
-	 * @return string 基本情報
-	 */
 	public function __toString () {
 		return sprintf('%s "%s"', Utils::getClass($this), $this->getName());
 	}
