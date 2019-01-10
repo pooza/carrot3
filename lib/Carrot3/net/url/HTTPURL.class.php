@@ -57,7 +57,7 @@ class HTTPURL extends URL implements HTTPRedirector, ImageContainer {
 			if (StringUtils::isBlank($this->attributes['path'])) {
 				$this->fullpath = '/';
 			} else {
-				$this->fullpath = $this['path'];
+				$this->fullpath = $this->attributes['path'];
 			}
 			if ($this->query->count()) {
 				$this->fullpath .= '?' . $this->query->getContents();
