@@ -1,16 +1,6 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage media.image.renderer
- */
-
 namespace Carrot3;
 
-/**
- * GD画像レンダラー
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class Image implements ImageRenderer {
 	protected $type;
 	protected $gd;
@@ -23,10 +13,6 @@ class Image implements ImageRenderer {
 	const DEFAULT_WIDTH = 320;
 	const DEFAULT_HEIGHT = 240;
 
-	/**
-	 * @access public
-	 * @param iterable $params パラメータ配列
-	 */
 	public function __construct (?iterable $params = null) {
 		if ($params) {
 			if ($params['file'] && ($params['file'] instanceof \Carrot3\ImageFile)) {
@@ -35,19 +21,10 @@ class Image implements ImageRenderer {
 		}
 	}
 
-	/**
-	 * @access public
-	 */
 	public function __destruct () {
 		unset($this->gd);
 	}
 
-	/**
-	 * GD画像リソースを返す
-	 *
-	 * @access public
-	 * @return resource GD画像リソース
-	 */
 	public function getGDHandle () {
 		if (!$this->gd) {
 			$this->gd = imagecreatetruecolor(self::DEFAULT_WIDTH, self::DEFAULT_HEIGHT);
@@ -56,12 +33,6 @@ class Image implements ImageRenderer {
 		return $this->gd;
 	}
 
-	/**
-	 * GD画像リソースを設定
-	 *
-	 * @access public
-	 * @param mixed $image GD画像リソース等
-	 */
 	public function setImage ($image) {
 		if (is_resource($image)) {
 			$this->gd = $image;
@@ -78,12 +49,6 @@ class Image implements ImageRenderer {
 		}
 	}
 
-	/**
-	 * 背景色を返す
-	 *
-	 * @access public
-	 * @return Color 背景色
-	 */
 	public function getBackgroundColor () {
 		if (!$this->backgroundColor) {
 			$this->backgroundColor = new Color(BS_IMAGE_THUMBNAIL_BGCOLOR);
@@ -91,22 +56,10 @@ class Image implements ImageRenderer {
 		return $this->backgroundColor;
 	}
 
-	/**
-	 * 背景色を設定
-	 *
-	 * @access public
-	 * @param Color $color 背景色
-	 */
 	public function setBackgroundColor (Color $color) {
 		$this->backgroundColor = $color;
 	}
 
-	/**
-	 * メディアタイプを返す
-	 *
-	 * @access public
-	 * @return string メディアタイプ
-	 */
 	public function getType ():string {
 		if (!$this->type) {
 			$this->type = getimagesizefromstring($this->getContents())['mime'];
@@ -114,12 +67,6 @@ class Image implements ImageRenderer {
 		return $this->type;
 	}
 
-	/**
-	 * メディアタイプを設定
-	 *
-	 * @access public
-	 * @param string $type メディアタイプ又は拡張子
-	 */
 	public function setType (string $type) {
 		if (!StringUtils::isBlank($suggested = MIMEType::getType($type, null))) {
 			$type = $suggested;
@@ -133,42 +80,18 @@ class Image implements ImageRenderer {
 		$this->contents = null;
 	}
 
-	/**
-	 * 縦横比を返す
-	 *
-	 * @access public
-	 * @return float 縦横比
-	 */
 	public function getAspect () {
 		return $this->getWidth() / $this->getHeight();
 	}
 
-	/**
-	 * 幅を返す
-	 *
-	 * @access public
-	 * @return int 幅
-	 */
 	public function getWidth ():int {
 		return imagesx($this->getGDHandle());
 	}
 
-	/**
-	 * 高さを返す
-	 *
-	 * @access public
-	 * @return int 高さ
-	 */
 	public function getHeight ():int {
 		return imagesy($this->getGDHandle());
 	}
 
-	/**
-	 * 塗る
-	 *
-	 * @access public
-	 * @param Color $color 塗る色
-	 */
 	public function fill (Color $color) {
 		imagefill(
 			$this->getGDHandle(),
@@ -178,13 +101,6 @@ class Image implements ImageRenderer {
 		);
 	}
 
-	/**
-	 * 色IDを生成して返す
-	 *
-	 * @access protected
-	 * @param Color $color 色
-	 * @return int 色ID
-	 */
 	protected function getColorID (Color $color) {
 		return imagecolorallocatealpha(
 			$this->getGDHandle(),
@@ -195,24 +111,10 @@ class Image implements ImageRenderer {
 		);
 	}
 
-	/**
-	 * 座標を生成して返す
-	 *
-	 * @access public
-	 * @param int $x X座標
-	 * @param int $y Y座標
-	 * @return Coordinate 座標
-	 */
 	public function createCoordinate (int $x, int $y) {
 		return new Coordinate($this, $x, $y);
 	}
 
-	/**
-	 * 原点座標を返す
-	 *
-	 * @access public
-	 * @return Coordinate 原点座標
-	 */
 	public function getOrigin () {
 		if (!$this->origin) {
 			$this->origin = $this->createCoordinate(0, 0);
@@ -220,12 +122,6 @@ class Image implements ImageRenderer {
 		return $this->origin;
 	}
 
-	/**
-	 * 送信内容を返す
-	 *
-	 * @access public
-	 * @return string 送信内容
-	 */
 	public function getContents ():string {
 		if (StringUtils::isBlank($this->contents)) {
 			ob_start();
@@ -249,23 +145,10 @@ class Image implements ImageRenderer {
 		return $this->contents;
 	}
 
-	/**
-	 * 出力内容のサイズを返す
-	 *
-	 * @access public
-	 * @return int サイズ
-	 */
 	public function getSize ():int {
 		return strlen($this->getContents());
 	}
 
-	/**
-	 * サイズ変更
-	 *
-	 * @access public
-	 * @param int $width 幅
-	 * @param int $height 高さ
-	 */
 	public function resize (int $width, int $height) {
 		$dest = new Image;
 		$dest->setImage(imagecreatetruecolor(
@@ -295,12 +178,6 @@ class Image implements ImageRenderer {
 		$this->setImage($dest);
 	}
 
-	/**
-	 * 幅変更
-	 *
-	 * @access public
-	 * @param int $width 幅
-	 */
 	public function resizeWidth (int $width) {
 		if ($this->getWidth() < $width) {
 			return;
@@ -309,12 +186,6 @@ class Image implements ImageRenderer {
 		$this->resize($width, $height);
 	}
 
-	/**
-	 * 高さ変更
-	 *
-	 * @access public
-	 * @param int $height 高さ
-	 */
 	public function resizeHeight (int $height) {
 		if ($this->getHeight() < $height) {
 			return;
@@ -323,12 +194,6 @@ class Image implements ImageRenderer {
 		$this->resize($width, $height);
 	}
 
-	/**
-	 * 長辺を変更
-	 *
-	 * @access public
-	 * @param int $pixel 長辺のピクセル数
-	 */
 	public function resizeSquare (int $pixel) {
 		if (($this->getWidth() < $pixel) && ($this->getHeight() < $pixel)) {
 			return;
@@ -336,12 +201,6 @@ class Image implements ImageRenderer {
 		$this->resize($pixel, $pixel);
 	}
 
-	/**
-	 * 出力可能か？
-	 *
-	 * @access public
-	 * @return bool 出力可能ならTrue
-	 */
 	public function validate ():bool {
 		if (!is_resource($this->getGDHandle())) {
 			$this->error = 'GD画像リソースが正しくありません。';
@@ -350,23 +209,10 @@ class Image implements ImageRenderer {
 		return true;
 	}
 
-	/**
-	 * エラーメッセージを返す
-	 *
-	 * @access public
-	 * @return string エラーメッセージ
-	 */
 	public function getError ():?string {
 		return $this->error;
 	}
 
-	/**
-	 * 利用可能なメディアタイプを返す
-	 *
-	 * @access public
-	 * @return Tuple メディアタイプ
-	 * @static
-	 */
 	static public function getTypes () {
 		if (!self::$types) {
 			self::$types = Tuple::create();
@@ -377,13 +223,6 @@ class Image implements ImageRenderer {
 		return self::$types;
 	}
 
-	/**
-	 * 利用可能な拡張子を返す
-	 *
-	 * @access public
-	 * @return Tuple 拡張子
-	 * @static
-	 */
 	static public function getSuffixes () {
 		if (!self::$suffixes) {
 			self::$suffixes = Tuple::create();

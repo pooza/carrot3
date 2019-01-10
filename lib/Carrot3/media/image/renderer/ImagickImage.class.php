@@ -1,24 +1,10 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage media.image.renderer
- */
-
 namespace Carrot3;
 
-/**
- * ImageMagick画像レンダラー
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class ImagickImage extends Image {
 	protected $imagick;
 	protected $method = 'thumbnail';
 
-	/**
-	 * @access public
-	 * @param iterable $params パラメータ配列
-	 */
 	public function __construct (?iterable $params = null) {
 		if (!extension_loaded('imagick')) {
 			throw new ImageException('imagickモジュールがロードされていません。');
@@ -33,20 +19,11 @@ class ImagickImage extends Image {
 		}
 	}
 
-	/**
-	 * @access public
-	 */
 	public function __destruct () {
 		parent::__destruct();
 		unset($this->imagick);
 	}
 
-	/**
-	 * Imagickオブジェクトを返す
-	 *
-	 * @access public
-	 * @return Imagick
-	 */
 	public function getImagick () {
 		if (!$this->imagick) {
 			$this->imagick = new \Imagick;
@@ -60,22 +37,10 @@ class ImagickImage extends Image {
 		return $this->imagick;
 	}
 
-	/**
-	 * Imagickオブジェクトを設定
-	 *
-	 * @access public
-	 * @param Imagick $imagick
-	 */
 	public function setImagick (\Imagick $imagick) {
 		$this->imagick = $imagick;
 	}
 
-	/**
-	 * GD画像リソースを返す
-	 *
-	 * @access public
-	 * @return resource GD画像リソース
-	 */
 	public function getGDHandle () {
 		$image = new Image;
 		$image->setType($this->getType());
@@ -83,12 +48,6 @@ class ImagickImage extends Image {
 		return $image->getGDHandle();
 	}
 
-	/**
-	 * GD画像リソースを設定
-	 *
-	 * @access public
-	 * @param mixed $image GD画像リソース等
-	 */
 	public function setImage ($image) {
 		$renderer = null;
 		if ($image instanceof ImageRenderer) {
@@ -103,12 +62,6 @@ class ImagickImage extends Image {
 		return parent::setImage($image);
 	}
 
-	/**
-	 * メディアタイプを返す
-	 *
-	 * @access public
-	 * @return string メディアタイプ
-	 */
 	public function getType ():string {
 		switch ($type = $this->getImagick()->getImageMimeType()) {
 			case 'image/x-ico':
@@ -117,12 +70,6 @@ class ImagickImage extends Image {
 		return $type;
 	}
 
-	/**
-	 * メディアタイプを設定
-	 *
-	 * @access public
-	 * @param string $type メディアタイプ又は拡張子
-	 */
 	public function setType (string $type) {
 		if (StringUtils::isBlank($suffix = MIMEType::getSuffix($type))) {
 			$message = new StringFormat('"%s"は正しくないMIMEタイプです。');
@@ -132,32 +79,14 @@ class ImagickImage extends Image {
 		$this->getImagick()->setImageFormat(ltrim($suffix, '.'));
 	}
 
-	/**
-	 * 幅を返す
-	 *
-	 * @access public
-	 * @return int 幅
-	 */
 	public function getWidth ():int {
 		return $this->getImagick()->getImageWidth();
 	}
 
-	/**
-	 * 高さを返す
-	 *
-	 * @access public
-	 * @return int 高さ
-	 */
 	public function getHeight ():int {
 		return $this->getImagick()->getImageHeight();
 	}
 
-	/**
-	 * 塗る
-	 *
-	 * @access public
-	 * @param Color $color 塗る色
-	 */
 	public function fill (Color $color) {
 		$this->getImagick()->floodFillPaintImage(
 			$color->getContents(),
@@ -172,33 +101,14 @@ class ImagickImage extends Image {
 		);
 	}
 
-	/**
-	 * 送信内容を返す
-	 *
-	 * @access public
-	 * @return string 送信内容
-	 */
 	public function getContents ():string {
 		return (string)$this->getImagick();
 	}
 
-	/**
-	 * リサイズ関数を設定
-	 *
-	 * @access public
-	 * @param string $function 関数名
-	 */
 	public function setResizeMethod ($method) {
 		$this->method = $method;
 	}
 
-	/**
-	 * サイズ変更
-	 *
-	 * @access public
-	 * @param int $width 幅
-	 * @param int $height 高さ
-	 */
 	public function resize (int $width, int $height) {
 		$dest = new ImagickImage;
 		$dest->setImagick(new \Imagick);
@@ -240,12 +150,6 @@ class ImagickImage extends Image {
 		$this->setImagick($dest->getImagick());
 	}
 
-	/**
-	 * 出力可能か？
-	 *
-	 * @access public
-	 * @return bool 出力可能ならTrue
-	 */
 	public function validate ():bool {
 		if (StringUtils::isBlank($this->getContents())) {
 			$this->error = 'Imagick画像リソースが正しくありません。';
