@@ -109,7 +109,7 @@ abstract class DocumentSet implements TextRenderer, HTTPRedirector, \IteratorAgg
 	}
 
 	public function getContents ():string {
-		return $this->contents;
+		return (string)$this->contents;
 	}
 
 	public function update () {
