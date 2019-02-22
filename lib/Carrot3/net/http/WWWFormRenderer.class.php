@@ -32,7 +32,6 @@ class WWWFormRenderer extends ParameterHolder implements Renderer {
 		return Crypt::digest($this->getContents());
 	}
 
-
 	public function setContents ($contents) {
 		$this->clear();
 		$this->setParameters($contents);
