@@ -1,26 +1,9 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage net.http
- */
-
 namespace Carrot3;
 
-/**
- * WWWフォームレンダラー
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class WWWFormRenderer extends ParameterHolder implements Renderer {
 	protected $separator = '&';
 
-	/**
-	 * パラメータを設定
-	 *
-	 * @access public
-	 * @param string $name パラメータ名
-	 * @param mixed $value 値
-	 */
 	public function setParameter (?string $name, $value) {
 		if (StringUtils::isBlank($value)) {
 			$this->removeParameter($name);
@@ -29,12 +12,6 @@ class WWWFormRenderer extends ParameterHolder implements Renderer {
 		}
 	}
 
-	/**
-	 * パラメータをまとめて設定
-	 *
-	 * @access public
-	 * @param mixed $params パラメータの配列、又はクエリー文字列
-	 */
 	public function setParameters ($params) {
 		if (!is_iterable($params)) {
 			parse_str($params, $parsed);
@@ -43,72 +20,35 @@ class WWWFormRenderer extends ParameterHolder implements Renderer {
 		parent::setParameters($params);
 	}
 
-	/**
-	 * セパレータを設定
-	 *
-	 * @param string $separator セパレータ
-	 * @access public
-	 */
 	public function setSeparator ($separator) {
 		$this->separator = $separator;
 	}
 
-	/**
-	 * 出力内容を返す
-	 *
-	 * @access public
-	 */
 	public function getContents ():string {
 		return http_build_query($this->getParameters(), '', $this->separator);
 	}
 
-	/**
-	 * 出力内容を設定
-	 *
-	 * @param mixed $contents 出力内容
-	 * @access public
-	 */
+	public function digest ():?string {
+		return Crypt::digest($this->getContents());
+	}
+
 	public function setContents ($contents) {
 		$this->clear();
 		$this->setParameters($contents);
 	}
 
-	/**
-	 * 出力内容のサイズを返す
-	 *
-	 * @access public
-	 * @return int サイズ
-	 */
 	public function getSize ():int {
 		return strlen($this->getContents());
 	}
 
-	/**
-	 * メディアタイプを返す
-	 *
-	 * @access public
-	 * @return string メディアタイプ
-	 */
 	public function getType ():string {
 		return 'application/x-www-form-urlencoded';
 	}
 
-	/**
-	 * 出力可能か？
-	 *
-	 * @access public
-	 * @return bool 出力可能ならTrue
-	 */
 	public function validate ():bool {
 		return true;
 	}
 
-	/**
-	 * エラーメッセージを返す
-	 *
-	 * @access public
-	 * @return string エラーメッセージ
-	 */
 	public function getError ():?string {
 		return null;
 	}

@@ -34,7 +34,11 @@ class RedisRenderStorage implements RenderStorage {
 	}
 
 	public function hasCache (Action $action):bool {
-		return !!$this->server->exists($action->digest());
+		try {
+			return !!$this->server->exists($action->digest());
+		} catch (\Throwable $e) {
+			return false;
+		}
 	}
 
 	public function clear () {
