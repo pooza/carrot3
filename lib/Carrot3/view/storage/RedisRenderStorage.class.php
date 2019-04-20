@@ -9,7 +9,7 @@ class RedisRenderStorage implements RenderStorage {
 			throw new ViewException('redisモジュールがロードされていません。');
 		}
 		$this->server = new Redis;
-		$this->server->select(BS_REDIS_DATABASES_RENDER);
+		$this->server->select((int)BS_REDIS_DATABASES_RENDER);
 	}
 
 	public function getCache (Action $action):?Tuple {

@@ -1,9 +1,6 @@
-# 日付関連設定ファイル
-#
-# @package jp.co.b-shock.carrot3
-# @author 小石達也 <tkoishi@b-shock.co.jp>
-
 gengo:
+  - name: 令和
+    start_date: 2019-05-01
   - name: 平成
     start_date: 1989-01-08
   - name: 昭和
