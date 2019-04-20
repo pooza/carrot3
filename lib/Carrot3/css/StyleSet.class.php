@@ -1,45 +1,22 @@
 <?php
-/**
- * @package jp.co.b-shock.carrot3
- * @subpackage css
- */
-
 namespace Carrot3;
 
-/**
- * スタイルセット
- *
- * @author 小石達也 <tkoishi@b-shock.co.jp>
- */
 class StyleSet extends DocumentSet {
 	private $selectors;
 
-	/**
-	 * 書類のクラス名を返す
-	 *
-	 * @access public
-	 * @return string $name 書類のクラス名
-	 */
 	public function getDocumentClass () {
 		return 'CSSFile';
 	}
 
-	/**
-	 * ディレクトリ名を返す
-	 *
-	 * @access protected
-	 * @return string ディレクトリ名
-	 */
+	public function update () {
+		parent::update();
+		RenderManager::getInstance()->clear();
+	}
+
 	protected function getDirectoryName () {
 		return 'css';
 	}
 
-	/**
-	 * パースしてセレクタの配列を返す
-	 *
-	 * @access public
-	 * @return CCSParser
-	 */
 	public function getSelectors () {
 		if (!$this->selectors) {
 			$this->selectors = new CSSSParser($this->getContents());
@@ -47,12 +24,6 @@ class StyleSet extends DocumentSet {
 		return $this->selectors;
 	}
 
-	/**
-	 * HTML要素を返す
-	 *
-	 * @access public
-	 * @return HTMLElement
-	 */
 	public function createElement () {
 		$element = new HTMLElement('link');
 		$element->setEmptyElement(true);
@@ -61,10 +32,6 @@ class StyleSet extends DocumentSet {
 		return $element;
 	}
 
-	/**
-	 * @access public
-	 * @return string 基本情報
-	 */
 	public function __toString () {
 		return sprintf('スタイルセット "%s"', $this->getName());
 	}

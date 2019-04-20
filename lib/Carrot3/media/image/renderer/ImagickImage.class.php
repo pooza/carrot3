@@ -21,7 +21,7 @@ class ImagickImage extends Image {
 
 	public function __destruct () {
 		parent::__destruct();
-		$this->imagick->clear();
+		unset($this->imagick);
 	}
 
 	public function getImagick () {

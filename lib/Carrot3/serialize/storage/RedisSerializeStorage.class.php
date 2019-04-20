@@ -10,9 +10,13 @@ class RedisSerializeStorage extends SerializeStorage {
 			return false;
 		}
 		$this->server = new Redis;
-		$this->server->select(BS_REDIS_DATABASES_SERIALIZE);
+		$this->server->select((int)BS_REDIS_DATABASES_SERIALIZE);
 		$this->server->setSerializer($handler->getSerializer());
 		return true;
+	}
+
+	public function select (int $id) {
+		$this->server->select($id);
 	}
 
 	public function getAttribute (string $name, Date $date = null) {

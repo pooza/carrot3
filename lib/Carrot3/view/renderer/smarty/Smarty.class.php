@@ -118,6 +118,7 @@ class Smarty extends \Smarty implements TextRenderer {
 		]);
 
 		$serials = new SerializeHandler;
+		$serials->getStorage()->select((int)BS_REDIS_DATABASES_RENDER);
 		$serials->setConfig('template_cache_ttl', BS_VIEW_TEMPLATE_CACHE_TTL);
 		if (StringUtils::isBlank($contents = $serials[$key])) {
 			$this->getCompiler()->_compile_file(

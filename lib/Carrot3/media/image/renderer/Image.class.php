@@ -22,7 +22,7 @@ class Image implements ImageRenderer {
 	}
 
 	public function __destruct () {
-		imagedestroy($this->gd);
+		unset($this->gd);
 	}
 
 	public function getGDHandle () {
